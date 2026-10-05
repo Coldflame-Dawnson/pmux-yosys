@@ -96,6 +96,12 @@ __pycache__
 /pmux_project/pmux_case/
 /pmux_project/official_baseline/toolchain/
 /pmux_project/official_baseline/case[1-4]/
+/pmux_project/official_baseline/environment/toolchain.txt
+/pmux_project/official_baseline/environment/yosys_version.txt
+/pmux_project/official_baseline/environment/minimal_abc9_smoke.ys
+/pmux_project/official_baseline/environment/minimal_abc9_smoke.command.txt
+/pmux_project/official_baseline/environment/minimal_abc9_smoke.returncode
+/pmux_project/official_baseline/environment/minimal_abc9_smoke_full.il
 /pmux_project/official_baseline/results/*
 !/pmux_project/official_baseline/results/baseline.csv
 !/pmux_project/official_baseline/results/baseline.md

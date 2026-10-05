@@ -8,6 +8,7 @@ ABC="${BASE_DIR}/toolchain/install/bin/yosys-abc"
 EQY="${BASE_DIR}/toolchain/install/bin/eqy"
 SBY="${BASE_DIR}/toolchain/install/bin/sby"
 OUT="${BASE_DIR}/environment/toolchain.txt"
+YOSYS_VERSION_OUT="${BASE_DIR}/environment/yosys_version.txt"
 
 for tool in "${YOSYS}" "${ABC}" "${EQY}" "${SBY}"; do
     [[ -x "${tool}" ]] || { echo "missing executable: ${tool}" >&2; exit 1; }
@@ -69,8 +70,11 @@ done
     echo "Synthesis command: synth_intel -family cycloneiv"
 } > "${OUT}"
 
+"${YOSYS}" -V > "${YOSYS_VERSION_OUT}"
+
 "${YOSYS}" -p "help synth_intel" > "${BASE_DIR}/environment/synth_intel_help.log" 2>&1
 sed -n '120,360p' "${BASE_DIR}/toolchain/yosys-v0.69-src/techlibs/intel/synth_intel.cc" \
     > "${BASE_DIR}/environment/synth_intel_source_excerpt.txt"
 
 echo "wrote ${OUT}"
+echo "wrote ${YOSYS_VERSION_OUT}"
