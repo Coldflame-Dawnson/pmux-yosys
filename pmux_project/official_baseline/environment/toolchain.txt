@@ -1,0 +1,46 @@
+Captured (Asia/Shanghai): 2026-10-05T17:58:24+08:00
+
+[Operating system / WSL]
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+VERSION_ID="24.04"
+Linux James 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Linux version 6.18.33.2-microsoft-standard-WSL2 (root@f1bbfb02316b) (gcc (GCC) 13.2.0, GNU ld (GNU Binutils) 2.41) #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026
+
+[Actual tool paths]
+/mnt/d/Work/Embedded_competition/Original_results/official_baseline/toolchain/install/bin/yosys
+/mnt/d/Work/Embedded_competition/Original_results/official_baseline/toolchain/install/bin/yosys-abc
+/mnt/d/Work/Embedded_competition/Original_results/official_baseline/toolchain/install/bin/eqy
+/mnt/d/Work/Embedded_competition/Original_results/official_baseline/toolchain/install/bin/sby
+/usr/bin/gcc
+/usr/bin/g++
+/usr/bin/cmake
+/usr/bin/ninja
+/usr/bin/python3
+
+[Versions]
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+EQY v0.69
+SBY v0.69
+    -b		running in bridge mode
+
+UC Berkeley, ABC 1.01 (compiled Oct  5 2026 16:40:20)
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+cmake version 3.28.3
+1.11.1
+Python 3.12.3
+
+[Pinned commits]
+Yosys: 9f75ca1f9834a39a863915b5dae0c7b1e33533bc
+ABC: a51bf4a7bb38ce06ea3a544b1463b40832213917
+EQY: 4a72eb94fc253062464afee4d0018359017bb846
+SBY: b1a1e98cba941ec8433f8dc27f416cd7bb7f14be
+
+[Solver]
+EQY strategies use Yosys 0.69 built-in SAT solver (sat pass).
+No external SMT solver found; none is required by the selected EQY sat strategy.
+
+[Integrity constraints]
+Required Yosys commit: 9f75ca1f9834a39a863915b5dae0c7b1e33533bc
+No custom plugin is loaded by any baseline script.
+Synthesis command: synth_intel -family cycloneiv

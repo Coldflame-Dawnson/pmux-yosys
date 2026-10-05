@@ -1,0 +1,4 @@
+read_verilog "/mnt/d/Work/Embedded_competition/Original_results/official_baseline/environment/minimal_abc9_smoke.v";
+synth_intel -family cycloneiv -top minimal_abc9_smoke;
+stat;
+write_rtlil "/mnt/d/Work/Embedded_competition/Original_results/official_baseline/environment/minimal_abc9_smoke_full.il";

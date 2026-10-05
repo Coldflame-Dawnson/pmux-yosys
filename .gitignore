@@ -92,3 +92,13 @@ __pycache__
 /compile_commands.json
 /.direnv
 /.envrc
+# PMUX project local inputs and generated artifacts
+/pmux_project/pmux_case/
+/pmux_project/official_baseline/toolchain/
+/pmux_project/official_baseline/case[1-4]/
+/pmux_project/official_baseline/results/*
+!/pmux_project/official_baseline/results/baseline.csv
+!/pmux_project/official_baseline/results/baseline.md
+!/pmux_project/official_baseline/results/stage_counts.csv
+/pmux_project/reports/*
+!/pmux_project/reports/.gitkeep
