@@ -81,6 +81,54 @@ run_eqy() {
     return "${rc}"
 }
 
+write_eqy_configs() {
+    cat > "${EQY_DIR}/default.eqy" <<EOF
+[gold]
+read_verilog -formal ${SOURCE}
+
+[gate]
+read_rtlil ${NETLIST_DIR}/post_abc9.il
+read_verilog -formal -overwrite ${BASE_DIR}/environment/dffeas_formal.v
+
+[script]
+hierarchy -check -top ${TOP}
+prep
+memory_map
+async2sync
+
+[strategy sat]
+use sat
+depth 20
+EOF
+
+    cat > "${EQY_DIR}/whole.eqy" <<EOF
+[gold]
+read_verilog -formal ${SOURCE}
+
+[gate]
+read_rtlil ${NETLIST_DIR}/post_abc9.il
+read_verilog -formal -overwrite ${BASE_DIR}/environment/dffeas_formal.v
+
+[script]
+hierarchy -check -top ${TOP}
+prep
+memory_map
+async2sync
+
+[partition ${TOP}]
+merge *
+
+[strategy sat]
+use sat
+depth 20
+
+[strategy pdr]
+use sby
+engine abc pdr
+timeout 300
+EOF
+}
+
 FULL_SCRIPT="read_verilog \"${SOURCE}\";
 synth_intel -family cycloneiv -top ${TOP};
 stat;
@@ -173,6 +221,8 @@ if [[ "${lut_count}" -le 0 ]]; then
     echo "${CASE}: post-ABC9 LUT count is not positive" >&2
     exit 3
 fi
+
+write_eqy_configs
 
 if run_eqy default; then
     printf 'PASS (default partition)\n' > "${EQY_DIR}/status.txt"
