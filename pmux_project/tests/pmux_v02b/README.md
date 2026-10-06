@@ -6,6 +6,8 @@
 
 预算四例目前使用 budget.forced=true 强制回退，检验的是 C 框架的拒绝与记录路径，尚不能检验 A 的真实预算实现。UNKNOWN、冲突、keep、selection 与原子回退也同样不能从 fixture PASS 推断真实 Pass 正确。
 
+A 的 v0.2-B 接口说明确认：原生 `$pmux` 采用 one-hot 语义，整分支删除后的 fallback 只能是 A。第 9 类展示分支数据与另一分支相同且选择可能重叠的情形，预期拒绝删除；不能把另一分支当作低优先级 fallback。该用例使用 `fixture_non_a_fallback_reject` 本地原因类别，真实 Pass 原因码仍待 A/B 机器契约核对。A 报告的证明提交 `3aff789a3badf6fecc4d3651e4b7eea52627fe3c` 尚未推送，也不在 C 的对象库中，当前未作为真实路径运行。
+
 随机种子沿用 M1 的 seeds_1000.txt。前 100 种子中偶数为互斥选择的可删分支，奇数为可能重叠选择的拒绝例；每种子生成前后 RTLIL、计划、统计、命令和完整日志。失败时单独保存 failure.json，包含种子、哈希、版本和一条命令复现。1000 例是 A+B 真实路径的阶段门槛，目前 NOT_RUN。
 
 ## 已执行命令

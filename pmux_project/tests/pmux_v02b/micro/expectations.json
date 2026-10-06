@@ -162,12 +162,10 @@
       "after": "09_equal_lower_fallback.after.il",
       "target": "target",
       "branches_before": 2,
-      "removed_branches": [
-        0
-      ],
-      "branches_after": 1,
-      "target_after_type": "$mux",
-      "reason_category": "fixture_fallback_equal",
+      "removed_branches": [],
+      "branches_after": 2,
+      "target_after_type": "$pmux",
+      "reason_category": "fixture_non_a_fallback_reject",
       "mode": "FIXTURE",
       "budget": null,
       "selection": null,

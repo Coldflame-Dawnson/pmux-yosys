@@ -117,7 +117,7 @@
   "evidence": {
     "micro": {
       "path": "pmux_project/reports/c-v02b-micro-release/evidence.tar.gz",
-      "sha256": "3123a4c9b4ef379861fa5e62dcd7261e70adf32c897096f8bc6edba76a2d8e62"
+      "sha256": "f7fe978dc1e856dfc1ae57a8ca3623ae6f36dba4c9c91a5f98765ae79201f987"
     },
     "random100": {
       "path": "pmux_project/reports/c-v02b-random100-release/evidence.tar.gz",
@@ -129,7 +129,7 @@
     },
     "official_baseline": {
       "path": "/home/yuewen/work/pmux-yosys-c-v02b/pmux_project/reports/c-v02b-stage-gate-release/official_baseline_evidence.tar.gz",
-      "sha256": "c85660020d129b68a9c88ef6f16b7686200cf884c9cc9600b96b629e770d73ac",
+      "sha256": "b3f30cc923587b4140ab3dff98dd56c4227f318fe8c6d9a392aa0f2cf202900a",
       "file_count": 669
     }
   },

@@ -15,11 +15,12 @@ module \top
     connect \B \sel [1]
     connect \Y \fallback_s
   end
-  cell $mux \target
+  cell $pmux \target
     parameter \WIDTH 1
+    parameter \S_WIDTH 2
     connect \A \a
-    connect \B \d1
-    connect \S \fallback_s
+    connect \B { \d1 \d1 }
+    connect \S { \fallback_s \sel [0] }
     connect \Y \out
   end
 end
