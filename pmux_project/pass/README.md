@@ -17,10 +17,12 @@ pmux_opt -write-plan plan.json -write-stats stats.json
 write_rtlil after.il
 ```
 
-The command name is `pmux_opt`. With no real analyzer integrated, its default
-analyzer returns only `UNKNOWN`, exits successfully, and writes no RTLIL bits.
-The `-stub-*` and `-test-*` switches are test-only and must not be used to claim
-functional optimization or LUT benefit.
+The command name is `pmux_opt`. Its default analyzer is A's read-only proof
+engine created by `make_readonly_entry_analyzer()`. B accepts a determined bit
+only when its reason is `proved` and its proof ID is valid. `-stub-unknown`
+retains the pre-integration no-write path. All `-stub-*` and `-test-*` switches
+are test-only and must not be used to claim functional optimization or LUT
+benefit.
 
 ## Plan JSON schema 1
 
@@ -32,7 +34,7 @@ an empty array.
 {
   "schema": 1,
   "producer": "pmux_opt",
-  "mode": "stub_unknown",
+  "mode": "real",
   "commit": "ok",
   "commit_reason": null,
   "edits": [
@@ -70,7 +72,7 @@ For `$pmux.B`, `branch == bit / WIDTH` and `branch_bit == bit % WIDTH`.
 - `analysis`: entry statuses, analyzer resource counters, proven 0/1, unknown
   bits, and `sat_queries` (fixed to zero in v0.1);
 - `rewrite`: candidate, accepted, committed, deduplicated, conflict, abandoned,
-  rejected and original-constant counts;
+  rejected-entry, rejected-unproved-conclusion and original-constant counts;
 - `resources`: microseconds and KiB, with units recorded explicitly.
 
 `candidate_bits` are proven nonconstant replacement candidates.
@@ -84,7 +86,9 @@ are physical bits written after a successful precheck.
 - Structurally invalid or `keep` cell: warning, stable reason code, cell skipped.
 - `fact_conflict` or invalid analyzer result: current entry rejected.
 - `budget_exhausted`: complete proven bits may remain; incomplete bits are
-  unknown. Exact budget-stop semantics and budget-specific reasons belong to A.
+  unknown. Limits are inclusive: 512 cells, 8192 normalized bits and 262144
+  events are allowed; attempting the next item emits A's corresponding
+  `budget_*_exhausted` reason while the recorded usage remains at the limit.
 - `rewrite_conflict`: all entries involved at that physical bit are abandoned;
   independent entries may still commit.
 - Any full-port snapshot mismatch: whole batch aborts before the first RTLIL
@@ -105,5 +109,6 @@ defensive result filters.
 A owns comparator-width/sign rejection, unsupported-cell propagation,
 no-opportunity details, `fact_conflict`, and the separate cell/bit/event budget
 reason codes. B forwards A's entry and per-bit reason strings into the machine
-statistics without changing their meaning. The test-only codes and modes are
-not part of the production analyzer contract.
+statistics without changing their meaning, but only `proved` conclusions may
+enter the rewrite planner. The test-only codes and modes are not part of the
+production analyzer contract.

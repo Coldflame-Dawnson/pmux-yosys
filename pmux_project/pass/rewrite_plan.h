@@ -36,6 +36,7 @@ struct RewriteStats {
 	std::size_t skipped_original_binary_constants = 0;
 	std::size_t skipped_original_xz = 0;
 	std::size_t rejected_results = 0;
+	std::size_t rejected_unproved_conclusions = 0;
 	std::size_t duplicate_targets = 0;
 	std::size_t rewrite_conflicts = 0;
 	std::size_t abandoned_entries = 0;

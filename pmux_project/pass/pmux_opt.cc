@@ -2,6 +2,7 @@
 #include "kernel/json.h"
 #include "kernel/sigtools.h"
 #include "pmux_opt_api.h"
+#include "readonly_analyzer.h"
 #include "rewrite_plan.h"
 
 #include <algorithm>
@@ -9,6 +10,7 @@
 #include <climits>
 #include <fstream>
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -264,6 +266,7 @@ static Json build_stats_json(const std::string &mode,
 			{"skipped_original_binary_constants", int(rewrite_stats.skipped_original_binary_constants)},
 			{"skipped_original_xz", int(rewrite_stats.skipped_original_xz)},
 			{"rejected_results", int(rewrite_stats.rejected_results)},
+			{"rejected_unproved_conclusions", int(rewrite_stats.rejected_unproved_conclusions)},
 			{"deduplicated_targets", int(rewrite_stats.duplicate_targets)},
 			{"rewrite_conflicts", int(rewrite_stats.rewrite_conflicts)},
 			{"abandoned_entries", int(rewrite_stats.abandoned_entries)},
@@ -359,7 +362,7 @@ struct PmuxOptPass : public Pass
 	void help() override
 	{
 		log("\n");
-		log("    pmux_opt [-verbose] [-stub-zero|-stub-one|-stub-alternating]\n");
+		log("    pmux_opt [-verbose] [-stub-unknown|-stub-zero|-stub-one|-stub-alternating]\n");
 		log("             [-test-rewrite-duplicate] [-test-rewrite-conflict]\n");
 		log("             [-test-snapshot-mismatch]\n");
 		log("             [-test-report-constants]\n");
@@ -367,8 +370,8 @@ struct PmuxOptPass : public Pass
 		log("\n");
 		log("Enumerate selected, structurally valid $mux and $pmux cells in stable\n");
 		log("order, construct branch-local guards, and call the analysis interface.\n");
-		log("By default the M1 scaffold uses an UNKNOWN-only analyzer and does not\n");
-		log("change RTLIL. The -stub-* modes force test-only conclusions and exercise\n");
+		log("By default the Pass uses the read-only proof analyzer. The -stub-* modes\n");
+		log("select test-only conclusions and exercise\n");
 		log("the rewrite planner; they must never be used for production synthesis.\n");
 		log("-test-rewrite-duplicate injects matching test metadata for one target.\n");
 		log("-test-rewrite-conflict injects opposing test metadata for one target bit.\n");
@@ -424,7 +427,9 @@ struct PmuxOptPass : public Pass
 				continue;
 			}
 			StubMode requested_mode;
-			if (args[argidx] == "-stub-zero")
+			if (args[argidx] == "-stub-unknown")
+				requested_mode = StubMode::Unknown;
+			else if (args[argidx] == "-stub-zero")
 				requested_mode = StubMode::Zero;
 			else if (args[argidx] == "-stub-one")
 				requested_mode = StubMode::One;
@@ -448,14 +453,18 @@ struct PmuxOptPass : public Pass
 		if (test_report_constants && !stub_mode_set)
 			log_cmd_error("pmux_opt: -test-report-constants requires a -stub-* mode.\n");
 
-		log_header(design, "Executing PMUX_OPT read-only M1 scaffold.\n");
+		log_header(design, "Executing PMUX_OPT guarded analysis and atomic rewrite.\n");
 
 		std::vector<RTLIL::Module *> modules = design->selected_modules();
 		std::sort(modules.begin(), modules.end(), [](const RTLIL::Module *lhs, const RTLIL::Module *rhs) {
 			return lhs->name.str() < rhs->name.str();
 		});
 
-		FixedAnalyzer analyzer(stub_mode, test_report_constants);
+		std::unique_ptr<EntryAnalyzer> analyzer;
+		if (stub_mode_set)
+			analyzer.reset(new FixedAnalyzer(stub_mode, test_report_constants));
+		else
+			analyzer = make_readonly_entry_analyzer();
 		RewriteBatch rewrite_batch;
 		int selected_modules = 0;
 		int candidate_cells = 0;
@@ -525,11 +534,12 @@ struct PmuxOptPass : public Pass
 					const int offset = branch * width;
 					requests.push_back(make_request(module, cell, PhysicalPort::B,
 							cell->type == ID($mux) ? EntryKind::MuxB : EntryKind::PmuxB,
-							branch, offset, port_b.extract(offset, width), port_b, guard_b));
+							cell->type == ID($mux) ? -1 : branch, offset,
+							port_b.extract(offset, width), port_b, guard_b));
 				}
 
 				for (const EntryRequest &request : requests) {
-					EntryAnalysisResult result = analyzer.analyze(request);
+					EntryAnalysisResult result = analyzer->analyze(request);
 					entry_count++;
 					analysis_status_counts[status_name(result.status)]++;
 					visited_cells += result.usage.visited_cells;
@@ -550,11 +560,11 @@ struct PmuxOptPass : public Pass
 					}
 					rewrite_batch.add(request, result);
 					if (verbose) {
-						log("pmux_opt: entry module=%s cell=%s kind=%s branch=%d offset=%d width=%d guard_facts=%zu result_bits=%zu status=normal\n",
+						log("pmux_opt: entry module=%s cell=%s kind=%s branch=%d offset=%d width=%d guard_facts=%zu result_bits=%zu status=%s\n",
 								request.module_id.c_str(), request.cell_id.c_str(),
 								entry_kind_name(request.entry_kind), request.branch_index,
 								request.physical_offset, request.width, request.guard.size(),
-								result.bits.size());
+								result.bits.size(), status_name(result.status));
 					}
 				}
 			}
@@ -573,10 +583,11 @@ struct PmuxOptPass : public Pass
 					commit_failure.c_str());
 
 		const RewriteStats &rewrite_stats = rewrite_batch.stats();
-		log("pmux_opt: rewrite proven=%zu skipped_binary_constants=%zu skipped_xz=%zu rejected_results=%zu duplicates=%zu conflicts=%zu abandoned_entries=%zu planned=%zu writes=%zu commit=%s\n",
+		log("pmux_opt: rewrite proven=%zu skipped_binary_constants=%zu skipped_xz=%zu rejected_results=%zu rejected_unproved=%zu duplicates=%zu conflicts=%zu abandoned_entries=%zu planned=%zu writes=%zu commit=%s\n",
 				rewrite_stats.proven_bits, rewrite_stats.skipped_original_binary_constants,
 				rewrite_stats.skipped_original_xz,
-				rewrite_stats.rejected_results, rewrite_stats.duplicate_targets,
+				rewrite_stats.rejected_results, rewrite_stats.rejected_unproved_conclusions,
+				rewrite_stats.duplicate_targets,
 				rewrite_stats.rewrite_conflicts,
 				rewrite_stats.abandoned_entries, rewrite_stats.planned_bits,
 				rewrite_stats.written_bits, commit_ok ? "ok" : "aborted");
@@ -607,7 +618,9 @@ struct PmuxOptPass : public Pass
 			log("pmux_opt: resources wall_us=%lld os_counters=unavailable\n", wall_us);
 		}
 
-		const std::string machine_mode = stub_mode_set ? "testing_stub" : "stub_unknown";
+		const std::string machine_mode = stub_mode_set ?
+				(stub_mode == StubMode::Unknown ? "testing_stub_unknown" : "testing_stub") :
+				"real";
 		if (!plan_json_file.empty())
 			write_json_file(plan_json_file,
 					build_plan_json(rewrite_batch, commit_ok, commit_failure, machine_mode));

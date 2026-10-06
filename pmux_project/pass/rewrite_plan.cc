@@ -70,6 +70,11 @@ void RewriteBatch::add(const EntryRequest &request, const EntryAnalysisResult &r
 	for (const BitConclusion &conclusion : result.bits) {
 		if (conclusion.value == FactValue::Unknown)
 			continue;
+		if ((conclusion.reason_code != "proved" && conclusion.reason_code != "testing_stub") ||
+				conclusion.proof_id < 0) {
+			stats_.rejected_unproved_conclusions++;
+			continue;
+		}
 		if (conclusion.bit_index < 0 || conclusion.bit_index >= request.width) {
 			metadata_invalid_ = true;
 			continue;
