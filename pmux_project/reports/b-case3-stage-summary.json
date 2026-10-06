@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "source_integration_commit": "2fbd97aee2427c1c521eece1694f7f5f779cdfb0",
+  "case": "case3",
+  "method": "continue frozen Yosys 0.69 flow from archived before_pmux.il and after_pmux.il",
+  "validated_against_official": {
+    "baseline_lut": 13,
+    "optimized_lut": 13,
+    "baseline_dff": 17,
+    "optimized_dff": 17
+  },
+  "stages": [
+    {"path":"baseline_00_before","sha256":"DA3113683CFDA876DA77F27E92E3851BAEF53F8C9CC8044E68AA7080CB6BB0DE","cells":18,"pmux":1,"rtl_mux":2,"eq":3,"gate_and":0,"gate_or":0,"gate_not":0,"gate_mux":0,"lut":0,"dffeas":0},
+    {"path":"optimized_00_after_pmux","sha256":"09F03A855F981199B884BA802FDCBCCEA61EC58873DDB38D95162482256B9013","cells":18,"pmux":1,"rtl_mux":2,"eq":3,"gate_and":0,"gate_or":0,"gate_not":0,"gate_mux":0,"lut":0,"dffeas":0},
+    {"path":"optimized_10_opt_clean","sha256":"09F03A855F981199B884BA802FDCBCCEA61EC58873DDB38D95162482256B9013","cells":18,"pmux":1,"rtl_mux":2,"eq":3,"gate_and":0,"gate_or":0,"gate_not":0,"gate_mux":0,"lut":0,"dffeas":0},
+    {"path":"baseline_20_techmap","sha256":"B8D7CF1E42576ECD45B0CA61D63BA39308836BF5A9C2C464270ADE35F07BACC9","cells":86,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":8,"gate_or":25,"gate_not":4,"gate_mux":8,"lut":0,"dffeas":0},
+    {"path":"optimized_20_techmap","sha256":"21E39D75B054F234DE43E138574A12E59DBC120103691FF917398549AC5B1C3E","cells":86,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":8,"gate_or":25,"gate_not":4,"gate_mux":8,"lut":0,"dffeas":0},
+    {"path":"baseline_30_map_ffram","sha256":"1CB8D9B02411A1E6945AD8988B90190E048BC5B3DC66B64D415403C9D3A21FDA","cells":61,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":7,"gate_or":19,"gate_not":11,"gate_mux":7,"lut":0,"dffeas":0},
+    {"path":"optimized_30_map_ffram","sha256":"D051A1500726C42E05B66BD6CCEF7DE558176B28E07A2DA8B2AD92C3B0E6B5FB","cells":53,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":6,"gate_or":18,"gate_not":11,"gate_mux":1,"lut":0,"dffeas":0},
+    {"path":"baseline_40_pre_abc9","sha256":"91BAF54499F3002170798BD28A6A36A00C2E0D8EC8B3C969B1445EA86635F222","cells":71,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":7,"gate_or":19,"gate_not":20,"gate_mux":8,"lut":0,"dffeas":17},
+    {"path":"optimized_40_pre_abc9","sha256":"88B9FADE28D1A93471E583E8C9587813D02FFCD6242A3F269E4638DEDC122819","cells":69,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":6,"gate_or":18,"gate_not":20,"gate_mux":8,"lut":0,"dffeas":17},
+    {"path":"baseline_50_post_abc9","sha256":"6F838888A2DABFD05D3EA846C5A2B96AC0BD6741D655D760D4B633E0ADBCF5FB","cells":30,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":0,"gate_or":0,"gate_not":0,"gate_mux":0,"lut":13,"dffeas":17},
+    {"path":"optimized_50_post_abc9","sha256":"CBD5F7843E594B2AE21A63AB79ED6896CFA0D521B0C714EBB2A2B84A38E2C0FD","cells":30,"pmux":0,"rtl_mux":0,"eq":0,"gate_and":0,"gate_or":0,"gate_not":0,"gate_mux":0,"lut":13,"dffeas":17}
+  ],
+  "abc9": {
+    "baseline_aigmap_and_gates": 50,
+    "optimized_aigmap_and_gates": 48,
+    "baseline_aigmap_wires": 190,
+    "optimized_aigmap_wires": 185,
+    "baseline_after_dc2_and_nodes": 36,
+    "optimized_after_dc2_and_nodes": 36,
+    "baseline_final_luts": 13,
+    "optimized_final_luts": 13
+  },
+  "conclusion": "The generic-logic reduction survives to the ABC9 input but is absorbed by ABC9 global optimization and 4-LUT mapping."
+}
