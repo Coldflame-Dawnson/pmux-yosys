@@ -15,7 +15,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--random", type=Path, default=ROOT/"reports"/"c-real-random-1000")
     parser.add_argument("--baseline", type=Path, default=ROOT/"reports"/"c-official-baseline-check")
-    parser.add_argument("--optimized", type=Path, default=ROOT/"reports"/"c-official-real-split")
+    parser.add_argument("--optimized", type=Path, default=ROOT/"reports"/"c-official-b-audited")
     parser.add_argument("--out", type=Path, default=ROOT/"reports"/"c-stage-gate")
     args=parser.parse_args()
     random=read(args.random/"summary.json")
@@ -71,7 +71,7 @@ def main():
         base,opt=row["baseline"],row["optimized"]
         lines.append(f"| {row['case']} | {base['lut']}→{opt['lut']} | {base['dff']}→{opt['dff']} | {base['io']}→{opt['io']} | {base['cpu_s']}→{opt['cpu_s']} | {base['peak_memory_mb']}→{opt['peak_memory_mb']} | {opt['changed_bits']} | {opt['eqy_method']} | {opt['abc_internal_error']} |")
     lines.extend(["","阻塞："+(", ".join(report["blockers"]) if reasons else "无"),"",
-                  "分段综合按冻结的 map_ffram 顺序调用真实插件；完整综合及后 ABC9 各执行一次 PMUX_OPT。生产版加载方式由 B 确认后用 `--real-flow integrated` 重跑。", ""])
+                  "官方优化逐阶段调用 B 的审计入口，使用 `-m` 加载真实插件；完整综合及后 ABC9 各执行一次 PMUX_OPT，并核验 MEMORY_MAP < PMUX_OPT < OPT_CLEAN < TECHMAP < ABC9。", ""])
     (args.out/"summary.md").write_text("\n".join(lines),encoding="utf-8")
     print(f"random={random['pass']}/1000 official_lut={optimized.get('lut_benefit')} ready_to_merge={not reasons}")
     return 0

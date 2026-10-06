@@ -20,8 +20,8 @@
       "lut": 288,
       "dff": 222,
       "io": 0,
-      "cpu_s": 0.1,
-      "peak_memory_mb": 31.15,
+      "cpu_s": 0.09,
+      "peak_memory_mb": 31.27,
       "abc_internal_error": true,
       "eqy_default": "FAIL",
       "eqy_whole": "PASS",
@@ -54,7 +54,7 @@
       "dff": 0,
       "io": 0,
       "cpu_s": 0.03,
-      "peak_memory_mb": 26.97,
+      "peak_memory_mb": 26.3,
       "abc_internal_error": true,
       "eqy_default": "PASS",
       "baseline": {
@@ -86,7 +86,7 @@
       "dff": 17,
       "io": 0,
       "cpu_s": 0.03,
-      "peak_memory_mb": 27.36,
+      "peak_memory_mb": 26.91,
       "abc_internal_error": true,
       "eqy_default": "FAIL",
       "eqy_whole": "PASS",
@@ -119,7 +119,7 @@
       "dff": 10,
       "io": 0,
       "cpu_s": 0.04,
-      "peak_memory_mb": 27.39,
+      "peak_memory_mb": 27.4,
       "abc_internal_error": true,
       "eqy_default": "PASS",
       "baseline": {
@@ -141,5 +141,7 @@
   "structure_correct": "NOT_RUN",
   "eqy_pass": "PASS",
   "lut_benefit": "NOT_RUN",
+  "flow": "frozen_baseline",
+  "production_yosys_loading_confirmed": "NOT_RUN",
   "note": "Known baseline ABC internal error is recorded per case; it is not silently discarded."
 }

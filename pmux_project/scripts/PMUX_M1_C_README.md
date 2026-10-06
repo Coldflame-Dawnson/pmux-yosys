@@ -12,13 +12,13 @@ make -C pmux_project/pass YOSYS_CONFIG="$BIN/yosys-config"
 TEMPLATE="python3 {project}/scripts/real_pass_adapter.py --before {before} --after {after} --plan {plan} --stats {stats} --plugin {project}/pass/pmux_opt.so --yosys $BIN/yosys"
 python3 pmux_project/scripts/run_random.py --count 1000 --mode external --external-kind real --bin "$BIN" --out pmux_project/reports/c-real-random-1000 --dut-template "$TEMPLATE"
 python3 pmux_project/scripts/run_official.py --mode identity --bin "$BIN" --source-root "$SRC" --out pmux_project/reports/c-official-baseline-check
-python3 pmux_project/scripts/run_official.py --mode real --real-flow split --bin "$BIN" --plugin pmux_project/pass/pmux_opt.so --source-root "$SRC" --out pmux_project/reports/c-official-real-split
+python3 pmux_project/scripts/run_official.py --mode real --bin "$BIN" --plugin pmux_project/pass/pmux_opt.so --source-root "$SRC" --out pmux_project/reports/c-official-b-audited
 python3 pmux_project/scripts/summarize_c_stage.py
 ```
 
-`split` 在冻结的原版 Yosys 0.69 中逐条执行 `map_ffram`，在 `opt -undriven -fine` 与 `techmap -map +/techmap.v` 间调用默认 `pmux_opt`，并校验每份完整综合/后 ABC9 日志里 Pass 恰好出现一次。单独的诊断运行保存 before/after RTLIL、原生 plan/stats 并核对结构；它不参与 CPU/内存计时。官方四例的输入通过 `--source-root` 只读引用 M0 文件并校验 SHA-256。
+真实官方模式调用 B 的 `pmux_project/pass/run_synth_intel_pmux.py`，显式传入插件，分别运行 `--stage post_abc9` 和 `--stage full`。各 case/阶段有独立 plan/stats/log/script。B 的入口及 C 的运行器均核验 PMUX_OPT 恰好执行一次，顺序为 MEMORY_MAP < PMUX_OPT < OPT_CLEAN < TECHMAP < ABC9。单独的诊断运行保存 before/after RTLIL、原生 plan/stats 并核对结构；它不参与 CPU/内存计时。官方四例的输入通过 `--source-root` 只读引用 M0 文件并校验 SHA-256。
 
-B 确认并提供带 `synth_intel.cc` 插入点的开发版 Yosys 后，将 `--real-flow split` 改为 `--real-flow integrated`、`--bin` 指向该版工具，并用同一插件重跑。该模式直接执行生产 `synth_intel`，若 Pass 没有恰好调用一次则失败。当前分段验证的四例 EQY 均通过，但四例 LUT 均没有减少，`lut_benefit=FAIL`；不得合入 `integration/g3` 或宣布 M1 完成。
+当前 B 审计入口的四例 EQY 均通过，但四例 LUT 均没有减少，`lut_benefit=FAIL`；不得合入 `integration/g3` 或宣布 M1 完成。identity 模式仍使用未加载插件的原版单行 `synth_intel`。
 
 从团队仓库根目录执行；以下工具路径是 M0 冻结的未修改 Yosys 0.69 安装目录。运行输出写到 `pmux_project/reports/`，不写官方 RTL、原基线结果或生产代码。
 

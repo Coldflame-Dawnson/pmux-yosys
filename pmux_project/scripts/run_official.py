@@ -13,6 +13,7 @@ from pathlib import Path
 from run_micro import DEFAULT_BIN, ROOT, compare, run, save, validate_machine
 
 BASE = ROOT / "official_baseline"
+B_ENTRY = ROOT / "pass" / "run_synth_intel_pmux.py"
 HASHES = [
     "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
     "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
@@ -46,28 +47,13 @@ def timing(log):
     u,s,m=map(float,matches[-1]);return round(u+s,3),m
 
 
-def synth_script(src, top, stage, mode, real_flow, plugin, work):
-    """Reproduce synth_intel's map_ffram sequence with one Pass insertion."""
-    if mode == "identity":
-        return (f'read_verilog "{src}"; synth_intel -family cycloneiv -top {top}' +
-                (" -run begin:map_cells" if stage == "post_abc9" else ""))
-    if real_flow == "integrated":
-        return (f'plugin -i "{plugin}"; read_verilog "{src}"; '
-                f'synth_intel -family cycloneiv -top {top}' +
-                (" -run begin:map_cells" if stage == "post_abc9" else ""))
-    script = (f'plugin -i "{plugin}"; read_verilog "{src}"; '
-              f'synth_intel -family cycloneiv -top {top} -run begin:map_ffram; '
-              'opt -fast -mux_undef -undriven -fine -full; memory_map; opt -undriven -fine; '
-              'log PMUX_OPT_ANCHOR_AFTER_OPT_UNDRIVEN_FINE; pmux_opt; '
-              'log PMUX_OPT_ANCHOR_BEFORE_COMMON_TECHMAP; '
-              'techmap -map +/techmap.v; opt -full; clean -purge; setundef -undriven -zero; '
-              f'synth_intel -family cycloneiv -top {top} '
-              f'-run map_ffs:{"map_cells" if stage == "post_abc9" else ""}')
-    return script
+def identity_script(src, top, stage):
+    return (f'read_verilog "{src}"; synth_intel -family cycloneiv -top {top}' +
+            (" -run begin:map_cells" if stage == "post_abc9" else ""))
 
 
 def diagnostic_script(src, top, plugin, work):
-    return (f'plugin -i "{plugin}"; read_verilog "{src}"; '
+    return (f'read_verilog "{src}"; '
             f'synth_intel -family cycloneiv -top {top} -run begin:map_ffram; '
             'opt -fast -mux_undef -undriven -fine -full; memory_map; opt -undriven -fine; '
             f'write_json "{work / "before_pmux.json"}"; '
@@ -77,23 +63,18 @@ def diagnostic_script(src, top, plugin, work):
             f'write_rtlil "{work / "after_pmux.il"}"; check')
 
 
-def pass_location(log, expected_writes, real_flow):
-    anchor1 = "PMUX_OPT_ANCHOR_AFTER_OPT_UNDRIVEN_FINE"
+def pass_location(log, expected_writes):
     header = "Executing PMUX_OPT guarded analysis and atomic rewrite."
-    anchor2 = "PMUX_OPT_ANCHOR_BEFORE_COMMON_TECHMAP"
+    memory = "Executing MEMORY_MAP pass"
+    clean = "Executing OPT_CLEAN pass"
     techmap = "Executing TECHMAP pass"
     if log.count(header) != 1:
         return ["PMUX_OPT did not occur exactly once"]
     position = log.index(header)
-    if real_flow == "split":
-        if log.count(anchor1) != 1 or log.count(anchor2) != 1:
-            return ["PMUX_OPT position anchors did not occur exactly once"]
-        positions = [log.index(marker) for marker in (anchor1, header, anchor2)]
-        next_techmap = log.find(techmap, positions[-1])
-        if positions != sorted(positions) or next_techmap < 0:
-            return ["PMUX_OPT is not after fine opt and before common techmap"]
-    elif log.rfind("Executing OPT pass", 0, position) < 0 or log.find(techmap, position) < 0:
-        return ["integrated PMUX_OPT is not bracketed by opt and techmap"]
+    locations=(log.rfind(memory,0,position),position,log.find(clean,position),
+               log.find(techmap,position),log.find("Executing ABC9 pass",position))
+    if any(pos<0 for pos in locations) or tuple(sorted(locations))!=locations:
+        return ["PMUX_OPT is not between MEMORY_MAP, OPT_CLEAN, common TECHMAP, and ABC9"]
     writes = re.findall(r"pmux_opt: rewrite .*?writes=(\d+) commit=", log)
     return [] if len(writes) == 1 and int(writes[0]) == expected_writes else ["PMUX_OPT write count differs from diagnostic plan"]
 
@@ -101,8 +82,6 @@ def pass_location(log, expected_writes, real_flow):
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--mode",choices=("identity","real"),default="identity")
-    p.add_argument("--real-flow",choices=("split","integrated"),default="split",
-                   help="split: baseline Yosys with exact map_ffram insertion; integrated: B's patched Yosys")
     p.add_argument("--bin",type=Path,default=DEFAULT_BIN)
     p.add_argument("--plugin",type=Path,default=ROOT/"pass"/"pmux_opt.so")
     p.add_argument("--source-root",type=Path,default=ROOT/"pmux_case"/"competition_case")
@@ -133,7 +112,7 @@ def main():
             if a.mode=="real":
                 diagnostic=diagnostic_script(src,top,a.plugin,w)
                 save(w/"diagnostic.ys",diagnostic+"\n")
-                rc=run([yosys,"-l",w/"diagnostic.log","-s",w/"diagnostic.ys"],
+                rc=run([yosys,"-m",a.plugin,"-l",w/"diagnostic.log","-s",w/"diagnostic.ys"],
                        w/"diagnostic.console.log",w,env,timeout=600)
                 if rc: raise RuntimeError(f"diagnostic Pass rc={rc}")
                 before=json.loads((w/"before_pmux.json").read_text())["modules"]
@@ -150,13 +129,30 @@ def main():
                 if issues: raise RuntimeError("diagnostic Pass plan/structure mismatch")
             for stage in ("post_abc9","full"):
                 net=w/f"{stage}.json"
-                command=synth_script(src,top,stage,a.mode,a.real_flow,a.plugin,w)+f'; stat; write_json "{net}"'
-                if stage=="post_abc9": command+=f'; select {top}; write_rtlil -selected "{w/"post_abc9.il"}"'
-                save(w/f"{stage}.ys",command+"\n")
-                rc=run([yosys,"-l",w/f"{stage}.log","-s",w/f"{stage}.ys"],w/f"{stage}.console.log",w,env,timeout=600)
+                if a.mode=="identity":
+                    command=identity_script(src,top,stage)+f'; stat; write_json "{net}"'
+                    if stage=="post_abc9": command+=f'; select {top}; write_rtlil -selected "{w/"post_abc9.il"}"'
+                    save(w/f"{stage}.ys",command+"\n")
+                    rc=run([yosys,"-l",w/f"{stage}.log","-s",w/f"{stage}.ys"],
+                           w/f"{stage}.console.log",w,env,timeout=600)
+                else:
+                    stage_plan=w/f"{stage}.plan.json"
+                    stage_stats=w/f"{stage}.stats.json"
+                    argv=[sys.executable,B_ENTRY,"--yosys",yosys,"--plugin",a.plugin,
+                          "--source",src,"--top",top,"--stage",stage,
+                          "--plan",stage_plan,"--stats",stage_stats,"--json",net,
+                          "--log",w/f"{stage}.log","--script",w/f"{stage}.ys"]
+                    if stage=="post_abc9": argv.extend(["--rtlil",w/"post_abc9.il"])
+                    rc=run(argv,w/f"{stage}.driver.log",w,env,timeout=600)
                 if rc: raise RuntimeError(f"{stage} synthesis rc={rc}")
                 if a.mode=="real":
-                    issues=pass_location((w/f"{stage}.log").read_text(),row["changed_bits"],a.real_flow)
+                    stage_machine=json.loads((w/f"{stage}.plan.json").read_text())
+                    stage_statistics=json.loads((w/f"{stage}.stats.json").read_text())
+                    plan_bits={(e["module"],e["cell"],e["port"],e["bit"],e["value"]) for e in plan["edits"]}
+                    stage_bits={(e["module"],e["cell"],e["port"],e["bit"],e["value"]) for e in stage_machine["edits"]}
+                    issues=pass_location((w/f"{stage}.log").read_text(),row["changed_bits"])
+                    if stage_bits!=plan_bits or stage_statistics.get("changed_bits")!=row["changed_bits"]:
+                        issues.append(f"{stage}: stage plan differs from pre-techmap diagnostic")
                     row["issues"].extend(issues)
                     if issues: raise RuntimeError(f"{stage}: PMUX_OPT location/count failed")
             if a.mode=="real": row["pass_location"]="PASS"
@@ -193,12 +189,12 @@ def main():
     result={"schema":1,"mode":a.mode,"versions":versions,"cases":rows,"synthesis_eqy":"PASS" if all_ok else "FAIL",
             "structure_correct":"PASS" if a.mode=="real" and location_ok and all(r["structure"]=="PASS" for r in rows) else "NOT_RUN" if a.mode=="identity" else "FAIL",
             "eqy_pass":"PASS" if all(r["eqy"]=="PASS" for r in rows) else "FAIL","lut_benefit":benefit,
-            "flow":("source_matched_split_stage_plugin" if a.real_flow=="split" else "patched_synth_intel") if a.mode=="real" else "frozen_baseline",
-            "production_yosys_loading_confirmed":"NOT_RUN" if a.mode=="identity" else "PENDING_B_CONFIRMATION" if a.real_flow=="split" else "RUN_VERIFIED" if location_ok and all_ok else "FAIL",
+            "flow":"B_audited_run_synth_intel_pmux" if a.mode=="real" else "frozen_baseline",
+            "production_yosys_loading_confirmed":"NOT_RUN" if a.mode=="identity" else "RUN_VERIFIED" if location_ok and all_ok else "FAIL",
             "note":"Known baseline ABC internal error is recorded per case; it is not silently discarded."}
     save(a.out/"summary.json",json.dumps(result,ensure_ascii=False,indent=2)+"\n")
     lines=[f"# 官方四例回归 ({a.mode})","",f"结构改写：{result['structure_correct']}；EQY：{result['eqy_pass']}；LUT 收益：{benefit}。","",
-           ("真实模式使用与冻结 synth_intel.cc 的 map_ffram 顺序相同的分段命令，并加载真实插件；生产版 Yosys 的加载方式待 B 确认。" if a.real_flow=="split" else "真实模式使用 B 的 patched synth_intel 并加载真实插件。") + "CPU 与峰值内存均取完整综合 Yosys 日志。","",
+           "真实模式逐阶段调用 B 的审计式 run_synth_intel_pmux.py，使用 -m 加载真实插件；CPU 与峰值内存均取完整综合 Yosys 日志。","",
            "| Case | LUT 基线→优化 | DFF 基线→优化 | IO 基线→优化 | CPU s 基线→优化 | Peak MB 基线→优化 | 改写位 | Structure | PMUX position | EQY | Method | ABC error |",
            "|---|---:|---:|---:|---:|---:|---:|---|---|---|---|---|"]
     for r in rows:
