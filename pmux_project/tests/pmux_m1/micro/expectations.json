@@ -1,0 +1,459 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "01_mux_a",
+      "file": "01_mux_a.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 0,
+          "value": "0",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "02_mux_b",
+      "file": "02_mux_b.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "1",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "03_pmux_a",
+      "file": "03_pmux_a.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 0,
+          "value": "0",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "04_pmux_bi",
+      "file": "04_pmux_bi.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "1",
+          "branch": 0
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "05_eq_reverse",
+      "file": "05_eq_reverse.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "0",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 1,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 2,
+          "value": "0",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 3,
+          "value": "1",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "06_ne_zero_reverse",
+      "file": "06_ne_zero_reverse.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 0,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 1,
+          "value": "0",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 2,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 3,
+          "value": "0",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "07_partial_bit",
+      "file": "07_partial_bit.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "1",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "B[1] remains unknown",
+      "budget": null
+    },
+    {
+      "id": "08_shared_source",
+      "file": "08_shared_source.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "1",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "Shared output must still use x",
+      "budget": null
+    },
+    {
+      "id": "09_overlap_pmux",
+      "file": "09_overlap_pmux.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "1",
+          "branch": 0
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 1,
+          "value": "1",
+          "branch": 1
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "No one-hot assumption; priority unchanged",
+      "budget": null
+    },
+    {
+      "id": "10_xz_untouched",
+      "file": "10_xz_untouched.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "1",
+          "branch": null
+        }
+      ],
+      "reason_code": "x/z",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "B[1:2] are original x/z",
+      "budget": null
+    },
+    {
+      "id": "11_ambiguous_compare",
+      "file": "11_ambiguous_compare.il",
+      "top": "top",
+      "trigger": false,
+      "expected_edits": [],
+      "reason_code": "unspecified:compare_width_sign",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "Signed 2-to-4 extension repeats a source bit; strict one-to-one reverse inference forbidden",
+      "budget": null
+    },
+    {
+      "id": "12_unsupported_cell",
+      "file": "12_unsupported_cell.il",
+      "top": "top",
+      "trigger": false,
+      "expected_edits": [],
+      "reason_code": "unspecified:unsupported_cell",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "13_fact_conflict",
+      "file": "13_fact_conflict.il",
+      "top": "top",
+      "trigger": false,
+      "expected_edits": [],
+      "reason_code": "fact_conflict",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "Guard S=1 contradicts x & !x",
+      "budget": null
+    },
+    {
+      "id": "14a_budget_cells",
+      "file": "14a_budget_cells.il",
+      "top": "top",
+      "trigger": false,
+      "expected_edits": [],
+      "reason_code": "unspecified:budget_cells",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "513-cell control dependency",
+      "budget": {
+        "cell_limit": 512
+      }
+    },
+    {
+      "id": "14b_budget_bits",
+      "file": "14b_budget_bits.il",
+      "top": "top",
+      "trigger": false,
+      "expected_edits": [],
+      "reason_code": "unspecified:budget_bits",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "8193 normalized control/data bits",
+      "budget": {
+        "bit_limit": 8192
+      }
+    },
+    {
+      "id": "14c_budget_events",
+      "file": "14c_budget_events.il",
+      "top": "top",
+      "trigger": false,
+      "expected_edits": [],
+      "reason_code": "unspecified:budget_events",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "512 combination cells, under 8192 normalized bits; A event counter must confirm event boundary",
+      "budget": {
+        "event_limit": 262144
+      }
+    },
+    {
+      "id": "15_multi_branch_merge",
+      "file": "15_multi_branch_merge.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "1",
+          "branch": 0
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 1,
+          "value": "1",
+          "branch": 1
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "16_no_opportunity",
+      "file": "16_no_opportunity.il",
+      "top": "top",
+      "trigger": false,
+      "expected_edits": [],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "",
+      "budget": null
+    },
+    {
+      "id": "17_case3_seven_bits",
+      "file": "17_case3_seven_bits.il",
+      "top": "top",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 0,
+          "value": "0",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 1,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 2,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 3,
+          "value": "0",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 4,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 5,
+          "value": "0",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "B",
+          "bit": 6,
+          "value": "1",
+          "branch": null
+        }
+      ],
+      "reason_code": "none",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "note": "Seven located comparator bits; B[7] and shared output unchanged",
+      "budget": null
+    }
+  ]
+}
