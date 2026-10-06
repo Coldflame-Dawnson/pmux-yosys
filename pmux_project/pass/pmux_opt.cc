@@ -4,13 +4,58 @@
 #include "rewrite_plan.h"
 
 #include <algorithm>
+#include <chrono>
+#include <climits>
+#include <map>
 #include <string>
 #include <vector>
+
+#if defined(__unix__) || defined(__APPLE__)
+#include <sys/resource.h>
+#include <sys/time.h>
+#endif
 
 USING_YOSYS_NAMESPACE
 PRIVATE_NAMESPACE_BEGIN
 
 using namespace PmuxOpt;
+
+struct ResourceSample {
+	long long user_us = 0;
+	long long system_us = 0;
+	long long peak_kib = 0;
+	bool available = false;
+};
+
+static ResourceSample sample_resources()
+{
+	ResourceSample sample;
+#if defined(__unix__) || defined(__APPLE__)
+	struct rusage usage;
+	if (getrusage(RUSAGE_SELF, &usage) == 0) {
+		sample.user_us = 1000000LL * usage.ru_utime.tv_sec + usage.ru_utime.tv_usec;
+		sample.system_us = 1000000LL * usage.ru_stime.tv_sec + usage.ru_stime.tv_usec;
+#if defined(__APPLE__)
+		sample.peak_kib = usage.ru_maxrss / 1024;
+#else
+		sample.peak_kib = usage.ru_maxrss;
+#endif
+		sample.available = true;
+	}
+#endif
+	return sample;
+}
+
+static const char *status_name(EntryStatus status)
+{
+	switch (status) {
+	case EntryStatus::Normal: return "normal";
+	case EntryStatus::FactConflict: return "fact_conflict";
+	case EntryStatus::BudgetExhausted: return "budget_exhausted";
+	case EntryStatus::InvalidRequest: return "invalid_request";
+	}
+	return "invalid_status";
+}
 
 enum class StubMode {
 	Unknown,
@@ -113,6 +158,10 @@ static bool validate_mux_cell(RTLIL::Cell *cell, int &width, int &s_width, std::
 		reason = "invalid_s_width";
 		return false;
 	}
+	if (s_width > INT_MAX / width) {
+		reason = "port_width_overflow";
+		return false;
+	}
 
 	if (GetSize(cell->getPort(ID::A)) != width ||
 			GetSize(cell->getPort(ID::B)) != width * s_width ||
@@ -174,6 +223,8 @@ struct PmuxOptPass : public Pass
 
 	void execute(std::vector<std::string> args, RTLIL::Design *design) override
 	{
+		const auto wall_start = std::chrono::steady_clock::now();
+		const ResourceSample resources_start = sample_resources();
 		bool verbose = false;
 		bool test_rewrite_duplicate = false;
 		bool test_rewrite_conflict = false;
@@ -244,6 +295,9 @@ struct PmuxOptPass : public Pass
 		int entry_count = 0;
 		int unknown_bits = 0;
 		int proven_bits = 0;
+		std::map<std::string, int> invalid_reason_counts;
+		std::map<std::string, int> analysis_status_counts;
+		std::map<std::string, int> unknown_reason_counts;
 
 		for (RTLIL::Module *module : modules) {
 			if (module->get_bool_attribute(ID::blackbox))
@@ -271,6 +325,7 @@ struct PmuxOptPass : public Pass
 
 				if (!invalid_reason.empty()) {
 					invalid_cells++;
+					invalid_reason_counts[invalid_reason]++;
 					log_warning("pmux_opt: skip %s.%s (%s).\n",
 							log_id(module), log_id(cell), invalid_reason.c_str());
 					continue;
@@ -302,11 +357,15 @@ struct PmuxOptPass : public Pass
 				for (const EntryRequest &request : requests) {
 					EntryAnalysisResult result = analyzer.analyze(request);
 					entry_count++;
+					analysis_status_counts[status_name(result.status)]++;
 					for (const BitConclusion &conclusion : result.bits) {
-						if (conclusion.value == FactValue::Unknown)
+						if (conclusion.value == FactValue::Unknown) {
 							unknown_bits++;
-						else
+							unknown_reason_counts[conclusion.reason_code.empty() ?
+									"unspecified_unknown" : conclusion.reason_code]++;
+						} else {
 							proven_bits++;
+						}
 					}
 					rewrite_batch.add(request, result);
 					if (verbose) {
@@ -333,14 +392,38 @@ struct PmuxOptPass : public Pass
 					commit_failure.c_str());
 
 		const RewriteStats &rewrite_stats = rewrite_batch.stats();
-		log("pmux_opt: rewrite proven=%zu skipped_constants=%zu duplicates=%zu conflicts=%zu abandoned_entries=%zu planned=%zu writes=%zu commit=%s\n",
+		log("pmux_opt: rewrite proven=%zu skipped_constants=%zu rejected_results=%zu duplicates=%zu conflicts=%zu abandoned_entries=%zu planned=%zu writes=%zu commit=%s\n",
 				rewrite_stats.proven_bits, rewrite_stats.skipped_original_constants,
-				rewrite_stats.duplicate_targets, rewrite_stats.rewrite_conflicts,
+				rewrite_stats.rejected_results, rewrite_stats.duplicate_targets,
+				rewrite_stats.rewrite_conflicts,
 				rewrite_stats.abandoned_entries, rewrite_stats.planned_bits,
 				rewrite_stats.written_bits, commit_ok ? "ok" : "aborted");
+		for (const auto &item : invalid_reason_counts)
+			log("pmux_opt: reason scope=cell code=%s count=%d\n",
+					item.first.c_str(), item.second);
+		for (const auto &item : analysis_status_counts)
+			log("pmux_opt: reason scope=entry_status code=%s count=%d\n",
+					item.first.c_str(), item.second);
+		for (const auto &item : unknown_reason_counts)
+			log("pmux_opt: reason scope=unknown_bit code=%s count=%d\n",
+					item.first.c_str(), item.second);
 		log("pmux_opt: summary modules=%d candidates=%d valid=%d invalid=%d entries=%d unknown_bits=%d proven_bits=%d writes=%zu\n",
 				selected_modules, candidate_cells, valid_cells, invalid_cells,
 				entry_count, unknown_bits, proven_bits, rewrite_stats.written_bits);
+
+		const ResourceSample resources_end = sample_resources();
+		const long long wall_us = std::chrono::duration_cast<std::chrono::microseconds>(
+				std::chrono::steady_clock::now() - wall_start).count();
+		if (resources_start.available && resources_end.available) {
+			const long long peak_growth_kib = std::max(0LL,
+					resources_end.peak_kib - resources_start.peak_kib);
+			log("pmux_opt: resources wall_us=%lld user_us=%lld system_us=%lld peak_kib=%lld peak_growth_kib=%lld\n",
+					wall_us, resources_end.user_us - resources_start.user_us,
+					resources_end.system_us - resources_start.system_us,
+					resources_end.peak_kib, peak_growth_kib);
+		} else {
+			log("pmux_opt: resources wall_us=%lld os_counters=unavailable\n", wall_us);
+		}
 	}
 } PmuxOptPass;
 
