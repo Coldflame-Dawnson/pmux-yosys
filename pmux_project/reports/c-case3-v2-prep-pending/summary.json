@@ -1,0 +1,275 @@
+{
+  "schema": 1,
+  "mode": "REAL_VARIANTS",
+  "branch_base": "80c8096f379583d1552b7d845bd7be75b7ea2a9c",
+  "official_source": "/home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test3.v",
+  "official_input_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+  "manifest_sha256": "333b51d0f35840fcaffc0725849a33c8bd0edfb0faadcda2f5bb70fb0bbd88ea",
+  "b_audited_entry_sha256": "c6a0c301c3a8658d278e5f5340cac96b00da8204abc8a4f6fc43320b2cd1a876",
+  "official_baseline_resources": {
+    "lut": 13,
+    "dff": 17,
+    "io": 0
+  },
+  "yosys_version": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]",
+  "eqy_version": "EQY v0.69",
+  "rows": [
+    {
+      "variant": "baseline",
+      "mode": "OFFICIAL_BASELINE",
+      "checkpoint": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/input_checkpoint.il",
+      "checkpoint_sha256": "9d78bce4b3e542740ae2a1a8b8a65665ee670c00e21c88749ea2ee631a3ef8b2",
+      "check": "PASS",
+      "eqy": "PASS",
+      "eqy_method": "whole",
+      "stages": {
+        "check": {
+          "rtlil": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/check.il",
+          "rtlil_sha256": "7e6cb808b173b75c2fd495a6be62c0b3f7a3c2f6ce1653938a9070dd91cafdaa",
+          "json": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/check.json",
+          "json_sha256": "b991006829696ab0406d5792bc8eda7fe6a9c7f4b2ed745a75c0860ede3cc19c",
+          "script": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/check.ys",
+          "script_sha256": "d0c2b7e816fdaf7d1cda9122d61823ffe3251723dfed73d693961fba14a8f675",
+          "log": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/check.log",
+          "log_sha256": "28df6b2156ee7e75fd384a071b7b74084393727fbc8f05991ac8e238069abc38",
+          "metrics": {
+            "pmux": 1,
+            "mux": 2,
+            "eq": 3,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 1,
+            "xor": 0,
+            "basic_mux": 2,
+            "total_comb": 12,
+            "lut": 0,
+            "dff": 17,
+            "io": 0,
+            "total_cells": 18,
+            "cell_type_counts": {
+              "$dffe": 5,
+              "$eq": 3,
+              "$mux": 2,
+              "$not": 1,
+              "$pmux": 1,
+              "$reduce_and": 3,
+              "$reduce_bool": 2,
+              "$sdffce": 1
+            }
+          }
+        },
+        "common_techmap": {
+          "rtlil": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/common_techmap.il",
+          "rtlil_sha256": "a9653f3c9ada18092bf750a73ba82dd079ebc4d58b1b6a6a74b8596c70ace678",
+          "json": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/common_techmap.json",
+          "json_sha256": "c553290b12f0dbb11a991777758bd1fb51c480bb9504fcf6b0b2edbe41b652d9",
+          "script": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/common_techmap.ys",
+          "script_sha256": "4d76821d1d228e42e39e47092fc559b15ac8c577bb8ba3982a1df99e8b597551",
+          "log": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/common_techmap.log",
+          "log_sha256": "c651156146955c3dbedb9f9f4f8c945679d4e2b7c88c22d776298172b57de895",
+          "metrics": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 8,
+            "or": 25,
+            "not": 4,
+            "xor": 24,
+            "basic_mux": 8,
+            "total_comb": 69,
+            "lut": 0,
+            "dff": 17,
+            "io": 0,
+            "total_cells": 86,
+            "cell_type_counts": {
+              "$_AND_": 8,
+              "$_DFFE_PN_": 9,
+              "$_DFFE_PP_": 7,
+              "$_MUX_": 8,
+              "$_NOT_": 4,
+              "$_OR_": 25,
+              "$_SDFFCE_PP1P_": 1,
+              "$_XOR_": 24
+            }
+          }
+        },
+        "pre_abc9": {
+          "rtlil": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/pre_abc9.il",
+          "rtlil_sha256": "0b04eb205ed2c95df551063b77e3f7368325167d5a547745a9773b2101c445cd",
+          "json": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/pre_abc9.json",
+          "json_sha256": "e38746670837f607af958467f66e6b46547de36f45392d2d668e2d64164b7325",
+          "script": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/pre_abc9.ys",
+          "script_sha256": "ebf0313b816339e78138debddef6a2e10472a1079f7d4984524e0babfc07e115",
+          "log": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/pre_abc9.log",
+          "log_sha256": "1f96119db373f058866f35e4ff1cda8bb8760a15bb69d66f679aa736a9796eee",
+          "metrics": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 7,
+            "or": 19,
+            "not": 20,
+            "xor": 0,
+            "basic_mux": 8,
+            "total_comb": 54,
+            "lut": 0,
+            "dff": 17,
+            "io": 0,
+            "total_cells": 71,
+            "cell_type_counts": {
+              "$_AND_": 7,
+              "$_MUX_": 8,
+              "$_NOT_": 20,
+              "$_OR_": 19,
+              "dffeas": 17
+            }
+          }
+        },
+        "post_abc9": {
+          "rtlil": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/post_abc9.il",
+          "rtlil_sha256": "de1e09a6ec82d0213fce543e64c4a0266559a2f6952ae19bc6e1aa332b63c566",
+          "json": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/post_abc9.json",
+          "json_sha256": "ff7c4816daa4907d883a3044e899b9c47b88d267d84684c244269008cf742964",
+          "script": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/post_abc9.ys",
+          "script_sha256": "af8ade863cd0709e134810234e179affaa6c7247d502513a03792e8b7e36b97c",
+          "log": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/post_abc9.log",
+          "log_sha256": "6176b1c82246242decaa6dd6b7b76dd72f8246248fa00e69db53c0d2bccbeadb",
+          "metrics": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 13,
+            "lut": 13,
+            "dff": 17,
+            "io": 0,
+            "total_cells": 30,
+            "cell_type_counts": {
+              "$lut": 13,
+              "dffeas": 17
+            }
+          }
+        }
+      },
+      "lut": 13,
+      "dff": 17,
+      "io": 0,
+      "delta_lut": null,
+      "verdict": "REFERENCE",
+      "issues": [],
+      "eqy_attempts": [
+        {
+          "method": "default",
+          "status": "FAIL",
+          "rc": 2,
+          "log": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/default.eqy.log",
+          "log_sha256": "4e7c3615bc5d0fe1f5d32d583201b25786237727ad610b2c6752e22a30178a75"
+        },
+        {
+          "method": "whole",
+          "status": "PASS",
+          "rc": 0,
+          "log": "/home/yuewen/work/pmux-yosys-c-case3-v2/pmux_project/reports/c-case3-v2-prep-pending/baseline/whole.eqy.log",
+          "log_sha256": "e4f7d22a1aceb20ed9271bf7292c21106313c89963711003c79a1d1ad44cfe9f"
+        }
+      ]
+    },
+    {
+      "variant": "V2-A",
+      "mode": "NOT_RUN",
+      "check": "NOT_RUN",
+      "eqy": "NOT_RUN",
+      "eqy_method": null,
+      "stages": {},
+      "lut": null,
+      "dff": null,
+      "io": null,
+      "delta_lut": null,
+      "verdict": "NOT_RUN",
+      "issues": [
+        "B checkpoint not supplied"
+      ]
+    },
+    {
+      "variant": "V2-B",
+      "mode": "NOT_RUN",
+      "check": "NOT_RUN",
+      "eqy": "NOT_RUN",
+      "eqy_method": null,
+      "stages": {},
+      "lut": null,
+      "dff": null,
+      "io": null,
+      "delta_lut": null,
+      "verdict": "NOT_RUN",
+      "issues": [
+        "B checkpoint not supplied"
+      ]
+    },
+    {
+      "variant": "V2-C",
+      "mode": "NOT_RUN",
+      "check": "NOT_RUN",
+      "eqy": "NOT_RUN",
+      "eqy_method": null,
+      "stages": {},
+      "lut": null,
+      "dff": null,
+      "io": null,
+      "delta_lut": null,
+      "verdict": "NOT_RUN",
+      "issues": [
+        "B checkpoint not supplied"
+      ]
+    },
+    {
+      "variant": "V2-A+B",
+      "mode": "NOT_RUN",
+      "check": "NOT_RUN",
+      "eqy": "NOT_RUN",
+      "eqy_method": null,
+      "stages": {},
+      "lut": null,
+      "dff": null,
+      "io": null,
+      "delta_lut": null,
+      "verdict": "NOT_RUN",
+      "issues": [
+        "B checkpoint not supplied"
+      ]
+    },
+    {
+      "variant": "V2-A+B+C",
+      "mode": "NOT_RUN",
+      "check": "NOT_RUN",
+      "eqy": "NOT_RUN",
+      "eqy_method": null,
+      "stages": {},
+      "lut": null,
+      "dff": null,
+      "io": null,
+      "delta_lut": null,
+      "verdict": "NOT_RUN",
+      "issues": [
+        "B checkpoint not supplied"
+      ]
+    }
+  ],
+  "missing_variants": [
+    "V2-A",
+    "V2-B",
+    "V2-C",
+    "V2-A+B",
+    "V2-A+B+C"
+  ],
+  "minimal_gain_variants": [],
+  "real_lut_benefit": "NOT_RUN"
+}

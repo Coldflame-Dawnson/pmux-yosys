@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "checkpoint": "post_opt_undriven_before_opt_clean",
+  "variants": {
+    "V2-A": null,
+    "V2-B": null,
+    "V2-C": null,
+    "V2-A+B": null,
+    "V2-A+B+C": null
+  }
+}
