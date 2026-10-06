@@ -251,6 +251,8 @@ struct SynthIntelPass : public ScriptPass {
 			run("opt -fast -mux_undef -undriven -fine -full");
 			run("memory_map");
 			run("opt -undriven -fine");
+			run("pmux_opt");
+			run("opt_clean");
 			run("techmap -map +/techmap.v");
 			run("opt -full");
 			run("clean -purge");

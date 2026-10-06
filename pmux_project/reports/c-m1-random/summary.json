@@ -1,0 +1,914 @@
+{
+  "schema": 1,
+  "mode": "identity",
+  "versions": {
+    "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]",
+    "eqy": "EQY v0.69"
+  },
+  "count": 100,
+  "pass": 100,
+  "fail": 0,
+  "rows": [
+    {
+      "seed": 0,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 1,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 2,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 3,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 4,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 5,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 6,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 7,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 8,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 9,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 10,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 11,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 12,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 13,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 14,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 15,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 16,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 17,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 18,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 19,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 20,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 21,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 22,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 23,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 24,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 25,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 26,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 27,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 28,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 29,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 30,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 31,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 32,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 33,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 34,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 35,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 36,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 37,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 38,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 39,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 40,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 41,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 42,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 43,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 44,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 45,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 46,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 47,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 48,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 49,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 50,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 51,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 52,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 53,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 54,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 55,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 56,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 57,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 58,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 59,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 60,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 61,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 62,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 63,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 64,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 65,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 66,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 67,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 68,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 69,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 70,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 71,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 72,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 73,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 74,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 75,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 76,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 77,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 78,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 79,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 80,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 81,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 82,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 83,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 84,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 85,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 86,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 87,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 88,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 89,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 90,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 91,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 92,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 93,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 94,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 95,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 96,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 97,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 98,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    },
+    {
+      "seed": 99,
+      "synthesis": "PASS",
+      "structure": "PASS",
+      "eqy": "PASS",
+      "proof_engine": "NOT_RUN",
+      "result": "PASS",
+      "issues": []
+    }
+  ],
+  "lut_benefit": "NOT_RUN"
+}

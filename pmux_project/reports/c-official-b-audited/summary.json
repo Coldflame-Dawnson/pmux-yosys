@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "mode": "real",
+  "versions": {
+    "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]",
+    "eqy": "EQY v0.69"
+  },
+  "cases": [
+    {
+      "case": "case1",
+      "source": "/home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test1.v",
+      "input_sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+      "synthesis": "PASS",
+      "eqy": "PASS",
+      "eqy_method": "whole_design",
+      "lut_benefit": "NO_GAIN",
+      "structure": "PASS",
+      "pass_location": "PASS",
+      "issues": [],
+      "changed_bits": 0,
+      "commit": "ok",
+      "reason_codes": [
+        "primary_input",
+        "sequential_boundary"
+      ],
+      "lut": 288,
+      "dff": 222,
+      "io": 0,
+      "cpu_s": 0.12,
+      "peak_memory_mb": 33.94,
+      "abc_internal_error": true,
+      "eqy_default": "FAIL",
+      "eqy_whole": "PASS",
+      "baseline": {
+        "lut_count": "288",
+        "dff_count": "222",
+        "io_count": "0",
+        "cpu_time": "0.14 s",
+        "peak_memory": "27.84 MB",
+        "eqy_status": "PASS (whole-design fallback; default rc=2)"
+      },
+      "delta": {
+        "lut": 0,
+        "dff": 0,
+        "io": 0
+      },
+      "resource_nonincrease": "PASS"
+    },
+    {
+      "case": "case2",
+      "source": "/home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test2.v",
+      "input_sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+      "synthesis": "PASS",
+      "eqy": "PASS",
+      "eqy_method": "default_partitions",
+      "lut_benefit": "NO_GAIN",
+      "structure": "PASS",
+      "pass_location": "PASS",
+      "issues": [],
+      "changed_bits": 0,
+      "commit": "ok",
+      "reason_codes": [
+        "fixed_point_unknown",
+        "primary_input"
+      ],
+      "lut": 25,
+      "dff": 0,
+      "io": 0,
+      "cpu_s": 0.03,
+      "peak_memory_mb": 28.73,
+      "abc_internal_error": true,
+      "eqy_default": "PASS",
+      "baseline": {
+        "lut_count": "25",
+        "dff_count": "0",
+        "io_count": "0",
+        "cpu_time": "0.08 s",
+        "peak_memory": "22.27 MB",
+        "eqy_status": "PASS (default partition)"
+      },
+      "delta": {
+        "lut": 0,
+        "dff": 0,
+        "io": 0
+      },
+      "resource_nonincrease": "PASS"
+    },
+    {
+      "case": "case3",
+      "source": "/home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test3.v",
+      "input_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+      "synthesis": "PASS",
+      "eqy": "PASS",
+      "eqy_method": "whole_design",
+      "lut_benefit": "NO_GAIN",
+      "structure": "PASS",
+      "pass_location": "PASS",
+      "issues": [],
+      "changed_bits": 7,
+      "commit": "ok",
+      "reason_codes": [
+        "sequential_boundary"
+      ],
+      "lut": 13,
+      "dff": 17,
+      "io": 0,
+      "cpu_s": 0.03,
+      "peak_memory_mb": 29.96,
+      "abc_internal_error": true,
+      "eqy_default": "FAIL",
+      "eqy_whole": "PASS",
+      "baseline": {
+        "lut_count": "13",
+        "dff_count": "17",
+        "io_count": "0",
+        "cpu_time": "0.07 s",
+        "peak_memory": "22.65 MB",
+        "eqy_status": "PASS (whole-design fallback; default rc=2)"
+      },
+      "delta": {
+        "lut": 0,
+        "dff": 0,
+        "io": 0
+      },
+      "resource_nonincrease": "PASS"
+    },
+    {
+      "case": "case4",
+      "source": "/home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test4.v",
+      "input_sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+      "synthesis": "PASS",
+      "eqy": "PASS",
+      "eqy_method": "default_partitions",
+      "lut_benefit": "NO_GAIN",
+      "structure": "PASS",
+      "pass_location": "PASS",
+      "issues": [],
+      "changed_bits": 0,
+      "commit": "ok",
+      "reason_codes": [
+        "fixed_point_unknown",
+        "primary_input"
+      ],
+      "lut": 36,
+      "dff": 10,
+      "io": 0,
+      "cpu_s": 0.04,
+      "peak_memory_mb": 29.39,
+      "abc_internal_error": true,
+      "eqy_default": "PASS",
+      "baseline": {
+        "lut_count": "36",
+        "dff_count": "10",
+        "io_count": "0",
+        "cpu_time": "0.08 s",
+        "peak_memory": "23.27 MB",
+        "eqy_status": "PASS (default partition)"
+      },
+      "delta": {
+        "lut": 0,
+        "dff": 0,
+        "io": 0
+      },
+      "resource_nonincrease": "PASS"
+    }
+  ],
+  "synthesis_eqy": "PASS",
+  "structure_correct": "PASS",
+  "eqy_pass": "PASS",
+  "lut_benefit": "FAIL",
+  "flow": "B_audited_run_synth_intel_pmux",
+  "production_yosys_loading_confirmed": "RUN_VERIFIED",
+  "note": "Known baseline ABC internal error is recorded per case; it is not silently discarded."
+}
