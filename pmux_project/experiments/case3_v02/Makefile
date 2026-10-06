@@ -10,4 +10,3 @@ $(PLUGIN): case3_v02_ablate.cc
 
 clean:
 	$(RM) $(PLUGIN)
-
