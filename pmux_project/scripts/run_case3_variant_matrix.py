@@ -96,6 +96,46 @@ def selected_top_only(path):
         raise RuntimeError(f"{path}: expected one selected RTLIL module named {TOP}, got {names}")
 
 
+def normalize_checkpoint(source, target, yosys, work, env):
+    names = re.findall(r"^module\s+\\(\S+)", source.read_text(encoding="utf-8"), re.M)
+    if names.count(TOP) != 1:
+        raise RuntimeError(f"{source}: expected exactly one {TOP} module, got {names}")
+    commands = [f"read_rtlil {quote(source)}", f"select {TOP}",
+                f"write_rtlil -selected {quote(target)}"]
+    run_yosys(yosys, commands_text(commands), work, env, "normalize_checkpoint")
+    selected_top_only(target)
+
+
+def validate_b_handoff(manifest, manifest_path):
+    spec = manifest.get("b_handoff")
+    if spec is None:
+        return None
+    path = (manifest_path.parent / spec["summary"]).resolve()
+    if not path.is_file() or hash_file(path) != spec["sha256"]:
+        raise RuntimeError("B summary missing or SHA-256 mismatch")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    prior = json.loads((ROOT / "reports" / "c-official-stage-diff-final" /
+                        "summary.json").read_text(encoding="utf-8"))
+    case3 = next(row for row in prior["cases"] if row["case"] == "case3")
+    frozen_before = case3["stages"][0]["baseline"]["rtlil_sha256"]
+    if data.get("input_sha256") != frozen_before or data.get("mode") != "test-only-case3-ablation":
+        raise RuntimeError("B handoff is not based on the frozen case3 insertion snapshot")
+    mapping = {"V2-A": "a", "V2-B": "b", "V2-C": "c",
+               "V2-A+B": "ab", "V2-A+B+C": "abc"}
+    received = {row["variant"]: row for row in data["variants"]}
+    for name, label in mapping.items():
+        candidate = manifest["variants"].get(name)
+        if candidate is None:
+            continue
+        row = received.get(label)
+        if (row is None or row.get("before_sha256") != frozen_before
+                or row.get("after_sha256") != candidate.get("sha256")
+                or row.get("json_sha256") != candidate.get("json_sha256")):
+            raise RuntimeError(f"{name}: B handoff hash does not match manifest")
+    return {"summary": str(path), "summary_sha256": hash_file(path),
+            "commit": spec.get("commit"), "input_snapshot_sha256": frozen_before}
+
+
 def prepare_baseline(src, prefix, yosys, out, env):
     work = out / "baseline"
     work.mkdir(parents=True, exist_ok=True)
@@ -216,6 +256,8 @@ def render_markdown(report):
         "# case3 V2 实验矩阵", "",
         f"模式：{report['mode']}；官方输入 SHA-256：{report['official_input_sha256']}。",
         "HARNESS_SMOKE 只验证运行器，不代表 B 变体或真实 LUT 收益。", "",
+        "真实候选为 B 的冻结 case3 结构消融输出；本矩阵不将规则接入默认 Pass。"
+        "Baseline 的 ABC9 顶层 JSON 与既有官方基线完全相同。", "",
         "| 变体 | Check | EQY | ABC9前组合cell | LUT | ΔLUT | DFF/IO | 判定 |",
         "|---|---|---|---:|---:|---:|---|---|",
     ]
@@ -261,6 +303,19 @@ def archive_evidence(out):
             archive.add(path, arcname=path.relative_to(out).as_posix())
 
 
+def require_official_baseline_exact(out):
+    archive_path = ROOT / "reports" / "c-official-stage-diff-final" / "stage-evidence.tar.gz"
+    with tarfile.open(archive_path, "r:gz") as archive:
+        member = archive.extractfile("case3/baseline/05_post_abc9.json")
+        if member is None:
+            raise RuntimeError("missing frozen official baseline JSON in stage archive")
+        official = json.load(member)["modules"][TOP]
+    current = snapshot(out / "baseline" / "post_abc9.json")
+    if current != official:
+        raise RuntimeError("checkpoint baseline differs from frozen official ABC9 netlist")
+    return hash_file(archive_path)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--bin", type=Path, required=True)
@@ -285,6 +340,7 @@ def main():
         parser.error("unexpected case3 variant manifest schema/checkpoint")
     if set(manifest.get("variants", {})) != set(NAMES[1:]):
         parser.error("manifest must list exactly five fixed variants")
+    handoff = validate_b_handoff(manifest, args.manifest)
     if args.out.exists() and any(args.out.iterdir()):
         parser.error("output directory is not empty; use a fresh evidence directory")
     args.out.mkdir(parents=True, exist_ok=True)
@@ -299,6 +355,7 @@ def main():
         rows[0][key] != value for key, value in EXPECTED_BASELINE.items()
     ):
         raise RuntimeError(f"baseline calibration failed: {rows[0]}")
+    official_archive_sha256 = require_official_baseline_exact(args.out)
     mode = "HARNESS_SMOKE" if args.smoke_with_baseline else (
         "BASELINE_ONLY" if args.baseline_only else "REAL_VARIANTS")
     missing = []
@@ -326,10 +383,16 @@ def main():
                 checkpoint = (args.manifest.parent / path).resolve() if not path.is_absolute() else path
                 if not checkpoint.is_file() or hash_file(checkpoint) != spec["sha256"]:
                     raise RuntimeError(f"{name}: checkpoint missing or SHA-256 mismatch")
-                selected_top_only(checkpoint)
-                copied = args.out / name / "input_checkpoint.il"
+                json_source = (args.manifest.parent / spec["json"]).resolve()
+                if not json_source.is_file() or hash_file(json_source) != spec["json_sha256"]:
+                    raise RuntimeError(f"{name}: B after JSON missing or SHA-256 mismatch")
+                work = args.out / name
+                copied_source = work / "supplied_after.il"
+                copied = work / "input_checkpoint.il"
                 copied.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(checkpoint, copied)
+                shutil.copyfile(checkpoint, copied_source)
+                shutil.copyfile(json_source, work / "supplied_after.json")
+                normalize_checkpoint(copied_source, copied, yosys, work, env)
                 checkpoint = copied
             except Exception as exc:
                 rows.append({"variant": name, "mode": mode, "check": "NOT_RUN",
@@ -339,6 +402,16 @@ def main():
                 continue
         row = evaluate(name, checkpoint, args.source, prefix, suffix,
                        yosys, eqy, args.out, env, mode)
+        if mode == "REAL_VARIANTS":
+            row["supplied_after_sha256"] = hash_file(args.out / name / "supplied_after.il")
+            row["supplied_after_json_sha256"] = hash_file(args.out / name / "supplied_after.json")
+            if "check" in row["stages"]:
+                supplied = snapshot(args.out / name / "supplied_after.json")
+                normalized = snapshot(args.out / name / "check.json")
+                row["b_structure_exact"] = supplied == normalized
+                if not row["b_structure_exact"]:
+                    row["verdict"] = "REJECT_INPUT"
+                    row["issues"].append("normalized top differs from B after JSON")
         rows.append(row)
         print(f"{name}: check={row['check']} EQY={row['eqy']} LUT={row['lut']}", flush=True)
     minimal = adjudicate(rows, mode)
@@ -346,8 +419,11 @@ def main():
         "schema": 1, "mode": mode, "branch_base": "80c8096f379583d1552b7d845bd7be75b7ea2a9c",
         "official_source": str(args.source), "official_input_sha256": hash_file(args.source),
         "manifest_sha256": hash_file(args.manifest),
+        "b_handoff": handoff,
         "b_audited_entry_sha256": hash_file(ROOT / "pass" / "run_synth_intel_pmux.py"),
         "official_baseline_resources": EXPECTED_BASELINE,
+        "official_baseline_exact_json_equal": True,
+        "official_stage_archive_sha256": official_archive_sha256,
         "yosys_version": subprocess.run([yosys, "-V"], capture_output=True, text=True).stdout.strip(),
         "eqy_version": subprocess.run([eqy, "--version"], capture_output=True, text=True).stdout.strip(),
         "rows": rows, "missing_variants": missing, "minimal_gain_variants": minimal,

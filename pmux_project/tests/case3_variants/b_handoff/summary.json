@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "mode": "test-only-case3-ablation",
+  "production": false,
+  "input_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+  "variants": [
+    {
+      "variant": "a",
+      "actions": [
+        {
+          "id": "A",
+          "cell": "$procmux$10",
+          "kind": "whole_mux_bypass",
+          "deleted_cell": true,
+          "reconnect": "Y[2:0]=A[2:0]"
+        }
+      ],
+      "before_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+      "after_sha256": "8c9e308670bc23f8198ef76cb2e6ccf6bb51312f1acc7a235408370c1549b1e5",
+      "json_sha256": "81c07d252dc32ae5a5df1a2ecda21163dc673c4385c73572d802fc6dd1b9bcca",
+      "yosys_check": "PASS",
+      "structural_assertions": "PASS"
+    },
+    {
+      "variant": "b",
+      "actions": [
+        {
+          "id": "B",
+          "cell": "$procmux$18",
+          "kind": "pmux_branch0_delete_to_mux",
+          "old_type": "$pmux",
+          "new_type": "$mux",
+          "old_s_width": 2,
+          "new_s_width": 1,
+          "removed_branch": 0,
+          "retained_branch": 1
+        }
+      ],
+      "before_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+      "after_sha256": "672cd34977977cad6b8c348b69a453e0ba1089308cd1e72d850423fe2451560c",
+      "json_sha256": "3013f07a9202646a85b7dd1f9e8d0f6dd6d132d75c1009e6a5f9aa7895db0266",
+      "yosys_check": "PASS",
+      "structural_assertions": "PASS"
+    },
+    {
+      "variant": "c",
+      "actions": [
+        {
+          "id": "C",
+          "cell": "$procmux$27",
+          "kind": "partial_bits_0_2_bypass",
+          "old_width": 4,
+          "new_width": 1,
+          "bypassed_bits": [
+            0,
+            1,
+            2
+          ],
+          "retained_bits": [
+            3
+          ],
+          "reconnect": "Y[2:0]=A[2:0]"
+        }
+      ],
+      "before_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+      "after_sha256": "882ca02bb773697308a84c0093867b0f9156faf8a686c9e29c3afac1d78571df",
+      "json_sha256": "c0124e184bba9a9864227dbae35cf17b3188086585d35b0d82cbadc0e917a475",
+      "yosys_check": "PASS",
+      "structural_assertions": "PASS"
+    },
+    {
+      "variant": "ab",
+      "actions": [
+        {
+          "id": "A",
+          "cell": "$procmux$10",
+          "kind": "whole_mux_bypass",
+          "deleted_cell": true,
+          "reconnect": "Y[2:0]=A[2:0]"
+        },
+        {
+          "id": "B",
+          "cell": "$procmux$18",
+          "kind": "pmux_branch0_delete_to_mux",
+          "old_type": "$pmux",
+          "new_type": "$mux",
+          "old_s_width": 2,
+          "new_s_width": 1,
+          "removed_branch": 0,
+          "retained_branch": 1
+        }
+      ],
+      "before_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+      "after_sha256": "eebe0b3fbeb988006d23360b43eee4819a54bdd5acf7889d600b43658089b1a9",
+      "json_sha256": "8bfe4837aa6c81c3b71ee69c25595c3d33e2686bd2cee9353889243d57115ef0",
+      "yosys_check": "PASS",
+      "structural_assertions": "PASS"
+    },
+    {
+      "variant": "abc",
+      "actions": [
+        {
+          "id": "A",
+          "cell": "$procmux$10",
+          "kind": "whole_mux_bypass",
+          "deleted_cell": true,
+          "reconnect": "Y[2:0]=A[2:0]"
+        },
+        {
+          "id": "B",
+          "cell": "$procmux$18",
+          "kind": "pmux_branch0_delete_to_mux",
+          "old_type": "$pmux",
+          "new_type": "$mux",
+          "old_s_width": 2,
+          "new_s_width": 1,
+          "removed_branch": 0,
+          "retained_branch": 1
+        },
+        {
+          "id": "C",
+          "cell": "$procmux$27",
+          "kind": "partial_bits_0_2_bypass",
+          "old_width": 4,
+          "new_width": 1,
+          "bypassed_bits": [
+            0,
+            1,
+            2
+          ],
+          "retained_bits": [
+            3
+          ],
+          "reconnect": "Y[2:0]=A[2:0]"
+        }
+      ],
+      "before_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+      "after_sha256": "931e57fa225002ff2c50723d2f2e4e3499ebfeb2abf45ec17be7307b779e26e7",
+      "json_sha256": "d5a05c3c450f92f9fdaf44b7ff87bdca2588abbc2e8763cd5325142c19726b27",
+      "yosys_check": "PASS",
+      "structural_assertions": "PASS"
+    }
+  ],
+  "negative_snapshot": {
+    "result": "PASS",
+    "returncode_nonzero": true,
+    "reason": "missing cell $procmux$10",
+    "manifest_written": false,
+    "after_written": false
+  }
+}
