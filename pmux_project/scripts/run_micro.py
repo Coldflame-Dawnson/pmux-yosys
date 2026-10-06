@@ -119,7 +119,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--mode", choices=("identity", "fixture-stub", "external"), default="identity")
     p.add_argument("--dut-template", help="external command with {before},{after},{plan},{stats},{case} placeholders")
-    p.add_argument("--external-kind", choices=("stub", "real"), default="stub")
+    p.add_argument("--external-kind", choices=("untriggered", "stub", "real"), default="stub")
     p.add_argument("--case", action="append", help="fixture ID, repeatable")
     p.add_argument("--bin", type=Path, default=DEFAULT_BIN)
     p.add_argument("--out", type=Path, default=ROOT / "reports" / "c-m1-micro")
@@ -162,7 +162,7 @@ def main():
                 raise RuntimeError("DUT did not produce after.il, plan.json, stats.json")
             changed = yosys_json(after, work / "after.json", yosys, work, env, "after_json")
             plan = json.loads(plan_path.read_text()); stats = json.loads(stats_path.read_text())
-            active = a.mode != "identity"
+            active = a.mode != "identity" and a.external_kind != "untriggered"
             issues, count = compare(original, changed, spec, plan, active)
             if stats.get("changed_bits") != count: issues.append("Pass changed_bits statistic differs from structural diff")
             if active and spec["reason_code"] in ("fact_conflict", "rewrite_conflict"):

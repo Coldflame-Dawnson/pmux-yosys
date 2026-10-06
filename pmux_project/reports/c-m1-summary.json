@@ -4,19 +4,21 @@
     "micro_identity": true,
     "micro_stub": true,
     "external_stub": true,
+    "b_unknown": true,
     "random_100": true,
     "official_4": true
   },
   "framework_structure": "PASS",
   "framework_eqy": "PASS",
   "external_adapter": "PASS",
+  "b_unknown_stub": "PASS",
   "random_identity": "PASS",
   "official_identity": "PASS",
   "real_pass_structure": "NOT_RUN",
   "real_pass_eqy": "NOT_RUN",
   "lut_benefit": "NOT_RUN",
   "limits": [
-    "B Pass and A proof engine unavailable on C branch",
+    "B forced stub has no per-bit machine plan; A proof engine unavailable",
     "B reason-code/log schema not frozen",
     "event-budget fixture needs A counter calibration",
     "1000 seeds reserved for stage acceptance"

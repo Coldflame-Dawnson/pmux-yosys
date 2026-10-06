@@ -24,6 +24,18 @@ python3 pmux_project/scripts/run_micro.py --mode external --external-kind stub \
 
 上例 adapter 是 C 的 fixture 重放联通测试，不是 B 的分析器桩。接入 B 时将模板换为 B 的适配命令。真实 Pass 纳入 `synth_intel` 后，用开发工具目录运行官方回归：
 
+B 分支 `90bc8c902` 的 UNKNOWN 桩已用 `b_unknown_adapter.py` 跑完 19 例。它仅在 B 日志明确报告 `writes=0 commit=ok` 时输出空计划；`--external-kind untriggered` 让预期正例的语义结果保持 SKIP。B 的强制结论桩没有逐位机器计划，不能对其结果伪造计划或宣称 EQY 通过。插件副本从 B 提交只读提取，在 `reports/c-m1-b-build/` 编译，未改 B 源码或基线工具链。
+
+```bash
+git fetch origin feature/b-pass-rewrite
+mkdir -p pmux_project/reports/c-m1-b-build
+git archive 90bc8c902 pmux_project/pass pmux_project/include | tar -x -C pmux_project/reports/c-m1-b-build
+make -C pmux_project/reports/c-m1-b-build/pmux_project/pass \
+  YOSYS_CONFIG="$PWD/pmux_project/official_baseline/toolchain/install/bin/yosys-config"
+python3 pmux_project/scripts/run_micro.py --mode external --external-kind untriggered \
+  --dut-template 'python3 {project}/scripts/b_unknown_adapter.py --before {before} --after {after} --plan {plan} --stats {stats} --plugin {project}/reports/c-m1-b-build/pmux_project/pass/pmux_opt.so --yosys {project}/official_baseline/toolchain/install/bin/yosys'
+```
+
 ```bash
 python3 pmux_project/scripts/run_official.py --mode real --bin /path/to/development/install/bin
 ```
