@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "mode": "A_PROOF_ONLY",
+  "a_commit": "3aff789a3badf6fecc4d3651e4b7eea52627fe3c",
+  "b_production_commit": null,
+  "tool": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)",
+  "ordinary_selftest": {"status": "PASS", "assertions": 2116, "log": "selftest_normal.log", "sha256": "9c7d65b21c312017be0ce4010b2f36fae7a39baf6b305111ea78b5192d79b197"},
+  "slow_selftest": {"status": "PASS", "assertions": 2118, "log": "selftest_slow.log", "sha256": "b34b1f2544f4bc0c9dc6e334a96abc0206f4dc68cd70af1d82b84e36f8e2f964"},
+  "branch_selftest": {"status": "PASS", "assertions": 29, "log": "selftest_slow.log"},
+  "case3_proof": {
+    "status": "PASS",
+    "read_only_netlist_unchanged": true,
+    "source_sha256": "10aa2dda67464d90db21d637a6af66919cc90c2921c0dd45f750a2518b05832a",
+    "cell": "$procmux$15",
+    "branch": 1,
+    "width": 1,
+    "fallback": "A",
+    "proven_all_bits": true,
+    "reason_code": "branch_redundant",
+    "usage": {"cells": 3, "bits": 11, "events": 45},
+    "log": "case3_branch_proof.log",
+    "sha256": "2db594ee0d8cd6cdd14a815778b6586d9ef726ce2c414d1a988ddac0e553fbe5"
+  },
+  "a_documented_reason_codes": ["branch_redundant", "partial_or_unknown_equality", "selection_overlap_reachable", "selection_overlap_unknown", "selection_xz", "fact_conflict", "budget_cells_exhausted", "budget_bits_exhausted", "budget_events_exhausted", "invalid_*"],
+  "depth_budget_reason_code": "UNSPECIFIED_IN_A_CONTRACT",
+  "real_pass_micro": "NOT_RUN",
+  "real_pass_random100": "NOT_RUN",
+  "real_pass_random1000": "NOT_RUN",
+  "real_pass_official": "NOT_RUN",
+  "production_lut_gain": "NOT_RUN",
+  "ready_to_merge_integration_g3": false
+}

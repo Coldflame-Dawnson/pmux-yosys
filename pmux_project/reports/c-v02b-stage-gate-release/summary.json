@@ -4,6 +4,11 @@
   "a_production_commit": null,
   "b_production_commit": null,
   "case3_b_test_only_commit": "fbb9eeb40723ad076e4959d53707827082aa40bd",
+  "a_proof_only": {
+    "status": "PASS",
+    "commit": "3aff789a3badf6fecc4d3651e4b7eea52627fe3c",
+    "production_pass": "NOT_RUN"
+  },
   "fixture": {
     "micro": "PASS",
     "random100": "PASS",
@@ -129,7 +134,7 @@
     },
     "official_baseline": {
       "path": "/home/yuewen/work/pmux-yosys-c-v02b/pmux_project/reports/c-v02b-stage-gate-release/official_baseline_evidence.tar.gz",
-      "sha256": "b3f30cc923587b4140ab3dff98dd56c4227f318fe8c6d9a392aa0f2cf202900a",
+      "sha256": "15337d9a303a21aa04f280fac9bc634555b53c478decf0c010e0ba48aa9690ae",
       "file_count": 669
     }
   },

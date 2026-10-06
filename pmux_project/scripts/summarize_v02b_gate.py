@@ -81,6 +81,7 @@ def main():
     parser.add_argument("--random100", type=Path, required=True)
     parser.add_argument("--case3-fixture", type=Path, required=True)
     parser.add_argument("--official-baseline", type=Path, required=True)
+    parser.add_argument("--a-proof-audit", type=Path)
     parser.add_argument("--real-micro", type=Path)
     parser.add_argument("--real-random100", type=Path)
     parser.add_argument("--real-random1000", type=Path)
@@ -93,6 +94,7 @@ def main():
     args.out.mkdir(parents=True, exist_ok=True)
     micro, rand100 = read(args.micro), read(args.random100)
     case3, baseline = read(args.case3_fixture), read(args.official_baseline)
+    a_proof = read(args.a_proof_audit) if args.a_proof_audit else None
     if any(item is None for item in (micro, rand100, case3, baseline)):
         parser.error("fixture, case3 experiment, or official baseline report missing")
     if case3.get("mode") != "REAL_VARIANTS":
@@ -151,6 +153,15 @@ def main():
         "a_production_commit": args.a_commit,
         "b_production_commit": args.b_commit,
         "case3_b_test_only_commit": CASE3_B_COMMIT,
+        "a_proof_only": {
+            "status": "PASS" if a_proof and a_proof.get("mode") == "A_PROOF_ONLY" and
+            a_proof.get("ordinary_selftest", {}).get("status") == "PASS" and
+            a_proof.get("slow_selftest", {}).get("status") == "PASS" and
+            a_proof.get("case3_proof", {}).get("status") == "PASS" else
+            "NOT_RUN" if a_proof is None else "FAIL",
+            "commit": a_proof.get("a_commit") if a_proof else None,
+            "production_pass": "NOT_RUN",
+        },
         "fixture": {
             "micro": fixture_status(micro, 22),
             "random100": fixture_status(rand100, 100),
@@ -182,6 +193,7 @@ def main():
     lines = ["# PMUX v0.2-B C 验证门槛", "",
              f"ready_to_merge_integration_g3={str(report['ready_to_merge_integration_g3']).lower()}。",
              "A/B 真实生产提交尚未交付；fixture 及冻结 case3 消融不作为生产规则收益。", "",
+             f"A 独立证明自测：{report['a_proof_only']['status']}；生产 Pass：NOT_RUN。", "",
              f"定向 fixture：{report['fixture']['micro']} ({micro['pass']}/{micro['count']})；"
              f"随机 100 fixture：{report['fixture']['random100']} ({rand100['pass']}/{rand100['count']})；"
              "随机 1000 真实验收：NOT_RUN。", "",

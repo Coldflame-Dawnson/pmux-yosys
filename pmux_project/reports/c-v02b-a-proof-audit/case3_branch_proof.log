@@ -1,0 +1,49 @@
+PMUX analyzer selftest: all checks passed (2116 assertions)
+PMUX branch selftest: all checks passed (29 assertions)
+
+-- Running command `read_rtlil /home/yuewen/work/pmux-yosys/pmux_project/official_baseline/case3/netlists/stage_proc.il; pmux_branch_proof_report' --
+
+1. Executing RTLIL frontend.
+Input filename: /home/yuewen/work/pmux-yosys/pmux_project/official_baseline/case3/netlists/stage_proc.il
+BRANCH_PROOF module=test3 cell=$procmux$15 branch=0 width=1 proven_all_bits=0 fallback=A reason=partial_or_unknown_equality cells=3 bits=12 events=45
+BRANCH_PROOF_BIT cell=$procmux$15 branch=0 bit=0 status=1 branch_value=2 fallback_value=0 branch_proof_id=-1 fallback_proof_id=3 reason=bit_equality_unknown
+BRANCH_PROOF module=test3 cell=$procmux$15 branch=1 width=1 proven_all_bits=1 fallback=A reason=branch_redundant cells=3 bits=11 events=45
+BRANCH_PROOF_BIT cell=$procmux$15 branch=1 bit=0 status=0 branch_value=1 fallback_value=1 branch_proof_id=6 fallback_proof_id=3 reason=equal_binary_facts
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=0 target=1'0 value=0 rule=constant source= parents=
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=1 target=1'1 value=1 rule=constant source= parents=
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=2 target=$procmux$17_CMP value=1 rule=guard source= parents=
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=3 target=\sr [0] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=4 target=\sr [1] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=5 target=\sr [2] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=6 target=\sr [3] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=7 target=\sr [4] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=8 target=\sr [5] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=9 target=\sr [6] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=10 target=\sr [7] value=1 rule=eq_true_constant source=$procmux$17_CMP0 parents=2,1,1,1,1,1,1,1,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=11 target=$procmux$18_CMP value=0 rule=consteval_forward source=$procmux$18_CMP0 parents=3,4,5,6,7,8,9,10,0,1,0,1,0,1,0,1
+BRANCH_PROOF_TRACE cell=$procmux$15 branch=1 proof_id=12 target=$procmux$16_CMP value=0 rule=consteval_forward source=$procmux$16_CMP0 parents=3,4,5,6,7,8,9,10,0,1,1,1,1,1,1,1
+BRANCH_PROOF module=test3 cell=$procmux$15 branch=2 width=1 proven_all_bits=0 fallback=A reason=partial_or_unknown_equality cells=3 bits=11 events=45
+BRANCH_PROOF_BIT cell=$procmux$15 branch=2 bit=0 status=1 branch_value=1 fallback_value=0 branch_proof_id=10 fallback_proof_id=3 reason=bit_equality_unknown
+BRANCH_PROOF module=test3 cell=$procmux$24 branch=0 width=4 proven_all_bits=0 fallback=A reason=partial_or_unknown_equality cells=2 bits=14 events=34
+BRANCH_PROOF_BIT cell=$procmux$24 branch=0 bit=0 status=1 branch_value=1 fallback_value=2 branch_proof_id=10 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$24 branch=0 bit=1 status=1 branch_value=1 fallback_value=2 branch_proof_id=9 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$24 branch=0 bit=2 status=1 branch_value=1 fallback_value=2 branch_proof_id=8 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$24 branch=0 bit=3 status=1 branch_value=1 fallback_value=2 branch_proof_id=7 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF module=test3 cell=$procmux$24 branch=1 width=4 proven_all_bits=0 fallback=A reason=partial_or_unknown_equality cells=2 bits=14 events=34
+BRANCH_PROOF_BIT cell=$procmux$24 branch=1 bit=0 status=1 branch_value=1 fallback_value=2 branch_proof_id=6 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$24 branch=1 bit=1 status=1 branch_value=0 fallback_value=2 branch_proof_id=5 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$24 branch=1 bit=2 status=1 branch_value=1 fallback_value=2 branch_proof_id=4 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$24 branch=1 bit=3 status=1 branch_value=0 fallback_value=2 branch_proof_id=3 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF module=test3 cell=$procmux$7 branch=0 width=3 proven_all_bits=0 fallback=A reason=partial_or_unknown_equality cells=2 bits=13 events=33
+BRANCH_PROOF_BIT cell=$procmux$7 branch=0 bit=0 status=1 branch_value=1 fallback_value=2 branch_proof_id=5 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$7 branch=0 bit=1 status=1 branch_value=1 fallback_value=2 branch_proof_id=4 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$7 branch=0 bit=2 status=1 branch_value=1 fallback_value=2 branch_proof_id=3 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF module=test3 cell=$procmux$7 branch=1 width=3 proven_all_bits=0 fallback=A reason=partial_or_unknown_equality cells=2 bits=13 events=33
+BRANCH_PROOF_BIT cell=$procmux$7 branch=1 bit=0 status=1 branch_value=0 fallback_value=2 branch_proof_id=9 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$7 branch=1 bit=1 status=1 branch_value=1 fallback_value=2 branch_proof_id=8 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_BIT cell=$procmux$7 branch=1 bit=2 status=1 branch_value=0 fallback_value=2 branch_proof_id=7 fallback_proof_id=-1 reason=bit_equality_unknown
+BRANCH_PROOF_NETLIST_UNCHANGED 1
+
+End of script. Logfile hash: ec031ce9e0, time: 0.15s, user: 0.14s, system: 0.00s, MEM: 27.01 MB peak
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]
+Time spent: 90% 1x pmux_branch_proof_report (0 sec), 9% 2x read_rtlil (0 sec), ...

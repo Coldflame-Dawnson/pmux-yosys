@@ -3,6 +3,8 @@
 ready_to_merge_integration_g3=false。
 A/B 真实生产提交尚未交付；fixture 及冻结 case3 消融不作为生产规则收益。
 
+A 独立证明自测：PASS；生产 Pass：NOT_RUN。
+
 定向 fixture：PASS (22/22)；随机 100 fixture：PASS (100/100)；随机 1000 真实验收：NOT_RUN。
 
 | case | baseline LUT | optimized LUT | baseline DFF/IO | optimized DFF/IO | baseline CPU s/峰值MB | optimized CPU s/峰值MB | EQY | Pass 审计 | 已知 ABC 报错 |
