@@ -1,4 +1,5 @@
 #include "kernel/yosys.h"
+#include "kernel/json.h"
 #include "kernel/sigtools.h"
 #include "pmux_opt_api.h"
 #include "rewrite_plan.h"
@@ -6,6 +7,7 @@
 #include <algorithm>
 #include <chrono>
 #include <climits>
+#include <fstream>
 #include <map>
 #include <string>
 #include <vector>
@@ -117,6 +119,161 @@ static const char *entry_kind_name(EntryKind kind)
 	return "invalid";
 }
 
+static void write_json_file(std::string filename, const Json &document)
+{
+	rewrite_filename(filename);
+	std::ofstream stream(filename, std::ofstream::out | std::ofstream::trunc);
+	if (!stream)
+		log_cmd_error("pmux_opt: cannot open JSON output file `%s'.\n", filename.c_str());
+	stream << document.dump() << "\n";
+	stream.close();
+	if (!stream)
+		log_cmd_error("pmux_opt: failed writing JSON output file `%s'.\n", filename.c_str());
+}
+
+static Json build_plan_json(const RewriteBatch &batch, bool commit_ok,
+		const std::string &commit_failure, const std::string &mode)
+{
+	Json::array edits;
+	for (const CommittedEdit &edit : batch.committed_edits()) {
+		Json branch = edit.branch_index < 0 ? Json(nullptr) : Json(edit.branch_index);
+		Json old_value = Json::object {
+			{"kind", "signal"},
+			{"wire", RTLIL::unescape_id(edit.original.wire->name)},
+			{"offset", edit.original.offset},
+		};
+		edits.push_back(Json::object {
+			{"module", edit.module_id},
+			{"cell", edit.cell_id},
+			{"port", edit.physical_port == PhysicalPort::A ? "A" : "B"},
+			{"bit", edit.physical_bit},
+			{"value", edit.target == RTLIL::State::S0 ? "0" : "1"},
+			{"old", old_value},
+			{"branch", branch},
+			{"branch_bit", edit.branch_bit},
+			{"proof_id", edit.proof_id},
+			{"source_entry", edit.source_entry_id},
+		});
+	}
+
+	Json::array abandoned_entries;
+	for (const AbandonedEntry &entry : batch.abandoned_entries())
+		abandoned_entries.push_back(Json::object {
+			{"entry", entry.entry_id},
+			{"reason", entry.reason_code},
+		});
+
+	return Json::object {
+		{"schema", 1},
+		{"producer", "pmux_opt"},
+		{"mode", mode},
+		{"commit", commit_ok ? "ok" : "aborted"},
+		{"commit_reason", commit_failure.empty() ? Json(nullptr) : Json(commit_failure)},
+		{"edits", edits},
+		{"abandoned_entries", abandoned_entries},
+	};
+}
+
+static Json build_stats_json(const std::string &mode,
+		int selected_modules, int candidate_cells, int valid_cells, int invalid_cells,
+		int entry_count, int unknown_bits, int proven_zero, int proven_one,
+		std::size_t visited_cells, std::size_t visited_bits, std::size_t propagation_events,
+		const RewriteStats &rewrite_stats, const std::map<std::string, int> &invalid_reasons,
+		const std::map<std::string, int> &entry_statuses,
+		const std::map<std::string, int> &unknown_reasons,
+		bool commit_ok, const std::string &commit_failure, long long wall_us,
+		const ResourceSample &resources_start, const ResourceSample &resources_end)
+{
+	std::map<std::string, int> reason_counts;
+	for (const auto &item : invalid_reasons)
+		reason_counts[item.first] += item.second;
+	for (const auto &item : entry_statuses)
+		if (item.first != "normal")
+			reason_counts[item.first] += item.second;
+	for (const auto &item : unknown_reasons)
+		reason_counts[item.first] += item.second;
+	if (rewrite_stats.rewrite_conflicts != 0)
+		reason_counts["rewrite_conflict"] += int(rewrite_stats.rewrite_conflicts);
+	if (rewrite_stats.skipped_original_binary_constants != 0)
+		reason_counts["original_binary_constant"] += int(rewrite_stats.skipped_original_binary_constants);
+	if (rewrite_stats.skipped_original_xz != 0)
+		reason_counts["original_xz"] += int(rewrite_stats.skipped_original_xz);
+	if (!commit_ok)
+		reason_counts[commit_failure.empty() ? "commit_aborted" : commit_failure]++;
+
+	Json::object reason_count_json;
+	Json::array reason_codes;
+	for (const auto &item : reason_counts) {
+		reason_count_json[item.first] = item.second;
+		reason_codes.push_back(item.first);
+	}
+
+	Json::object entry_status_json;
+	for (const auto &item : entry_statuses)
+		entry_status_json[item.first] = item.second;
+
+	Json resources;
+	if (resources_start.available && resources_end.available) {
+		resources = Json::object {
+			{"wall_us", double(wall_us)},
+			{"user_us", double(resources_end.user_us - resources_start.user_us)},
+			{"system_us", double(resources_end.system_us - resources_start.system_us)},
+			{"peak_kib", double(resources_end.peak_kib)},
+			{"peak_growth_kib", double(std::max(0LL,
+					resources_end.peak_kib - resources_start.peak_kib))},
+			{"time_unit", "microseconds"},
+			{"memory_unit", "KiB"},
+		};
+	} else {
+		resources = Json::object {
+			{"wall_us", double(wall_us)},
+			{"os_counters", "unavailable"},
+			{"time_unit", "microseconds"},
+		};
+	}
+
+	return Json::object {
+		{"schema", 1},
+		{"producer", "pmux_opt"},
+		{"mode", mode},
+		{"changed_bits", int(rewrite_stats.written_bits)},
+		{"reason_codes", reason_codes},
+		{"reason_counts", reason_count_json},
+		{"scan", Json::object {
+			{"modules", selected_modules},
+			{"candidate_cells", candidate_cells},
+			{"valid_cells", valid_cells},
+			{"invalid_cells", invalid_cells},
+			{"entries", entry_count},
+			{"target_bits", unknown_bits + proven_zero + proven_one},
+		}},
+		{"analysis", Json::object {
+			{"entry_status", entry_status_json},
+			{"visited_cells", int(visited_cells)},
+			{"visited_bits", int(visited_bits)},
+			{"propagation_events", int(propagation_events)},
+			{"proven_zero", proven_zero},
+			{"proven_one", proven_one},
+			{"unknown_bits", unknown_bits},
+			{"sat_queries", 0},
+		}},
+		{"rewrite", Json::object {
+			{"candidate_bits", int(rewrite_stats.proven_bits)},
+			{"accepted_bits", int(rewrite_stats.planned_bits)},
+			{"committed_bits", int(rewrite_stats.written_bits)},
+			{"skipped_original_binary_constants", int(rewrite_stats.skipped_original_binary_constants)},
+			{"skipped_original_xz", int(rewrite_stats.skipped_original_xz)},
+			{"rejected_results", int(rewrite_stats.rejected_results)},
+			{"deduplicated_targets", int(rewrite_stats.duplicate_targets)},
+			{"rewrite_conflicts", int(rewrite_stats.rewrite_conflicts)},
+			{"abandoned_entries", int(rewrite_stats.abandoned_entries)},
+			{"commit", commit_ok ? "ok" : "aborted"},
+			{"commit_reason", commit_failure.empty() ? Json(nullptr) : Json(commit_failure)},
+		}},
+		{"resources", resources},
+	};
+}
+
 static bool validate_mux_cell(RTLIL::Cell *cell, int &width, int &s_width, std::string &reason)
 {
 	if (!cell->hasParam(ID::WIDTH)) {
@@ -205,7 +362,8 @@ struct PmuxOptPass : public Pass
 		log("    pmux_opt [-verbose] [-stub-zero|-stub-one|-stub-alternating]\n");
 		log("             [-test-rewrite-duplicate] [-test-rewrite-conflict]\n");
 		log("             [-test-snapshot-mismatch]\n");
-		log("             [-test-report-constants] [selection]\n");
+		log("             [-test-report-constants]\n");
+		log("             [-write-plan <file>] [-write-stats <file>] [selection]\n");
 		log("\n");
 		log("Enumerate selected, structurally valid $mux and $pmux cells in stable\n");
 		log("order, construct branch-local guards, and call the analysis interface.\n");
@@ -218,6 +376,7 @@ struct PmuxOptPass : public Pass
 		log("a failed all-batch precheck performs zero writes.\n");
 		log("-test-report-constants makes a forced stub report original constants so\n");
 		log("the planner's defensive constant/x/z filter can be verified.\n");
+		log("-write-plan and -write-stats emit schema-1 machine-readable JSON.\n");
 		log("\n");
 	}
 
@@ -232,6 +391,8 @@ struct PmuxOptPass : public Pass
 		bool test_report_constants = false;
 		StubMode stub_mode = StubMode::Unknown;
 		bool stub_mode_set = false;
+		std::string plan_json_file;
+		std::string stats_json_file;
 		int argidx;
 		for (argidx = 1; argidx < GetSize(args); ++argidx) {
 			if (args[argidx] == "-verbose") {
@@ -252,6 +413,14 @@ struct PmuxOptPass : public Pass
 			}
 			if (args[argidx] == "-test-report-constants") {
 				test_report_constants = true;
+				continue;
+			}
+			if (args[argidx] == "-write-plan" && argidx + 1 < GetSize(args)) {
+				plan_json_file = args[++argidx];
+				continue;
+			}
+			if (args[argidx] == "-write-stats" && argidx + 1 < GetSize(args)) {
+				stats_json_file = args[++argidx];
 				continue;
 			}
 			StubMode requested_mode;
@@ -295,6 +464,11 @@ struct PmuxOptPass : public Pass
 		int entry_count = 0;
 		int unknown_bits = 0;
 		int proven_bits = 0;
+		int proven_zero = 0;
+		int proven_one = 0;
+		std::size_t visited_cells = 0;
+		std::size_t visited_bits = 0;
+		std::size_t propagation_events = 0;
 		std::map<std::string, int> invalid_reason_counts;
 		std::map<std::string, int> analysis_status_counts;
 		std::map<std::string, int> unknown_reason_counts;
@@ -358,6 +532,9 @@ struct PmuxOptPass : public Pass
 					EntryAnalysisResult result = analyzer.analyze(request);
 					entry_count++;
 					analysis_status_counts[status_name(result.status)]++;
+					visited_cells += result.usage.visited_cells;
+					visited_bits += result.usage.visited_bits;
+					propagation_events += result.usage.propagation_events;
 					for (const BitConclusion &conclusion : result.bits) {
 						if (conclusion.value == FactValue::Unknown) {
 							unknown_bits++;
@@ -365,6 +542,10 @@ struct PmuxOptPass : public Pass
 									"unspecified_unknown" : conclusion.reason_code]++;
 						} else {
 							proven_bits++;
+							if (conclusion.value == FactValue::Zero)
+								proven_zero++;
+							else
+								proven_one++;
 						}
 					}
 					rewrite_batch.add(request, result);
@@ -392,8 +573,9 @@ struct PmuxOptPass : public Pass
 					commit_failure.c_str());
 
 		const RewriteStats &rewrite_stats = rewrite_batch.stats();
-		log("pmux_opt: rewrite proven=%zu skipped_constants=%zu rejected_results=%zu duplicates=%zu conflicts=%zu abandoned_entries=%zu planned=%zu writes=%zu commit=%s\n",
-				rewrite_stats.proven_bits, rewrite_stats.skipped_original_constants,
+		log("pmux_opt: rewrite proven=%zu skipped_binary_constants=%zu skipped_xz=%zu rejected_results=%zu duplicates=%zu conflicts=%zu abandoned_entries=%zu planned=%zu writes=%zu commit=%s\n",
+				rewrite_stats.proven_bits, rewrite_stats.skipped_original_binary_constants,
+				rewrite_stats.skipped_original_xz,
 				rewrite_stats.rejected_results, rewrite_stats.duplicate_targets,
 				rewrite_stats.rewrite_conflicts,
 				rewrite_stats.abandoned_entries, rewrite_stats.planned_bits,
@@ -424,6 +606,19 @@ struct PmuxOptPass : public Pass
 		} else {
 			log("pmux_opt: resources wall_us=%lld os_counters=unavailable\n", wall_us);
 		}
+
+		const std::string machine_mode = stub_mode_set ? "testing_stub" : "stub_unknown";
+		if (!plan_json_file.empty())
+			write_json_file(plan_json_file,
+					build_plan_json(rewrite_batch, commit_ok, commit_failure, machine_mode));
+		if (!stats_json_file.empty())
+			write_json_file(stats_json_file,
+					build_stats_json(machine_mode, selected_modules, candidate_cells,
+							valid_cells, invalid_cells, entry_count, unknown_bits,
+							proven_zero, proven_one, visited_cells, visited_bits,
+							propagation_events, rewrite_stats, invalid_reason_counts,
+							analysis_status_counts, unknown_reason_counts, commit_ok,
+							commit_failure, wall_us, resources_start, resources_end));
 	}
 } PmuxOptPass;
 

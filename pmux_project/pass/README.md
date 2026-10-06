@@ -1,0 +1,109 @@
+# `pmux_opt` Pass and machine interface
+
+## Build and invocation
+
+Build the plugin with the frozen Yosys 0.69 `yosys-config`:
+
+```bash
+make -C pmux_project/pass YOSYS_CONFIG=/path/to/yosys-config
+```
+
+The Pass consumes RTLIL after `proc` and before common `techmap`. A standalone
+snapshot invocation is:
+
+```text
+read_rtlil before.il
+pmux_opt -write-plan plan.json -write-stats stats.json
+write_rtlil after.il
+```
+
+The command name is `pmux_opt`. With no real analyzer integrated, its default
+analyzer returns only `UNKNOWN`, exits successfully, and writes no RTLIL bits.
+The `-stub-*` and `-test-*` switches are test-only and must not be used to claim
+functional optimization or LUT benefit.
+
+## Plan JSON schema 1
+
+`-write-plan <file>` writes one document. `edits` contains only physical bits
+that were actually committed; an aborted all-batch precheck therefore produces
+an empty array.
+
+```json
+{
+  "schema": 1,
+  "producer": "pmux_opt",
+  "mode": "stub_unknown",
+  "commit": "ok",
+  "commit_reason": null,
+  "edits": [
+    {
+      "module": "top",
+      "cell": "target",
+      "port": "B",
+      "bit": 3,
+      "value": "1",
+      "old": {"kind": "signal", "wire": "data", "offset": 0},
+      "branch": 1,
+      "branch_bit": 0,
+      "proof_id": 7,
+      "source_entry": "stable-entry-id"
+    }
+  ],
+  "abandoned_entries": [
+    {"entry": "stable-entry-id", "reason": "rewrite_conflict"}
+  ]
+}
+```
+
+Module, cell and wire names use the same unescaped spelling as Yosys
+`write_json`. `bit` is a zero-based physical A/B-port bit. `branch` is an
+integer only for `$pmux.B`; it is `null` for `$pmux.A` and ordinary `$mux`.
+For `$pmux.B`, `branch == bit / WIDTH` and `branch_bit == bit % WIDTH`.
+
+## Statistics JSON schema 1
+
+`-write-stats <file>` writes:
+
+- `changed_bits`: actual committed physical bits, equal to `edits.length`;
+- `reason_codes` and `reason_counts`: stable machine-readable diagnostics;
+- `scan`: module, candidate-cell, valid/invalid-cell, entry and target-bit counts;
+- `analysis`: entry statuses, analyzer resource counters, proven 0/1, unknown
+  bits, and `sat_queries` (fixed to zero in v0.1);
+- `rewrite`: candidate, accepted, committed, deduplicated, conflict, abandoned,
+  rejected and original-constant counts;
+- `resources`: microseconds and KiB, with units recorded explicitly.
+
+`candidate_bits` are proven nonconstant replacement candidates.
+`accepted_bits` are candidates remaining after conflict resolution and before
+the all-batch snapshot precheck. `committed_bits` and top-level `changed_bits`
+are physical bits written after a successful precheck.
+
+## Exit and fallback behavior
+
+- No candidate or only unknown results: success, empty edits, zero changes.
+- Structurally invalid or `keep` cell: warning, stable reason code, cell skipped.
+- `fact_conflict` or invalid analyzer result: current entry rejected.
+- `budget_exhausted`: complete proven bits may remain; incomplete bits are
+  unknown. Exact budget-stop semantics and budget-specific reasons belong to A.
+- `rewrite_conflict`: all entries involved at that physical bit are abandoned;
+  independent entries may still commit.
+- Any full-port snapshot mismatch: whole batch aborts before the first RTLIL
+  write; success with `commit="aborted"`, empty edits and zero changes.
+- Bad command syntax or failure to write a requested JSON file: command error
+  and nonzero Yosys exit.
+
+## Reason-code ownership
+
+B currently emits structural and commit codes including `keep_attribute`,
+`missing_width`, `invalid_width`, `missing_port`, `port_width_mismatch`,
+`missing_s_width`, `invalid_s_width`, `port_width_overflow`,
+`invalid_rewrite_metadata`, `rewrite_conflict`, `snapshot_mismatch`,
+`bit_snapshot_mismatch`, `missing_cell_at_commit`, `cell_type_changed`, and
+`missing_port_at_commit`. `original_binary_constant` and `original_xz` are
+defensive result filters.
+
+A owns comparator-width/sign rejection, unsupported-cell propagation,
+no-opportunity details, `fact_conflict`, and the separate cell/bit/event budget
+reason codes. B forwards A's entry and per-bit reason strings into the machine
+statistics without changing their meaning. The test-only codes and modes are
+not part of the production analyzer contract.

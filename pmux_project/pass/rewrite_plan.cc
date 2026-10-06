@@ -77,7 +77,10 @@ void RewriteBatch::add(const EntryRequest &request, const EntryAnalysisResult &r
 
 		const RTLIL::SigBit original = request.data[conclusion.bit_index];
 		if (original.wire == nullptr) {
-			stats_.skipped_original_constants++;
+			if (original.data == RTLIL::State::Sx || original.data == RTLIL::State::Sz)
+				stats_.skipped_original_xz++;
+			else
+				stats_.skipped_original_binary_constants++;
 			continue;
 		}
 
@@ -188,6 +191,8 @@ bool RewriteBatch::commit(std::string &failure_reason)
 	}
 
 	stats_.abandoned_entries = all_abandoned_entries.size();
+	for (const std::string &entry_id : all_abandoned_entries)
+		abandoned_entries_.push_back({entry_id, "rewrite_conflict"});
 	for (const auto &items : accepted)
 		stats_.planned_bits += items.size();
 
@@ -232,6 +237,21 @@ bool RewriteBatch::commit(std::string &failure_reason)
 		for (const RewriteCandidate &candidate : accepted[plan_index])
 			updated.replace(candidate.physical_bit, RTLIL::SigSpec(candidate.target));
 		plan.cell->setPort(port_id(plan.physical_port), updated);
+		for (const RewriteCandidate &candidate : accepted[plan_index]) {
+			CommittedEdit edit;
+			edit.module_id = RTLIL::unescape_id(plan.module->name);
+			edit.cell_id = RTLIL::unescape_id(plan.cell->name);
+			edit.physical_port = plan.physical_port;
+			edit.physical_bit = candidate.physical_bit;
+			edit.original = candidate.original;
+			edit.target = candidate.target;
+			edit.branch_index = plan.cell_type == ID($pmux) &&
+					plan.physical_port == PhysicalPort::B ? candidate.branch_index : -1;
+			edit.branch_bit = candidate.branch_bit;
+			edit.proof_id = candidate.proof_id;
+			edit.source_entry_id = candidate.source_entry_id;
+			committed_edits_.push_back(edit);
+		}
 		stats_.written_bits += accepted[plan_index].size();
 	}
 
