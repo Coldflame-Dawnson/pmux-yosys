@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "mode": "test-only-case3-ablation",
+  "variant": "c",
+  "actions": [
+    {"id": "C", "cell": "$procmux$27", "kind": "partial_bits_0_2_bypass", "old_width": 4, "new_width": 1, "bypassed_bits": [0, 1, 2], "retained_bits": [3], "reconnect": "Y[2:0]=A[2:0]"}
+  ],
+  "snapshot_check": "passed",
+  "production": false
+}

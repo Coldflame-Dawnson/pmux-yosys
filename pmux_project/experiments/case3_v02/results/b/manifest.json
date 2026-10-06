@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "mode": "test-only-case3-ablation",
+  "variant": "b",
+  "actions": [
+    {"id": "B", "cell": "$procmux$18", "kind": "pmux_branch0_delete_to_mux", "old_type": "$pmux", "new_type": "$mux", "old_s_width": 2, "new_s_width": 1, "removed_branch": 0, "retained_branch": 1}
+  ],
+  "snapshot_check": "passed",
+  "production": false
+}

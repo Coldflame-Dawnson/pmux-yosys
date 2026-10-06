@@ -1,0 +1,28 @@
+
+-- Running command `read_rtlil "/mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/ab/before.il"; hierarchy -check -top test3; case3_v02_ablate -variant ab -write-manifest "/mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/ab/manifest.json"; check; write_rtlil "/mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/ab/after.il"; write_json "/mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/ab/after.json"' --
+
+1. Executing RTLIL frontend.
+Input filename: /mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/ab/before.il
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \test3
+
+2.2. Analyzing design hierarchy..
+Top module:  \test3
+Removed 0 unused modules.
+case3_v02_ablate: variant=ab actions=2 snapshot=passed production=false
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module test3...
+Found and reported 0 problems.
+
+4. Executing RTLIL backend.
+Output filename: /mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/ab/after.il
+
+5. Executing JSON backend.
+
+End of script. Logfile hash: 1a6730b0a3, time: 0.35s, user: 0.01s, system: 0.01s, MEM: 20.88 MB peak
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Time spent: 29% 2x write_json (0 sec), 25% 2x read_rtlil (0 sec), ...

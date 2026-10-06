@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "mode": "test-only-case3-ablation",
+  "variant": "a",
+  "actions": [
+    {"id": "A", "cell": "$procmux$10", "kind": "whole_mux_bypass", "deleted_cell": true, "reconnect": "Y[2:0]=A[2:0]"}
+  ],
+  "snapshot_check": "passed",
+  "production": false
+}

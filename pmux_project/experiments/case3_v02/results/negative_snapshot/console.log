@@ -1,0 +1,15 @@
+
+-- Running command `read_rtlil "/mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/a/after.il"; hierarchy -check -top test3; case3_v02_ablate -variant a -write-manifest "/mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/negative_snapshot/manifest.json"; write_rtlil "/mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/negative_snapshot/after.il"' --
+
+1. Executing RTLIL frontend.
+Input filename: /mnt/e/嵌入式比赛/team_repo/pmux-yosys/pmux_project/experiments/case3_v02/results/a/after.il
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \test3
+
+2.2. Analyzing design hierarchy..
+Top module:  \test3
+Removed 0 unused modules.
+ERROR: case3_v02_ablate: snapshot mismatch: missing cell $procmux$10

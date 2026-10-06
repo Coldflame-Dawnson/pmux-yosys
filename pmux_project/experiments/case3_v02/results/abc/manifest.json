@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "mode": "test-only-case3-ablation",
+  "variant": "abc",
+  "actions": [
+    {"id": "A", "cell": "$procmux$10", "kind": "whole_mux_bypass", "deleted_cell": true, "reconnect": "Y[2:0]=A[2:0]"},
+    {"id": "B", "cell": "$procmux$18", "kind": "pmux_branch0_delete_to_mux", "old_type": "$pmux", "new_type": "$mux", "old_s_width": 2, "new_s_width": 1, "removed_branch": 0, "retained_branch": 1},
+    {"id": "C", "cell": "$procmux$27", "kind": "partial_bits_0_2_bypass", "old_width": 4, "new_width": 1, "bypassed_bits": [0, 1, 2], "retained_bits": [3], "reconnect": "Y[2:0]=A[2:0]"}
+  ],
+  "snapshot_check": "passed",
+  "production": false
+}
