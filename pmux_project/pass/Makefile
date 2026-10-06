@@ -1,13 +1,13 @@
 YOSYS_CONFIG ?= yosys-config
 PLUGIN := pmux_opt.so
-SOURCE := pmux_opt.cc
+SOURCES := pmux_opt.cc rewrite_plan.cc
 
 .PHONY: all clean
 
 all: $(PLUGIN)
 
-$(PLUGIN): $(SOURCE) ../include/pmux_opt_api.h
-	$(YOSYS_CONFIG) --build $@ $(SOURCE) -I../include
+$(PLUGIN): $(SOURCES) rewrite_plan.h ../include/pmux_opt_api.h
+	$(YOSYS_CONFIG) --build $@ $(SOURCES) -I../include
 
 clean:
 	$(RM) $(PLUGIN)
