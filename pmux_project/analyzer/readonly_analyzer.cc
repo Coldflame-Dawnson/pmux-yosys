@@ -1,5 +1,6 @@
 #include "readonly_analyzer.h"
 #include "budget_tracker.h"
+#include "guarded_fact_analysis.h"
 
 #include "kernel/celltypes.h"
 #include "kernel/consteval.h"
@@ -127,8 +128,8 @@ public:
 			return invalid;
 		}
 
-		Analysis run(request);
-		return run.execute();
+		return analyze_guarded_values(request.module, request.data,
+				request.guard, request.budget);
 	}
 
 private:
@@ -267,12 +268,14 @@ private:
 		return true;
 	}
 
+	public:
 	class Analysis {
 	public:
-		explicit Analysis(const EntryRequest &request) :
-			r_(request), module_(const_cast<RTLIL::Module *>(request.module)),
-			sigmap_(module_), celltypes_(), budget_(request.budget.max_cells,
-					request.budget.max_bits, request.budget.max_events)
+		Analysis(const RTLIL::Module *module, const RTLIL::SigSpec &data,
+				const std::vector<GuardFact> &guard, const AnalysisBudget &budget) :
+			module_(const_cast<RTLIL::Module *>(module)), data_(data), guard_(guard),
+			sigmap_(module_), celltypes_(), budget_(budget.max_cells,
+					budget.max_bits, budget.max_events)
 		{
 			celltypes_.setup(module_->design);
 			build_indexes();
@@ -280,8 +283,8 @@ private:
 
 		EntryAnalysisResult execute()
 		{
-			for (int i = 0; i < GetSize(r_.data); ++i) {
-				const RTLIL::SigBit original = r_.data[i];
+			for (int i = 0; i < GetSize(data_); ++i) {
+				const RTLIL::SigBit original = data_[i];
 				if (original.wire == nullptr && is_binary_state(original.data))
 					continue;
 				targets_.push_back(i);
@@ -338,10 +341,10 @@ private:
 				conclusion.bit_index = index;
 				if (conflict_) {
 					conclusion.reason_code = "fact_conflict";
-				} else if (r_.data[index].wire == nullptr) {
+				} else if (data_[index].wire == nullptr) {
 					conclusion.reason_code = "original_xz";
 				} else {
-					RTLIL::SigBit bit = sigmap_(r_.data[index]);
+					RTLIL::SigBit bit = sigmap_(data_[index]);
 					auto fact = facts_.find(bit);
 					if (fact != facts_.end()) {
 						conclusion.value = fact->second.value;
@@ -361,8 +364,9 @@ private:
 		}
 
 	private:
-		const EntryRequest &r_;
 		RTLIL::Module *module_;
+		RTLIL::SigSpec data_;
+		std::vector<GuardFact> guard_;
 		SigMap sigmap_;
 		NewCellTypes celltypes_;
 		BudgetTracker budget_;
@@ -379,7 +383,7 @@ private:
 
 		std::vector<GuardFact> sorted_guards() const
 		{
-			std::vector<GuardFact> guards = r_.guard;
+			std::vector<GuardFact> guards = guard_;
 			std::sort(guards.begin(), guards.end(), [](const GuardFact &a, const GuardFact &b) {
 				BitLess less;
 				if (less(a.bit, b.bit)) return true;
@@ -923,6 +927,14 @@ private:
 };
 
 } // namespace
+
+EntryAnalysisResult analyze_guarded_values(const RTLIL::Module *module,
+		const RTLIL::SigSpec &data, const std::vector<GuardFact> &guard,
+		const AnalysisBudget &budget)
+{
+	ReadonlyEntryAnalyzer::Analysis run(module, data, guard, budget);
+	return run.execute();
+}
 
 std::unique_ptr<EntryAnalyzer> make_readonly_entry_analyzer()
 {

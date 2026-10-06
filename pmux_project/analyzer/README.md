@@ -1,8 +1,12 @@
 # PMUX R1' read-only analyzer
 
+v0.2-B 的整 `$pmux` 分支冗余证明接口、精确重叠语义、原因码与 case3
+实测记录见 `branch_redundancy_v02b.md`。
+
 This directory is owned by role A. It implements the frozen
-`EntryRequest -> EntryAnalysisResult` interface without registering a pass or
-modifying RTLIL.
+`EntryRequest -> EntryAnalysisResult` interface and a read-only v0.2-B
+diagnostic command; neither registers a production rewrite pass nor modifies
+RTLIL.
 
 ## Build and test
 
