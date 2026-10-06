@@ -1,5 +1,25 @@
 # C 验证入口
 
+## 真实阶段验收（2026-10-06）
+
+以下是当前入口。下文旧的 identity/桩用法仅为 M1 框架历史记录，不能作为真实算法或 LUT 收益证据。
+
+```bash
+cd /home/yuewen/work/pmux-yosys-c-real
+BIN=/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin
+SRC=/home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case
+make -C pmux_project/pass YOSYS_CONFIG="$BIN/yosys-config"
+TEMPLATE="python3 {project}/scripts/real_pass_adapter.py --before {before} --after {after} --plan {plan} --stats {stats} --plugin {project}/pass/pmux_opt.so --yosys $BIN/yosys"
+python3 pmux_project/scripts/run_random.py --count 1000 --mode external --external-kind real --bin "$BIN" --out pmux_project/reports/c-real-random-1000 --dut-template "$TEMPLATE"
+python3 pmux_project/scripts/run_official.py --mode identity --bin "$BIN" --source-root "$SRC" --out pmux_project/reports/c-official-baseline-check
+python3 pmux_project/scripts/run_official.py --mode real --real-flow split --bin "$BIN" --plugin pmux_project/pass/pmux_opt.so --source-root "$SRC" --out pmux_project/reports/c-official-real-split
+python3 pmux_project/scripts/summarize_c_stage.py
+```
+
+`split` 在冻结的原版 Yosys 0.69 中逐条执行 `map_ffram`，在 `opt -undriven -fine` 与 `techmap -map +/techmap.v` 间调用默认 `pmux_opt`，并校验每份完整综合/后 ABC9 日志里 Pass 恰好出现一次。单独的诊断运行保存 before/after RTLIL、原生 plan/stats 并核对结构；它不参与 CPU/内存计时。官方四例的输入通过 `--source-root` 只读引用 M0 文件并校验 SHA-256。
+
+B 确认并提供带 `synth_intel.cc` 插入点的开发版 Yosys 后，将 `--real-flow split` 改为 `--real-flow integrated`、`--bin` 指向该版工具，并用同一插件重跑。该模式直接执行生产 `synth_intel`，若 Pass 没有恰好调用一次则失败。当前分段验证的四例 EQY 均通过，但四例 LUT 均没有减少，`lut_benefit=FAIL`；不得合入 `integration/g3` 或宣布 M1 完成。
+
 从团队仓库根目录执行；以下工具路径是 M0 冻结的未修改 Yosys 0.69 安装目录。运行输出写到 `pmux_project/reports/`，不写官方 RTL、原基线结果或生产代码。
 
 ```bash

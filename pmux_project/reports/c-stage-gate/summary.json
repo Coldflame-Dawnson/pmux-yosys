@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "random_1000": {
+    "count": 1000,
+    "pass": 1000,
+    "fail": 0,
+    "structure_correct": "PASS",
+    "synthesis_pass": "PASS",
+    "eqy_pass": "PASS"
+  },
+  "official_baseline_reproduced": true,
+  "official_optimized_flow": "source_matched_split_stage_plugin",
+  "official_cases": [
+    {
+      "case": "case1",
+      "input_sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+      "baseline": {
+        "lut": 288,
+        "dff": 222,
+        "io": 0,
+        "cpu_s": 0.1,
+        "peak_memory_mb": 31.15
+      },
+      "optimized": {
+        "lut": 288,
+        "dff": 222,
+        "io": 0,
+        "cpu_s": 0.11,
+        "peak_memory_mb": 34.1,
+        "changed_bits": 0,
+        "structure": "PASS",
+        "pass_location": "PASS",
+        "eqy": "PASS",
+        "eqy_method": "whole_design",
+        "abc_internal_error": true
+      }
+    },
+    {
+      "case": "case2",
+      "input_sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+      "baseline": {
+        "lut": 25,
+        "dff": 0,
+        "io": 0,
+        "cpu_s": 0.03,
+        "peak_memory_mb": 26.97
+      },
+      "optimized": {
+        "lut": 25,
+        "dff": 0,
+        "io": 0,
+        "cpu_s": 0.02,
+        "peak_memory_mb": 29.0,
+        "changed_bits": 0,
+        "structure": "PASS",
+        "pass_location": "PASS",
+        "eqy": "PASS",
+        "eqy_method": "default_partitions",
+        "abc_internal_error": true
+      }
+    },
+    {
+      "case": "case3",
+      "input_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+      "baseline": {
+        "lut": 13,
+        "dff": 17,
+        "io": 0,
+        "cpu_s": 0.03,
+        "peak_memory_mb": 27.36
+      },
+      "optimized": {
+        "lut": 13,
+        "dff": 17,
+        "io": 0,
+        "cpu_s": 0.03,
+        "peak_memory_mb": 29.04,
+        "changed_bits": 7,
+        "structure": "PASS",
+        "pass_location": "PASS",
+        "eqy": "PASS",
+        "eqy_method": "whole_design",
+        "abc_internal_error": true
+      }
+    },
+    {
+      "case": "case4",
+      "input_sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+      "baseline": {
+        "lut": 36,
+        "dff": 10,
+        "io": 0,
+        "cpu_s": 0.04,
+        "peak_memory_mb": 27.39
+      },
+      "optimized": {
+        "lut": 36,
+        "dff": 10,
+        "io": 0,
+        "cpu_s": 0.05,
+        "peak_memory_mb": 29.9,
+        "changed_bits": 0,
+        "structure": "PASS",
+        "pass_location": "PASS",
+        "eqy": "PASS",
+        "eqy_method": "default_partitions",
+        "abc_internal_error": true
+      }
+    }
+  ],
+  "official_structure_correct": "PASS",
+  "official_eqy_pass": "PASS",
+  "official_lut_benefit": "FAIL",
+  "production_loading": "PENDING_B_CONFIRMATION",
+  "blockers": [
+    "official_lut_benefit_failed",
+    "production_yosys_loading_pending_B"
+  ],
+  "ready_to_merge_integration_g3": false,
+  "evidence_roots": {
+    "random": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-real-random-1000",
+    "baseline": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-baseline-check",
+    "optimized": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-real-split"
+  }
+}
