@@ -261,7 +261,7 @@
           "branch": null
         }
       ],
-      "reason_code": "x/z",
+      "reason_code": "original_xz",
       "structure": "PASS",
       "eqy": "PASS",
       "note": "B[1:2] are original x/z",
@@ -273,10 +273,10 @@
       "top": "top",
       "trigger": false,
       "expected_edits": [],
-      "reason_code": "unspecified:compare_width_sign",
+      "reason_code": "primary_input",
       "structure": "PASS",
       "eqy": "PASS",
-      "note": "Signed 2-to-4 extension repeats a source bit; strict one-to-one reverse inference forbidden",
+      "note": "Signed 2-to-4 extension repeats a source bit; no reverse inference, target x stays a primary input",
       "budget": null
     },
     {
@@ -285,7 +285,7 @@
       "top": "top",
       "trigger": false,
       "expected_edits": [],
-      "reason_code": "unspecified:unsupported_cell",
+      "reason_code": "unsupported_cell",
       "structure": "PASS",
       "eqy": "PASS",
       "note": "",
@@ -309,7 +309,7 @@
       "top": "top",
       "trigger": false,
       "expected_edits": [],
-      "reason_code": "unspecified:budget_cells",
+      "reason_code": "budget_cells_exhausted",
       "structure": "PASS",
       "eqy": "PASS",
       "note": "513-cell control dependency",
@@ -323,7 +323,7 @@
       "top": "top",
       "trigger": false,
       "expected_edits": [],
-      "reason_code": "unspecified:budget_bits",
+      "reason_code": "budget_bits_exhausted",
       "structure": "PASS",
       "eqy": "PASS",
       "note": "8193 normalized control/data bits",
@@ -335,12 +335,4109 @@
       "id": "14c_budget_events",
       "file": "14c_budget_events.il",
       "top": "top",
-      "trigger": false,
-      "expected_edits": [],
-      "reason_code": "unspecified:budget_events",
+      "trigger": true,
+      "expected_edits": [
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 0,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 1,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 2,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 3,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 4,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 5,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 6,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 7,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 8,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 9,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 10,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 11,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 12,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 13,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 14,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 15,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 16,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 17,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 18,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 19,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 20,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 21,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 22,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 23,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 24,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 25,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 26,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 27,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 28,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 29,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 30,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 31,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 32,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 33,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 34,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 35,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 36,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 37,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 38,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 39,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 40,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 41,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 42,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 43,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 44,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 45,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 46,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 47,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 48,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 49,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 50,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 51,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 52,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 53,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 54,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 55,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 56,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 57,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 58,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 59,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 60,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 61,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 62,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 63,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 64,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 65,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 66,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 67,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 68,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 69,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 70,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 71,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 72,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 73,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 74,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 75,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 76,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 77,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 78,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 79,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 80,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 81,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 82,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 83,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 84,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 85,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 86,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 87,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 88,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 89,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 90,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 91,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 92,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 93,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 94,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 95,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 96,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 97,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 98,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 99,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 100,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 101,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 102,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 103,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 104,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 105,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 106,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 107,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 108,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 109,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 110,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 111,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 112,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 113,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 114,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 115,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 116,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 117,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 118,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 119,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 120,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 121,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 122,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 123,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 124,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 125,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 126,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 127,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 128,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 129,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 130,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 131,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 132,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 133,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 134,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 135,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 136,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 137,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 138,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 139,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 140,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 141,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 142,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 143,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 144,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 145,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 146,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 147,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 148,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 149,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 150,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 151,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 152,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 153,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 154,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 155,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 156,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 157,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 158,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 159,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 160,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 161,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 162,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 163,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 164,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 165,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 166,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 167,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 168,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 169,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 170,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 171,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 172,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 173,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 174,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 175,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 176,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 177,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 178,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 179,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 180,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 181,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 182,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 183,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 184,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 185,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 186,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 187,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 188,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 189,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 190,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 191,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 192,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 193,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 194,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 195,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 196,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 197,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 198,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 199,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 200,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 201,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 202,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 203,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 204,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 205,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 206,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 207,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 208,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 209,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 210,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 211,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 212,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 213,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 214,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 215,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 216,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 217,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 218,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 219,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 220,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 221,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 222,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 223,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 224,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 225,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 226,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 227,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 228,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 229,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 230,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 231,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 232,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 233,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 234,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 235,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 236,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 237,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 238,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 239,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 240,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 241,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 242,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 243,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 244,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 245,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 246,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 247,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 248,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 249,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 250,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 251,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 252,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 253,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 254,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 255,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 256,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 257,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 258,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 259,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 260,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 261,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 262,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 263,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 264,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 265,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 266,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 267,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 268,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 269,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 270,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 271,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 272,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 273,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 274,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 275,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 276,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 277,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 278,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 279,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 280,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 281,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 282,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 283,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 284,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 285,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 286,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 287,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 288,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 289,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 290,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 291,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 292,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 293,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 294,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 295,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 296,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 297,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 298,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 299,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 300,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 301,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 302,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 303,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 304,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 305,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 306,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 307,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 308,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 309,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 310,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 311,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 312,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 313,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 314,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 315,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 316,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 317,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 318,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 319,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 320,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 321,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 322,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 323,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 324,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 325,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 326,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 327,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 328,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 329,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 330,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 331,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 332,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 333,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 334,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 335,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 336,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 337,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 338,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 339,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 340,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 341,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 342,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 343,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 344,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 345,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 346,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 347,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 348,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 349,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 350,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 351,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 352,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 353,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 354,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 355,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 356,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 357,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 358,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 359,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 360,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 361,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 362,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 363,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 364,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 365,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 366,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 367,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 368,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 369,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 370,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 371,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 372,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 373,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 374,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 375,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 376,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 377,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 378,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 379,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 380,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 381,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 382,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 383,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 384,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 385,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 386,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 387,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 388,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 389,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 390,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 391,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 392,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 393,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 394,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 395,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 396,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 397,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 398,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 399,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 400,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 401,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 402,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 403,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 404,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 405,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 406,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 407,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 408,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 409,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 410,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 411,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 412,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 413,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 414,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 415,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 416,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 417,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 418,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 419,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 420,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 421,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 422,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 423,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 424,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 425,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 426,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 427,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 428,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 429,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 430,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 431,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 432,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 433,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 434,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 435,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 436,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 437,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 438,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 439,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 440,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 441,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 442,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 443,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 444,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 445,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 446,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 447,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 448,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 449,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 450,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 451,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 452,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 453,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 454,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 455,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 456,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 457,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 458,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 459,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 460,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 461,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 462,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 463,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 464,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 465,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 466,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 467,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 468,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 469,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 470,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 471,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 472,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 473,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 474,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 475,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 476,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 477,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 478,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 479,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 480,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 481,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 482,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 483,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 484,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 485,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 486,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 487,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 488,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 489,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 490,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 491,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 492,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 493,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 494,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 495,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 496,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 497,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 498,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 499,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 500,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 501,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 502,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 503,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 504,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 505,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 506,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 507,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 508,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 509,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 510,
+          "value": "1",
+          "branch": null
+        },
+        {
+          "module": "top",
+          "cell": "target",
+          "port": "A",
+          "bit": 511,
+          "value": "1",
+          "branch": null
+        }
+      ],
+      "reason_code": "budget_events_exhausted",
       "structure": "PASS",
       "eqy": "PASS",
-      "note": "512 combination cells, under 8192 normalized bits; A event counter must confirm event boundary",
+      "note": "A's published slow-test topology plus one unresolved free bit; retain 512 complete proofs and leave A[512] unchanged",
       "budget": {
         "event_limit": 262144
       }
@@ -380,7 +4477,7 @@
       "top": "top",
       "trigger": false,
       "expected_edits": [],
-      "reason_code": "none",
+      "reason_code": "primary_input",
       "structure": "PASS",
       "eqy": "PASS",
       "note": "",

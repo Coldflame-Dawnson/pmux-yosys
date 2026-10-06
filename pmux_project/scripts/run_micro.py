@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Black-box M1 RTLIL regression. Fixture replay is only a harness test."""
 import argparse
-import hashlib
 import json
 import os
 import re
@@ -78,16 +77,33 @@ def compare(before, after, expected, plan, active):
     issues = []
     if before.keys() != after.keys(): issues.append("module set changed")
     anticipated = {(e["module"], e["cell"], e["port"], e["bit"]): e["value"] for e in expected["expected_edits"]} if active else {}
-    planned = {(e["module"], e["cell"], e["port"], e["bit"]): e["value"] for e in plan.get("edits", [])}
+    edits = plan.get("edits", [])
+    planned = {(e["module"], e["cell"], e["port"], e["bit"]): e["value"] for e in edits}
+    if len(planned) != len(edits): issues.append("duplicate physical-bit edits in machine plan")
     if planned != anticipated: issues.append(f"plan mismatch: got {planned}, expected {anticipated}")
     expected_branches = {(e["module"],e["cell"],e["port"],e["bit"]):e.get("branch") for e in expected["expected_edits"]} if active else {}
-    for e in plan.get("edits", []):
+    for e in edits:
         key=(e["module"],e["cell"],e["port"],e["bit"])
         if e.get("branch") != expected_branches.get(key): issues.append(f"{key}: branch mapping mismatch")
         cell=before.get(e["module"],{}).get("cells",{}).get(e["cell"],{})
+        if plan.get("mode") == "real":
+            old_bits = cell.get("connections", {}).get(e["port"], [])
+            old = old_bits[e["bit"]] if 0 <= e["bit"] < len(old_bits) else None
+            old_record = e.get("old") or {}
+            wire = before.get(e["module"], {}).get("netnames", {}).get(old_record.get("wire"), {})
+            wire_bits = wire.get("bits", [])
+            offset = old_record.get("offset")
+            if not isinstance(old, int) or old_record.get("kind") != "signal" or not isinstance(offset, int) or not 0 <= offset < len(wire_bits) or wire_bits[offset] != old:
+                issues.append(f"{key}: original signal in plan does not match snapshot")
+            if not isinstance(e.get("proof_id"), int) or e["proof_id"] < 0 or not e.get("source_entry"):
+                issues.append(f"{key}: missing valid proof reference")
         if cell.get("type")=="$pmux" and e["port"]=="B":
             width=int(cell["parameters"]["WIDTH"],2)
             if e.get("branch") != e["bit"]//width: issues.append(f"{key}: B physical bit/branch mapping invalid")
+            if plan.get("mode") == "real" and e.get("branch_bit") != e["bit"]%width:
+                issues.append(f"{key}: B branch_bit mapping invalid")
+        elif e.get("branch") is not None:
+            issues.append(f"{key}: unexpected branch for mux or pmux.A")
     actual = {}
     for name in before.keys() & after.keys():
         a, b = before[name], after[name]
@@ -115,6 +131,35 @@ def compare(before, after, expected, plan, active):
     return issues, len(actual)
 
 
+def validate_machine(before, after, plan, stats, count):
+    """Validate the frozen B schema independently of fixture expectations."""
+    issues = []
+    for name, document in (("plan", plan), ("stats", stats)):
+        if document.get("schema") != 1 or document.get("producer") != "pmux_opt" or document.get("mode") != "real":
+            issues.append(f"{name}: expected schema=1 producer=pmux_opt mode=real")
+    edits = plan.get("edits", [])
+    rewrite = stats.get("rewrite", {})
+    if stats.get("changed_bits") != count or rewrite.get("committed_bits") != count or len(edits) != count:
+        issues.append("changed_bits / committed_bits / edits / structural diff disagree")
+    if plan.get("commit") != rewrite.get("commit"):
+        issues.append("plan and stats commit status disagree")
+    if plan.get("commit_reason") != rewrite.get("commit_reason"):
+        issues.append("plan and stats commit reason disagree")
+    if plan.get("commit") == "aborted":
+        if edits or count or before != after or stats.get("changed_bits") != 0:
+            issues.append("aborted all-batch commit was not an exact zero-write rollback")
+    elif plan.get("commit") != "ok":
+        issues.append("unknown commit status")
+    if stats.get("analysis", {}).get("sat_queries") != 0:
+        issues.append("v0.1 must have zero SAT queries")
+    counts = stats.get("reason_counts", {})
+    if sorted(stats.get("reason_codes", [])) != sorted(counts):
+        issues.append("reason_codes and reason_counts keys disagree")
+    if any(not isinstance(value, int) or value <= 0 for value in counts.values()):
+        issues.append("invalid reason count")
+    return issues
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--mode", choices=("identity", "fixture-stub", "external"), default="identity")
@@ -140,7 +185,8 @@ def main():
                 "eqy": subprocess.run([eqy, "--version"],capture_output=True,text=True).stdout.strip()}
     for spec in expectations:
         name = spec["id"]; work = a.out / name; work.mkdir(exist_ok=True)
-        before = (FIX / spec["file"]).resolve(); after = work / "after.il"
+        before = work / "before.il"; after = work / "after.il"
+        shutil.copyfile(FIX / spec["file"], before)
         plan_path, stats_path = work / "plan.json", work / "stats.json"
         row = {"case": name, "mode": a.mode, "trigger_expected": spec["trigger"],
                "structure": "NOT_RUN", "yosys_check": "NOT_RUN", "eqy": "NOT_RUN",
@@ -156,7 +202,8 @@ def main():
                 vars = {"before": str(before), "after": str(after), "plan": str(plan_path),
                         "stats": str(stats_path), "case": name, "project": str(ROOT)}
                 cmd = [part.format(**vars) for part in shlex.split(a.dut_template)]
-                rc = run(cmd, work / "dut.log", work, env)
+                rc = run(cmd, work / "dut.log", work, env,
+                         timeout=900 if a.external_kind == "real" else 300)
                 if rc: raise RuntimeError(f"DUT rc={rc}")
             if not all(x.is_file() for x in (after,plan_path,stats_path)):
                 raise RuntimeError("DUT did not produce after.il, plan.json, stats.json")
@@ -164,8 +211,15 @@ def main():
             plan = json.loads(plan_path.read_text()); stats = json.loads(stats_path.read_text())
             active = a.mode != "identity" and a.external_kind != "untriggered"
             issues, count = compare(original, changed, spec, plan, active)
-            if stats.get("changed_bits") != count: issues.append("Pass changed_bits statistic differs from structural diff")
-            if active and spec["reason_code"] in ("fact_conflict", "rewrite_conflict"):
+            if a.mode == "external" and a.external_kind == "real":
+                issues += validate_machine(original, changed, plan, stats, count)
+            elif stats.get("changed_bits") != count:
+                issues.append("Pass changed_bits statistic differs from structural diff")
+            if active and a.external_kind == "real" and spec["reason_code"] != "none":
+                code = spec["reason_code"]
+                if code not in stats.get("reason_codes", []) or stats.get("reason_counts", {}).get(code, 0) < 1:
+                    issues.append(f"missing frozen reason code: {code}")
+            elif active and spec["reason_code"] in ("fact_conflict", "rewrite_conflict"):
                 if spec["reason_code"] not in stats.get("reason_codes", []): issues.append("missing frozen reason code")
             if spec["reason_code"].startswith("unspecified:"):
                 row["reason_code_contract"] = "SKIP: B must freeze exact code"
@@ -185,7 +239,8 @@ def main():
                       "[collect top]\ngroup *\nbind *\n[strategy prove]\nuse sby\nengine abc pdr\noption aigsmt none\n")
             cfg = work / "verify.eqy"; save(cfg,config)
             eqy_work = work / "eqy_work"
-            rc = run([eqy,"-f","-d",eqy_work,cfg],work/"eqy.log",work,env,timeout=180)
+            rc = run([eqy,"-f","-d",eqy_work,cfg],work/"eqy.log",work,env,
+                     timeout=600 if a.external_kind == "real" else 180)
             eqy_log = (work/"eqy.log").read_text()
             row["eqy"] = "PASS" if rc == 0 and "DONE (PASS" in eqy_log else "FAIL"
             if a.mode in ("identity", "fixture-stub"): row["semantic"] = "SKIP" # neither executes B/A

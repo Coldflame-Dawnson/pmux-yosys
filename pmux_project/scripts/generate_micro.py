@@ -48,6 +48,12 @@ class Design:
                   {"A": x, "B": f"{bw}'{constant:0{bw}b}", "Y": s})
         return s
 
+    def logic_not(self, source, source_width, name):
+        result = self.wire(name)
+        self.cell("logic_not", name + "_gate", {"A_SIGNED": 0,
+                  "A_WIDTH": source_width, "Y_WIDTH": 1}, {"A": source, "Y": result})
+        return result
+
     def mux(self, a, b, s, width=1, name="target"):
         y = self.wire("out", width, "output")
         self.cell("mux", name, {"WIDTH": width}, {"A": a, "B": b, "S": s, "Y": y})
@@ -97,27 +103,32 @@ def make():
     d = Design(); x=d.wire("x",direction="input"); y=d.wire("y",direction="input"); q=d.wire("q",direction="input"); d.pmux(q,"{ \\y \\x }","{ \\y \\x }",1,2)
     cases.append(case("09_overlap_pmux",d,[("B",0,"1",0),("B",1,"1",1)],trigger=True,note="No one-hot assumption; priority unchanged"))
     d = Design(); x=d.wire("x",direction="input"); q=d.wire("q",3,"input"); d.mux(q,"{ 2'xz \\x }",x,3)
-    cases.append(case("10_xz_untouched",d,[("B",0,"1",None)],reason="x/z",trigger=True,note="B[1:2] are original x/z"))
+    cases.append(case("10_xz_untouched",d,[("B",0,"1",None)],reason="original_xz",trigger=True,note="B[1:2] are original x/z"))
     d = Design(); x=d.wire("x",2,"input"); q=d.wire("q",2,"input"); s=d.compare("eq",x,15,2,a_width=2,b_width=4,a_signed=1,b_signed=1); d.mux(q,x,s,2)
-    cases.append(case("11_ambiguous_compare",d,reason="unspecified:compare_width_sign",note="Signed 2-to-4 extension repeats a source bit; strict one-to-one reverse inference forbidden"))
-    d = Design(); x=d.wire("x",direction="input"); y=d.wire("y",direction="input"); q=d.wire("q",direction="input"); s=d.logic("xor",x,y); d.mux(q,x,s)
-    cases.append(case("12_unsupported_cell",d,reason="unspecified:unsupported_cell"))
+    cases.append(case("11_ambiguous_compare",d,reason="primary_input",note="Signed 2-to-4 extension repeats a source bit; no reverse inference, target x stays a primary input"))
+    d = Design(); x=d.wire("x",direction="input"); y=d.wire("y",direction="input"); q=d.wire("q",direction="input"); g=d.wire("g",direction="input"); u=d.logic("xor",x,y); d.mux(q,u,g)
+    cases.append(case("12_unsupported_cell",d,reason="unsupported_cell"))
     d = Design(); x=d.wire("x",direction="input"); q=d.wire("q",direction="input"); nx=d.logic("not",x); s=d.logic("and",x,nx); d.mux(q,x,s)
     cases.append(case("13_fact_conflict",d,reason="fact_conflict",note="Guard S=1 contradicts x & !x"))
     d = Design(); x=d.wire("x",direction="input"); q=d.wire("q",direction="input"); v=x
     for i in range(513): v=d.logic("not",v,name=f"chain{i}")
     d.mux(q,x,v)
-    cases.append(case("14a_budget_cells",d,reason="unspecified:budget_cells",budget={"cell_limit":512},note="513-cell control dependency"))
+    cases.append(case("14a_budget_cells",d,reason="budget_cells_exhausted",budget={"cell_limit":512},note="513-cell control dependency"))
     d = Design(); x=d.wire("x",8193,"input"); q=d.wire("q",8193,"input"); s=d.compare("eq",x,0,8193); d.mux(q,x,s,8193)
-    cases.append(case("14b_budget_bits",d,reason="unspecified:budget_bits",budget={"bit_limit":8192},note="8193 normalized control/data bits"))
-    d = Design(); x=d.wire("x",15,"input"); q=d.wire("q",15,"input"); v=x
-    for i in range(511): v=d.logic("not",v,width=15,name=f"wide{i}")
-    s=d.compare("eq",v,0,15); d.mux(q,x,s,15)
-    cases.append(case("14c_budget_events",d,reason="unspecified:budget_events",budget={"event_limit":262144},note="512 combination cells, under 8192 normalized bits; A event counter must confirm event boundary"))
+    cases.append(case("14b_budget_bits",d,reason="budget_bits_exhausted",budget={"bit_limit":8192},note="8193 normalized control/data bits"))
+    d = Design(); s=d.wire("event_guard",512,"input"); free=d.wire("free",direction="input")
+    outputs=[d.logic_not(s,512,f"event_y{i}") for i in range(512)]
+    a="{ " + free + " " + " ".join(reversed(outputs)) + " }"
+    d.pmux(a,"262656'" + "0"*262656,s,513,512)
+    cases.append(case("14c_budget_events",d,
+                      [("A",i,"1",None) for i in range(512)],trigger=True,
+                      reason="budget_events_exhausted",
+                      budget={"event_limit":262144},
+                      note="A's published slow-test topology plus one unresolved free bit; retain 512 complete proofs and leave A[512] unchanged"))
     d = Design(); x=d.wire("x",direction="input"); y=d.wire("y",direction="input"); q=d.wire("q",direction="input"); d.pmux(q,"{ \\y \\x }","{ \\y \\x }",1,2)
     cases.append(case("15_multi_branch_merge",d,[("B",0,"1",0),("B",1,"1",1)],trigger=True))
     d = Design(); x=d.wire("x",direction="input"); a=d.wire("a",direction="input"); b=d.wire("b",direction="input"); d.mux(a,b,x)
-    cases.append(case("16_no_opportunity",d,reason="none"))
+    cases.append(case("16_no_opportunity",d,reason="primary_input"))
     d = Design(); x=d.wire("x",8,"input"); q=d.wire("q",8,"input"); d.wire("shared",8,"output"); d.cells.append("  connect \\shared \\x"); s=d.compare("eq","\\x [6:0]",0b1010110,7); d.mux(q,x,s,8)
     cases.append(case("17_case3_seven_bits",d,[("B",i,str((0b1010110>>i)&1),None) for i in range(7)],trigger=True,note="Seven located comparator bits; B[7] and shared output unchanged"))
     return cases

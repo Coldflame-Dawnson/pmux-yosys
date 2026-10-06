@@ -3,8 +3,9 @@ module \top
   wire width 1 input 1 \x
   wire width 1 input 2 \y
   wire width 1 input 3 \q
+  wire width 1 input 4 \g
   wire width 1 \t0
-  wire width 1 output 4 \out
+  wire width 1 output 5 \out
   cell $xor \t0_gate
     parameter \A_SIGNED 0
     parameter \B_SIGNED 0
@@ -18,8 +19,8 @@ module \top
   cell $mux \target
     parameter \WIDTH 1
     connect \A \q
-    connect \B \x
-    connect \S \t0
+    connect \B \t0
+    connect \S \g
     connect \Y \out
   end
 end
