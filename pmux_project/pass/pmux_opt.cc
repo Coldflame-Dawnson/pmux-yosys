@@ -4,6 +4,7 @@
 #include "pmux_opt_api.h"
 #include "readonly_analyzer.h"
 #include "rewrite_plan.h"
+#include "branch_delete.h"
 
 #include <algorithm>
 #include <chrono>
@@ -133,7 +134,8 @@ static void write_json_file(std::string filename, const Json &document)
 		log_cmd_error("pmux_opt: failed writing JSON output file `%s'.\n", filename.c_str());
 }
 
-static Json build_plan_json(const RewriteBatch &batch, bool commit_ok,
+static Json build_plan_json(const RewriteBatch &batch, const BranchRewriteBatch &branch_batch,
+		bool commit_ok,
 		const std::string &commit_failure, const std::string &mode)
 {
 	Json::array edits;
@@ -165,6 +167,37 @@ static Json build_plan_json(const RewriteBatch &batch, bool commit_ok,
 			{"reason", entry.reason_code},
 		});
 
+	Json::array branch_edits;
+	for (const CommittedBranchEdit &edit : branch_batch.committed_edits()) {
+		Json::array deleted;
+		Json::array proof_ids;
+		Json::array removed_b_ranges;
+		for (int branch : edit.deleted_branches)
+			deleted.push_back(branch);
+		for (int proof_id : edit.proof_ids)
+			proof_ids.push_back(proof_id);
+		for (int branch : edit.deleted_branches)
+			removed_b_ranges.push_back(Json::object {
+				{"branch", branch},
+				{"offset", branch * edit.width},
+				{"width", edit.width},
+			});
+		branch_edits.push_back(Json::object {
+			{"module", edit.module_id},
+			{"cell", edit.cell_id},
+			{"deleted_branches", deleted},
+			{"proof_ids", proof_ids},
+			{"removed_b_ranges", removed_b_ranges},
+			{"removed_s_indices", deleted},
+			{"width", edit.width},
+			{"old_s_width", edit.old_s_width},
+			{"new_s_width", edit.new_s_width},
+			{"old_type", edit.old_type},
+			{"new_type", edit.new_type},
+			{"transformation", edit.transformation},
+		});
+	}
+
 	return Json::object {
 		{"schema", 1},
 		{"producer", "pmux_opt"},
@@ -172,6 +205,7 @@ static Json build_plan_json(const RewriteBatch &batch, bool commit_ok,
 		{"commit", commit_ok ? "ok" : "aborted"},
 		{"commit_reason", commit_failure.empty() ? Json(nullptr) : Json(commit_failure)},
 		{"edits", edits},
+		{"branch_edits", branch_edits},
 		{"abandoned_entries", abandoned_entries},
 	};
 }
@@ -180,7 +214,8 @@ static Json build_stats_json(const std::string &mode,
 		int selected_modules, int candidate_cells, int valid_cells, int invalid_cells,
 		int entry_count, int unknown_bits, int proven_zero, int proven_one,
 		std::size_t visited_cells, std::size_t visited_bits, std::size_t propagation_events,
-		const RewriteStats &rewrite_stats, const std::map<std::string, int> &invalid_reasons,
+		const RewriteStats &rewrite_stats, const BranchRewriteStats &branch_stats,
+		const std::map<std::string, int> &invalid_reasons,
 		const std::map<std::string, int> &entry_statuses,
 		const std::map<std::string, int> &unknown_reasons,
 		bool commit_ok, const std::string &commit_failure, long long wall_us,
@@ -200,6 +235,12 @@ static Json build_stats_json(const std::string &mode,
 		reason_counts["original_binary_constant"] += int(rewrite_stats.skipped_original_binary_constants);
 	if (rewrite_stats.skipped_original_xz != 0)
 		reason_counts["original_xz"] += int(rewrite_stats.skipped_original_xz);
+	if (branch_stats.rejected_partial != 0)
+		reason_counts["branch_partial_proof"] += int(branch_stats.rejected_partial);
+	if (branch_stats.rejected_unproved != 0)
+		reason_counts["branch_unproved"] += int(branch_stats.rejected_unproved);
+	if (branch_stats.conflicts != 0)
+		reason_counts["branch_target_conflict"] += int(branch_stats.conflicts);
 	if (!commit_ok)
 		reason_counts[commit_failure.empty() ? "commit_aborted" : commit_failure]++;
 
@@ -272,6 +313,18 @@ static Json build_stats_json(const std::string &mode,
 			{"abandoned_entries", int(rewrite_stats.abandoned_entries)},
 			{"commit", commit_ok ? "ok" : "aborted"},
 			{"commit_reason", commit_failure.empty() ? Json(nullptr) : Json(commit_failure)},
+		}},
+		{"branch_rewrite", Json::object {
+			{"certificates", int(branch_stats.certificates)},
+			{"rejected_partial", int(branch_stats.rejected_partial)},
+			{"rejected_unproved", int(branch_stats.rejected_unproved)},
+			{"deduplicated_targets", int(branch_stats.duplicate_targets)},
+			{"conflicts", int(branch_stats.conflicts)},
+			{"planned_branches", int(branch_stats.planned_branches)},
+			{"committed_branches", int(branch_stats.committed_branches)},
+			{"cells_shrunk", int(branch_stats.cells_shrunk)},
+			{"cells_to_mux", int(branch_stats.cells_to_mux)},
+			{"cells_bypassed", int(branch_stats.cells_bypassed)},
 		}},
 		{"resources", resources},
 	};
@@ -355,6 +408,41 @@ static EntryRequest make_request(RTLIL::Module *module, RTLIL::Cell *cell,
 	return request;
 }
 
+struct MockBranchRequest {
+	std::string cell_id;
+	int branch_index = -1;
+	bool proven_all_bits = true;
+	bool matched = false;
+};
+
+static bool cell_name_matches(const RTLIL::Cell *cell, const std::string &name)
+{
+	return cell->name.str() == name || RTLIL::unescape_id(cell->name) == name;
+}
+
+static BranchProofCertificate make_mock_branch_certificate(RTLIL::Module *module,
+		RTLIL::Cell *cell, int width, int s_width, int branch_index,
+		bool proven_all_bits, int proof_id)
+{
+	BranchProofCertificate certificate;
+	certificate.module = module;
+	certificate.cell = cell;
+	certificate.module_id = RTLIL::unescape_id(module->name);
+	certificate.cell_id = RTLIL::unescape_id(cell->name);
+	certificate.branch_index = branch_index;
+	certificate.width = width;
+	certificate.s_width = s_width;
+	certificate.cell_type = cell->type;
+	certificate.snapshot_a = cell->getPort(ID::A);
+	certificate.snapshot_b = cell->getPort(ID::B);
+	certificate.snapshot_s = cell->getPort(ID::S);
+	certificate.snapshot_y = cell->getPort(ID::Y);
+	certificate.proven_all_bits = proven_all_bits;
+	certificate.proof_id = proof_id;
+	certificate.reason_code = proven_all_bits ? "testing_mock" : "testing_partial";
+	return certificate;
+}
+
 struct PmuxOptPass : public Pass
 {
 	PmuxOptPass() : Pass("pmux_opt", "enumerate mux/pmux entries for guarded local analysis") { }
@@ -366,6 +454,11 @@ struct PmuxOptPass : public Pass
 		log("             [-test-rewrite-duplicate] [-test-rewrite-conflict]\n");
 		log("             [-test-snapshot-mismatch]\n");
 		log("             [-test-report-constants]\n");
+		log("             [-v02-branch-delete]\n");
+		log("             [-test-branch-proof <cell> <branch>]\n");
+		log("             [-test-branch-partial <cell> <branch>]\n");
+		log("             [-test-branch-duplicate|-test-branch-conflict]\n");
+		log("             [-test-branch-snapshot-mismatch]\n");
 		log("             [-write-plan <file>] [-write-stats <file>] [selection]\n");
 		log("\n");
 		log("Enumerate selected, structurally valid $mux and $pmux cells in stable\n");
@@ -379,6 +472,10 @@ struct PmuxOptPass : public Pass
 		log("a failed all-batch precheck performs zero writes.\n");
 		log("-test-report-constants makes a forced stub report original constants so\n");
 		log("the planner's defensive constant/x/z filter can be verified.\n");
+		log("-v02-branch-delete enables the experimental whole-branch rewrite path.\n");
+		log("It is a no-op until a proof provider supplies certificates. The\n");
+		log("-test-branch-* options provide test-only mock certificates and fault\n");
+		log("injection; they are rejected unless -v02-branch-delete is present.\n");
 		log("-write-plan and -write-stats emit schema-1 machine-readable JSON.\n");
 		log("\n");
 	}
@@ -392,6 +489,11 @@ struct PmuxOptPass : public Pass
 		bool test_rewrite_conflict = false;
 		bool test_snapshot_mismatch = false;
 		bool test_report_constants = false;
+		bool v02_branch_delete = false;
+		bool test_branch_duplicate = false;
+		bool test_branch_conflict = false;
+		bool test_branch_snapshot_mismatch = false;
+		std::vector<MockBranchRequest> mock_branch_requests;
 		StubMode stub_mode = StubMode::Unknown;
 		bool stub_mode_set = false;
 		std::string plan_json_file;
@@ -416,6 +518,35 @@ struct PmuxOptPass : public Pass
 			}
 			if (args[argidx] == "-test-report-constants") {
 				test_report_constants = true;
+				continue;
+			}
+			if (args[argidx] == "-v02-branch-delete") {
+				v02_branch_delete = true;
+				continue;
+			}
+			if ((args[argidx] == "-test-branch-proof" ||
+					args[argidx] == "-test-branch-partial") && argidx + 2 < GetSize(args)) {
+				MockBranchRequest request;
+				request.proven_all_bits = args[argidx] == "-test-branch-proof";
+				request.cell_id = args[++argidx];
+				try {
+					request.branch_index = std::stoi(args[++argidx]);
+				} catch (...) {
+					log_cmd_error("pmux_opt: branch index must be an integer.\n");
+				}
+				mock_branch_requests.push_back(request);
+				continue;
+			}
+			if (args[argidx] == "-test-branch-duplicate") {
+				test_branch_duplicate = true;
+				continue;
+			}
+			if (args[argidx] == "-test-branch-conflict") {
+				test_branch_conflict = true;
+				continue;
+			}
+			if (args[argidx] == "-test-branch-snapshot-mismatch") {
+				test_branch_snapshot_mismatch = true;
 				continue;
 			}
 			if (args[argidx] == "-write-plan" && argidx + 1 < GetSize(args)) {
@@ -452,6 +583,12 @@ struct PmuxOptPass : public Pass
 			log_cmd_error("pmux_opt: -test-rewrite-duplicate requires a -stub-* mode.\n");
 		if (test_report_constants && !stub_mode_set)
 			log_cmd_error("pmux_opt: -test-report-constants requires a -stub-* mode.\n");
+		const bool branch_test_mode = !mock_branch_requests.empty() ||
+				test_branch_duplicate || test_branch_conflict || test_branch_snapshot_mismatch;
+		if (branch_test_mode && !v02_branch_delete)
+			log_cmd_error("pmux_opt: -test-branch-* requires -v02-branch-delete.\n");
+		if (branch_test_mode && stub_mode_set)
+			log_cmd_error("pmux_opt: branch mock tests cannot be combined with -stub-*.\n");
 
 		log_header(design, "Executing PMUX_OPT guarded analysis and atomic rewrite.\n");
 
@@ -461,11 +598,15 @@ struct PmuxOptPass : public Pass
 		});
 
 		std::unique_ptr<EntryAnalyzer> analyzer;
-		if (stub_mode_set)
+		if (branch_test_mode)
+			analyzer.reset(new FixedAnalyzer(StubMode::Unknown, false));
+		else if (stub_mode_set)
 			analyzer.reset(new FixedAnalyzer(stub_mode, test_report_constants));
 		else
 			analyzer = make_readonly_entry_analyzer();
 		RewriteBatch rewrite_batch;
+		BranchRewriteBatch branch_batch;
+		int next_mock_proof_id = 1000000;
 		int selected_modules = 0;
 		int candidate_cells = 0;
 		int valid_cells = 0;
@@ -514,6 +655,17 @@ struct PmuxOptPass : public Pass
 					continue;
 				}
 				valid_cells++;
+
+				if (v02_branch_delete && cell->type == ID($pmux)) {
+					for (MockBranchRequest &mock : mock_branch_requests) {
+						if (!cell_name_matches(cell, mock.cell_id))
+							continue;
+						mock.matched = true;
+						branch_batch.add(make_mock_branch_certificate(module, cell, width,
+								s_width, mock.branch_index, mock.proven_all_bits,
+								next_mock_proof_id++));
+					}
+				}
 
 				const RTLIL::SigSpec port_a = cell->getPort(ID::A);
 				const RTLIL::SigSpec port_b = cell->getPort(ID::B);
@@ -569,6 +721,13 @@ struct PmuxOptPass : public Pass
 				}
 			}
 		}
+		for (const MockBranchRequest &mock : mock_branch_requests) {
+			if (!mock.matched) {
+				invalid_reason_counts["branch_target_not_selected"]++;
+				log_warning("pmux_opt: branch test target `%s' was not a selected valid $pmux.\n",
+						mock.cell_id.c_str());
+			}
+		}
 
 		if (test_rewrite_duplicate)
 			rewrite_batch.inject_first_duplicate_for_test();
@@ -576,13 +735,33 @@ struct PmuxOptPass : public Pass
 			rewrite_batch.inject_first_conflict_for_test();
 		if (test_snapshot_mismatch)
 			rewrite_batch.corrupt_first_snapshot_for_test();
+		if (test_branch_duplicate)
+			branch_batch.inject_first_duplicate_for_test();
+		if (test_branch_conflict)
+			branch_batch.inject_conflict_for_test();
+		if (test_branch_snapshot_mismatch)
+			branch_batch.corrupt_first_snapshot_for_test();
 		std::string commit_failure;
-		const bool commit_ok = rewrite_batch.commit(commit_failure);
+		bool commit_ok = true;
+		if (!branch_batch.empty() && rewrite_batch.stats().proven_bits != 0) {
+			commit_ok = false;
+			commit_failure = "mixed_bit_and_branch_batch_unsupported";
+		} else {
+			commit_ok = rewrite_batch.commit(commit_failure);
+		}
+		if (commit_ok) {
+			std::string branch_failure;
+			if (!branch_batch.commit(branch_failure)) {
+				commit_ok = false;
+				commit_failure = branch_failure;
+			}
+		}
 		if (!commit_ok)
 			log_warning("pmux_opt: all-batch commit aborted (%s); writes=0.\n",
 					commit_failure.c_str());
 
 		const RewriteStats &rewrite_stats = rewrite_batch.stats();
+		const BranchRewriteStats &branch_stats = branch_batch.stats();
 		log("pmux_opt: rewrite proven=%zu skipped_binary_constants=%zu skipped_xz=%zu rejected_results=%zu rejected_unproved=%zu duplicates=%zu conflicts=%zu abandoned_entries=%zu planned=%zu writes=%zu commit=%s\n",
 				rewrite_stats.proven_bits, rewrite_stats.skipped_original_binary_constants,
 				rewrite_stats.skipped_original_xz,
@@ -591,6 +770,13 @@ struct PmuxOptPass : public Pass
 				rewrite_stats.rewrite_conflicts,
 				rewrite_stats.abandoned_entries, rewrite_stats.planned_bits,
 				rewrite_stats.written_bits, commit_ok ? "ok" : "aborted");
+		log("pmux_opt: branch_rewrite certificates=%zu rejected_partial=%zu rejected_unproved=%zu duplicates=%zu conflicts=%zu planned=%zu writes=%zu shrunk=%zu to_mux=%zu bypassed=%zu commit=%s\n",
+				branch_stats.certificates, branch_stats.rejected_partial,
+				branch_stats.rejected_unproved, branch_stats.duplicate_targets,
+				branch_stats.conflicts, branch_stats.planned_branches,
+				branch_stats.committed_branches, branch_stats.cells_shrunk,
+				branch_stats.cells_to_mux, branch_stats.cells_bypassed,
+				commit_ok ? "ok" : "aborted");
 		for (const auto &item : invalid_reason_counts)
 			log("pmux_opt: reason scope=cell code=%s count=%d\n",
 					item.first.c_str(), item.second);
@@ -618,18 +804,18 @@ struct PmuxOptPass : public Pass
 			log("pmux_opt: resources wall_us=%lld os_counters=unavailable\n", wall_us);
 		}
 
-		const std::string machine_mode = stub_mode_set ?
+		const std::string machine_mode = branch_test_mode ? "testing_v02_branch_mock" : stub_mode_set ?
 				(stub_mode == StubMode::Unknown ? "testing_stub_unknown" : "testing_stub") :
-				"real";
+				(v02_branch_delete ? "v02_branch_delete_no_provider" : "real");
 		if (!plan_json_file.empty())
 			write_json_file(plan_json_file,
-					build_plan_json(rewrite_batch, commit_ok, commit_failure, machine_mode));
+					build_plan_json(rewrite_batch, branch_batch, commit_ok, commit_failure, machine_mode));
 		if (!stats_json_file.empty())
 			write_json_file(stats_json_file,
 					build_stats_json(machine_mode, selected_modules, candidate_cells,
 							valid_cells, invalid_cells, entry_count, unknown_bits,
 							proven_zero, proven_one, visited_cells, visited_bits,
-							propagation_events, rewrite_stats, invalid_reason_counts,
+							propagation_events, rewrite_stats, branch_stats, invalid_reason_counts,
 							analysis_status_counts, unknown_reason_counts, commit_ok,
 							commit_failure, wall_us, resources_start, resources_end));
 	}

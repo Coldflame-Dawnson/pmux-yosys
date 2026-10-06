@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "producer": "role-b",
+  "rule": "whole_pmux_branch_delete",
+  "production_enabled_by_default": false,
+  "real_proof_provider_connected": false,
+  "certificate_source": "testing_mock_only",
+  "structural_tests": {
+    "passed": 16,
+    "total": 16
+  },
+  "case3_replay": {
+    "result": "PASS",
+    "input_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+    "expected_json_sha256": "3013f07a9202646a85b7dd1f9e8d0f6dd6d132d75c1009e6a5f9aa7895db0266",
+    "cell": "$procmux$18",
+    "deleted_branches": [0],
+    "old_s_width": 2,
+    "new_s_width": 1,
+    "old_type": "$pmux",
+    "new_type": "$mux",
+    "module_structure_equal": true
+  },
+  "eqy": "NOT_RUN_BY_B",
+  "abc9_lut": "NOT_RUN_BY_B",
+  "ready_for_real_a_integration": true,
+  "ready_for_integration_g3": false
+}

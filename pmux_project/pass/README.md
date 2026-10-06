@@ -24,6 +24,30 @@ retains the pre-integration no-write path. All `-stub-*` and `-test-*` switches
 are test-only and must not be used to claim functional optimization or LUT
 benefit.
 
+## Experimental v0.2 whole-branch rewriter
+
+`-v02-branch-delete` enables B's whole-branch rewrite path, but it is currently
+a no-op without a certificate provider. A's shared interface does not yet
+publish `BranchProof`, so `-test-branch-proof <cell> <index>` is the only
+available source and is explicitly test-only. The rewriter does not infer
+equivalence.
+
+Given complete certificates, the batch validates every cell type, parameter,
+port and full-port snapshot before its first write. It removes arbitrary branch
+indices while retaining the original order of all surviving branches:
+
+- two or more survivors: shrink `B`, `S`, and `S_WIDTH`;
+- one survivor: convert `$pmux` to an equal-width `$mux`;
+- no survivors: connect `Y=A` and remove the cell.
+
+Partial proofs are rejected. Duplicate targets are deduplicated. Invalid branch
+indices, conflicts, and snapshot mismatches abort the branch batch with zero
+branch writes. `keep` and the active Yosys selection are enforced before a
+test certificate can enter the batch. Until the shared A interface supports a
+unified two-phase transaction, simultaneous physical-bit and whole-branch
+candidates are conservatively rejected with
+`mixed_bit_and_branch_batch_unsupported` before either batch writes RTLIL.
+
 ## Audited `synth_intel` entry
 
 The frozen Yosys binary does not contain the source-tree edit to
@@ -83,6 +107,22 @@ an empty array.
       "source_entry": "stable-entry-id"
     }
   ],
+  "branch_edits": [
+    {
+      "module": "top",
+      "cell": "target",
+      "deleted_branches": [0],
+      "proof_ids": [1000000],
+      "removed_b_ranges": [{"branch": 0, "offset": 0, "width": 2}],
+      "removed_s_indices": [0],
+      "width": 2,
+      "old_s_width": 2,
+      "new_s_width": 1,
+      "old_type": "$pmux",
+      "new_type": "$mux",
+      "transformation": "pmux_to_mux"
+    }
+  ],
   "abandoned_entries": [
     {"entry": "stable-entry-id", "reason": "rewrite_conflict"}
   ]
@@ -105,6 +145,8 @@ For `$pmux.B`, `branch == bit / WIDTH` and `branch_bit == bit % WIDTH`.
   bits, and `sat_queries` (fixed to zero in v0.1);
 - `rewrite`: candidate, accepted, committed, deduplicated, conflict, abandoned,
   rejected-entry, rejected-unproved-conclusion and original-constant counts;
+- `branch_rewrite`: certificate, partial/unproved rejection, duplicate,
+  conflict, planned/committed branch and resulting-cell-kind counts;
 - `resources`: microseconds and KiB, with units recorded explicitly.
 
 `candidate_bits` are proven nonconstant replacement candidates.
@@ -137,6 +179,13 @@ B currently emits structural and commit codes including `keep_attribute`,
 `bit_snapshot_mismatch`, `missing_cell_at_commit`, `cell_type_changed`, and
 `missing_port_at_commit`. `original_binary_constant` and `original_xz` are
 defensive result filters.
+
+The v0.2 branch batch additionally owns `branch_partial_proof`,
+`branch_unproved`, `branch_target_conflict`, `invalid_branch_rewrite_metadata`,
+`missing_branch_cell_at_commit`, `branch_cell_type_changed`,
+`branch_parameter_snapshot_mismatch`, `branch_port_snapshot_mismatch`, and
+`keep_attribute`. Codes prefixed with `test_` are fault-injection evidence and
+are not production proof outcomes.
 
 A owns comparator-width/sign rejection, unsupported-cell propagation,
 no-opportunity details, `fact_conflict`, and the separate cell/bit/event budget
