@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "pmux_project/tests/pmux_v02_b/run_branch_delete_tests.py", line 191, in main
+    assert actual["modules"] == expected["modules"]
+AssertionError
+
+Input used in this failed attempt: c-v02b-b-contract-input/case3.before.il
+Input SHA-256: 9d78bce4b3e542740ae2a1a8b8a65665ee670c00e21c88749ea2ee631a3ef8b2
+Frozen input SHA-256: baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e

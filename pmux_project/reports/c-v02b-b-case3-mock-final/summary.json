@@ -1,0 +1,362 @@
+{
+  "schema": 1,
+  "mode": "B_TEST_CERTIFICATE_CASE3",
+  "a_proof_provider": "NOT_CONNECTED",
+  "b_commit": "bff595118a130756f504af99c09000c98adda4ba",
+  "plugin_sha256": "3f61760ae5e300bf5b3db30e00b8429e56c1f844b8283c78c592958b220c0723",
+  "input_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+  "expected_json_sha256": "3013f07a9202646a85b7dd1f9e8d0f6dd6d132d75c1009e6a5f9aa7895db0266",
+  "after_rtlil_sha256": "c5badc4553910eb62eb61a4ff4ff1ac0c3e0f26076f584e1cb6567d8ed6dfa8a",
+  "machine_contract": "PASS",
+  "top_structure_exact": true,
+  "baseline": {
+    "variant": "baseline",
+    "mode": "OFFICIAL_BASELINE",
+    "checkpoint": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-contract-input/case3.frozen.before.il",
+    "checkpoint_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+    "check": "PASS",
+    "eqy": "PASS",
+    "eqy_method": "whole",
+    "stages": {
+      "check": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/check.il",
+        "rtlil_sha256": "7e6cb808b173b75c2fd495a6be62c0b3f7a3c2f6ce1653938a9070dd91cafdaa",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/check.json",
+        "json_sha256": "b991006829696ab0406d5792bc8eda7fe6a9c7f4b2ed745a75c0860ede3cc19c",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/check.ys",
+        "script_sha256": "910dcf0b6a02fd146f23bf4dd0b1e60d326085214068983433cb879e57f69311",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/check.log",
+        "log_sha256": "5a5d1c495d9a09126cb370b249228df024f1e8f658fdab08c791322248adf2f0",
+        "metrics": {
+          "pmux": 1,
+          "mux": 2,
+          "eq": 3,
+          "ne": 0,
+          "and": 0,
+          "or": 0,
+          "not": 1,
+          "xor": 0,
+          "basic_mux": 2,
+          "total_comb": 12,
+          "lut": 0,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 18,
+          "cell_type_counts": {
+            "$dffe": 5,
+            "$eq": 3,
+            "$mux": 2,
+            "$not": 1,
+            "$pmux": 1,
+            "$reduce_and": 3,
+            "$reduce_bool": 2,
+            "$sdffce": 1
+          }
+        }
+      },
+      "common_techmap": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/common_techmap.il",
+        "rtlil_sha256": "a9653f3c9ada18092bf750a73ba82dd079ebc4d58b1b6a6a74b8596c70ace678",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/common_techmap.json",
+        "json_sha256": "c553290b12f0dbb11a991777758bd1fb51c480bb9504fcf6b0b2edbe41b652d9",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/common_techmap.ys",
+        "script_sha256": "a32a2af91a9ef202ebdf283270ad92e0b5a030b27ce62563813061b27bf3ac1f",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/common_techmap.log",
+        "log_sha256": "1530a0769284ba41a09d0bbdc325b926238db13a04b9f0d6d237e586aa2f2d10",
+        "metrics": {
+          "pmux": 0,
+          "mux": 0,
+          "eq": 0,
+          "ne": 0,
+          "and": 8,
+          "or": 25,
+          "not": 4,
+          "xor": 24,
+          "basic_mux": 8,
+          "total_comb": 69,
+          "lut": 0,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 86,
+          "cell_type_counts": {
+            "$_AND_": 8,
+            "$_DFFE_PN_": 9,
+            "$_DFFE_PP_": 7,
+            "$_MUX_": 8,
+            "$_NOT_": 4,
+            "$_OR_": 25,
+            "$_SDFFCE_PP1P_": 1,
+            "$_XOR_": 24
+          }
+        }
+      },
+      "pre_abc9": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/pre_abc9.il",
+        "rtlil_sha256": "0b04eb205ed2c95df551063b77e3f7368325167d5a547745a9773b2101c445cd",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/pre_abc9.json",
+        "json_sha256": "e38746670837f607af958467f66e6b46547de36f45392d2d668e2d64164b7325",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/pre_abc9.ys",
+        "script_sha256": "a8658d5ac6bf50a97942ba835ed95b619b2c3d2a3d8a9f9ea34bf91654ebe8f4",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/pre_abc9.log",
+        "log_sha256": "c2c0bd8a056e67a7f693294efa20e7cbc66c79163f9d8b685ba607da8ec35401",
+        "metrics": {
+          "pmux": 0,
+          "mux": 0,
+          "eq": 0,
+          "ne": 0,
+          "and": 7,
+          "or": 19,
+          "not": 20,
+          "xor": 0,
+          "basic_mux": 8,
+          "total_comb": 54,
+          "lut": 0,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 71,
+          "cell_type_counts": {
+            "$_AND_": 7,
+            "$_MUX_": 8,
+            "$_NOT_": 20,
+            "$_OR_": 19,
+            "dffeas": 17
+          }
+        }
+      },
+      "post_abc9": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/post_abc9.il",
+        "rtlil_sha256": "de1e09a6ec82d0213fce543e64c4a0266559a2f6952ae19bc6e1aa332b63c566",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/post_abc9.json",
+        "json_sha256": "ff7c4816daa4907d883a3044e899b9c47b88d267d84684c244269008cf742964",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/post_abc9.ys",
+        "script_sha256": "f4ccbf156a2350657a9b8d3e6528396938edf396b0015f9bb230ac70296772c6",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/post_abc9.log",
+        "log_sha256": "d5c558a8114c18aa4c1a444d31ce580f4e44c6eff94a0cfdc5f8d23eefc366cc",
+        "metrics": {
+          "pmux": 0,
+          "mux": 0,
+          "eq": 0,
+          "ne": 0,
+          "and": 0,
+          "or": 0,
+          "not": 0,
+          "xor": 0,
+          "basic_mux": 0,
+          "total_comb": 13,
+          "lut": 13,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 30,
+          "cell_type_counts": {
+            "$lut": 13,
+            "dffeas": 17
+          }
+        }
+      }
+    },
+    "lut": 13,
+    "dff": 17,
+    "io": 0,
+    "delta_lut": null,
+    "verdict": "NOT_RUN",
+    "issues": [],
+    "eqy_attempts": [
+      {
+        "method": "default",
+        "status": "FAIL",
+        "rc": 2,
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/default.eqy.log",
+        "log_sha256": "124907ddc47cfb7b8b7c4ee52f54cb42bf62f8e4ee6c2be04a8e4d9ddff23161"
+      },
+      {
+        "method": "whole",
+        "status": "PASS",
+        "rc": 0,
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/baseline/whole.eqy.log",
+        "log_sha256": "ad0eb3ee6e09fd6adee9804d7f0f8448d61c438f17dbffb11e1c15481d966cd3"
+      }
+    ]
+  },
+  "test_certificate": {
+    "variant": "B_test_certificate",
+    "mode": "B_TEST_CERTIFICATE",
+    "checkpoint": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/after.il",
+    "checkpoint_sha256": "c5badc4553910eb62eb61a4ff4ff1ac0c3e0f26076f584e1cb6567d8ed6dfa8a",
+    "check": "PASS",
+    "eqy": "PASS",
+    "eqy_method": "whole",
+    "stages": {
+      "check": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/check.il",
+        "rtlil_sha256": "c5badc4553910eb62eb61a4ff4ff1ac0c3e0f26076f584e1cb6567d8ed6dfa8a",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/check.json",
+        "json_sha256": "85fd056c558f5f767813f506d5e1cb39d933c31c9afc172f5c673796c2f51b4b",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/check.ys",
+        "script_sha256": "19b0ae7f93ab99e42cf0e223729af685e33756096cfb10dd6b6edc5197fbd8db",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/check.log",
+        "log_sha256": "61574f0be30c6c1dd5226df668d9cc3f0dfb56a0c5e0908dde30b194327220d1",
+        "metrics": {
+          "pmux": 0,
+          "mux": 3,
+          "eq": 3,
+          "ne": 0,
+          "and": 0,
+          "or": 0,
+          "not": 1,
+          "xor": 0,
+          "basic_mux": 3,
+          "total_comb": 12,
+          "lut": 0,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 18,
+          "cell_type_counts": {
+            "$dffe": 5,
+            "$eq": 3,
+            "$mux": 3,
+            "$not": 1,
+            "$reduce_and": 3,
+            "$reduce_bool": 2,
+            "$sdffce": 1
+          }
+        }
+      },
+      "common_techmap": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/common_techmap.il",
+        "rtlil_sha256": "d134e139f1f1302af7efb622d90da030752bef1546cde6fa1fe5782390218a9d",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/common_techmap.json",
+        "json_sha256": "a552b6e0ff48b297ba283e98b40ccab60a5a9b1aa7fb7bb25b2d1e574b7de9c6",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/common_techmap.ys",
+        "script_sha256": "7e363c2b1b903fed3798a462d007cb13dba7f94348f263b8bf1ffe0b56ed5f41",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/common_techmap.log",
+        "log_sha256": "e15d302d7d3ce22dce13c3663cfa1844cf2df9dab0465f2500bd95915789be5d",
+        "metrics": {
+          "pmux": 0,
+          "mux": 0,
+          "eq": 0,
+          "ne": 0,
+          "and": 6,
+          "or": 23,
+          "not": 4,
+          "xor": 24,
+          "basic_mux": 8,
+          "total_comb": 65,
+          "lut": 0,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 82,
+          "cell_type_counts": {
+            "$_AND_": 6,
+            "$_DFFE_PN_": 9,
+            "$_DFFE_PP_": 7,
+            "$_MUX_": 8,
+            "$_NOT_": 4,
+            "$_OR_": 23,
+            "$_SDFFCE_PP1P_": 1,
+            "$_XOR_": 24
+          }
+        }
+      },
+      "pre_abc9": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/pre_abc9.il",
+        "rtlil_sha256": "4b677294d49c38b2254a5c4d961506653272e3254e636dd6b0f4b438e114ad6b",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/pre_abc9.json",
+        "json_sha256": "e07d25a9c191cb930637f6f597badaa82caf94f4b2669150e1e484466625b86e",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/pre_abc9.ys",
+        "script_sha256": "63758839b26369939db8a486449fe2ff99d5799a1c463153c8f0b4a84f4fdc3a",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/pre_abc9.log",
+        "log_sha256": "1b3d378401a55005ce6f53f4e58dbcf61f5426a2a7403fc03f1b6f976784f95b",
+        "metrics": {
+          "pmux": 0,
+          "mux": 0,
+          "eq": 0,
+          "ne": 0,
+          "and": 6,
+          "or": 18,
+          "not": 20,
+          "xor": 0,
+          "basic_mux": 8,
+          "total_comb": 52,
+          "lut": 0,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 69,
+          "cell_type_counts": {
+            "$_AND_": 6,
+            "$_MUX_": 8,
+            "$_NOT_": 20,
+            "$_OR_": 18,
+            "dffeas": 17
+          }
+        }
+      },
+      "post_abc9": {
+        "rtlil": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/post_abc9.il",
+        "rtlil_sha256": "acaa2fcd8f18913b1b9625aa4217782dd04c276141d60cbd3ecb319144274f8a",
+        "json": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/post_abc9.json",
+        "json_sha256": "cc6b9ebfda8291f6bab7a9f793731d3e5bd405ae35be135be9c7348c2d6d2cd8",
+        "script": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/post_abc9.ys",
+        "script_sha256": "cb82c2948663f207ff4b542cd7d4daab8989610aa424919e23ec8c8ab56f8729",
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/post_abc9.log",
+        "log_sha256": "2b2b75feff988d6b8ecf6d02900d11c96e1b7563829fc655fc28e18f4b630e8c",
+        "metrics": {
+          "pmux": 0,
+          "mux": 0,
+          "eq": 0,
+          "ne": 0,
+          "and": 0,
+          "or": 0,
+          "not": 0,
+          "xor": 0,
+          "basic_mux": 0,
+          "total_comb": 12,
+          "lut": 12,
+          "dff": 17,
+          "io": 0,
+          "total_cells": 29,
+          "cell_type_counts": {
+            "$lut": 12,
+            "dffeas": 17
+          }
+        }
+      }
+    },
+    "lut": 12,
+    "dff": 17,
+    "io": 0,
+    "delta_lut": null,
+    "verdict": "NOT_RUN",
+    "issues": [],
+    "eqy_attempts": [
+      {
+        "method": "default",
+        "status": "FAIL",
+        "rc": 2,
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/default.eqy.log",
+        "log_sha256": "5222502a066611b00f6e79acd3ef434ba7a34a8b72121bda0cd8764055b18e45"
+      },
+      {
+        "method": "whole",
+        "status": "PASS",
+        "rc": 0,
+        "log": "/home/yuewen/work/pmux-yosys-c-v02b-b-contract/pmux_project/reports/c-v02b-b-case3-mock-final/B_test_certificate/whole.eqy.log",
+        "log_sha256": "57183ce1612f519f4fec098f45a148d769ed17add154179997bebe5efbb562f9"
+      }
+    ]
+  },
+  "resources_baseline": {
+    "lut": 13,
+    "dff": 17,
+    "io": 0
+  },
+  "resources_test_certificate": {
+    "lut": 12,
+    "dff": 17,
+    "io": 0
+  },
+  "test_certificate_cpu_s": 0.03,
+  "test_certificate_peak_mb": 26.91,
+  "result": "PASS_TEST_ONLY",
+  "production_lut_gain": "NOT_RUN",
+  "ready_to_merge_integration_g3": false
+}

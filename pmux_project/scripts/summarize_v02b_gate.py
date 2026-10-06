@@ -82,6 +82,12 @@ def main():
     parser.add_argument("--case3-fixture", type=Path, required=True)
     parser.add_argument("--official-baseline", type=Path, required=True)
     parser.add_argument("--a-proof-audit", type=Path)
+    parser.add_argument("--b-contract-micro", type=Path)
+    parser.add_argument("--b-contract-random100", type=Path)
+    parser.add_argument("--b-case3-mock", type=Path)
+    parser.add_argument("--b-structural16", type=Path)
+    parser.add_argument("--b-diagnostics", type=Path)
+    parser.add_argument("--b-test-commit")
     parser.add_argument("--real-micro", type=Path)
     parser.add_argument("--real-random100", type=Path)
     parser.add_argument("--real-random1000", type=Path)
@@ -95,6 +101,11 @@ def main():
     micro, rand100 = read(args.micro), read(args.random100)
     case3, baseline = read(args.case3_fixture), read(args.official_baseline)
     a_proof = read(args.a_proof_audit) if args.a_proof_audit else None
+    b_micro = read(args.b_contract_micro) if args.b_contract_micro else None
+    b_random = read(args.b_contract_random100) if args.b_contract_random100 else None
+    b_case3 = read(args.b_case3_mock) if args.b_case3_mock else None
+    b_structural = read(args.b_structural16) if args.b_structural16 else None
+    b_diagnostics = read(args.b_diagnostics) if args.b_diagnostics else None
     if any(item is None for item in (micro, rand100, case3, baseline)):
         parser.error("fixture, case3 experiment, or official baseline report missing")
     if case3.get("mode") != "REAL_VARIANTS":
@@ -153,6 +164,30 @@ def main():
         "a_production_commit": args.a_commit,
         "b_production_commit": args.b_commit,
         "case3_b_test_only_commit": CASE3_B_COMMIT,
+        "b_test_certificate": {
+            "commit": args.b_test_commit,
+            "b_structural16": "PASS" if b_structural and
+            len(b_structural.get("tests", [])) == 16 and
+            all(row.get("result") == "PASS" for row in b_structural["tests"]) else
+            "NOT_RUN" if b_structural is None else "FAIL",
+            "micro": "PASS" if b_micro and b_micro.get("mode") == "B_TEST_CERTIFICATE_CONTRACT" and
+            b_micro.get("count") == 22 and b_micro.get("fail") == 0 else
+            "NOT_RUN" if b_micro is None else "FAIL",
+            "random100": "PASS" if b_random and b_random.get("mode") == "B_TEST_CERTIFICATE_CONTRACT" and
+            b_random.get("count") == 100 and b_random.get("fail") == 0 else
+            "NOT_RUN" if b_random is None else "FAIL",
+            "case3": "PASS_TEST_ONLY" if b_case3 and
+            b_case3.get("mode") == "B_TEST_CERTIFICATE_CASE3" and
+            b_case3.get("result") == "PASS_TEST_ONLY" else
+            "NOT_RUN" if b_case3 is None else "FAIL",
+            "case3_lut": [13, 12] if b_case3 and b_case3.get("result") == "PASS_TEST_ONLY" else None,
+            "a_proof_provider": "NOT_CONNECTED",
+            "production_pass": "NOT_RUN",
+            "resolved_harness_failures": len(b_diagnostics.get("resolved", []))
+            if b_diagnostics else 0,
+            "unresolved_b_failures": b_diagnostics.get("unresolved_b_failures")
+            if b_diagnostics else None,
+        },
         "a_proof_only": {
             "status": "PASS" if a_proof and a_proof.get("mode") == "A_PROOF_ONLY" and
             a_proof.get("ordinary_selftest", {}).get("status") == "PASS" and
@@ -186,14 +221,36 @@ def main():
             "case3_fixture": {"path": str(args.case3_fixture.parent / "evidence.tar.gz"),
                               "sha256": sha(args.case3_fixture.parent / "evidence.tar.gz")},
             "official_baseline": official_evidence,
+            "b_contract_micro": {"path": str(args.b_contract_micro.parent / "evidence.tar.gz"),
+                                 "sha256": sha(args.b_contract_micro.parent / "evidence.tar.gz")}
+            if args.b_contract_micro else None,
+            "b_contract_random100": {"path": str(args.b_contract_random100.parent / "evidence.tar.gz"),
+                                     "sha256": sha(args.b_contract_random100.parent / "evidence.tar.gz")}
+            if args.b_contract_random100 else None,
+            "b_case3_mock": {"path": str(args.b_case3_mock.parent / "evidence.tar.gz"),
+                             "sha256": sha(args.b_case3_mock.parent / "evidence.tar.gz")}
+            if args.b_case3_mock else None,
+            "b_structural16": {"path": str(args.b_structural16.parent / "evidence.tar.gz"),
+                               "sha256": sha(args.b_structural16.parent / "evidence.tar.gz")}
+            if args.b_structural16 else None,
+            "b_diagnostics": {"path": str(args.b_diagnostics.parent / "evidence.tar.gz"),
+                              "sha256": sha(args.b_diagnostics.parent / "evidence.tar.gz")}
+            if args.b_diagnostics else None,
         },
         "ready_to_merge_integration_g3": all(gates.values()),
     }
     save(args.out / "summary.json", json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     lines = ["# PMUX v0.2-B C 验证门槛", "",
              f"ready_to_merge_integration_g3={str(report['ready_to_merge_integration_g3']).lower()}。",
-             "A/B 真实生产提交尚未交付；fixture 及冻结 case3 消融不作为生产规则收益。", "",
+             "A+B 完整真实生产路径尚未联通；fixture、test-only certificate 及冻结 case3 消融不作为生产规则收益。", "",
              f"A 独立证明自测：{report['a_proof_only']['status']}；生产 Pass：NOT_RUN。", "",
+             f"B 自带结构16例 {report['b_test_certificate']['b_structural16']}；"
+             f"B test-only certificate：定向 {report['b_test_certificate']['micro']}，"
+             f"随机100 {report['b_test_certificate']['random100']}，"
+             f"case3 {report['b_test_certificate']['case3']}（13→12 LUT）；"
+             "A 真实提供者未接入。", "",
+             f"联调运行器差异已解决 {report['b_test_certificate']['resolved_harness_failures']} 项；"
+             f"未解决 B 失败 {report['b_test_certificate']['unresolved_b_failures']} 项。", "",
              f"定向 fixture：{report['fixture']['micro']} ({micro['pass']}/{micro['count']})；"
              f"随机 100 fixture：{report['fixture']['random100']} ({rand100['pass']}/{rand100['count']})；"
              "随机 1000 真实验收：NOT_RUN。", "",

@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "tests": [
+    {
+      "case": "delete_first",
+      "result": "PASS"
+    },
+    {
+      "case": "delete_middle",
+      "result": "PASS"
+    },
+    {
+      "case": "delete_tail",
+      "result": "PASS"
+    },
+    {
+      "case": "multiple_to_mux",
+      "result": "PASS"
+    },
+    {
+      "case": "all_to_a",
+      "result": "PASS"
+    },
+    {
+      "case": "single_to_a",
+      "result": "PASS"
+    },
+    {
+      "case": "v02_no_provider",
+      "result": "PASS"
+    },
+    {
+      "case": "default_disabled",
+      "result": "PASS"
+    },
+    {
+      "case": "partial_rejected",
+      "result": "PASS"
+    },
+    {
+      "case": "invalid_index",
+      "result": "PASS"
+    },
+    {
+      "case": "snapshot_mismatch",
+      "result": "PASS"
+    },
+    {
+      "case": "conflict",
+      "result": "PASS"
+    },
+    {
+      "case": "duplicate",
+      "result": "PASS"
+    },
+    {
+      "case": "keep",
+      "result": "PASS"
+    },
+    {
+      "case": "selection",
+      "result": "PASS"
+    },
+    {
+      "case": "case3_v2_b_replay",
+      "result": "PASS"
+    }
+  ]
+}

@@ -27,6 +27,6 @@ gate 汇总由 scripts/summarize_v02b_gate.py 生成。所有上述运行使用�
 
 ## 真实接口切换
 
-A/B 尚未交付 v0.2-B 生产提交、Pass 插入方式、机器 plan/stats 字段和原因码。C 在收到完整提交哈希与接口契约后接入真实 Pass，保持本目录的输入设计、期望分支索引及结构语义不变。真实报告必须单独标记 REAL_PASS，记录 A/B 完整哈希和插件哈希；不得把此目录的 fixture 结果或冻结 case3 手工结构消融记为真实生产收益。
+A 的证明接口提交及 B 的 plan/stats 与结构改写提交现已可读取；B 的实际 A 证明提供者尚未接入。C 已在独立分支以 test-only certificate 联调机器契约，详见 B_CONTRACT.md。接入 A+B 完整真实 Pass 后，仍须保持本目录的输入设计、期望分支索引及结构语义不变。真实报告必须单独标记 REAL_PASS，记录 A/B 完整哈希和插件哈希；fixture、test-only certificate 与冻结 case3 手工结构消融均不能记为真实生产收益。
 
 真实阶段须逐例验证原子失败零写入、实际物理 B/S 分支、EQY、Yosys check、综合资源、原因码和计划统计。官方流程继续要求 Pass 在 opt -undriven -fine 后、common techmap 前恰好执行一次，且 baseline 无插件。新 Pass 必须使 case3 真实路径 13→12 LUT，另外三案无 EQY、结构或资源回退。全部真实门槛满足前，ready_to_merge_integration_g3 始终为 false，不合入 integration/g3。

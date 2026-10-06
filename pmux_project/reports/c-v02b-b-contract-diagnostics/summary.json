@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "mode": "RESOLVED_HARNESS_DIAGNOSTICS",
+  "b_commit": "bff595118a130756f504af99c09000c98adda4ba",
+  "unresolved_b_failures": 0,
+  "resolved": [
+    {
+      "id": "case3_wrong_snapshot",
+      "cause": "The initial input checkpoint SHA-256 was 9d78bce4b3e542740ae2a1a8b8a65665ee670c00e21c88749ea2ee631a3ef8b2 rather than the frozen baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e. The top test3 module matched the expected after JSON; the full modules map differed because the wrong checkpoint omitted vendor helper modules.",
+      "resolution": "Extracted case3/baseline/01_pre_pmux.il from c-official-stage-diff-final/stage-evidence.tar.gz; B's 16-case suite then passed."
+    },
+    {
+      "id": "case06_adapter_label",
+      "cause": "C initially expected new_type=null and transformation=bypass_to_a for the last-branch bypass. B's frozen machine output uses new_type=connection and transformation=bypass_a. The after RTLIL, Yosys check and EQY had already passed.",
+      "resolution": "Aligned C machine-contract assertion with B's branch_delete.cc strings; 22/22 then passed."
+    }
+  ]
+}
