@@ -24,6 +24,38 @@ retains the pre-integration no-write path. All `-stub-*` and `-test-*` switches
 are test-only and must not be used to claim functional optimization or LUT
 benefit.
 
+## Audited `synth_intel` entry
+
+The frozen Yosys binary does not contain the source-tree edit to
+`synth_intel.cc`. Merely selecting a runner's `real` mode therefore does not
+execute this plugin. `run_synth_intel_pmux.py` loads `pmux_opt.so` explicitly
+and splits `synth_intel` at the `map_ffram` label. It reproduces the original
+`map_ffram` commands, inserts `pmux_opt` after `memory_map; opt -undriven
+-fine`, runs `opt_clean`, and then resumes the original common techmap and the
+remaining Intel flow.
+
+For the post-ABC9/pre-vendor-cell snapshot:
+
+```bash
+python3 pmux_project/pass/run_synth_intel_pmux.py \
+  --yosys /path/to/yosys --plugin pmux_project/pass/pmux_opt.so \
+  --source test3.v --top test3 --stage post_abc9 \
+  --plan out/plan.json --stats out/stats.json \
+  --json out/post_abc9.json --rtlil out/post_abc9.il \
+  --log out/post_abc9.log --script out/post_abc9.ys
+```
+
+Use `--stage full` for the complete flow. The wrapper fails unless the log
+shows exactly one real `PMUX_OPT` execution in this order:
+
+```text
+MEMORY_MAP -> PMUX_OPT -> OPT_CLEAN -> common TECHMAP -> ABC9
+```
+
+It also requires real-mode plan/stat files and verifies that `changed_bits`
+equals the committed edit count. Official LUT measurements must not use the
+old one-line `synth_intel` command as their purported optimized run.
+
 ## Plan JSON schema 1
 
 `-write-plan <file>` writes one document. `edits` contains only physical bits
