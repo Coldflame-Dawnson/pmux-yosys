@@ -1,0 +1,928 @@
+{
+  "seven_edits": [
+    {
+      "cell": "$procmux$10",
+      "port": "B",
+      "physical_bit": 0,
+      "branch": null,
+      "branch_bit": 0,
+      "before_signal": {
+        "kind": "signal",
+        "offset": 2,
+        "wire": "sr"
+      },
+      "before_bit_id": 17,
+      "after_constant": "1",
+      "fanout_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "B",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        }
+      ],
+      "drivers_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "Q",
+          "bit": 2
+        }
+      ],
+      "fanout_after_pass": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        }
+      ],
+      "fanout_after_opt_clean": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 2
+        }
+      ],
+      "drivers_deleted_by_opt_clean": [],
+      "fanout_cells_deleted_by_opt_clean": []
+    },
+    {
+      "cell": "$procmux$10",
+      "port": "B",
+      "physical_bit": 1,
+      "branch": null,
+      "branch_bit": 1,
+      "before_signal": {
+        "kind": "signal",
+        "offset": 1,
+        "wire": "sr"
+      },
+      "before_bit_id": 16,
+      "after_constant": "1",
+      "fanout_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "B",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        }
+      ],
+      "drivers_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "Q",
+          "bit": 1
+        }
+      ],
+      "fanout_after_pass": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        }
+      ],
+      "fanout_after_opt_clean": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 1
+        }
+      ],
+      "drivers_deleted_by_opt_clean": [],
+      "fanout_cells_deleted_by_opt_clean": []
+    },
+    {
+      "cell": "$procmux$10",
+      "port": "B",
+      "physical_bit": 2,
+      "branch": null,
+      "branch_bit": 2,
+      "before_signal": {
+        "kind": "signal",
+        "offset": 0,
+        "wire": "sr"
+      },
+      "before_bit_id": 15,
+      "after_constant": "1",
+      "fanout_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "B",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$18",
+          "type": "$pmux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        }
+      ],
+      "drivers_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "Q",
+          "bit": 0
+        }
+      ],
+      "fanout_after_pass": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$18",
+          "type": "$pmux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        }
+      ],
+      "fanout_after_opt_clean": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$18",
+          "type": "$pmux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 0
+        }
+      ],
+      "drivers_deleted_by_opt_clean": [],
+      "fanout_cells_deleted_by_opt_clean": []
+    },
+    {
+      "cell": "$procmux$18",
+      "port": "B",
+      "physical_bit": 0,
+      "branch": 0,
+      "branch_bit": 0,
+      "before_signal": {
+        "kind": "signal",
+        "offset": 3,
+        "wire": "sr"
+      },
+      "before_bit_id": 18,
+      "after_constant": "1",
+      "fanout_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 4
+        },
+        {
+          "cell": "$auto$ff.cc:337:slice$62",
+          "type": "$sdffce",
+          "port": "D",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$18",
+          "type": "$pmux",
+          "port": "B",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        }
+      ],
+      "drivers_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "Q",
+          "bit": 3
+        }
+      ],
+      "fanout_after_pass": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 4
+        },
+        {
+          "cell": "$auto$ff.cc:337:slice$62",
+          "type": "$sdffce",
+          "port": "D",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        }
+      ],
+      "fanout_after_opt_clean": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 4
+        },
+        {
+          "cell": "$auto$ff.cc:337:slice$62",
+          "type": "$sdffce",
+          "port": "D",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 3
+        }
+      ],
+      "drivers_deleted_by_opt_clean": [],
+      "fanout_cells_deleted_by_opt_clean": []
+    },
+    {
+      "cell": "$procmux$27",
+      "port": "B",
+      "physical_bit": 1,
+      "branch": null,
+      "branch_bit": 1,
+      "before_signal": {
+        "kind": "signal",
+        "offset": 6,
+        "wire": "sr"
+      },
+      "before_bit_id": 21,
+      "after_constant": "1",
+      "fanout_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 7
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "B",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        }
+      ],
+      "drivers_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "Q",
+          "bit": 6
+        }
+      ],
+      "fanout_after_pass": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 7
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        }
+      ],
+      "fanout_after_opt_clean": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 7
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 0
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 6
+        }
+      ],
+      "drivers_deleted_by_opt_clean": [],
+      "fanout_cells_deleted_by_opt_clean": []
+    },
+    {
+      "cell": "$procmux$27",
+      "port": "B",
+      "physical_bit": 2,
+      "branch": null,
+      "branch_bit": 2,
+      "before_signal": {
+        "kind": "signal",
+        "offset": 5,
+        "wire": "sr"
+      },
+      "before_bit_id": 20,
+      "after_constant": "1",
+      "fanout_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "B",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        }
+      ],
+      "drivers_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "Q",
+          "bit": 5
+        }
+      ],
+      "fanout_after_pass": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        }
+      ],
+      "fanout_after_opt_clean": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 6
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 1
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 5
+        }
+      ],
+      "drivers_deleted_by_opt_clean": [],
+      "fanout_cells_deleted_by_opt_clean": []
+    },
+    {
+      "cell": "$procmux$27",
+      "port": "B",
+      "physical_bit": 3,
+      "branch": null,
+      "branch_bit": 3,
+      "before_signal": {
+        "kind": "signal",
+        "offset": 4,
+        "wire": "sr"
+      },
+      "before_bit_id": 19,
+      "after_constant": "1",
+      "fanout_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        },
+        {
+          "cell": "$procmux$27",
+          "type": "$mux",
+          "port": "B",
+          "bit": 3
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        }
+      ],
+      "drivers_before": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "Q",
+          "bit": 4
+        }
+      ],
+      "fanout_after_pass": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        }
+      ],
+      "fanout_after_opt_clean": [
+        {
+          "cell": "$auto$ff.cc:337:slice$44",
+          "type": "$dffe",
+          "port": "D",
+          "bit": 5
+        },
+        {
+          "cell": "$procmux$10",
+          "type": "$mux",
+          "port": "A",
+          "bit": 2
+        },
+        {
+          "cell": "$procmux$20_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        },
+        {
+          "cell": "$procmux$28_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        },
+        {
+          "cell": "$procmux$29_CMP0",
+          "type": "$eq",
+          "port": "A",
+          "bit": 4
+        }
+      ],
+      "drivers_deleted_by_opt_clean": [],
+      "fanout_cells_deleted_by_opt_clean": []
+    }
+  ],
+  "opt_clean_deleted_cells": [],
+  "opt_clean_added_cells": [],
+  "first_structure_reconvergence": null,
+  "first_statistics_reconvergence": "05_post_abc9",
+  "first_histogram_reconvergence": "05_post_abc9",
+  "conclusion": "Seven proved bit replacements removed no cell at opt_clean; the pre-ABC9 gate-count difference mapped to the same LUT count under ABC9."
+}

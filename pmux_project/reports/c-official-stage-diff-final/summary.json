@@ -1,0 +1,2557 @@
+{
+  "schema": 1,
+  "method": "independent_cutpoints_and_unmodified_B_audited_post_abc9",
+  "b_entry": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/pass/run_synth_intel_pmux.py",
+  "yosys_version": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]",
+  "plugin_sha256": "5bb527a2a663469d9803f749ee1a4bb25b8f469df34b1b243d57a396386d4647",
+  "phases": [
+    "01_pre_pmux",
+    "02_post_pass_opt_clean",
+    "03_post_common_techmap",
+    "04_pre_abc9",
+    "05_post_abc9"
+  ],
+  "metric_definitions": {
+    "total_comb": "top-level cells excluding sequential and memory cells",
+    "basic_gate_counts": "coarse $-cells and matching $_ gate cells; mux includes $mux/$_MUX_/$_NMUX_"
+  },
+  "cases": [
+    {
+      "case": "case1",
+      "source_sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+      "stages": [
+        {
+          "stage": "01_pre_pmux",
+          "title": "pmux_opt insertion point",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/01_pre_pmux.json",
+            "rtlil_sha256": "092054782fdfaae3280e2a65beb9fbde14d41dd78117d05ad05f411cda1a1b25",
+            "json_sha256": "812dc7513cf381f078f41aebf517c21774c619e014abde8dd53000d2ced4758a",
+            "metrics": {
+              "pmux": 3,
+              "mux": 0,
+              "eq": 15,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 2,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 22,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 43,
+              "cell_type_counts": {
+                "$adff": 2,
+                "$dffe": 19,
+                "$eq": 15,
+                "$logic_not": 1,
+                "$not": 1,
+                "$pmux": 3,
+                "$reduce_and": 1,
+                "$reduce_or": 1
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/01_pre_pmux.json",
+            "rtlil_sha256": "092054782fdfaae3280e2a65beb9fbde14d41dd78117d05ad05f411cda1a1b25",
+            "json_sha256": "812dc7513cf381f078f41aebf517c21774c619e014abde8dd53000d2ced4758a",
+            "metrics": {
+              "pmux": 3,
+              "mux": 0,
+              "eq": 15,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 2,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 22,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 43,
+              "cell_type_counts": {
+                "$adff": 2,
+                "$dffe": 19,
+                "$eq": 15,
+                "$logic_not": 1,
+                "$not": 1,
+                "$pmux": 3,
+                "$reduce_and": 1,
+                "$reduce_or": 1
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "02_post_pass_opt_clean",
+          "title": "after pmux_opt + opt_clean",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "092054782fdfaae3280e2a65beb9fbde14d41dd78117d05ad05f411cda1a1b25",
+            "json_sha256": "812dc7513cf381f078f41aebf517c21774c619e014abde8dd53000d2ced4758a",
+            "metrics": {
+              "pmux": 3,
+              "mux": 0,
+              "eq": 15,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 2,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 22,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 43,
+              "cell_type_counts": {
+                "$adff": 2,
+                "$dffe": 19,
+                "$eq": 15,
+                "$logic_not": 1,
+                "$not": 1,
+                "$pmux": 3,
+                "$reduce_and": 1,
+                "$reduce_or": 1
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "092054782fdfaae3280e2a65beb9fbde14d41dd78117d05ad05f411cda1a1b25",
+            "json_sha256": "812dc7513cf381f078f41aebf517c21774c619e014abde8dd53000d2ced4758a",
+            "metrics": {
+              "pmux": 3,
+              "mux": 0,
+              "eq": 15,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 2,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 22,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 43,
+              "cell_type_counts": {
+                "$adff": 2,
+                "$dffe": 19,
+                "$eq": 15,
+                "$logic_not": 1,
+                "$not": 1,
+                "$pmux": 3,
+                "$reduce_and": 1,
+                "$reduce_or": 1
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "03_post_common_techmap",
+          "title": "after common techmap",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/03_post_common_techmap.json",
+            "rtlil_sha256": "b6a211e46409405801789f3a83b485a10d430bcab2e5ac52b0965d45d9500aba",
+            "json_sha256": "bce606f38f09024e05a335427e6708f1985286f8d10577931d2fa99c023ec602",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 421,
+              "or": 489,
+              "not": 17,
+              "xor": 60,
+              "basic_mux": 28,
+              "total_comb": 1015,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 1237,
+              "cell_type_counts": {
+                "$_AND_": 421,
+                "$_DFFE_PN_": 25,
+                "$_DFFE_PP_": 192,
+                "$_DFF_PP0_": 4,
+                "$_DFF_PP1_": 1,
+                "$_MUX_": 28,
+                "$_NOT_": 17,
+                "$_OR_": 489,
+                "$_XOR_": 60
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/03_post_common_techmap.json",
+            "rtlil_sha256": "b6a211e46409405801789f3a83b485a10d430bcab2e5ac52b0965d45d9500aba",
+            "json_sha256": "bce606f38f09024e05a335427e6708f1985286f8d10577931d2fa99c023ec602",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 421,
+              "or": 489,
+              "not": 17,
+              "xor": 60,
+              "basic_mux": 28,
+              "total_comb": 1015,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 1237,
+              "cell_type_counts": {
+                "$_AND_": 421,
+                "$_DFFE_PN_": 25,
+                "$_DFFE_PP_": 192,
+                "$_DFF_PP0_": 4,
+                "$_DFF_PP1_": 1,
+                "$_MUX_": 28,
+                "$_NOT_": 17,
+                "$_OR_": 489,
+                "$_XOR_": 60
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "04_pre_abc9",
+          "title": "before ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/04_pre_abc9.json",
+            "rtlil_sha256": "37aeacea8612b5e79cc3392764d7f1fa036fb47d78a728a5b3a789145b813bb3",
+            "json_sha256": "050464c0d15b7aa8cbc5f974866f52cfae6a8ce93332b921904591de6397e2e3",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 364,
+              "or": 401,
+              "not": 53,
+              "xor": 0,
+              "basic_mux": 25,
+              "total_comb": 843,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 1065,
+              "cell_type_counts": {
+                "$_AND_": 364,
+                "$_MUX_": 25,
+                "$_NOT_": 53,
+                "$_OR_": 401,
+                "dffeas": 222
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/04_pre_abc9.json",
+            "rtlil_sha256": "37aeacea8612b5e79cc3392764d7f1fa036fb47d78a728a5b3a789145b813bb3",
+            "json_sha256": "050464c0d15b7aa8cbc5f974866f52cfae6a8ce93332b921904591de6397e2e3",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 364,
+              "or": 401,
+              "not": 53,
+              "xor": 0,
+              "basic_mux": 25,
+              "total_comb": 843,
+              "lut": 0,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 1065,
+              "cell_type_counts": {
+                "$_AND_": 364,
+                "$_MUX_": 25,
+                "$_NOT_": 53,
+                "$_OR_": 401,
+                "dffeas": 222
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "05_post_abc9",
+          "title": "after ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/baseline/05_post_abc9.json",
+            "rtlil_sha256": "1c2549a01aac386dc5cfd32d3f68dd3feeb56ea48033af0a8b59761ad689e508",
+            "json_sha256": "80f8895414166e31b746174c70238df120d949aec6ae2f4f3a480e0fa6af4d49",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 288,
+              "lut": 288,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 510,
+              "cell_type_counts": {
+                "$lut": 288,
+                "dffeas": 222
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case1/optimized/05_post_abc9.json",
+            "rtlil_sha256": "1c2549a01aac386dc5cfd32d3f68dd3feeb56ea48033af0a8b59761ad689e508",
+            "json_sha256": "4a1b122999ac3a6f258a862cb99178ca1c294e3ac1b690ba950df598446645ce",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 288,
+              "lut": 288,
+              "dff": 222,
+              "io": 0,
+              "total_cells": 510,
+              "cell_type_counts": {
+                "$lut": 288,
+                "dffeas": 222
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        }
+      ],
+      "case3": null,
+      "baseline_official_exact_json_equal": true,
+      "baseline_eqy_method": "whole",
+      "changed_bits": 0,
+      "optimized_official_exact_json_equal": true,
+      "optimized_eqy_method": "whole",
+      "classification": [
+        "no_real_bit_rewrite",
+        "no_lut_gain"
+      ]
+    },
+    {
+      "case": "case2",
+      "source_sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+      "stages": [
+        {
+          "stage": "01_pre_pmux",
+          "title": "pmux_opt insertion point",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/01_pre_pmux.json",
+            "rtlil_sha256": "cd63c14e31592125dba4daedbb85d03af0e456200dae0818af8906e1b9cec640",
+            "json_sha256": "97315cd0b10ed8a46752c4936c2e4bff9375d921b8d902815d1b0a2a3b99254e",
+            "metrics": {
+              "pmux": 0,
+              "mux": 4,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 4,
+              "total_comb": 4,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 4,
+              "cell_type_counts": {
+                "$mux": 4
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/01_pre_pmux.json",
+            "rtlil_sha256": "cd63c14e31592125dba4daedbb85d03af0e456200dae0818af8906e1b9cec640",
+            "json_sha256": "97315cd0b10ed8a46752c4936c2e4bff9375d921b8d902815d1b0a2a3b99254e",
+            "metrics": {
+              "pmux": 0,
+              "mux": 4,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 4,
+              "total_comb": 4,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 4,
+              "cell_type_counts": {
+                "$mux": 4
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "02_post_pass_opt_clean",
+          "title": "after pmux_opt + opt_clean",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "cd63c14e31592125dba4daedbb85d03af0e456200dae0818af8906e1b9cec640",
+            "json_sha256": "97315cd0b10ed8a46752c4936c2e4bff9375d921b8d902815d1b0a2a3b99254e",
+            "metrics": {
+              "pmux": 0,
+              "mux": 4,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 4,
+              "total_comb": 4,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 4,
+              "cell_type_counts": {
+                "$mux": 4
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "cd63c14e31592125dba4daedbb85d03af0e456200dae0818af8906e1b9cec640",
+            "json_sha256": "97315cd0b10ed8a46752c4936c2e4bff9375d921b8d902815d1b0a2a3b99254e",
+            "metrics": {
+              "pmux": 0,
+              "mux": 4,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 4,
+              "total_comb": 4,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 4,
+              "cell_type_counts": {
+                "$mux": 4
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "03_post_common_techmap",
+          "title": "after common techmap",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/03_post_common_techmap.json",
+            "rtlil_sha256": "342c1b2dbc3ec8625e3b58750807519f7c2307f8501cac1384c54544b068cd60",
+            "json_sha256": "121a3516e30965954002af4e3d6b8fbc2de52fe7649e0eb59b60243a64a1c749",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 20,
+              "total_comb": 20,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 20,
+              "cell_type_counts": {
+                "$_MUX_": 20
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/03_post_common_techmap.json",
+            "rtlil_sha256": "342c1b2dbc3ec8625e3b58750807519f7c2307f8501cac1384c54544b068cd60",
+            "json_sha256": "121a3516e30965954002af4e3d6b8fbc2de52fe7649e0eb59b60243a64a1c749",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 20,
+              "total_comb": 20,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 20,
+              "cell_type_counts": {
+                "$_MUX_": 20
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "04_pre_abc9",
+          "title": "before ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/04_pre_abc9.json",
+            "rtlil_sha256": "1a8a9ffb52306e4c15a6602fe7ce47eafd587f719e59422f647fac26b1496fdc",
+            "json_sha256": "845d409e2a81ec733411a0319aded0c3a0691c60343021b769ff6078e77d453c",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 5,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 15,
+              "total_comb": 20,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 20,
+              "cell_type_counts": {
+                "$_AND_": 5,
+                "$_MUX_": 15
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/04_pre_abc9.json",
+            "rtlil_sha256": "1a8a9ffb52306e4c15a6602fe7ce47eafd587f719e59422f647fac26b1496fdc",
+            "json_sha256": "845d409e2a81ec733411a0319aded0c3a0691c60343021b769ff6078e77d453c",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 5,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 15,
+              "total_comb": 20,
+              "lut": 0,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 20,
+              "cell_type_counts": {
+                "$_AND_": 5,
+                "$_MUX_": 15
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "05_post_abc9",
+          "title": "after ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/baseline/05_post_abc9.json",
+            "rtlil_sha256": "a8b195594b00ec749c2f59f9ac549e6d365dab6503c1659f9e58687437312c6c",
+            "json_sha256": "1ba926cd75a6543c921ea02e6a4e7d3583d6ff4ac4fe48b0918472e9f7243389",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 25,
+              "lut": 25,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 25,
+              "cell_type_counts": {
+                "$lut": 25
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case2/optimized/05_post_abc9.json",
+            "rtlil_sha256": "a8b195594b00ec749c2f59f9ac549e6d365dab6503c1659f9e58687437312c6c",
+            "json_sha256": "1ba926cd75a6543c921ea02e6a4e7d3583d6ff4ac4fe48b0918472e9f7243389",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 25,
+              "lut": 25,
+              "dff": 0,
+              "io": 0,
+              "total_cells": 25,
+              "cell_type_counts": {
+                "$lut": 25
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        }
+      ],
+      "case3": null,
+      "baseline_official_exact_json_equal": true,
+      "baseline_eqy_method": "default",
+      "changed_bits": 0,
+      "optimized_official_exact_json_equal": true,
+      "optimized_eqy_method": "default",
+      "classification": [
+        "no_real_bit_rewrite",
+        "no_lut_gain"
+      ]
+    },
+    {
+      "case": "case3",
+      "source_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+      "stages": [
+        {
+          "stage": "01_pre_pmux",
+          "title": "pmux_opt insertion point",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/01_pre_pmux.json",
+            "rtlil_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+            "json_sha256": "b991006829696ab0406d5792bc8eda7fe6a9c7f4b2ed745a75c0860ede3cc19c",
+            "metrics": {
+              "pmux": 1,
+              "mux": 2,
+              "eq": 3,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 1,
+              "xor": 0,
+              "basic_mux": 2,
+              "total_comb": 12,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 18,
+              "cell_type_counts": {
+                "$dffe": 5,
+                "$eq": 3,
+                "$mux": 2,
+                "$not": 1,
+                "$pmux": 1,
+                "$reduce_and": 3,
+                "$reduce_bool": 2,
+                "$sdffce": 1
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/01_pre_pmux.json",
+            "rtlil_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+            "json_sha256": "b991006829696ab0406d5792bc8eda7fe6a9c7f4b2ed745a75c0860ede3cc19c",
+            "metrics": {
+              "pmux": 1,
+              "mux": 2,
+              "eq": 3,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 1,
+              "xor": 0,
+              "basic_mux": 2,
+              "total_comb": 12,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 18,
+              "cell_type_counts": {
+                "$dffe": 5,
+                "$eq": 3,
+                "$mux": 2,
+                "$not": 1,
+                "$pmux": 1,
+                "$reduce_and": 3,
+                "$reduce_bool": 2,
+                "$sdffce": 1
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "02_post_pass_opt_clean",
+          "title": "after pmux_opt + opt_clean",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "baa2a34eb6fd25db3950defbc141a1477d7114b38eee971d9b02cca12d84af1e",
+            "json_sha256": "b991006829696ab0406d5792bc8eda7fe6a9c7f4b2ed745a75c0860ede3cc19c",
+            "metrics": {
+              "pmux": 1,
+              "mux": 2,
+              "eq": 3,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 1,
+              "xor": 0,
+              "basic_mux": 2,
+              "total_comb": 12,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 18,
+              "cell_type_counts": {
+                "$dffe": 5,
+                "$eq": 3,
+                "$mux": 2,
+                "$not": 1,
+                "$pmux": 1,
+                "$reduce_and": 3,
+                "$reduce_bool": 2,
+                "$sdffce": 1
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "72a3c26031995a3f7a263f84fe43370db362aa42ead1b1fe83b090ee8c3a8768",
+            "json_sha256": "45085bf2bc72d661c3693682243d56aa680571f9462d70169ba23ac8883e7ea7",
+            "metrics": {
+              "pmux": 1,
+              "mux": 2,
+              "eq": 3,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 1,
+              "xor": 0,
+              "basic_mux": 2,
+              "total_comb": 12,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 18,
+              "cell_type_counts": {
+                "$dffe": 5,
+                "$eq": 3,
+                "$mux": 2,
+                "$not": 1,
+                "$pmux": 1,
+                "$reduce_and": 3,
+                "$reduce_bool": 2,
+                "$sdffce": 1
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": false,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "03_post_common_techmap",
+          "title": "after common techmap",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/03_post_common_techmap.json",
+            "rtlil_sha256": "8578cfc54e605699f918c0956d56c55069ff6d6d1733ba12d255f05f8daa3e45",
+            "json_sha256": "c553290b12f0dbb11a991777758bd1fb51c480bb9504fcf6b0b2edbe41b652d9",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 8,
+              "or": 25,
+              "not": 4,
+              "xor": 24,
+              "basic_mux": 8,
+              "total_comb": 69,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 86,
+              "cell_type_counts": {
+                "$_AND_": 8,
+                "$_DFFE_PN_": 9,
+                "$_DFFE_PP_": 7,
+                "$_MUX_": 8,
+                "$_NOT_": 4,
+                "$_OR_": 25,
+                "$_SDFFCE_PP1P_": 1,
+                "$_XOR_": 24
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/03_post_common_techmap.json",
+            "rtlil_sha256": "73fc8246e3cf1f77d41f5946848350c1dd9b7bb3b454e8dad1284a1bd62d9130",
+            "json_sha256": "fb9e795898c5f6ea0955e4d554b500a0acd5b1af5c1b713cd87f7433c9b8850c",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 8,
+              "or": 25,
+              "not": 4,
+              "xor": 24,
+              "basic_mux": 8,
+              "total_comb": 69,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 86,
+              "cell_type_counts": {
+                "$_AND_": 8,
+                "$_DFFE_PN_": 9,
+                "$_DFFE_PP_": 7,
+                "$_MUX_": 8,
+                "$_NOT_": 4,
+                "$_OR_": 25,
+                "$_SDFFCE_PP1P_": 1,
+                "$_XOR_": 24
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": false,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "04_pre_abc9",
+          "title": "before ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/04_pre_abc9.json",
+            "rtlil_sha256": "0a296d75930710735ad38cd7b6a151839d195ff100358f1f4390c7baffa2bbb4",
+            "json_sha256": "e38746670837f607af958467f66e6b46547de36f45392d2d668e2d64164b7325",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 7,
+              "or": 19,
+              "not": 20,
+              "xor": 0,
+              "basic_mux": 8,
+              "total_comb": 54,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 71,
+              "cell_type_counts": {
+                "$_AND_": 7,
+                "$_MUX_": 8,
+                "$_NOT_": 20,
+                "$_OR_": 19,
+                "dffeas": 17
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/04_pre_abc9.json",
+            "rtlil_sha256": "ab2d2270f250f8d409cc83e79850e401c4e016006a3c1924b19b9b920e3bf47d",
+            "json_sha256": "53a52a10940db35ddad1b66ee79c52203150973bcd64baa0166510bc9e360cd7",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 6,
+              "or": 18,
+              "not": 20,
+              "xor": 0,
+              "basic_mux": 8,
+              "total_comb": 52,
+              "lut": 0,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 69,
+              "cell_type_counts": {
+                "$_AND_": 6,
+                "$_MUX_": 8,
+                "$_NOT_": 20,
+                "$_OR_": 18,
+                "dffeas": 17
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": -1,
+            "or": -1,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": -2,
+            "lut": 0
+          },
+          "structure_equal": false,
+          "requested_statistics_equal": false,
+          "cell_type_histogram_equal": false
+        },
+        {
+          "stage": "05_post_abc9",
+          "title": "after ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/baseline/05_post_abc9.json",
+            "rtlil_sha256": "de1e09a6ec82d0213fce543e64c4a0266559a2f6952ae19bc6e1aa332b63c566",
+            "json_sha256": "bd88fbf5505d7dab9915cd497efa59db0fd0a90bd6fdd0d2bad5455b910fe78b",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 13,
+              "lut": 13,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 30,
+              "cell_type_counts": {
+                "$lut": 13,
+                "dffeas": 17
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case3/optimized/05_post_abc9.json",
+            "rtlil_sha256": "cb9f52cd50b5b070893ecf4b7d7d609f8b2ec78748d2092d47c15373c2dc010c",
+            "json_sha256": "1e5e2ee4ff0b4133dd30896a99b00088b37bb897b80cb5418c4b8bb16a0e4084",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 13,
+              "lut": 13,
+              "dff": 17,
+              "io": 0,
+              "total_cells": 30,
+              "cell_type_counts": {
+                "$lut": 13,
+                "dffeas": 17
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": false,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        }
+      ],
+      "case3": {
+        "seven_edits": [
+          {
+            "cell": "$procmux$10",
+            "port": "B",
+            "physical_bit": 0,
+            "branch": null,
+            "branch_bit": 0,
+            "before_signal": {
+              "kind": "signal",
+              "offset": 2,
+              "wire": "sr"
+            },
+            "before_bit_id": 17,
+            "after_constant": "1",
+            "fanout_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "B",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              }
+            ],
+            "drivers_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "Q",
+                "bit": 2
+              }
+            ],
+            "fanout_after_pass": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              }
+            ],
+            "fanout_after_opt_clean": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 2
+              }
+            ],
+            "drivers_deleted_by_opt_clean": [],
+            "fanout_cells_deleted_by_opt_clean": []
+          },
+          {
+            "cell": "$procmux$10",
+            "port": "B",
+            "physical_bit": 1,
+            "branch": null,
+            "branch_bit": 1,
+            "before_signal": {
+              "kind": "signal",
+              "offset": 1,
+              "wire": "sr"
+            },
+            "before_bit_id": 16,
+            "after_constant": "1",
+            "fanout_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "B",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              }
+            ],
+            "drivers_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "Q",
+                "bit": 1
+              }
+            ],
+            "fanout_after_pass": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              }
+            ],
+            "fanout_after_opt_clean": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 1
+              }
+            ],
+            "drivers_deleted_by_opt_clean": [],
+            "fanout_cells_deleted_by_opt_clean": []
+          },
+          {
+            "cell": "$procmux$10",
+            "port": "B",
+            "physical_bit": 2,
+            "branch": null,
+            "branch_bit": 2,
+            "before_signal": {
+              "kind": "signal",
+              "offset": 0,
+              "wire": "sr"
+            },
+            "before_bit_id": 15,
+            "after_constant": "1",
+            "fanout_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "B",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$18",
+                "type": "$pmux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              }
+            ],
+            "drivers_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "Q",
+                "bit": 0
+              }
+            ],
+            "fanout_after_pass": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$18",
+                "type": "$pmux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              }
+            ],
+            "fanout_after_opt_clean": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$18",
+                "type": "$pmux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 0
+              }
+            ],
+            "drivers_deleted_by_opt_clean": [],
+            "fanout_cells_deleted_by_opt_clean": []
+          },
+          {
+            "cell": "$procmux$18",
+            "port": "B",
+            "physical_bit": 0,
+            "branch": 0,
+            "branch_bit": 0,
+            "before_signal": {
+              "kind": "signal",
+              "offset": 3,
+              "wire": "sr"
+            },
+            "before_bit_id": 18,
+            "after_constant": "1",
+            "fanout_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 4
+              },
+              {
+                "cell": "$auto$ff.cc:337:slice$62",
+                "type": "$sdffce",
+                "port": "D",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$18",
+                "type": "$pmux",
+                "port": "B",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              }
+            ],
+            "drivers_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "Q",
+                "bit": 3
+              }
+            ],
+            "fanout_after_pass": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 4
+              },
+              {
+                "cell": "$auto$ff.cc:337:slice$62",
+                "type": "$sdffce",
+                "port": "D",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              }
+            ],
+            "fanout_after_opt_clean": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 4
+              },
+              {
+                "cell": "$auto$ff.cc:337:slice$62",
+                "type": "$sdffce",
+                "port": "D",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 3
+              }
+            ],
+            "drivers_deleted_by_opt_clean": [],
+            "fanout_cells_deleted_by_opt_clean": []
+          },
+          {
+            "cell": "$procmux$27",
+            "port": "B",
+            "physical_bit": 1,
+            "branch": null,
+            "branch_bit": 1,
+            "before_signal": {
+              "kind": "signal",
+              "offset": 6,
+              "wire": "sr"
+            },
+            "before_bit_id": 21,
+            "after_constant": "1",
+            "fanout_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 7
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "B",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              }
+            ],
+            "drivers_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "Q",
+                "bit": 6
+              }
+            ],
+            "fanout_after_pass": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 7
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              }
+            ],
+            "fanout_after_opt_clean": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 7
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 0
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 6
+              }
+            ],
+            "drivers_deleted_by_opt_clean": [],
+            "fanout_cells_deleted_by_opt_clean": []
+          },
+          {
+            "cell": "$procmux$27",
+            "port": "B",
+            "physical_bit": 2,
+            "branch": null,
+            "branch_bit": 2,
+            "before_signal": {
+              "kind": "signal",
+              "offset": 5,
+              "wire": "sr"
+            },
+            "before_bit_id": 20,
+            "after_constant": "1",
+            "fanout_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "B",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              }
+            ],
+            "drivers_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "Q",
+                "bit": 5
+              }
+            ],
+            "fanout_after_pass": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              }
+            ],
+            "fanout_after_opt_clean": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 6
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 1
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 5
+              }
+            ],
+            "drivers_deleted_by_opt_clean": [],
+            "fanout_cells_deleted_by_opt_clean": []
+          },
+          {
+            "cell": "$procmux$27",
+            "port": "B",
+            "physical_bit": 3,
+            "branch": null,
+            "branch_bit": 3,
+            "before_signal": {
+              "kind": "signal",
+              "offset": 4,
+              "wire": "sr"
+            },
+            "before_bit_id": 19,
+            "after_constant": "1",
+            "fanout_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              },
+              {
+                "cell": "$procmux$27",
+                "type": "$mux",
+                "port": "B",
+                "bit": 3
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              }
+            ],
+            "drivers_before": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "Q",
+                "bit": 4
+              }
+            ],
+            "fanout_after_pass": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              }
+            ],
+            "fanout_after_opt_clean": [
+              {
+                "cell": "$auto$ff.cc:337:slice$44",
+                "type": "$dffe",
+                "port": "D",
+                "bit": 5
+              },
+              {
+                "cell": "$procmux$10",
+                "type": "$mux",
+                "port": "A",
+                "bit": 2
+              },
+              {
+                "cell": "$procmux$20_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              },
+              {
+                "cell": "$procmux$28_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              },
+              {
+                "cell": "$procmux$29_CMP0",
+                "type": "$eq",
+                "port": "A",
+                "bit": 4
+              }
+            ],
+            "drivers_deleted_by_opt_clean": [],
+            "fanout_cells_deleted_by_opt_clean": []
+          }
+        ],
+        "opt_clean_deleted_cells": [],
+        "opt_clean_added_cells": [],
+        "first_structure_reconvergence": null,
+        "first_statistics_reconvergence": "05_post_abc9",
+        "first_histogram_reconvergence": "05_post_abc9",
+        "conclusion": "Seven proved bit replacements removed no cell at opt_clean; the pre-ABC9 gate-count difference mapped to the same LUT count under ABC9."
+      },
+      "baseline_official_exact_json_equal": true,
+      "baseline_eqy_method": "whole",
+      "changed_bits": 7,
+      "optimized_official_exact_json_equal": true,
+      "optimized_eqy_method": "whole",
+      "classification": [
+        "post_opt_clean_no_cell_removal",
+        "pre_abc9_difference_absorbed_by_abc9_mapping",
+        "no_lut_gain"
+      ]
+    },
+    {
+      "case": "case4",
+      "source_sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+      "stages": [
+        {
+          "stage": "01_pre_pmux",
+          "title": "pmux_opt insertion point",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/01_pre_pmux.json",
+            "rtlil_sha256": "4ea7cab44b3fc7f92d07f1c5772e8bb5081ef2725989f32b395ad5d79ea0ca5c",
+            "json_sha256": "352050cf9eefe0b492611f0b09e69b159fc1c520327740a4b1116759fb961d89",
+            "metrics": {
+              "pmux": 0,
+              "mux": 19,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 3,
+              "xor": 0,
+              "basic_mux": 19,
+              "total_comb": 23,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 28,
+              "cell_type_counts": {
+                "$adff": 4,
+                "$mux": 19,
+                "$not": 3,
+                "$reduce_or": 1,
+                "$sdffce": 1
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/01_pre_pmux.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/01_pre_pmux.json",
+            "rtlil_sha256": "4ea7cab44b3fc7f92d07f1c5772e8bb5081ef2725989f32b395ad5d79ea0ca5c",
+            "json_sha256": "352050cf9eefe0b492611f0b09e69b159fc1c520327740a4b1116759fb961d89",
+            "metrics": {
+              "pmux": 0,
+              "mux": 19,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 3,
+              "xor": 0,
+              "basic_mux": 19,
+              "total_comb": 23,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 28,
+              "cell_type_counts": {
+                "$adff": 4,
+                "$mux": 19,
+                "$not": 3,
+                "$reduce_or": 1,
+                "$sdffce": 1
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "02_post_pass_opt_clean",
+          "title": "after pmux_opt + opt_clean",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "4ea7cab44b3fc7f92d07f1c5772e8bb5081ef2725989f32b395ad5d79ea0ca5c",
+            "json_sha256": "352050cf9eefe0b492611f0b09e69b159fc1c520327740a4b1116759fb961d89",
+            "metrics": {
+              "pmux": 0,
+              "mux": 19,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 3,
+              "xor": 0,
+              "basic_mux": 19,
+              "total_comb": 23,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 28,
+              "cell_type_counts": {
+                "$adff": 4,
+                "$mux": 19,
+                "$not": 3,
+                "$reduce_or": 1,
+                "$sdffce": 1
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/02_post_pass_opt_clean.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/02_post_pass_opt_clean.json",
+            "rtlil_sha256": "4ea7cab44b3fc7f92d07f1c5772e8bb5081ef2725989f32b395ad5d79ea0ca5c",
+            "json_sha256": "352050cf9eefe0b492611f0b09e69b159fc1c520327740a4b1116759fb961d89",
+            "metrics": {
+              "pmux": 0,
+              "mux": 19,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 3,
+              "xor": 0,
+              "basic_mux": 19,
+              "total_comb": 23,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 28,
+              "cell_type_counts": {
+                "$adff": 4,
+                "$mux": 19,
+                "$not": 3,
+                "$reduce_or": 1,
+                "$sdffce": 1
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "03_post_common_techmap",
+          "title": "after common techmap",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/03_post_common_techmap.json",
+            "rtlil_sha256": "f5e6738c125c6a14fe402e3df6c8cdd397d27f8c77ca9368510d58539ec70b15",
+            "json_sha256": "64ff3cac7f2fa16ca8f72e61ac4c7857688b9fc51e11e63aa5149aae3e57cf01",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 4,
+              "not": 3,
+              "xor": 0,
+              "basic_mux": 111,
+              "total_comb": 118,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 128,
+              "cell_type_counts": {
+                "$_DFF_PN0_": 8,
+                "$_DFF_PN1_": 1,
+                "$_MUX_": 111,
+                "$_NOT_": 3,
+                "$_OR_": 4,
+                "$_SDFFCE_PP0P_": 1
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/03_post_common_techmap.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/03_post_common_techmap.json",
+            "rtlil_sha256": "f5e6738c125c6a14fe402e3df6c8cdd397d27f8c77ca9368510d58539ec70b15",
+            "json_sha256": "64ff3cac7f2fa16ca8f72e61ac4c7857688b9fc51e11e63aa5149aae3e57cf01",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 4,
+              "not": 3,
+              "xor": 0,
+              "basic_mux": 111,
+              "total_comb": 118,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 128,
+              "cell_type_counts": {
+                "$_DFF_PN0_": 8,
+                "$_DFF_PN1_": 1,
+                "$_MUX_": 111,
+                "$_NOT_": 3,
+                "$_OR_": 4,
+                "$_SDFFCE_PP0P_": 1
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "04_pre_abc9",
+          "title": "before ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/04_pre_abc9.json",
+            "rtlil_sha256": "c05b352df7276a86b14788f671528b638d297b26ddeae80d3c0fe0600ef54854",
+            "json_sha256": "c0cd2afd6cea9d4cfe8ef424c13287e348cc2dfc1db07a8f637e0dc5b42b78c0",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 15,
+              "or": 9,
+              "not": 6,
+              "xor": 0,
+              "basic_mux": 43,
+              "total_comb": 73,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 83,
+              "cell_type_counts": {
+                "$_AND_": 15,
+                "$_MUX_": 43,
+                "$_NOT_": 6,
+                "$_OR_": 9,
+                "dffeas": 10
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/04_pre_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/04_pre_abc9.json",
+            "rtlil_sha256": "c05b352df7276a86b14788f671528b638d297b26ddeae80d3c0fe0600ef54854",
+            "json_sha256": "c0cd2afd6cea9d4cfe8ef424c13287e348cc2dfc1db07a8f637e0dc5b42b78c0",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 15,
+              "or": 9,
+              "not": 6,
+              "xor": 0,
+              "basic_mux": 43,
+              "total_comb": 73,
+              "lut": 0,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 83,
+              "cell_type_counts": {
+                "$_AND_": 15,
+                "$_MUX_": 43,
+                "$_NOT_": 6,
+                "$_OR_": 9,
+                "dffeas": 10
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        },
+        {
+          "stage": "05_post_abc9",
+          "title": "after ABC9",
+          "baseline": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/baseline/05_post_abc9.json",
+            "rtlil_sha256": "c0d26c744eaad5213b1dc2f9f98157d5bb5eb94502af44e6f19d6bf576be469c",
+            "json_sha256": "81aafe579a16dee4586c386d97dffc2de5940381c139e8f8dd88d3af00dc49f5",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 36,
+              "lut": 36,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 46,
+              "cell_type_counts": {
+                "$lut": 36,
+                "dffeas": 10
+              }
+            }
+          },
+          "optimized": {
+            "rtlil": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/05_post_abc9.il",
+            "json": "/home/yuewen/work/pmux-yosys-c-real/pmux_project/reports/c-official-stage-diff-final/case4/optimized/05_post_abc9.json",
+            "rtlil_sha256": "c0d26c744eaad5213b1dc2f9f98157d5bb5eb94502af44e6f19d6bf576be469c",
+            "json_sha256": "0f8cb9c4aeb018e81049976c938d7b142b5d7ac97cb498514959e2a350f768f5",
+            "metrics": {
+              "pmux": 0,
+              "mux": 0,
+              "eq": 0,
+              "ne": 0,
+              "and": 0,
+              "or": 0,
+              "not": 0,
+              "xor": 0,
+              "basic_mux": 0,
+              "total_comb": 36,
+              "lut": 36,
+              "dff": 10,
+              "io": 0,
+              "total_cells": 46,
+              "cell_type_counts": {
+                "$lut": 36,
+                "dffeas": 10
+              }
+            }
+          },
+          "delta": {
+            "pmux": 0,
+            "mux": 0,
+            "eq": 0,
+            "ne": 0,
+            "and": 0,
+            "or": 0,
+            "not": 0,
+            "xor": 0,
+            "basic_mux": 0,
+            "total_comb": 0,
+            "lut": 0
+          },
+          "structure_equal": true,
+          "requested_statistics_equal": true,
+          "cell_type_histogram_equal": true
+        }
+      ],
+      "case3": null,
+      "baseline_official_exact_json_equal": true,
+      "baseline_eqy_method": "default",
+      "changed_bits": 0,
+      "optimized_official_exact_json_equal": true,
+      "optimized_eqy_method": "default",
+      "classification": [
+        "no_real_bit_rewrite",
+        "no_lut_gain"
+      ]
+    }
+  ],
+  "lut_benefit": "FAIL"
+}

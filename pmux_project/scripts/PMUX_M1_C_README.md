@@ -1,5 +1,15 @@
 # C 验证入口
 
+## 官方五阶段差异诊断
+
+在 `integration/c-real-m1` 从仓库根目录用一条命令复现四案的五个截点、case3 七位扇出与删除链、JSON/人工汇总和阶段证据归档：
+
+```bash
+python3 pmux_project/scripts/diagnose_official_stages.py --bin /home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin --plugin pmux_project/pass/pmux_opt.so --source-root /home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case --out pmux_project/reports/c-official-stage-diff-final
+```
+
+若插件尚未编译，脚本使用指定冻结工具链的 `yosys-config` 构建它。脚本核对四个官方输入 SHA-256。五个截点各在独立 Yosys 进程运行并停在该点；最终 ABC9 截点直接调用 B 的 `run_synth_intel_pmux.py`，避免中间网表导出改变后续 ABC9 映射。baseline 不加载插件，optimized 的插入点前截点尚未运行 Pass，其余截点每次只运行一次真实 Pass。完整的逐阶段 RTLIL、JSON、SHA-256、cell 统计及差值在 `reports/c-official-stage-diff-final/`。该诊断不改变 LUT 收益的既有判定，不宣布 M1 完成。
+
 ## 真实阶段验收（2026-10-06）
 
 以下是当前入口。下文旧的 identity/桩用法仅为 M1 框架历史记录，不能作为真实算法或 LUT 收益证据。
