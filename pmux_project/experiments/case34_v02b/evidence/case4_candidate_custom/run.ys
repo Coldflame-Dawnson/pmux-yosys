@@ -1,0 +1,16 @@
+read_verilog /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v
+proc
+techmap -map +/techmap.v
+techmap -map /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v
+hierarchy -check -top test4
+opt
+synth_intel -family cycloneiv -top test4 -run map_ffs:map_luts
+abc9 -lut 4 -W 300 -script /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/abc.script
+clean
+opt -fast
+check
+stat
+select test4
+write_rtlil -selected /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_custom/post_abc9.il
+select -clear
+write_json /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_custom/post_abc9.json

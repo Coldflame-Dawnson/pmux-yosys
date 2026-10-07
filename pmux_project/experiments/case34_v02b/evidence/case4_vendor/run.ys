@@ -1,0 +1,11 @@
+read_verilog -sv -lib +/intel/max10/cells_sim.v
+read_verilog -sv -lib +/intel/common/m9k_bb.v
+read_verilog -sv -lib +/intel/common/altpll_bb.v
+read_rtlil /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_custom/post_abc9.il
+hierarchy -check -top test4
+techmap -map +/intel/max10/cells_map.v
+clean -purge
+check
+stat
+write_rtlil /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_vendor/vendor.il
+write_json /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_vendor/vendor.json

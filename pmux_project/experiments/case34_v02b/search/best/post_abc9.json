@@ -1,0 +1,1416 @@
+{
+  "creator": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)",
+  "modules": {
+    "$__ABC9_DELAY": {
+      "attributes": {
+        "abc9_box_id": "00000000000000000000000000000011",
+        "blackbox": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:2.1-7.10"
+      },
+      "parameter_default_values": {
+        "DELAY": "00000000000000000000000000000000"
+      },
+      "ports": {
+        "I": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "O": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+        "$specify$364": {
+          "hide_name": 1,
+          "type": "$specify2",
+          "parameters": {
+            "DST_WIDTH": "00000000000000000000000000000001",
+            "FULL": "0",
+            "SRC_DST_PEN": "0",
+            "SRC_DST_POL": "0",
+            "SRC_WIDTH": "00000000000000000000000000000001",
+            "T_FALL_MAX": "00000000000000000000000000000000",
+            "T_FALL_MIN": "00000000000000000000000000000000",
+            "T_FALL_TYP": "00000000000000000000000000000000",
+            "T_RISE_MAX": "00000000000000000000000000000000",
+            "T_RISE_MIN": "00000000000000000000000000000000",
+            "T_RISE_TYP": "00000000000000000000000000000000"
+          },
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:5.5-5.22"
+          },
+          "port_directions": {
+            "DST": "input",
+            "EN": "input",
+            "SRC": "input"
+          },
+          "connections": {
+            "DST": [ 3 ],
+            "EN": [ "1" ],
+            "SRC": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "I": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:2.29-2.30"
+          }
+        },
+        "O": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:2.39-2.40"
+          }
+        }
+      }
+    },
+    "$__ABC9_SCC_BREAKER": {
+      "attributes": {
+        "dynports": "00000000000000000000000000000001",
+        "blackbox": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:9.1-11.10"
+      },
+      "parameter_default_values": {
+        "WIDTH": "00000000000000000000000000000000"
+      },
+      "ports": {
+        "I": {
+          "direction": "input",
+          "offset": -1,
+          "upto": 1,
+          "bits": [ 2, 3 ]
+        },
+        "O": {
+          "direction": "output",
+          "offset": -1,
+          "upto": 1,
+          "bits": [ 4, 5 ]
+        }
+      },
+      "cells": {
+      },
+      "netnames": {
+        "I": {
+          "hide_name": 0,
+          "bits": [ 2, 3 ],
+          "offset": -1,
+          "upto": 1,
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:9.47-9.48"
+          }
+        },
+        "O": {
+          "hide_name": 0,
+          "bits": [ 4, 5 ],
+          "offset": -1,
+          "upto": 1,
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:9.69-9.70"
+          }
+        }
+      }
+    },
+    "$__DFF_N__$abc9_flop": {
+      "attributes": {
+        "abc9_box_id": "00000000000000000000000000000010",
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:14.1-20.10"
+      },
+      "ports": {
+        "C": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "Q": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "n1": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+        "$specify$365": {
+          "hide_name": 1,
+          "type": "$specrule",
+          "parameters": {
+            "DST_PEN": "1",
+            "DST_POL": "1",
+            "DST_WIDTH": "00000000000000000000000000000001",
+            "SRC_PEN": "0",
+            "SRC_POL": "0",
+            "SRC_WIDTH": "00000000000000000000000000000001",
+            "TYPE": "$setup",
+            "T_LIMIT2_MAX": "00000000000000000000000000000000",
+            "T_LIMIT2_MIN": "00000000000000000000000000000000",
+            "T_LIMIT2_TYP": "00000000000000000000000000000000",
+            "T_LIMIT_MAX": "00000000000000000000000000000000",
+            "T_LIMIT_MIN": "00000000000000000000000000000000",
+            "T_LIMIT_TYP": "00000000000000000000000000000000"
+          },
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:17.5-17.29"
+          },
+          "port_directions": {
+            "DST": "input",
+            "DST_EN": "input",
+            "SRC": "input",
+            "SRC_EN": "input"
+          },
+          "connections": {
+            "DST": [ 2 ],
+            "DST_EN": [ "1" ],
+            "SRC": [ 3 ],
+            "SRC_EN": [ "1" ]
+          }
+        },
+        "$specify$366": {
+          "hide_name": 1,
+          "type": "$specify3",
+          "parameters": {
+            "DAT_DST_PEN": "0",
+            "DAT_DST_POL": "0",
+            "DST_WIDTH": "00000000000000000000000000000001",
+            "EDGE_EN": "1",
+            "EDGE_POL": "1",
+            "FULL": "0",
+            "SRC_DST_PEN": "0",
+            "SRC_DST_POL": "0",
+            "SRC_WIDTH": "00000000000000000000000000000001",
+            "T_FALL_MAX": "00000000000000000000000000000000",
+            "T_FALL_MIN": "00000000000000000000000000000000",
+            "T_FALL_TYP": "00000000000000000000000000000000",
+            "T_RISE_MAX": "00000000000000000000000000000000",
+            "T_RISE_MIN": "00000000000000000000000000000000",
+            "T_RISE_TYP": "00000000000000000000000000000000"
+          },
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:18.5-18.31"
+          },
+          "port_directions": {
+            "DAT": "input",
+            "DST": "input",
+            "EN": "input",
+            "SRC": "input"
+          },
+          "connections": {
+            "DAT": [ 3 ],
+            "DST": [ 3 ],
+            "EN": [ "1" ],
+            "SRC": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "C": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:14.36-14.37"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:14.39-14.40"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:14.42-14.43"
+          }
+        },
+        "n1": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:14.52-14.54"
+          }
+        }
+      }
+    },
+    "$__DFF_P__$abc9_flop": {
+      "attributes": {
+        "abc9_box_id": "00000000000000000000000000000001",
+        "whitebox": "00000000000000000000000000000001",
+        "abc9_flop": "00000000000000000000000000000001",
+        "abc9_box": "00000000000000000000000000000001",
+        "cells_not_processed": "00000000000000000000000000000001",
+        "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:23.1-29.10"
+      },
+      "ports": {
+        "C": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "D": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "Q": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "n1": {
+          "direction": "output",
+          "bits": [ 3 ]
+        }
+      },
+      "cells": {
+        "$specify$367": {
+          "hide_name": 1,
+          "type": "$specrule",
+          "parameters": {
+            "DST_PEN": "1",
+            "DST_POL": "1",
+            "DST_WIDTH": "00000000000000000000000000000001",
+            "SRC_PEN": "0",
+            "SRC_POL": "0",
+            "SRC_WIDTH": "00000000000000000000000000000001",
+            "TYPE": "$setup",
+            "T_LIMIT2_MAX": "00000000000000000000000000000000",
+            "T_LIMIT2_MIN": "00000000000000000000000000000000",
+            "T_LIMIT2_TYP": "00000000000000000000000000000000",
+            "T_LIMIT_MAX": "00000000000000000000000000000000",
+            "T_LIMIT_MIN": "00000000000000000000000000000000",
+            "T_LIMIT_TYP": "00000000000000000000000000000000"
+          },
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:26.5-26.29"
+          },
+          "port_directions": {
+            "DST": "input",
+            "DST_EN": "input",
+            "SRC": "input",
+            "SRC_EN": "input"
+          },
+          "connections": {
+            "DST": [ 2 ],
+            "DST_EN": [ "1" ],
+            "SRC": [ 3 ],
+            "SRC_EN": [ "1" ]
+          }
+        },
+        "$specify$368": {
+          "hide_name": 1,
+          "type": "$specify3",
+          "parameters": {
+            "DAT_DST_PEN": "0",
+            "DAT_DST_POL": "0",
+            "DST_WIDTH": "00000000000000000000000000000001",
+            "EDGE_EN": "1",
+            "EDGE_POL": "1",
+            "FULL": "0",
+            "SRC_DST_PEN": "0",
+            "SRC_DST_POL": "0",
+            "SRC_WIDTH": "00000000000000000000000000000001",
+            "T_FALL_MAX": "00000000000000000000000000000000",
+            "T_FALL_MIN": "00000000000000000000000000000000",
+            "T_FALL_TYP": "00000000000000000000000000000000",
+            "T_RISE_MAX": "00000000000000000000000000000000",
+            "T_RISE_MIN": "00000000000000000000000000000000",
+            "T_RISE_TYP": "00000000000000000000000000000000"
+          },
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:27.5-27.31"
+          },
+          "port_directions": {
+            "DAT": "input",
+            "DST": "input",
+            "EN": "input",
+            "SRC": "input"
+          },
+          "connections": {
+            "DAT": [ 3 ],
+            "DST": [ 3 ],
+            "EN": [ "1" ],
+            "SRC": [ 2 ]
+          }
+        }
+      },
+      "netnames": {
+        "C": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:23.36-23.37"
+          }
+        },
+        "D": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:23.39-23.40"
+          }
+        },
+        "Q": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:23.42-23.43"
+          }
+        },
+        "n1": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v:23.52-23.54"
+          }
+        }
+      }
+    },
+    "test4": {
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:9.1-79.10"
+      },
+      "ports": {
+        "clk": {
+          "direction": "input",
+          "bits": [ 2 ]
+        },
+        "reset_n": {
+          "direction": "input",
+          "bits": [ 3 ]
+        },
+        "ena": {
+          "direction": "input",
+          "bits": [ 4 ]
+        },
+        "datain": {
+          "direction": "input",
+          "bits": [ 5, 6, 7, 8, 9 ]
+        },
+        "dataout": {
+          "direction": "output",
+          "bits": [ 10, 11, 12, 13, 14, 15 ]
+        },
+        "only_5b": {
+          "direction": "output",
+          "bits": [ 16 ]
+        },
+        "datain_5bis7": {
+          "direction": "output",
+          "bits": [ 17 ]
+        },
+        "data_dp": {
+          "direction": "output",
+          "bits": [ 18 ]
+        },
+        "data_dn": {
+          "direction": "output",
+          "bits": [ 19 ]
+        }
+      },
+      "cells": {
+        "$abc$636$lut$aiger$o0": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1100010010000000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 9, 4, 20, 21 ],
+            "Y": [ 22 ]
+          }
+        },
+        "$abc$636$lut$aiger$o1": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "01000000",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 8, 4, 23 ],
+            "Y": [ 24 ]
+          }
+        },
+        "$abc$636$lut$aiger$o10": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1100010010000000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 9, 4, 25, 26 ],
+            "Y": [ 27 ]
+          }
+        },
+        "$abc$636$lut$aiger$o2": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "10000000",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6, 4, 28 ],
+            "Y": [ 29 ]
+          }
+        },
+        "$abc$636$lut$aiger$o5": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "10000000",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 8, 4, 30 ],
+            "Y": [ 31 ]
+          }
+        },
+        "$abc$636$lut$aiger$o6": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "11001000",
+            "WIDTH": "00000000000000000000000000000011"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 9, 4, 32 ],
+            "Y": [ 33 ]
+          }
+        },
+        "$abc$636$lut$aiger$o7": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1100100001000000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 4, 34, 35 ],
+            "Y": [ 36 ]
+          }
+        },
+        "$abc$636$lut$aiger$o8": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1100010010000000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 7, 4, 37, 38 ],
+            "Y": [ 39 ]
+          }
+        },
+        "$abc$636$lut$aiger$o9": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1100100001000000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 9, 4, 40, 41 ],
+            "Y": [ 42 ]
+          }
+        },
+        "$abc$636$lut$not$aiger635$3": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "01",
+            "WIDTH": "00000000000000000000000000000001"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 43 ],
+            "Y": [ 16 ]
+          }
+        },
+        "$auto$abc_ops_reintegrate.cc:611:reintegrate$637": {
+          "hide_name": 1,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0011011110111111",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 9, 4, 44, 45 ],
+            "Y": [ 46 ]
+          }
+        },
+        "$auto$ff.cc:337:slice$245": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 22 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 10 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$246": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 33 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 11 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$247": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 36 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 12 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$248": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 39 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 13 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$249": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 42 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 14 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$250": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 27 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 15 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$251": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 46 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 43 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$253": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 24 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 18 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$254": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ 3 ],
+            "d": [ 31 ],
+            "ena": [ "1" ],
+            "prn": [ "1" ],
+            "q": [ 19 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "$auto$ff.cc:337:slice$272": {
+          "hide_name": 1,
+          "type": "dffeas",
+          "parameters": {
+            "is_wysiwyg": "TRUE",
+            "power_up": "low"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+          },
+          "connections": {
+            "aload": [ "0" ],
+            "asdata": [ "0" ],
+            "clk": [ 2 ],
+            "clrn": [ "1" ],
+            "d": [ 29 ],
+            "ena": [ 3 ],
+            "prn": [ "1" ],
+            "q": [ 17 ],
+            "sclr": [ "0" ],
+            "sload": [ "0" ]
+          }
+        },
+        "cf_10_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1110000011100111",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:40.34-40.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6, 7, 8, 9 ],
+            "Y": [ 34 ]
+          }
+        },
+        "cf_11_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0111000011110001",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:42.34-42.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 6, 7, 8, 9 ],
+            "Y": [ 35 ]
+          }
+        },
+        "cf_12_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0000000100010110",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:44.34-44.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 8, 9 ],
+            "Y": [ 38 ]
+          }
+        },
+        "cf_13_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1111111101111110",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:46.34-46.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 8, 9 ],
+            "Y": [ 37 ]
+          }
+        },
+        "cf_14_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1100110111011010",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:48.34-48.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 40 ]
+          }
+        },
+        "cf_15_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0100110111001101",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:50.34-50.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 41 ]
+          }
+        },
+        "cf_16_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0010101110111101",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:52.34-52.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 26 ]
+          }
+        },
+        "cf_17_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1010101110101010",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:54.34-54.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 25 ]
+          }
+        },
+        "cf_1_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0000000001101000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:23.34-23.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 9 ],
+            "Y": [ 30 ]
+          }
+        },
+        "cf_2_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0001011000000000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:25.34-25.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 9 ],
+            "Y": [ 23 ]
+          }
+        },
+        "cf_3_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0000000000001000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:27.34-27.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 7, 8, 9 ],
+            "Y": [ 28 ]
+          }
+        },
+        "cf_4_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0111111001101000",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:29.34-29.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 44 ]
+          }
+        },
+        "cf_5_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "0001011001111110",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:31.34-31.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 45 ]
+          }
+        },
+        "cf_6_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1001011101111111",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:33.34-33.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 21 ]
+          }
+        },
+        "cf_7_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1000000100010111",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:35.34-35.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 20 ]
+          }
+        },
+        "cf_8_cell": {
+          "hide_name": 0,
+          "type": "$lut",
+          "parameters": {
+            "LUT": "1000000000000001",
+            "WIDTH": "00000000000000000000000000000100"
+          },
+          "attributes": {
+            "module_not_derived": "00000000000000000000000000000001",
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:37.34-37.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67"
+          },
+          "port_directions": {
+            "A": "input",
+            "Y": "output"
+          },
+          "connections": {
+            "A": [ 5, 6, 7, 8 ],
+            "Y": [ 32 ]
+          }
+        }
+      },
+      "netnames": {
+        "$0\\data_dn[0:0]": {
+          "hide_name": 1,
+          "bits": [ 31 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8"
+          }
+        },
+        "$0\\data_dp[0:0]": {
+          "hide_name": 1,
+          "bits": [ 24 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8"
+          }
+        },
+        "$0\\dataout[5:0]": {
+          "hide_name": 1,
+          "bits": [ 22, 33, 36, 39, 42, 27 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:66.5-78.8"
+          }
+        },
+        "$abc$636$aiger$o4": {
+          "hide_name": 1,
+          "bits": [ 43 ],
+          "attributes": {
+          }
+        },
+        "$abc$636$auto$rtlil.cc:3488:NotGate$281": {
+          "hide_name": 1,
+          "bits": [ 46 ],
+          "attributes": {
+          }
+        },
+        "$abc$636$auto$rtlil.cc:3497:MuxGate$278": {
+          "hide_name": 1,
+          "bits": [ 29 ],
+          "attributes": {
+          }
+        },
+        "cf_0": {
+          "hide_name": 0,
+          "bits": [ "0" ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:21.10-21.14"
+          }
+        },
+        "cf_1": {
+          "hide_name": 0,
+          "bits": [ 30 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:22.10-22.14"
+          }
+        },
+        "cf_10": {
+          "hide_name": 0,
+          "bits": [ 34 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:39.10-39.15"
+          }
+        },
+        "cf_11": {
+          "hide_name": 0,
+          "bits": [ 35 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:41.10-41.15"
+          }
+        },
+        "cf_12": {
+          "hide_name": 0,
+          "bits": [ 38 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:43.10-43.15"
+          }
+        },
+        "cf_13": {
+          "hide_name": 0,
+          "bits": [ 37 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:45.10-45.15"
+          }
+        },
+        "cf_14": {
+          "hide_name": 0,
+          "bits": [ 40 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:47.10-47.15"
+          }
+        },
+        "cf_15": {
+          "hide_name": 0,
+          "bits": [ 41 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:49.10-49.15"
+          }
+        },
+        "cf_16": {
+          "hide_name": 0,
+          "bits": [ 26 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:51.10-51.15"
+          }
+        },
+        "cf_17": {
+          "hide_name": 0,
+          "bits": [ 25 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:53.10-53.15"
+          }
+        },
+        "cf_2": {
+          "hide_name": 0,
+          "bits": [ 23 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:24.10-24.14"
+          }
+        },
+        "cf_3": {
+          "hide_name": 0,
+          "bits": [ 28 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:26.10-26.14"
+          }
+        },
+        "cf_4": {
+          "hide_name": 0,
+          "bits": [ 44 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:28.10-28.14"
+          }
+        },
+        "cf_5": {
+          "hide_name": 0,
+          "bits": [ 45 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:30.10-30.14"
+          }
+        },
+        "cf_6": {
+          "hide_name": 0,
+          "bits": [ 21 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:32.10-32.14"
+          }
+        },
+        "cf_7": {
+          "hide_name": 0,
+          "bits": [ 20 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:34.10-34.14"
+          }
+        },
+        "cf_8": {
+          "hide_name": 0,
+          "bits": [ 32 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:36.10-36.14"
+          }
+        },
+        "cf_9": {
+          "hide_name": 0,
+          "bits": [ "1" ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:38.10-38.14"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 2 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:10.11-10.14"
+          }
+        },
+        "data_dn": {
+          "hide_name": 0,
+          "bits": [ 19 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:18.16-18.23"
+          }
+        },
+        "data_dp": {
+          "hide_name": 0,
+          "bits": [ 18 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:17.16-17.23"
+          }
+        },
+        "datain": {
+          "hide_name": 0,
+          "bits": [ 5, 6, 7, 8, 9 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:13.17-13.23"
+          }
+        },
+        "datain_5bis7": {
+          "hide_name": 0,
+          "bits": [ 17 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:16.16-16.28"
+          }
+        },
+        "dataout": {
+          "hide_name": 0,
+          "bits": [ 10, 11, 12, 13, 14, 15 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:14.22-14.29"
+          }
+        },
+        "ena": {
+          "hide_name": 0,
+          "bits": [ 4 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:12.11-12.14"
+          }
+        },
+        "only_5b": {
+          "hide_name": 0,
+          "bits": [ 16 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:15.16-15.23"
+          }
+        },
+        "reset_n": {
+          "hide_name": 0,
+          "bits": [ 3 ],
+          "attributes": {
+            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v:11.11-11.18"
+          }
+        }
+      }
+    }
+  }
+}

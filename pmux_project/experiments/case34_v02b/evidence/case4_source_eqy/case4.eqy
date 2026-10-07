@@ -1,0 +1,23 @@
+[gold]
+read_verilog -formal /home/james/work/pmux-yosys/pmux_project/pmux_case/competition_case/test4.v
+
+[gate]
+read_verilog -formal /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v
+
+[script]
+hierarchy -check -top test4
+prep
+memory_map
+async2sync
+
+[partition test4]
+merge *
+
+[strategy sat]
+use sat
+depth 20
+
+[strategy pdr]
+use sby
+engine abc pdr
+timeout 300

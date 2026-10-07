@@ -1,0 +1,110 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+
+-- Executing script file `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_vendor/run.ys' --
+
+1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_sim.v
+Parsing SystemVerilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\VCC'.
+Generating RTLIL representation for module `\GND'.
+Generating RTLIL representation for module `\fiftyfivenm_io_ibuf'.
+Generating RTLIL representation for module `\fiftyfivenm_io_obuf'.
+Generating RTLIL representation for module `\fiftyfivenm_lcell_comb'.
+Generating RTLIL representation for module `\dffeas'.
+Generating RTLIL representation for module `\fiftyfivenm_pll'.
+Generating RTLIL representation for module `\fiftyfivenm_mac_mult'.
+Generating RTLIL representation for module `\fiftyfivenm_mac_out'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/m9k_bb.v
+Parsing SystemVerilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/m9k_bb.v' to AST representation.
+Generating RTLIL representation for module `\altsyncram'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/altpll_bb.v
+Parsing SystemVerilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/altpll_bb.v' to AST representation.
+Successfully finished Verilog frontend.
+
+4. Executing RTLIL frontend.
+Input filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_custom/post_abc9.il
+
+5. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1. Analyzing design hierarchy..
+Top module:  \test4
+
+5.2. Analyzing design hierarchy..
+Top module:  \test4
+Removed 0 unused modules.
+
+6. Executing TECHMAP pass (map to technology primitives).
+
+6.1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v
+Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v' to AST representation.
+Generating RTLIL representation for module `$__inpad'.
+Generating RTLIL representation for module `$__outpad'.
+Generating RTLIL representation for module `$lut'.
+Successfully finished Verilog frontend.
+
+6.2. Continuing TECHMAP pass.
+Using template $paramod$7952825483b2f05d9ec49b9288eb57be060b8b06$lut for cells of type $lut.
+Using template $paramod$5e65f58a04614dd636f6820359165a5ac4fb83c8$lut for cells of type $lut.
+Using template $paramod$4518d24fec38775f282096f22ad6cfb50f51384f$lut for cells of type $lut.
+Using template $paramod$200eede730cbf927fa09a9de962f5aa48b0300d8$lut for cells of type $lut.
+Using template $paramod$3d17fc5ef274cc2c52ebb0867c65208449f1f8f5$lut for cells of type $lut.
+Using template $paramod$e60586c98e1f5a3dfae2b0df4e16442284fac9f8$lut for cells of type $lut.
+Using template $paramod$9ed2598ae274a1e2267b778f931f47164d7cbf99$lut for cells of type $lut.
+Using template $paramod$911f026ffc298b462c7834ce42e13050cb76a970$lut for cells of type $lut.
+Using template $paramod$2f67e6df02fb52fbe054d2eaa2acfca7d27fb6cc$lut for cells of type $lut.
+Using template $paramod$3bb8d4b386cc5ef6aa72ddc5a0267cadcab73933$lut for cells of type $lut.
+Using template $paramod$abb1f47a5a161a7e9ea18c56b1202972543880af$lut for cells of type $lut.
+Using template $paramod$51f8bdebefd44711eb5099744e5c7cf65257ade9$lut for cells of type $lut.
+Using template $paramod$2f0bd26a7315ceeadeae11fb0c47260c02cb4e84$lut for cells of type $lut.
+Using template $paramod$9c717fdfdc62a53297c998617b816f98c8641367$lut for cells of type $lut.
+Using template $paramod$7536133b79ee9f91b016162308fca8466b9f8dbe$lut for cells of type $lut.
+Using template $paramod$afb742e5b30213a0b722e0866cc620559a0c0739$lut for cells of type $lut.
+Using template $paramod$018d71a0fe325d6362687fe53ac13dd6340e400d$lut for cells of type $lut.
+Using template $paramod$a1d323730045824cfc84bb9f4ee8031f1c4dcc9e$lut for cells of type $lut.
+Using template $paramod$04cd49bd1fc1161d5af0a5e220aca96eaefb4d95$lut for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11001000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10000000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01000000 for cells of type $lut.
+Using template $paramod$lut\WIDTH=32'00000000000000000000000000000001\LUT=2'01 for cells of type $lut.
+No more expansions possible.
+<suppressed ~285 debug messages>
+Removed 0 unused cells and 57 unused wires.
+
+7. Executing CHECK pass (checking for obvious problems).
+Checking module test4...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== test4 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       31 wires
+       45 wire bits
+       25 public wires
+       34 public wire bits
+        9 ports
+       18 port bits
+       37 cells
+        1   $not
+       10   dffeas
+       26   fiftyfivenm_lcell_comb
+
+9. Executing RTLIL backend.
+Output filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_vendor/vendor.il
+
+10. Executing JSON backend.
+
+End of script. Logfile hash: 8af7026111, time: 0.03s, user: 0.01s, system: 0.00s, MEM: 23.02 MB peak
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Time spent: 40% 1x techmap (0 sec), 35% 7x read_verilog (0 sec), ...

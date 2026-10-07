@@ -1,0 +1,8 @@
+read_verilog /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v
+synth_intel -family cycloneiv -top test4 -run begin:map_cells
+check
+stat
+select test4
+write_rtlil -selected /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_default/post_abc9.il
+select -clear
+write_json /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_default/post_abc9.json

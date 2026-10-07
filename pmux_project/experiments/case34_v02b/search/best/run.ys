@@ -1,0 +1,13 @@
+read_verilog /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/candidate.v
+proc
+techmap -map +/techmap.v
+techmap -map /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v
+hierarchy -check -top test4
+opt
+synth_intel -family cycloneiv -top test4 -run map_ffs:map_luts
+abc9 -lut 4 -W 300 -script /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/abc.script
+clean
+opt -fast
+check
+write_rtlil /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/post_abc9.il
+write_json /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/search/work/post_abc9.json
