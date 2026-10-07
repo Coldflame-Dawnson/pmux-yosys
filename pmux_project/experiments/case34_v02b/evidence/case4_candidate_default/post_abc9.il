@@ -2,45 +2,45 @@
 
 autoidx 2103
 
-attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:9.1-79.10"
+attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:9.1-79.10"
 attribute \top 1
 module \test4
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:10.11-10.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:10.11-10.14"
   wire input 1 \clk
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:11.11-11.18"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:11.11-11.18"
   wire input 2 \reset_n
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:12.11-12.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:12.11-12.14"
   wire input 3 \ena
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:13.17-13.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:13.17-13.23"
   wire width 5 input 4 \datain
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:14.22-14.29"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:14.22-14.29"
   wire width 6 output 5 \dataout
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:15.16-15.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:15.16-15.23"
   wire output 6 \only_5b
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:16.16-16.28"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:16.16-16.28"
   wire output 7 \datain_5bis7
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:17.16-17.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:17.16-17.23"
   wire output 8 \data_dp
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:18.16-18.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:18.16-18.23"
   wire output 9 \data_dn
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:20.16-20.27"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:20.16-20.27"
   wire width 10 \lookup_word
 
   wire \data_dn_dffeas_q_d_$lut_Y_A_$lut_A_Y_$lut_A_Y_$lut_Y_4_A
 
   wire \only_5b_$lut_Y_A
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
   wire \data_dn_dffeas_q_d
 
   wire \data_dn_dffeas_q_d_$lut_Y_A_$lut_A_Y_$lut_A_Y_$lut_Y_4_A_1_$lut_Y_A
@@ -77,10 +77,10 @@ module \test4
 
   wire \data_dn_dffeas_q_d_$lut_Y_A_$lut_A_Y_$lut_A_Y_$lut_Y_4_A_2
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
   wire \data_dp_dffeas_q_d
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
   wire width 6 \data_dn_dffeas_q_d_$lut_Y_A_$lut_A_Y_$lut_A_Y
 
   wire \data_dn_dffeas_q_d_$lut_Y_A_$lut_A_Y_$lut_A_Y_$lut_Y_2_A_2
@@ -103,7 +103,7 @@ module \test4
 
   wire \data_dn_dffeas_q_d_$lut_Y_A_$lut_A_Y_$lut_A_Y_$lut_Y_A_$lut_Y_A
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \dataout_dffeas_q_5
     parameter \is_wysiwyg "TRUE"
@@ -127,7 +127,7 @@ module \test4
     connect \Y \only_5b
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \datain_5bis7_dffeas_q
     parameter \is_wysiwyg "TRUE"
@@ -144,7 +144,7 @@ module \test4
     connect \sload 1'0
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \dataout_dffeas_q
     parameter \is_wysiwyg "TRUE"
@@ -161,7 +161,7 @@ module \test4
     connect \sload 1'0
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \data_dn_dffeas_q
     parameter \is_wysiwyg "TRUE"
@@ -178,7 +178,7 @@ module \test4
     connect \sload 1'0
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \dataout_dffeas_q_1
     parameter \is_wysiwyg "TRUE"
@@ -195,7 +195,7 @@ module \test4
     connect \sload 1'0
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \data_dp_dffeas_q
     parameter \is_wysiwyg "TRUE"
@@ -212,7 +212,7 @@ module \test4
     connect \sload 1'0
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \dataout_dffeas_q_2
     parameter \is_wysiwyg "TRUE"
@@ -229,7 +229,7 @@ module \test4
     connect \sload 1'0
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \dataout_dffeas_q_3
     parameter \is_wysiwyg "TRUE"
@@ -246,7 +246,7 @@ module \test4
     connect \sload 1'0
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \dataout_dffeas_q_4
     parameter \is_wysiwyg "TRUE"
@@ -431,7 +431,7 @@ module \test4
     connect \A { \data_dn_dffeas_q_d_$lut_Y_A_$lut_A_Y_$lut_A_Y_$lut_Y_A_$lut_Y_A \datain [0] \datain [1] \datain [2] }
   end
 
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \only_5b_$lut_Y_A_dffeas_q
     parameter \is_wysiwyg "TRUE"

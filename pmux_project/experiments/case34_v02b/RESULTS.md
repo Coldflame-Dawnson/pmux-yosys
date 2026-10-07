@@ -2,7 +2,9 @@
 
 日期：2026-10-07
 角色：B（case3/case4 算法材料；生产 Pass/集成）
-证据状态：本文件中的计数与 PASS 均为本机实际执行结果；尚未经 C 独立重放。
+证据状态：本文件中的计数与 PASS 均为本机实际执行结果；C 已独立重放并确认
+case3/case4 计数、两级 EQY 和 544 条搜索轨迹。2026-10-07 又使用当前已提交
+候选重新生成证据，以修正 case3 source 哈希的溯源差异。
 
 ## 1. 不变量与口径
 
@@ -53,9 +55,9 @@ default 保留 gpioout[0] <= sr[0]
 
 顺序位减少来自等价综合合并，不是跨寄存器传播；候选没有增加 DFF 或 IO。
 candidate source SHA-256：
-`77C650BAFCA3D1628C09B3546169A1AD2AD01DD5817BAF2E62F2484E333D9B9B`。
+`DD2EB7F827A7B8719914E972D054D12925D2109F4EDE33C65293BE69B887EC52`。
 post-ABC9 gate SHA-256：
-`285E30F2D7A27AD098C5BA11F8E6A047AC8F0FCB471D97FD1060936458F531B7`。
+`BB1026ED444F44A6D8859BB9A180186793B7A404E080DC5BDA0D062405A5954D`。
 
 ## 3. case4：有界常量表 Shannon/cofactor 分解
 
@@ -99,15 +101,16 @@ post-ABC9 `$lut`** 与 **26 个厂商组合原语加 1 个 `$not`** 同时成立
 
 candidate source SHA-256：
 `C789DB300EC3FC5D4E60F0C2F6698D39E4836D7DA7FD05D328FB3BE17AC4DEB4`。
-post-ABC9 gate SHA-256：
-`83B5765F6F4364EE873727D65D87E28E628D63A89F6857CB7C7A917C23F3EDC1`。
+post-ABC9 gate SHA-256：以 `evidence/summary.json` 的当前生成值为准；本次刷新为
+`BD9D87E50E510E2EB1C12896D1FABA327104ADDA741E01DF4C084B202BE8EFC5`。
 
 ## 4. 生产化门禁
 
 当前只完成算法设计、候选生成和短验证。B 的生产结构改写保持未启用，直到：
 
-1. A 冻结并实现 guard/比较器和常量表证明接口；
-2. C 独立核对真值表、统计停止点、EQY gold/gate 和 PASS；
+1. A 的接口与实验拓扑证明已完成；仍须补齐冻结 `synth_intel` 插入点的
+   case3 guard 证明和 case4 完整 5×10 表/sequential sink 证明；
+2. C 已独立核对真值表、统计停止点、EQY gold/gate 和 PASS；
 3. 团队决定把 case4 的 P2 严格 oracle 修正为 27 `$lut`，或提供同阶段 26
    `$lut` 的新证据；
 4. B 的结构 matcher、快照预检、隔离试改、成本门和原子提交通过负例测试；

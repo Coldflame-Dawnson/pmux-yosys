@@ -6,7 +6,7 @@
  \----------------------------------------------------------------------------/
  Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
 
--- Executing script file `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_vendor/run.ys' --
+-- Executing script file `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_vendor/run.ys' --
 
 1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_sim.v
 Parsing SystemVerilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_sim.v' to AST representation.
@@ -31,7 +31,7 @@ Parsing SystemVerilog input from `/home/james/work/pmux-yosys/pmux_project/offic
 Successfully finished Verilog frontend.
 
 4. Executing RTLIL frontend.
-Input filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_candidate/post_abc9.il
+Input filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_candidate/post_abc9.il
 
 5. Executing HIERARCHY pass (managing design hierarchy).
 
@@ -86,10 +86,10 @@ Found and reported 0 problems.
        10   fiftyfivenm_lcell_comb
 
 9. Executing RTLIL backend.
-Output filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_vendor/vendor.il
+Output filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_vendor/vendor.il
 
 10. Executing JSON backend.
 
-End of script. Logfile hash: 55a52c5b2d, time: 0.03s, user: 0.01s, system: 0.00s, MEM: 22.09 MB peak
+End of script. Logfile hash: 040c76d469, time: 0.01s, user: 0.00s, system: 0.00s, MEM: 22.29 MB peak
 Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
-Time spent: 53% 7x read_verilog (0 sec), 19% 1x techmap (0 sec), ...
+Time spent: 57% 7x read_verilog (0 sec), 18% 1x techmap (0 sec), ...

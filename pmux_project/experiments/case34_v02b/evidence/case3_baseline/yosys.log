@@ -6,7 +6,7 @@
  \----------------------------------------------------------------------------/
  Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
 
--- Executing script file `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_baseline/run.ys' --
+-- Executing script file `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_baseline/run.ys' --
 
 1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/pmux_case/competition_case/test3.v
 Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/pmux_case/competition_case/test3.v' to AST representation.
@@ -828,12 +828,12 @@ Found and reported 0 problems.
        17   dffeas
 
 5. Executing RTLIL backend.
-Output filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_baseline/post_abc9.il
+Output filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_baseline/post_abc9.il
 
 6. Executing JSON backend.
 
 Warnings: 1 unique messages, 1 total
 Warnings: 1 experimental features used (not excluded with -x).
-End of script. Logfile hash: 98a66d880e, time: 0.19s, user: 0.03s, system: 0.03s, MEM: 26.42 MB peak
+End of script. Logfile hash: 3297a37ad3, time: 0.08s, user: 0.03s, system: 0.02s, MEM: 26.73 MB peak
 Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
-Time spent: 48% 1x abc9_exe (0 sec), 20% 17x read_verilog (0 sec), ...
+Time spent: 54% 1x abc9_exe (0 sec), 23% 17x read_verilog (0 sec), ...

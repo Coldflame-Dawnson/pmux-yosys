@@ -354,72 +354,72 @@ module \altsyncram
   attribute \src "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/m9k_bb.v:67.18-67.32"
   wire input 20 \addressstall_b
 end
-attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:9.1-79.10"
+attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:9.1-79.10"
 attribute \top 1
 module \test4
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:10.11-10.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:10.11-10.14"
   wire input 1 \clk
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:11.11-11.18"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:11.11-11.18"
   wire input 2 \reset_n
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:12.11-12.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:12.11-12.14"
   wire input 3 \ena
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:13.17-13.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:13.17-13.23"
   wire width 5 input 4 \datain
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:14.22-14.29"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:14.22-14.29"
   wire width 6 output 5 \dataout
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:15.16-15.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:15.16-15.23"
   wire output 6 \only_5b
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:16.16-16.28"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:16.16-16.28"
   wire output 7 \datain_5bis7
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:17.16-17.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:17.16-17.23"
   wire output 8 \data_dp
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:18.16-18.23"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:18.16-18.23"
   wire output 9 \data_dn
   attribute \src "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:40.22-40.23"
   attribute \force_downto 1
   attribute \single_bit_vector 1
   wire $abc$636$lut$not$aiger635$3.A
   wire $abc$636$auto$rtlil.cc:3488:NotGate$281
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:22.10-22.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:22.10-22.14"
   wire \cf_1
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:24.10-24.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:24.10-24.14"
   wire \cf_2
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:26.10-26.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:26.10-26.14"
   wire \cf_3
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:28.10-28.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:28.10-28.14"
   wire \cf_4
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:30.10-30.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:30.10-30.14"
   wire \cf_5
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:32.10-32.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:32.10-32.14"
   wire \cf_6
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:34.10-34.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:34.10-34.14"
   wire \cf_7
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:36.10-36.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:36.10-36.14"
   wire \cf_8
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
   wire $0\data_dn[0:0]
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:39.10-39.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:39.10-39.15"
   wire \cf_10
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:41.10-41.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:41.10-41.15"
   wire \cf_11
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:43.10-43.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:43.10-43.15"
   wire \cf_12
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:45.10-45.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:45.10-45.15"
   wire \cf_13
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:47.10-47.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:47.10-47.15"
   wire \cf_14
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:49.10-49.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:49.10-49.15"
   wire \cf_15
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:51.10-51.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:51.10-51.15"
   wire \cf_16
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:53.10-53.15"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:53.10-53.15"
   wire \cf_17
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
   wire $0\data_dp[0:0]
   wire $abc$636$auto$rtlil.cc:3497:MuxGate$278
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8"
   wire width 6 $0\dataout[5:0]
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$246
     parameter \is_wysiwyg "TRUE"
@@ -443,7 +443,7 @@ module \test4
     connect \A $abc$636$lut$not$aiger635$3.A
     connect \Y \only_5b
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:23.34-23.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:23.34-23.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_1_cell
     parameter \lut_mask 16'0000000001101000
@@ -454,7 +454,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [4]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:25.34-25.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:25.34-25.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_2_cell
     parameter \lut_mask 16'0001011000000000
@@ -465,7 +465,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [4]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:27.34-27.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:27.34-27.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_3_cell
     parameter \lut_mask 16'0000000000001000
@@ -476,7 +476,7 @@ module \test4
     connect \datac \datain [3]
     connect \datad \datain [4]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:29.34-29.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:29.34-29.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_4_cell
     parameter \lut_mask 16'0111111001101000
@@ -487,7 +487,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:31.34-31.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:31.34-31.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_5_cell
     parameter \lut_mask 16'0001011001111110
@@ -498,7 +498,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:33.34-33.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:33.34-33.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_6_cell
     parameter \lut_mask 16'1001011101111111
@@ -509,7 +509,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:35.34-35.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:35.34-35.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_7_cell
     parameter \lut_mask 16'1000000100010111
@@ -520,7 +520,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:37.34-37.101|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:37.34-37.101|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_8_cell
     parameter \lut_mask 16'1000000000000001
@@ -531,7 +531,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:40.34-40.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:40.34-40.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_10_cell
     parameter \lut_mask 16'1110000011100111
@@ -542,7 +542,7 @@ module \test4
     connect \datac \datain [3]
     connect \datad \datain [4]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:42.34-42.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:42.34-42.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_11_cell
     parameter \lut_mask 16'0111000011110001
@@ -553,7 +553,7 @@ module \test4
     connect \datac \datain [3]
     connect \datad \datain [4]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:44.34-44.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:44.34-44.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_12_cell
     parameter \lut_mask 16'0000000100010110
@@ -564,7 +564,7 @@ module \test4
     connect \datac \datain [3]
     connect \datad \datain [4]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:46.34-46.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:46.34-46.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_13_cell
     parameter \lut_mask 16'1111111101111110
@@ -575,7 +575,7 @@ module \test4
     connect \datac \datain [3]
     connect \datad \datain [4]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:48.34-48.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:48.34-48.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_14_cell
     parameter \lut_mask 16'1100110111011010
@@ -586,7 +586,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:50.34-50.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:50.34-50.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_15_cell
     parameter \lut_mask 16'0100110111001101
@@ -597,7 +597,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$247
     parameter \is_wysiwyg "TRUE"
@@ -613,7 +613,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$245
     parameter \is_wysiwyg "TRUE"
@@ -629,7 +629,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$250
     parameter \is_wysiwyg "TRUE"
@@ -645,7 +645,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:52.34-52.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:52.34-52.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_16_cell
     parameter \lut_mask 16'0010101110111101
@@ -656,7 +656,7 @@ module \test4
     connect \datac \datain [2]
     connect \datad \datain [3]
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$249
     parameter \is_wysiwyg "TRUE"
@@ -672,7 +672,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$272
     parameter \is_wysiwyg "TRUE"
@@ -688,7 +688,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$251
     parameter \is_wysiwyg "TRUE"
@@ -704,7 +704,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$248
     parameter \is_wysiwyg "TRUE"
@@ -720,7 +720,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$254
     parameter \is_wysiwyg "TRUE"
@@ -736,7 +736,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66.5-78.8|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas $auto$ff.cc:337:slice$253
     parameter \is_wysiwyg "TRUE"
@@ -752,7 +752,7 @@ module \test4
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:54.34-54.103|/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:54.34-54.103|/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v:7.35-7.67|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_map.v:53.77-53.163"
   attribute \module_not_derived 1
   cell \fiftyfivenm_lcell_comb \cf_17_cell
     parameter \lut_mask 16'1010101110101010

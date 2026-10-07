@@ -1385,7 +1385,7 @@
     "test3": {
       "attributes": {
         "top": "00000000000000000000000000000001",
-        "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:5.1-32.10"
+        "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:5.1-32.10"
       },
       "ports": {
         "clk": {
@@ -1437,7 +1437,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1473,7 +1473,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1563,7 +1563,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1725,7 +1725,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1761,7 +1761,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1797,7 +1797,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1833,7 +1833,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1869,7 +1869,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1905,7 +1905,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1941,7 +1941,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -1977,7 +1977,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -2013,7 +2013,7 @@
           },
           "attributes": {
             "module_not_derived": "00000000000000000000000000000001",
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
           },
           "port_directions": {
             "aload": "input",
@@ -2046,14 +2046,14 @@
           "hide_name": 0,
           "bits": [ 2 ],
           "attributes": {
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:6.7-6.10"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:6.7-6.10"
           }
         },
         "cs": {
           "hide_name": 0,
           "bits": [ 3 ],
           "attributes": {
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:6.12-6.14"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:6.12-6.14"
           }
         },
         "cs_$lut_A_Y": {
@@ -2066,7 +2066,7 @@
           "hide_name": 0,
           "bits": [ 5, 6, "1", 6, "1", 7, "1", 7 ],
           "attributes": {
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:9.14-9.21"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:9.14-9.21"
           }
         },
         "gpioout_dffeas_q_1_d": {
@@ -2133,21 +2133,21 @@
           "hide_name": 0,
           "bits": [ 21, 20, 19, 18, 16, 15, 14, 22 ],
           "attributes": {
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:13.11-13.13"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:13.11-13.13"
           }
         },
         "sr_in": {
           "hide_name": 0,
           "bits": [ 4 ],
           "attributes": {
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:7.7-7.12"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:7.7-7.12"
           }
         },
         "sr_out": {
           "hide_name": 0,
           "bits": [ 8 ],
           "attributes": {
-            "src": "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:8.8-8.14"
+            "src": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:8.8-8.14"
           }
         }
       }

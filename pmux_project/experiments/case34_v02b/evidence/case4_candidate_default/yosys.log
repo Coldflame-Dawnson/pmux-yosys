@@ -6,10 +6,10 @@
  \----------------------------------------------------------------------------/
  Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
 
--- Executing script file `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_default/run.ys' --
+-- Executing script file `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_candidate_default/run.ys' --
 
-1. Executing Verilog-2005 frontend: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v
-Parsing Verilog input from `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v' to AST representation.
+1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v
+Parsing Verilog input from `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v' to AST representation.
 Generating RTLIL representation for module `\case4_lut4'.
 Generating RTLIL representation for module `\test4'.
 Successfully finished Verilog frontend.
@@ -169,7 +169,7 @@ Removed 1 unused modules.
 Cleaned up 0 empty switches.
 
 2.5.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 2 switch rules as full_case in process $proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12 in module test4.
+Marked 2 switch rules as full_case in process $proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12 in module test4.
 Removed a total of 0 dead cases.
 
 2.5.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -179,14 +179,14 @@ Promoted 0 assignments to connections.
 2.5.4. Executing PROC_INIT pass (extract init attributes).
 
 2.5.5. Executing PROC_ARST pass (detect async resets in processes).
-Found async reset \reset_n in `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Found async reset \reset_n in `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
 
 2.5.6. Executing PROC_ROM pass (convert switches to ROMs).
 Converted 0 switches.
 <suppressed ~1 debug messages>
 
 2.5.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Creating decoders for process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
      1/3: { $0\dataout[5:0] $0\only_5b[0:0] }
      2/3: { $0\data_dp[0:0] $0\data_dn[0:0] }
      3/3: $0\datain_5bis7[0:0]
@@ -194,22 +194,22 @@ Creating decoders for process `\test4.$proc$/mnt/d/Work/Embedded_competition/Pro
 2.5.8. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 2.5.9. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\test4.\dataout' using process `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Creating register for signal `\test4.\dataout' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
   created $adff cell `$procdff$47' with positive edge clock and positive level reset.
-Creating register for signal `\test4.\only_5b' using process `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Creating register for signal `\test4.\only_5b' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
   created $adff cell `$procdff$52' with positive edge clock and positive level reset.
-Creating register for signal `\test4.\datain_5bis7' using process `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Creating register for signal `\test4.\datain_5bis7' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
   created $dff cell `$procdff$59' with positive edge clock.
-Creating register for signal `\test4.\data_dp' using process `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Creating register for signal `\test4.\data_dp' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
   created $adff cell `$procdff$64' with positive edge clock and positive level reset.
-Creating register for signal `\test4.\data_dn' using process `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Creating register for signal `\test4.\data_dn' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
   created $adff cell `$procdff$69' with positive edge clock and positive level reset.
 
 2.5.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 2.5.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
-Removing empty process `test4.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Found and cleaned up 1 empty switch in `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Removing empty process `test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
 Cleaned up 1 empty switch.
 
 2.5.12. Executing OPT_EXPR pass (perform const folding).
@@ -1237,7 +1237,7 @@ Removed a total of 0 cells.
 2.32.14. Executing OPT_SHARE pass.
 
 2.32.15. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $auto$ff.cc:337:slice$165 ($_SDFFCE_PN0P_) from module test4 (D = $flatten\cf_7_cell.$shiftx$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/generated/case4_cofactor_candidate.v:6$27.buffer [10], Q = \datain_5bis7, rval = 1'0).
+Adding SRST signal on $auto$ff.cc:337:slice$165 ($_SDFFCE_PN0P_) from module test4 (D = $flatten\cf_7_cell.$shiftx$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:6$27.buffer [10], Q = \datain_5bis7, rval = 1'0).
 
 2.32.16. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \test4..
@@ -1513,12 +1513,12 @@ Found and reported 0 problems.
        10   dffeas
 
 5. Executing RTLIL backend.
-Output filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_default/post_abc9.il
+Output filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_candidate_default/post_abc9.il
 
 6. Executing JSON backend.
 
 Warnings: 1 unique messages, 1 total
 Warnings: 1 experimental features used (not excluded with -x).
-End of script. Logfile hash: fd96e81b0e, time: 0.23s, user: 0.05s, system: 0.03s, MEM: 30.87 MB peak
+End of script. Logfile hash: 0669bd05cc, time: 0.09s, user: 0.07s, system: 0.00s, MEM: 30.90 MB peak
 Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
-Time spent: 25% 1x abc9_exe (0 sec), 14% 17x read_verilog (0 sec), ...
+Time spent: 27% 1x abc9_exe (0 sec), 13% 37x opt_expr (0 sec), ...

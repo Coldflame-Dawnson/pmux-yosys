@@ -1,11 +1,11 @@
 read_verilog -sv -lib +/intel/max10/cells_sim.v
 read_verilog -sv -lib +/intel/common/m9k_bb.v
 read_verilog -sv -lib +/intel/common/altpll_bb.v
-read_rtlil /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_candidate/post_abc9.il
+read_rtlil /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_candidate/post_abc9.il
 hierarchy -check -top test3
 techmap -map +/intel/max10/cells_map.v
 clean -purge
 check
 stat
-write_rtlil /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_vendor/vendor.il
-write_json /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_vendor/vendor.json
+write_rtlil /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_vendor/vendor.il
+write_json /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_vendor/vendor.json

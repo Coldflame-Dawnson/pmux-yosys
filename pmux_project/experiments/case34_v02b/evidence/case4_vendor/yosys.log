@@ -6,7 +6,7 @@
  \----------------------------------------------------------------------------/
  Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
 
--- Executing script file `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_vendor/run.ys' --
+-- Executing script file `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_vendor/run.ys' --
 
 1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_sim.v
 Parsing SystemVerilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/max10/cells_sim.v' to AST representation.
@@ -31,7 +31,7 @@ Parsing SystemVerilog input from `/home/james/work/pmux-yosys/pmux_project/offic
 Successfully finished Verilog frontend.
 
 4. Executing RTLIL frontend.
-Input filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_candidate_custom/post_abc9.il
+Input filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_candidate_custom/post_abc9.il
 
 5. Executing HIERARCHY pass (managing design hierarchy).
 
@@ -101,10 +101,10 @@ Found and reported 0 problems.
        26   fiftyfivenm_lcell_comb
 
 9. Executing RTLIL backend.
-Output filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case4_vendor/vendor.il
+Output filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_vendor/vendor.il
 
 10. Executing JSON backend.
 
-End of script. Logfile hash: 8af7026111, time: 0.03s, user: 0.01s, system: 0.00s, MEM: 23.02 MB peak
+End of script. Logfile hash: 2c0e81512d, time: 0.01s, user: 0.00s, system: 0.00s, MEM: 23.27 MB peak
 Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
-Time spent: 40% 1x techmap (0 sec), 35% 7x read_verilog (0 sec), ...
+Time spent: 42% 7x read_verilog (0 sec), 37% 1x techmap (0 sec), ...

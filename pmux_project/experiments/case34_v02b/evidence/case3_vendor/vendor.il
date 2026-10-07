@@ -354,20 +354,20 @@ module \altsyncram
   attribute \src "/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/m9k_bb.v:67.18-67.32"
   wire input 20 \addressstall_b
 end
-attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:5.1-32.10"
+attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:5.1-32.10"
 attribute \top 1
 module \test3
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:6.7-6.10"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:6.7-6.10"
   wire input 1 \clk
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:6.12-6.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:6.12-6.14"
   wire input 2 \cs
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:7.7-7.12"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:7.7-7.12"
   wire input 3 \sr_in
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:8.8-8.14"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:8.8-8.14"
   wire output 5 \sr_out
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:9.14-9.21"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:9.14-9.21"
   wire width 8 output 4 \gpioout
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:13.11-13.13"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:13.11-13.13"
   wire width 8 \sr
   wire \cs_$lut_A_Y
   wire \gpioout_dffeas_q_1_d_$lut_Y_A
@@ -391,7 +391,7 @@ module \test3
     connect \datac \sr [4]
     connect \datad \gpioout_dffeas_q_1_d_$lut_Y_A
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_out_dffeas_q
     parameter \is_wysiwyg "TRUE"
@@ -407,7 +407,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \gpioout_dffeas_q
     parameter \is_wysiwyg "TRUE"
@@ -423,7 +423,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q
     parameter \is_wysiwyg "TRUE"
@@ -439,7 +439,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q_1
     parameter \is_wysiwyg "TRUE"
@@ -455,7 +455,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q_2
     parameter \is_wysiwyg "TRUE"
@@ -471,7 +471,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q_3
     parameter \is_wysiwyg "TRUE"
@@ -487,7 +487,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q_4
     parameter \is_wysiwyg "TRUE"
@@ -503,7 +503,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \gpioout_dffeas_q_1
     parameter \is_wysiwyg "TRUE"
@@ -519,7 +519,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q_5
     parameter \is_wysiwyg "TRUE"
@@ -535,7 +535,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q_6
     parameter \is_wysiwyg "TRUE"
@@ -551,7 +551,7 @@ module \test3
     connect \sclr 1'0
     connect \sload 1'0
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \sr_dffeas_q_7
     parameter \is_wysiwyg "TRUE"
@@ -652,7 +652,7 @@ module \test3
     connect \datac \sr [4]
     connect \datad \gpioout_dffeas_q_2_d_$lut_Y_A_$lut_Y_A
   end
-  attribute \src "/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
+  attribute \src "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15.1-31.4|/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v:7.54-7.182"
   attribute \module_not_derived 1
   cell \dffeas \gpioout_dffeas_q_2
     parameter \is_wysiwyg "TRUE"

@@ -6,10 +6,10 @@
  \----------------------------------------------------------------------------/
  Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
 
--- Executing script file `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_candidate/run.ys' --
+-- Executing script file `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_candidate/run.ys' --
 
-1. Executing Verilog-2005 frontend: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v
-Parsing Verilog input from `/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v' to AST representation.
+1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v
+Parsing Verilog input from `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v' to AST representation.
 Generating RTLIL representation for module `\test3'.
 Successfully finished Verilog frontend.
 Warning: Feature 'synth_intel' is experimental.
@@ -51,7 +51,7 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 2.5.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15$1 in module test3.
+Marked 1 switch rules as full_case in process $proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15$1 in module test3.
 Removed a total of 0 dead cases.
 
 2.5.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -67,7 +67,7 @@ Converted 0 switches.
 <suppressed ~3 debug messages>
 
 2.5.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\test3.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15$1'.
+Creating decoders for process `\test3.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15$1'.
      1/6: $0\gpioout[7:0] [3:1]
      2/6: $0\gpioout[7:0] [0]
      3/6: $0\gpioout[7:0] [7:4]
@@ -78,18 +78,18 @@ Creating decoders for process `\test3.$proc$/mnt/d/Work/Embedded_competition/Pro
 2.5.8. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 2.5.9. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\test3.\sr_out' using process `\test3.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15$1'.
+Creating register for signal `\test3.\sr_out' using process `\test3.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15$1'.
   created $dff cell `$procdff$35' with positive edge clock.
-Creating register for signal `\test3.\gpioout' using process `\test3.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15$1'.
+Creating register for signal `\test3.\gpioout' using process `\test3.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15$1'.
   created $dff cell `$procdff$36' with positive edge clock.
-Creating register for signal `\test3.\sr' using process `\test3.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15$1'.
+Creating register for signal `\test3.\sr' using process `\test3.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15$1'.
   created $dff cell `$procdff$37' with positive edge clock.
 
 2.5.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 2.5.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 3 empty switches in `\test3.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15$1'.
-Removing empty process `test3.$proc$/mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/case3_guard_candidate.v:15$1'.
+Found and cleaned up 3 empty switches in `\test3.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15$1'.
+Removing empty process `test3.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v:15$1'.
 Cleaned up 3 empty switches.
 
 2.5.12. Executing OPT_EXPR pass (perform const folding).
@@ -852,12 +852,12 @@ Found and reported 0 problems.
        12   dffeas
 
 5. Executing RTLIL backend.
-Output filename: /mnt/d/Work/Embedded_competition/Project_1/case_3_4/b_v02/evidence/case3_candidate/post_abc9.il
+Output filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_candidate/post_abc9.il
 
 6. Executing JSON backend.
 
 Warnings: 1 unique messages, 1 total
 Warnings: 1 experimental features used (not excluded with -x).
-End of script. Logfile hash: 61354acb34, time: 0.15s, user: 0.03s, system: 0.01s, MEM: 27.10 MB peak
+End of script. Logfile hash: 831e4ca726, time: 0.05s, user: 0.03s, system: 0.00s, MEM: 26.29 MB peak
 Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
-Time spent: 41% 1x abc9_exe (0 sec), 23% 17x read_verilog (0 sec), ...
+Time spent: 46% 1x abc9_exe (0 sec), 27% 17x read_verilog (0 sec), ...

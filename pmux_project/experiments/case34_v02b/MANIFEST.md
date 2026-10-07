@@ -34,8 +34,11 @@
 
 ## 已知未决项
 
-- C 的独立重放和验收意见：`MISSING`。
-- A 的 case3 guard/比较器与 case4 真值表证明接口：`MISSING`。
-- 统一生产 Pass、19 微测试、1000 固定种子和四例统一回归：`MISSING`。
+- C 已独立重放并确认算法证据；其报告位于项目交接目录，不属于本证据包。
+- A 的实验拓扑证明接口已完成，但冻结 `synth_intel` 正式插入点仍为
+  `UNVERIFIED`：case3 无 guard 候选，case4 以 `sequential_boundary_changed`
+  拒绝，须由 A 补齐后才能授权生产改写。
+- 统一生产 Pass、1000 固定种子和四例统一生产回归：`MISSING`。B 接入草案的
+  默认模式已通过 19 微测试和 100 固定种子，但尚未形成可 cherry-pick 提交。
 - 与严格完整流程同阶段的 case4 26 `$lut` 证据：`MISSING`；当前可信结果是
   27 `$lut`，厂商口径为 26 个 `fiftyfivenm_lcell_comb` 加 1 个 `$not`。
