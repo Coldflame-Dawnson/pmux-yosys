@@ -7,6 +7,15 @@ B 修复起点：`25217ab0b901c27a2ee9e56bd38c67819c19978f`
 A 上轮审计：`8d0633b09c8eba2dfdff72bb332c5f0fe3bde330`  
 复审结论：**BLOCKED**
 
+## 0. A 交付元数据
+
+- A 复审分支：`feature/a-v02-decision-consumer-reaudit`
+- A 审计内容提交：`21bd35319de40a83fcf45039fde4c3ded79ee181`
+- 远端：`origin/feature/a-v02-decision-consumer-reaudit`
+- 审计内容提交已推送；本地 HEAD 与远端 tracking 在该提交上一致
+- 审计内容提交后工作树：干净
+- 修改范围仅为 `pmux_project/analyzer/Makefile`、A 复审插件和本报告；未修改 `pass/`
+
 ## 1. 范围与方法
 
 本轮只读检查 B 的加固提交，没有修改 `pmux_project/pass/`、冻结接口、官方 RTL、综合
