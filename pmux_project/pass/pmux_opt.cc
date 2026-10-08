@@ -3,6 +3,7 @@
 #include "kernel/sigtools.h"
 #include "pmux_opt_api.h"
 #include "readonly_analyzer.h"
+#include "case34_rewrite.h"
 #include "rewrite_plan.h"
 
 #include <algorithm>
@@ -134,7 +135,8 @@ static void write_json_file(std::string filename, const Json &document)
 }
 
 static Json build_plan_json(const RewriteBatch &batch, bool commit_ok,
-		const std::string &commit_failure, const std::string &mode)
+		const std::string &commit_failure, const std::string &mode,
+		const Case34RewriteResult &case34_result)
 {
 	Json::array edits;
 	for (const CommittedEdit &edit : batch.committed_edits()) {
@@ -165,6 +167,23 @@ static Json build_plan_json(const RewriteBatch &batch, bool commit_ok,
 			{"reason", entry.reason_code},
 		});
 
+	Json::array structural_edits;
+	for (const Case34StructuralEdit &edit : case34_result.edits) {
+		Json::array splits;
+		for (int split : edit.split_by_output_bit)
+			splits.push_back(split);
+		structural_edits.push_back(Json::object {
+			{"module", edit.module_id},
+			{"rule", edit.rule},
+			{"anchor_cell", edit.anchor_cell},
+			{"proof_reason", edit.proof_reason},
+			{"removed_cells", edit.removed_cells},
+			{"added_cells", edit.added_cells},
+			{"folded_bits", edit.folded_bits},
+			{"split_by_output_bit", splits},
+		});
+	}
+
 	return Json::object {
 		{"schema", 1},
 		{"producer", "pmux_opt"},
@@ -172,6 +191,7 @@ static Json build_plan_json(const RewriteBatch &batch, bool commit_ok,
 		{"commit", commit_ok ? "ok" : "aborted"},
 		{"commit_reason", commit_failure.empty() ? Json(nullptr) : Json(commit_failure)},
 		{"edits", edits},
+		{"structural_edits", structural_edits},
 		{"abandoned_entries", abandoned_entries},
 	};
 }
@@ -180,7 +200,8 @@ static Json build_stats_json(const std::string &mode,
 		int selected_modules, int candidate_cells, int valid_cells, int invalid_cells,
 		int entry_count, int unknown_bits, int proven_zero, int proven_one,
 		std::size_t visited_cells, std::size_t visited_bits, std::size_t propagation_events,
-		const RewriteStats &rewrite_stats, const std::map<std::string, int> &invalid_reasons,
+		const RewriteStats &rewrite_stats, const Case34RewriteResult &case34_result,
+		const std::map<std::string, int> &invalid_reasons,
 		const std::map<std::string, int> &entry_statuses,
 		const std::map<std::string, int> &unknown_reasons,
 		bool commit_ok, const std::string &commit_failure, long long wall_us,
@@ -193,6 +214,8 @@ static Json build_stats_json(const std::string &mode,
 		if (item.first != "normal")
 			reason_counts[item.first] += item.second;
 	for (const auto &item : unknown_reasons)
+		reason_counts[item.first] += item.second;
+	for (const auto &item : case34_result.reason_counts)
 		reason_counts[item.first] += item.second;
 	if (rewrite_stats.rewrite_conflicts != 0)
 		reason_counts["rewrite_conflict"] += int(rewrite_stats.rewrite_conflicts);
@@ -239,6 +262,7 @@ static Json build_stats_json(const std::string &mode,
 		{"producer", "pmux_opt"},
 		{"mode", mode},
 		{"changed_bits", int(rewrite_stats.written_bits)},
+		{"changed_structures", case34_result.committed_candidates},
 		{"reason_codes", reason_codes},
 		{"reason_counts", reason_count_json},
 		{"scan", Json::object {
@@ -272,6 +296,16 @@ static Json build_stats_json(const std::string &mode,
 			{"abandoned_entries", int(rewrite_stats.abandoned_entries)},
 			{"commit", commit_ok ? "ok" : "aborted"},
 			{"commit_reason", commit_failure.empty() ? Json(nullptr) : Json(commit_failure)},
+		}},
+		{"v02_case34", Json::object {
+			{"guarded_candidates", case34_result.guarded_candidates},
+			{"table_candidates", case34_result.table_candidates},
+			{"proven_candidates", case34_result.proven_candidates},
+			{"rejected_candidates", case34_result.rejected_candidates},
+			{"committed_candidates", case34_result.committed_candidates},
+			{"removed_cells", case34_result.removed_cells},
+			{"added_cells", case34_result.added_cells},
+			{"folded_bits", case34_result.folded_bits},
 		}},
 		{"resources", resources},
 	};
@@ -366,6 +400,7 @@ struct PmuxOptPass : public Pass
 		log("             [-test-rewrite-duplicate] [-test-rewrite-conflict]\n");
 		log("             [-test-snapshot-mismatch]\n");
 		log("             [-test-report-constants]\n");
+		log("             [-v02-case34]\n");
 		log("             [-write-plan <file>] [-write-stats <file>] [selection]\n");
 		log("\n");
 		log("Enumerate selected, structurally valid $mux and $pmux cells in stable\n");
@@ -380,6 +415,8 @@ struct PmuxOptPass : public Pass
 		log("-test-report-constants makes a forced stub report original constants so\n");
 		log("the planner's defensive constant/x/z filter can be verified.\n");
 		log("-write-plan and -write-stats emit schema-1 machine-readable JSON.\n");
+		log("-v02-case34 enables proof-gated guarded-cone and constant-table\n");
+		log("structural rewrites. It is opt-in until the production acceptance gate.\n");
 		log("\n");
 	}
 
@@ -392,6 +429,7 @@ struct PmuxOptPass : public Pass
 		bool test_rewrite_conflict = false;
 		bool test_snapshot_mismatch = false;
 		bool test_report_constants = false;
+		bool enable_v02_case34 = false;
 		StubMode stub_mode = StubMode::Unknown;
 		bool stub_mode_set = false;
 		std::string plan_json_file;
@@ -416,6 +454,10 @@ struct PmuxOptPass : public Pass
 			}
 			if (args[argidx] == "-test-report-constants") {
 				test_report_constants = true;
+				continue;
+			}
+			if (args[argidx] == "-v02-case34") {
+				enable_v02_case34 = true;
 				continue;
 			}
 			if (args[argidx] == "-write-plan" && argidx + 1 < GetSize(args)) {
@@ -452,6 +494,8 @@ struct PmuxOptPass : public Pass
 			log_cmd_error("pmux_opt: -test-rewrite-duplicate requires a -stub-* mode.\n");
 		if (test_report_constants && !stub_mode_set)
 			log_cmd_error("pmux_opt: -test-report-constants requires a -stub-* mode.\n");
+		if (enable_v02_case34 && stub_mode_set)
+			log_cmd_error("pmux_opt: -v02-case34 cannot be combined with -stub-* modes.\n");
 
 		log_header(design, "Executing PMUX_OPT guarded analysis and atomic rewrite.\n");
 
@@ -459,6 +503,19 @@ struct PmuxOptPass : public Pass
 		std::sort(modules.begin(), modules.end(), [](const RTLIL::Module *lhs, const RTLIL::Module *rhs) {
 			return lhs->name.str() < rhs->name.str();
 		});
+
+		Case34RewriteResult case34_result;
+		if (enable_v02_case34) {
+			case34_result = run_case34_structural_rewrite(modules);
+			log("pmux_opt: v02_case34 guarded=%d tables=%d proven=%d rejected=%d committed=%d removed_cells=%d added_cells=%d folded_bits=%d\n",
+					case34_result.guarded_candidates, case34_result.table_candidates,
+					case34_result.proven_candidates, case34_result.rejected_candidates,
+					case34_result.committed_candidates, case34_result.removed_cells,
+					case34_result.added_cells, case34_result.folded_bits);
+			for (const auto &item : case34_result.reason_counts)
+				log("pmux_opt: reason scope=v02_case34 code=%s count=%d\n",
+						item.first.c_str(), item.second);
+		}
 
 		std::unique_ptr<EntryAnalyzer> analyzer;
 		if (stub_mode_set)
@@ -623,13 +680,15 @@ struct PmuxOptPass : public Pass
 				"real";
 		if (!plan_json_file.empty())
 			write_json_file(plan_json_file,
-					build_plan_json(rewrite_batch, commit_ok, commit_failure, machine_mode));
+					build_plan_json(rewrite_batch, commit_ok, commit_failure, machine_mode,
+							case34_result));
 		if (!stats_json_file.empty())
 			write_json_file(stats_json_file,
 					build_stats_json(machine_mode, selected_modules, candidate_cells,
 							valid_cells, invalid_cells, entry_count, unknown_bits,
 							proven_zero, proven_one, visited_cells, visited_bits,
-							propagation_events, rewrite_stats, invalid_reason_counts,
+							propagation_events, rewrite_stats, case34_result,
+							invalid_reason_counts,
 							analysis_status_counts, unknown_reason_counts, commit_ok,
 							commit_failure, wall_us, resources_start, resources_end));
 	}
