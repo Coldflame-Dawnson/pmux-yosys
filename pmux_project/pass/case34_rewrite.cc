@@ -247,20 +247,15 @@ bool validate_comparator(RTLIL::Module *module, const DecisionConeProof &proof,
 	for (int bit : comparator.removed_bit_indices)
 		if (bit < 0 || bit >= comparator.full_width || !removed.insert(bit).second)
 			return false;
-	std::vector<bool> support_used(proof.support_lsb_first.size(), false);
+	int support_index = 0;
 	for (int source_bit = 0; source_bit < GetSize(source); ++source_bit) {
 		if (removed.count(source_bit)) continue;
-		int match = -1;
-		for (int input = 0; input < GetSize(proof.support_lsb_first); ++input)
-			if (source[source_bit] == sigmap(proof.support_lsb_first[input].bit)) {
-				if (match >= 0) return false;
-				match = input;
-			}
-		if (match < 0 || support_used[match]) return false;
-		support_used[match] = true;
+		if (support_index >= GetSize(proof.support_lsb_first) ||
+				source[source_bit] != sigmap(proof.support_lsb_first[support_index].bit))
+			return false;
+		support_index++;
 	}
-	if (std::any_of(support_used.begin(), support_used.end(), [](bool used) { return !used; }))
-		return false;
+	if (support_index != GetSize(proof.support_lsb_first)) return false;
 	auto actual = actual_fanout(module, cell->getPort(ID::Y)[0]);
 	auto expected = comparator.comparator_full_fanout_snapshot;
 	std::sort(expected.begin(), expected.end(), [](const auto &lhs, const auto &rhs) {
@@ -334,11 +329,25 @@ bool build_decision_plan(RTLIL::Module *module, const DecisionConeProof &proof,
 			return false;
 		}
 	}
+	std::set<std::string> comparator_cells;
 	for (const ComparatorProofConclusion &comparator : proof.comparators)
-		if (!validate_comparator(module, proof, comparator)) {
+		if (!comparator_cells.insert(comparator.cell_id).second ||
+				!validate_comparator(module, proof, comparator)) {
 			reject(result, "comparator_fanout_uncovered");
 			return false;
 		}
+	std::set<std::string> affected_boundary_cells;
+	std::map<std::string, int> expected_sequential_relations;
+	for (const DecisionSinkProof &sink : proof.affected_sinks) {
+		affected_boundary_cells.insert(sink.sequential_snapshot.cell_id);
+		expected_sequential_relations[sink.sequential_snapshot.cell_id]++;
+	}
+	std::set<std::string> expected_mux_relations;
+	for (const CellSnapshot &snapshot : proof.source_cells)
+		if (snapshot.type.in(ID($mux), ID($pmux)))
+			expected_mux_relations.insert(snapshot.cell_id);
+	std::set<std::string> actual_mux_relations;
+	std::map<std::string, int> actual_sequential_relations;
 	for (const DecisionRelationProof &relation : proof.decision_relations) {
 		RTLIL::Cell *cell = module->cell(RTLIL::IdString(relation.cell_id));
 		if (relation.reason_code != DecisionConeReasonCode::Proved ||
@@ -349,18 +358,34 @@ bool build_decision_plan(RTLIL::Module *module, const DecisionConeProof &proof,
 			return false;
 		}
 		std::vector<RTLIL::SigBit> expected_selects;
-		if (relation.kind == DecisionRelationKind::MuxPriority ||
-				relation.kind == DecisionRelationKind::PmuxMutuallyExclusive) {
-			if (cell == nullptr || !cell->type.in(ID($mux), ID($pmux)) || !cell->hasPort(ID::S)) {
+		if (relation.kind == DecisionRelationKind::MuxPriority) {
+			if (cell == nullptr || cell->type != ID($mux) || !cell->hasPort(ID::S)) {
+				reject(result, "invalid_decision_relation");
+				return false;
+			}
+			if (!actual_mux_relations.insert(relation.cell_id).second) {
+				reject(result, "invalid_decision_relation");
+				return false;
+			}
+			expected_selects = cell->getPort(ID::S).to_sigbit_vector();
+		} else if (relation.kind == DecisionRelationKind::PmuxMutuallyExclusive) {
+			if (cell == nullptr || cell->type != ID($pmux) || !cell->hasPort(ID::S)) {
+				reject(result, "invalid_decision_relation");
+				return false;
+			}
+			if (!actual_mux_relations.insert(relation.cell_id).second) {
 				reject(result, "invalid_decision_relation");
 				return false;
 			}
 			expected_selects = cell->getPort(ID::S).to_sigbit_vector();
 		} else if (relation.kind == DecisionRelationKind::SequentialControlPriority) {
-			if (cell == nullptr) {
+			if (cell == nullptr || !cell->type.in(ID($dff), ID($dffe), ID($sdff),
+					ID($sdffe), ID($sdffce), ID($adff), ID($adffe)) ||
+					!affected_boundary_cells.count(relation.cell_id)) {
 				reject(result, "invalid_decision_relation");
 				return false;
 			}
+			actual_sequential_relations[relation.cell_id]++;
 			for (RTLIL::IdString port : {ID::ARST, ID::EN, ID::SRST})
 				if (cell->hasPort(port)) expected_selects.push_back(cell->getPort(port)[0]);
 		} else {
@@ -371,6 +396,11 @@ bool build_decision_plan(RTLIL::Module *module, const DecisionConeProof &proof,
 			reject(result, "invalid_decision_relation");
 			return false;
 		}
+	}
+	if (actual_mux_relations != expected_mux_relations ||
+			actual_sequential_relations != expected_sequential_relations) {
+		reject(result, "invalid_decision_relation");
+		return false;
 	}
 
 	plan.module = module;
@@ -1186,13 +1216,45 @@ DecisionConsumerMutationTestResult run_decision_consumer_mutation_tests(
 		reject_mutation("removed_duplicate", [](auto &p) { p.comparators[0].removed_bit_indices.push_back(p.comparators[0].removed_bit_indices[0]); });
 		reject_mutation("removed_out_of_range", [](auto &p) { p.comparators[0].removed_bit_indices[0] = p.comparators[0].full_width; });
 		reject_mutation("comparator_fanout", [](auto &p) { p.comparators[0].comparator_full_fanout_snapshot.clear(); });
+		reject_mutation("duplicate_comparator", [](auto &p) { p.comparators.push_back(p.comparators[0]); });
 		reject_mutation("care_short", [](auto &p) { p.affected_sinks[0].care_mask_lsb_address.bits().pop_back(); });
 		reject_mutation("value_short", [](auto &p) { p.affected_sinks[0].value_mask_lsb_address.bits().pop_back(); });
 		reject_mutation("care_x", [](auto &p) { p.affected_sinks[0].care_mask_lsb_address.bits()[0] = RTLIL::State::Sx; });
 		reject_mutation("value_z", [](auto &p) { p.affected_sinks[0].value_mask_lsb_address.bits()[0] = RTLIL::State::Sz; });
+		reject_mutation("support_reorder", [](auto &p) {
+			std::swap(p.support_lsb_first[0].bit, p.support_lsb_first[1].bit);
+		});
 		reject_mutation("support_bound", [](auto &p) { while (p.support_lsb_first.size() <= 12) p.support_lsb_first.push_back(p.support_lsb_first[0]); });
 		reject_mutation("dag_bound", [](auto &p) { p.normalized_dag.resize(4097); });
 		reject_mutation("relation_authorization", [](auto &p) { p.decision_relations[0].reason_code = DecisionConeReasonCode::PriorityUnknown; });
+		reject_mutation("relation_kind", [&](auto &p) {
+			for (DecisionRelationProof &relation : p.decision_relations) {
+				if (RTLIL::Cell *cell = module->cell(RTLIL::IdString(relation.cell_id));
+						cell != nullptr && cell->type == ID($mux)) {
+					relation.kind = DecisionRelationKind::PmuxMutuallyExclusive;
+					return;
+				}
+				if (RTLIL::Cell *cell = module->cell(RTLIL::IdString(relation.cell_id));
+						cell != nullptr && cell->type == ID($pmux)) {
+					relation.kind = DecisionRelationKind::MuxPriority;
+					return;
+				}
+			}
+		});
+		if (!proof.unaffected_sequential_bits.empty())
+			reject_mutation("sequential_relation_substitution", [&](auto &p) {
+				const DecisionSequentialBitSnapshot &replacement = p.unaffected_sequential_bits[0];
+				for (DecisionRelationProof &relation : p.decision_relations)
+					if (relation.kind == DecisionRelationKind::SequentialControlPriority) {
+						relation.cell_id = replacement.cell_id;
+						relation.snapshot = replacement.cell_snapshot;
+						relation.selects_in_branch_order.clear();
+						RTLIL::Cell *cell = module->cell(RTLIL::IdString(replacement.cell_id));
+						for (RTLIL::IdString port : {ID::ARST, ID::EN, ID::SRST})
+							if (cell->hasPort(port)) relation.selects_in_branch_order.push_back(cell->getPort(port)[0]);
+						return;
+					}
+			});
 		reject_mutation("duplicate_proof_id", [](auto &p) { p.proof_ids.push_back(p.proof_ids[0]); });
 
 		DecisionConeProof all_zero_care = proof;
