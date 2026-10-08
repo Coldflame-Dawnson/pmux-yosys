@@ -300,6 +300,7 @@ static Json build_stats_json(const std::string &mode,
 		}},
 		{"v02_case34", Json::object {
 			{"enabled", enable_v02_case34},
+			{"decision_cone_candidates", case34_result.decision_cone_candidates},
 			{"guarded_candidates", case34_result.guarded_candidates},
 			{"table_candidates", case34_result.table_candidates},
 			{"proven_candidates", case34_result.proven_candidates},
@@ -509,8 +510,8 @@ struct PmuxOptPass : public Pass
 		Case34RewriteResult case34_result;
 		if (enable_v02_case34) {
 			case34_result = run_case34_structural_rewrite(modules);
-			log("pmux_opt: v02_case34 guarded=%d tables=%d proven=%d rejected=%d committed=%d removed_cells=%d added_cells=%d folded_bits=%d\n",
-					case34_result.guarded_candidates, case34_result.table_candidates,
+			log("pmux_opt: v02_case34 decision_cones=%d guarded=%d tables=%d proven=%d rejected=%d committed=%d removed_cells=%d added_cells=%d folded_bits=%d\n",
+					case34_result.decision_cone_candidates, case34_result.guarded_candidates, case34_result.table_candidates,
 					case34_result.proven_candidates, case34_result.rejected_candidates,
 					case34_result.committed_candidates, case34_result.removed_cells,
 					case34_result.added_cells, case34_result.folded_bits);

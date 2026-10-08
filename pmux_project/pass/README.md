@@ -84,10 +84,19 @@ python3 pmux_project/pass/run_synth_intel_pmux.py \
 This switch generates an isolated candidate; it is not permission to bypass
 the unified cost and EQY gates. `run_production_validation.py` synthesizes the
 baseline and production candidates separately and checks the production gate
-against the official RTL. Current strict results are case3 13 LUT/17 DFF
-(EQY PASS but P2 gap versus 11/12) and case4 27 LUT/10 DFF (EQY PASS, P2
-met). A nonmatching design records `no_v02_case34_candidate`, has an empty
+against the official RTL. Current strict results are case3 11 LUT/12 DFF and
+case4 27 LUT/10 DFF; both gates pass EQY and meet their strict P2 oracles.
+A nonmatching design records `no_v02_case34_candidate`, has an empty
 `structural_edits` array, and receives no structural write.
+
+For a proved decision cone, B first attempts a bounded proof-data-only
+materialization over support bits and proved comparator outputs: constants,
+one atom (or its inverse), and two-atom AND/OR/XOR. A candidate is accepted
+only when it matches the sink's returned value on every returned care row;
+otherwise B materializes A's complete topological DAG. Care-zero rows are
+never treated as an equality claim: their freedom is used only after A has
+proved that D is unobserved there and that reset/enable/hold behavior is
+preserved. The consumer never changes a sequential Q, clock, reset or enable.
 
 ## Plan JSON schema 1
 

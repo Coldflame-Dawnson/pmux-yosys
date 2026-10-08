@@ -2,6 +2,7 @@
 
 #include "kernel/celltypes.h"
 #include "kernel/sigtools.h"
+#include "pmux_v02_decision_cone_proof_api.h"
 #include "pmux_v02_production_proof_api.h"
 
 #include <algorithm>
@@ -132,6 +133,177 @@ bool authorized(const ProductionConstantTableProof &proof)
 			proof.all_output_bits_mapped && contract.no_cross_dff_propagation &&
 			contract.reset_preserved && contract.enable_preserved &&
 			contract.hold_preserved;
+}
+
+bool authorized(const DecisionConeProof &proof)
+{
+	const ResetEnableHoldContract &contract = proof.reset_enable_hold_contract;
+	return proof.status == V02ProofStatus::Normal &&
+			proof.reason_code == DecisionConeReasonCode::Proved &&
+			proof.proven_all_obligations && proof.structure_complete &&
+			proof.current_cycle_guard_proved && proof.selection_semantics_proved &&
+			proof.guard_inside_equivalence_proved &&
+			proof.guard_outside_equivalence_proved && proof.all_sink_bits_proved &&
+			proof.all_fanout_covered && proof.all_sequential_boundaries_proved &&
+			proof.normalized_dag_complete && contract.no_cross_dff_propagation &&
+			contract.reset_preserved && contract.enable_preserved &&
+			contract.hold_preserved;
+}
+
+template<typename AttributeMap>
+bool same_attributes(const AttributeMap &actual,
+		const std::vector<DecisionAttributeSnapshot> &expected)
+{
+	if (actual.size() != expected.size()) return false;
+	for (const DecisionAttributeSnapshot &attribute : expected) {
+		auto found = actual.find(attribute.attribute);
+		if (found == actual.end() || found->second != attribute.value) return false;
+	}
+	return true;
+}
+
+bool same_decision_boundary(RTLIL::Module *module,
+		const DecisionSequentialBitSnapshot &snapshot)
+{
+	RTLIL::Cell *cell = module->cell(RTLIL::IdString(snapshot.cell_id));
+	if (!same_cell_snapshot(cell, snapshot.cell_snapshot) ||
+			!same_attributes(cell->attributes, snapshot.cell_attributes) ||
+			!cell->hasPort(ID::D) || !cell->hasPort(ID::Q) ||
+			snapshot.d_bit < 0 || snapshot.d_bit >= GetSize(cell->getPort(ID::D)) ||
+			snapshot.q_bit < 0 || snapshot.q_bit >= GetSize(cell->getPort(ID::Q)))
+		return false;
+	RTLIL::SigBit q = cell->getPort(ID::Q)[snapshot.q_bit];
+	return q.wire != nullptr && q.wire->port_id == snapshot.q_wire_port_id &&
+			q.wire->port_input == snapshot.q_wire_port_input &&
+			q.wire->port_output == snapshot.q_wire_port_output &&
+			same_attributes(q.wire->attributes, snapshot.q_wire_attributes);
+}
+
+struct DecisionPlan {
+	RTLIL::Module *module = nullptr;
+	DecisionConeProof proof;
+	std::vector<StructuralCellSnapshot> snapshots;
+	std::vector<DecisionSequentialBitSnapshot> boundaries;
+	std::set<std::string> affected_cells;
+	std::string anchor_cell;
+};
+
+bool build_decision_plan(RTLIL::Module *module, const DecisionConeProof &proof,
+		DecisionPlan &plan, Case34RewriteResult &result)
+{
+	if (proof.reason_code == DecisionConeReasonCode::StructureNotFound)
+		return false;
+	result.decision_cone_candidates++;
+	if (!authorized(proof)) {
+		reject(result, decision_cone_reason_code_name(proof.reason_code));
+		return false;
+	}
+	if (proof.support_lsb_first.empty() || proof.normalized_dag.size() < 2 ||
+			proof.affected_sinks.empty() || proof.source_cells.empty()) {
+		reject(result, "invalid_decision_cone_shape");
+		return false;
+	}
+	for (int index = 0; index < GetSize(proof.support_lsb_first); ++index)
+		if (proof.support_lsb_first[index].input_index != index ||
+				proof.support_lsb_first[index].bit.wire == nullptr) {
+			reject(result, "invalid_decision_support");
+			return false;
+		}
+	for (int index = 0; index < GetSize(proof.normalized_dag); ++index) {
+		const DecisionDagNode &node = proof.normalized_dag[index];
+		if (node.node_id != index ||
+				(node.kind == DecisionDagNodeKind::Test &&
+				(node.input_index < 0 || node.input_index >= GetSize(proof.support_lsb_first) ||
+				node.low_node < 0 || node.low_node >= index ||
+				node.high_node < 0 || node.high_node >= index))) {
+			reject(result, "invalid_decision_dag");
+			return false;
+		}
+		if (node.kind != DecisionDagNodeKind::Constant0 &&
+				node.kind != DecisionDagNodeKind::Constant1 &&
+				node.kind != DecisionDagNodeKind::Test) {
+			reject(result, "invalid_decision_dag");
+			return false;
+		}
+	}
+	for (const ComparatorProofConclusion &comparator : proof.comparators) {
+		RTLIL::Cell *cell = module->cell(RTLIL::IdString(comparator.cell_id));
+		if (!comparator.equivalent_under_guard || comparator.comparator_must_be_preserved ||
+				cell == nullptr || !cell->type.in(ID($eq), ID($ne)) ||
+				comparator.full_width != GetSize(proof.source_value) ||
+				comparator.reduced_width != comparator.full_width -
+						GetSize(comparator.removed_bit_indices)) {
+			reject(result, "comparator_fanout_uncovered");
+			return false;
+		}
+	}
+
+	plan.module = module;
+	plan.proof = proof;
+	auto capture = [&](const CellSnapshot &snapshot) {
+		StructuralCellSnapshot structural;
+		if (!capture_snapshot(module, snapshot, structural)) return false;
+		RTLIL::Cell *cell = module->cell(RTLIL::IdString(snapshot.cell_id));
+		if (cell->get_bool_attribute(ID::keep)) return false;
+		plan.affected_cells.insert(snapshot.cell_id);
+		plan.snapshots.push_back(std::move(structural));
+		return true;
+	};
+	std::set<std::string> captured_cells;
+	for (const CellSnapshot &snapshot : proof.source_cells)
+		if (captured_cells.insert(snapshot.cell_id).second && !capture(snapshot)) {
+			reject(result, "snapshot_mismatch");
+			return false;
+		}
+	for (const CellSnapshot &snapshot : proof.external_consumers)
+		if (captured_cells.insert(snapshot.cell_id).second && !capture(snapshot)) {
+			reject(result, "uncovered_fanout");
+			return false;
+		}
+	std::set<std::pair<std::string, int>> sink_positions;
+	for (const DecisionSinkProof &sink : proof.affected_sinks) {
+		const DecisionSequentialBitSnapshot &boundary = sink.sequential_snapshot;
+		RTLIL::Cell *cell = module->cell(RTLIL::IdString(boundary.cell_id));
+		if (sink.reason_code != DecisionConeReasonCode::Proved ||
+				!sink.equivalent_on_all_care_rows ||
+				!sink.guard_outside_behavior_preserved || !sink.default_path_preserved ||
+				!sink.hold_path_preserved || !sink.reset_path_preserved ||
+				!sink.enable_path_preserved || !sink.initialization_preserved ||
+				!sink.no_cross_dff_propagation || !sink.all_fanout_covered ||
+				sink.normalized_root_node < 0 ||
+				sink.normalized_root_node >= GetSize(proof.normalized_dag) ||
+				!same_decision_boundary(module, boundary) || cell == nullptr ||
+				cell->getPort(ID::D)[boundary.d_bit] != sink.original_d ||
+				!sink_positions.insert({boundary.cell_id, boundary.d_bit}).second) {
+			reject(result, "partial_decision_sink");
+			return false;
+		}
+		if (cell->get_bool_attribute(ID::keep)) {
+			reject(result, "keep_attribute");
+			return false;
+		}
+		plan.affected_cells.insert(boundary.cell_id);
+		plan.boundaries.push_back(boundary);
+		if (captured_cells.insert(boundary.cell_id).second && !capture(boundary.cell_snapshot)) {
+			reject(result, "sequential_boundary_changed");
+			return false;
+		}
+	}
+	for (const DecisionSequentialBitSnapshot &boundary : proof.unaffected_sequential_bits) {
+		if (!same_decision_boundary(module, boundary)) {
+			reject(result, "sequential_boundary_changed");
+			return false;
+		}
+		plan.affected_cells.insert(boundary.cell_id);
+		plan.boundaries.push_back(boundary);
+		if (captured_cells.insert(boundary.cell_id).second && !capture(boundary.cell_snapshot)) {
+			reject(result, "sequential_boundary_changed");
+			return false;
+		}
+	}
+	plan.anchor_cell = proof.source_cells.front().cell_id;
+	result.proven_candidates++;
+	return true;
 }
 
 struct GuardedPlan {
@@ -410,10 +582,26 @@ bool precheck(RTLIL::Module *module,
 	return true;
 }
 
-int apply_guarded_plan(GuardedPlan &plan)
+bool precheck(DecisionPlan &plan)
 {
-	for (const ComparatorProofConclusion &conclusion : plan.proof.comparator_cells) {
-		RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(conclusion.cell_id));
+	if (!precheck(plan.module, plan.snapshots)) return false;
+	for (const DecisionSequentialBitSnapshot &boundary : plan.boundaries)
+		if (!same_decision_boundary(plan.module, boundary)) return false;
+	for (const DecisionSinkProof &sink : plan.proof.affected_sinks) {
+		RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(sink.cell_id));
+		if (cell == nullptr || !cell->hasPort(ID::D) || sink.d_bit < 0 ||
+				sink.d_bit >= GetSize(cell->getPort(ID::D)) ||
+				cell->getPort(ID::D)[sink.d_bit] != sink.original_d)
+			return false;
+	}
+	return true;
+}
+
+void apply_comparator_narrowing(RTLIL::Module *module,
+		const std::vector<ComparatorProofConclusion> &conclusions)
+{
+	for (const ComparatorProofConclusion &conclusion : conclusions) {
+		RTLIL::Cell *cell = module->cell(RTLIL::IdString(conclusion.cell_id));
 		log_assert(cell != nullptr && cell->type.in(ID($eq), ID($ne)));
 		RTLIL::SigSpec port_a = cell->getPort(ID::A);
 		RTLIL::SigSpec port_b = cell->getPort(ID::B);
@@ -435,6 +623,226 @@ int apply_guarded_plan(GuardedPlan &plan)
 		cell->setParam(ID::B_WIDTH, GetSize(cell->getPort(ID::B)));
 		cell->setParam(ID::Y_WIDTH, 1);
 	}
+}
+
+int apply_decision_plan(DecisionPlan &plan)
+{
+	apply_comparator_narrowing(plan.module, plan.proof.comparators);
+	struct ProofAtom { RTLIL::SigBit signal; RTLIL::Const truth; };
+	std::vector<ProofAtom> atoms;
+	const int truth_rows = 1 << GetSize(plan.proof.support_lsb_first);
+	for (int input = 0; input < GetSize(plan.proof.support_lsb_first); ++input) {
+		std::vector<RTLIL::State> truth;
+		for (int row = 0; row < truth_rows; ++row)
+			truth.push_back((row >> input) & 1 ? RTLIL::State::S1 : RTLIL::State::S0);
+		atoms.push_back({plan.proof.support_lsb_first[input].bit, RTLIL::Const(truth)});
+	}
+	SigMap sigmap(plan.module);
+	for (const ComparatorProofConclusion &comparator : plan.proof.comparators) {
+		RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(comparator.cell_id));
+		log_assert(cell != nullptr && cell->type.in(ID($eq), ID($ne)) && cell->hasPort(ID::Y));
+		std::set<int> removed(comparator.removed_bit_indices.begin(),
+				comparator.removed_bit_indices.end());
+		std::vector<int> source_to_input(GetSize(plan.proof.source_value), -1);
+		for (int source_bit = 0; source_bit < GetSize(plan.proof.source_value); ++source_bit)
+			if (!removed.count(source_bit))
+				for (int input = 0; input < GetSize(plan.proof.support_lsb_first); ++input)
+					if (sigmap(plan.proof.source_value[source_bit]) ==
+							sigmap(plan.proof.support_lsb_first[input].bit)) {
+						source_to_input[source_bit] = input;
+						break;
+					}
+		std::vector<RTLIL::State> truth;
+		for (int row = 0; row < truth_rows; ++row) {
+			bool equal = true;
+			for (int source_bit = 0; source_bit < GetSize(plan.proof.source_value); ++source_bit)
+				if (!removed.count(source_bit)) {
+					log_assert(source_to_input[source_bit] >= 0 &&
+							binary(comparator.comparator_constant[source_bit]));
+					bool value = (row >> source_to_input[source_bit]) & 1;
+					equal &= value == (comparator.comparator_constant[source_bit] == RTLIL::State::S1);
+				}
+			bool output = cell->type == ID($eq) ? equal : !equal;
+			truth.push_back(output ? RTLIL::State::S1 : RTLIL::State::S0);
+		}
+		atoms.push_back({cell->getPort(ID::Y)[0], RTLIL::Const(truth)});
+	}
+
+	enum class SinkValueKind { Dag, Constant0, Constant1, Atom, InvertedAtom, And, Or, Xor };
+	struct SinkValue { SinkValueKind kind = SinkValueKind::Dag; int index = -1; int rhs = -1; };
+	std::vector<SinkValue> sink_values;
+	std::vector<bool> needed(plan.proof.normalized_dag.size(), false);
+	auto matches = [](const DecisionSinkProof &sink, auto value_at) {
+		for (int row = 0; row < GetSize(sink.care_mask_lsb_address); ++row)
+			if (sink.care_mask_lsb_address[row] == RTLIL::State::S1) {
+				RTLIL::State expected = sink.value_mask_lsb_address[row];
+				if (!binary(expected) || value_at(row) != expected) return false;
+			}
+		return true;
+	};
+	for (const DecisionSinkProof &sink : plan.proof.affected_sinks) {
+		SinkValue value;
+		if (matches(sink, [](int) { return RTLIL::State::S0; }))
+			value.kind = SinkValueKind::Constant0;
+		else if (matches(sink, [](int) { return RTLIL::State::S1; }))
+			value.kind = SinkValueKind::Constant1;
+		else for (int atom = 0; atom < GetSize(atoms); ++atom) {
+			if (matches(sink, [&](int row) { return atoms[atom].truth[row]; })) {
+				value.kind = SinkValueKind::Atom; value.index = atom; break;
+			}
+			if (matches(sink, [&](int row) {
+				return atoms[atom].truth[row] == RTLIL::State::S1 ? RTLIL::State::S0 : RTLIL::State::S1;
+			})) {
+				value.kind = SinkValueKind::InvertedAtom; value.index = atom; break;
+			}
+		}
+		if (value.kind == SinkValueKind::Dag)
+			for (int lhs = 0; lhs < GetSize(atoms) && value.kind == SinkValueKind::Dag; ++lhs)
+				for (int rhs = lhs + 1; rhs < GetSize(atoms); ++rhs) {
+					if (matches(sink, [&](int row) {
+						return atoms[lhs].truth[row] == RTLIL::State::S1 &&
+								atoms[rhs].truth[row] == RTLIL::State::S1 ? RTLIL::State::S1 : RTLIL::State::S0;
+					})) {
+						value.kind = SinkValueKind::And; value.index = lhs; value.rhs = rhs; break;
+					}
+					if (matches(sink, [&](int row) {
+						return atoms[lhs].truth[row] == RTLIL::State::S1 ||
+								atoms[rhs].truth[row] == RTLIL::State::S1 ? RTLIL::State::S1 : RTLIL::State::S0;
+					})) {
+						value.kind = SinkValueKind::Or; value.index = lhs; value.rhs = rhs; break;
+					}
+					if (matches(sink, [&](int row) {
+						return atoms[lhs].truth[row] != atoms[rhs].truth[row] ? RTLIL::State::S1 : RTLIL::State::S0;
+					})) {
+						value.kind = SinkValueKind::Xor; value.index = lhs; value.rhs = rhs; break;
+					}
+				}
+		if (value.kind == SinkValueKind::Dag) {
+			value.index = sink.normalized_root_node;
+			needed.at(value.index) = true;
+		}
+		sink_values.push_back(value);
+	}
+	for (int node_id = GetSize(plan.proof.normalized_dag) - 1; node_id >= 0; --node_id)
+		if (needed[node_id] && plan.proof.normalized_dag[node_id].kind == DecisionDagNodeKind::Test) {
+			needed[plan.proof.normalized_dag[node_id].low_node] = true;
+			needed[plan.proof.normalized_dag[node_id].high_node] = true;
+		}
+	std::vector<RTLIL::SigBit> values;
+	values.reserve(plan.proof.normalized_dag.size());
+	int added_cells = 0;
+	std::map<RTLIL::SigBit, RTLIL::SigBit, BitLess> inverted;
+	auto add_not = [&](RTLIL::SigBit input) {
+		auto found = inverted.find(input);
+		if (found != inverted.end()) return found->second;
+		RTLIL::Wire *wire = plan.module->addWire(NEW_ID);
+		RTLIL::SigBit output(wire);
+		plan.module->addNot(NEW_ID, RTLIL::SigSpec(input), RTLIL::SigSpec(output));
+		inverted[input] = output;
+		added_cells++;
+		return output;
+	};
+	auto add_gate = [&](RTLIL::IdString type, RTLIL::SigBit lhs, RTLIL::SigBit rhs) {
+		RTLIL::Wire *wire = plan.module->addWire(NEW_ID);
+		RTLIL::SigBit output(wire);
+		if (type == ID($and))
+			plan.module->addAnd(NEW_ID, RTLIL::SigSpec(lhs), RTLIL::SigSpec(rhs),
+					RTLIL::SigSpec(output));
+		else if (type == ID($or))
+			plan.module->addOr(NEW_ID, RTLIL::SigSpec(lhs), RTLIL::SigSpec(rhs),
+					RTLIL::SigSpec(output));
+		else
+			plan.module->addXor(NEW_ID, RTLIL::SigSpec(lhs), RTLIL::SigSpec(rhs),
+					RTLIL::SigSpec(output));
+		added_cells++;
+		return output;
+	};
+	for (const DecisionDagNode &node : plan.proof.normalized_dag) {
+		if (!needed[node.node_id]) {
+			values.push_back(RTLIL::State::Sx);
+			continue;
+		}
+		if (node.kind == DecisionDagNodeKind::Constant0) {
+			values.push_back(RTLIL::State::S0);
+			continue;
+		}
+		if (node.kind == DecisionDagNodeKind::Constant1) {
+			values.push_back(RTLIL::State::S1);
+			continue;
+		}
+		log_assert(node.kind == DecisionDagNodeKind::Test &&
+				node.low_node >= 0 && node.low_node < GetSize(values) &&
+				node.high_node >= 0 && node.high_node < GetSize(values));
+		RTLIL::SigBit low = values[node.low_node];
+		RTLIL::SigBit high = values[node.high_node];
+		RTLIL::SigBit select = plan.proof.support_lsb_first[node.input_index].bit;
+		RTLIL::SigBit output;
+		if (low == high) {
+			output = low;
+		} else if (low == RTLIL::State::S0 && high == RTLIL::State::S1) {
+			output = select;
+		} else if (low == RTLIL::State::S1 && high == RTLIL::State::S0) {
+			output = add_not(select);
+		} else if (low == RTLIL::State::S0) {
+			output = add_gate(ID($and), select, high);
+		} else if (high == RTLIL::State::S0) {
+			output = add_gate(ID($and), add_not(select), low);
+		} else if (low == RTLIL::State::S1) {
+			output = add_gate(ID($or), add_not(select), high);
+		} else if (high == RTLIL::State::S1) {
+			output = add_gate(ID($or), select, low);
+		} else {
+			RTLIL::Wire *wire = plan.module->addWire(NEW_ID);
+			output = RTLIL::SigBit(wire);
+			plan.module->addMux(NEW_ID, RTLIL::SigSpec(low), RTLIL::SigSpec(high),
+					RTLIL::SigSpec(select), RTLIL::SigSpec(output));
+			added_cells++;
+		}
+		values.push_back(output);
+	}
+
+	std::map<std::string, RTLIL::SigSpec> updated_d;
+	for (int sink_index = 0; sink_index < GetSize(plan.proof.affected_sinks); ++sink_index) {
+		const DecisionSinkProof &sink = plan.proof.affected_sinks[sink_index];
+		RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(sink.cell_id));
+		log_assert(cell != nullptr && cell->hasPort(ID::D));
+		auto inserted = updated_d.emplace(sink.cell_id, cell->getPort(ID::D));
+		RTLIL::SigSpec &port_d = inserted.first->second;
+		log_assert(sink.d_bit >= 0 && sink.d_bit < GetSize(port_d));
+		const SinkValue &replacement = sink_values[sink_index];
+		if (replacement.kind == SinkValueKind::Constant0)
+			port_d[sink.d_bit] = RTLIL::State::S0;
+		else if (replacement.kind == SinkValueKind::Constant1)
+			port_d[sink.d_bit] = RTLIL::State::S1;
+		else if (replacement.kind == SinkValueKind::Atom)
+			port_d[sink.d_bit] = atoms[replacement.index].signal;
+		else if (replacement.kind == SinkValueKind::InvertedAtom)
+			port_d[sink.d_bit] = add_not(atoms[replacement.index].signal);
+		else if (replacement.kind == SinkValueKind::And)
+			port_d[sink.d_bit] = add_gate(ID($and), atoms[replacement.index].signal,
+					atoms[replacement.rhs].signal);
+		else if (replacement.kind == SinkValueKind::Or)
+			port_d[sink.d_bit] = add_gate(ID($or), atoms[replacement.index].signal,
+					atoms[replacement.rhs].signal);
+		else if (replacement.kind == SinkValueKind::Xor)
+			port_d[sink.d_bit] = add_gate(ID($xor), atoms[replacement.index].signal,
+					atoms[replacement.rhs].signal);
+		else {
+			log_assert(replacement.index >= 0 && replacement.index < GetSize(values));
+			port_d[sink.d_bit] = values[replacement.index];
+		}
+	}
+	for (const auto &update : updated_d) {
+		RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(update.first));
+		log_assert(cell != nullptr);
+		cell->setPort(ID::D, update.second);
+	}
+	return added_cells;
+}
+
+int apply_guarded_plan(GuardedPlan &plan)
+{
+	apply_comparator_narrowing(plan.module, plan.proof.comparator_cells);
 	int folded = 0;
 	for (const ProductionFoldedDataBitConclusion &fold : plan.proof.folded_data_bits) {
 		RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(fold.cell_id));
@@ -566,20 +974,32 @@ Case34RewriteResult run_case34_structural_rewrite(
 	std::sort(modules.begin(), modules.end(), [](RTLIL::Module *lhs, RTLIL::Module *rhs) {
 		return lhs->name.str() < rhs->name.str();
 	});
+	std::vector<DecisionPlan> decision_plans;
 	std::vector<GuardedPlan> guarded_plans;
 	std::vector<TablePlan> table_plans;
 	for (RTLIL::Module *module : modules) {
 		if (module->get_bool_attribute(ID::blackbox)) continue;
+		DecisionConeProofRequest decision_request;
+		decision_request.module_id = module->name.str();
+		decision_request.module = module;
+		DecisionConeProof decision_proof =
+				make_decision_cone_analyzer()->analyze(decision_request);
+		const bool decision_structure_seen =
+				decision_proof.reason_code != DecisionConeReasonCode::StructureNotFound;
+		DecisionPlan decision_plan;
+		if (build_decision_plan(module, decision_proof, decision_plan, result))
+			decision_plans.push_back(std::move(decision_plan));
 		ProductionCase34ProofRequest request;
 		request.module_id = module->name.str();
 		request.module = module;
 		std::unique_ptr<ProductionCase34Analyzer> analyzer = make_production_case34_analyzer();
 		ProductionCase34ProofBundle bundle = analyzer->analyze(request);
-		for (const ProductionGuardedConeProof &proof : bundle.guarded_cones) {
-			GuardedPlan plan;
-			if (build_guarded_plan(module, proof, plan, result))
-				guarded_plans.push_back(std::move(plan));
-		}
+		if (!decision_structure_seen)
+			for (const ProductionGuardedConeProof &proof : bundle.guarded_cones) {
+				GuardedPlan plan;
+				if (build_guarded_plan(module, proof, plan, result))
+					guarded_plans.push_back(std::move(plan));
+			}
 		for (const ProductionConstantTableProof &proof : bundle.constant_tables) {
 			TablePlan plan;
 			if (build_table_plan(module, proof, plan, result))
@@ -596,8 +1016,20 @@ Case34RewriteResult run_case34_structural_rewrite(
 		return true;
 	};
 
+	std::vector<DecisionPlan *> selected_decisions;
 	std::vector<GuardedPlan *> selected_guarded;
 	std::vector<TablePlan *> selected_tables;
+	for (DecisionPlan &plan : decision_plans) {
+		if (!claim(plan.module, plan.affected_cells)) {
+			reject(result, "rewrite_conflict");
+			continue;
+		}
+		if (!precheck(plan)) {
+			reject(result, "snapshot_mismatch");
+			continue;
+		}
+		selected_decisions.push_back(&plan);
+	}
 	for (GuardedPlan &plan : guarded_plans) {
 		if (!claim(plan.module, plan.affected_cells)) {
 			reject(result, "rewrite_conflict");
@@ -621,6 +1053,18 @@ Case34RewriteResult run_case34_structural_rewrite(
 		selected_tables.push_back(&plan);
 	}
 
+	for (DecisionPlan *plan : selected_decisions) {
+		const int added = apply_decision_plan(*plan);
+		Case34StructuralEdit edit;
+		edit.module_id = plan->module->name.str();
+		edit.rule = "guarded_next_state_decision_cone";
+		edit.anchor_cell = plan->anchor_cell;
+		edit.proof_reason = decision_cone_reason_code_name(plan->proof.reason_code);
+		edit.added_cells = added;
+		result.added_cells += added;
+		result.edits.push_back(std::move(edit));
+		result.committed_candidates++;
+	}
 	for (GuardedPlan *plan : selected_guarded) {
 		const int folded = apply_guarded_plan(*plan);
 		Case34StructuralEdit edit;

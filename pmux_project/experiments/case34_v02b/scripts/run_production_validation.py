@@ -91,7 +91,7 @@ def main() -> int:
     if missing:
         parser.error("missing required files: " + ", ".join(missing))
 
-    jobs = (("case3", "test3", 13, 17, 11, 12),
+    jobs = (("case3", "test3", 11, 12, 11, 12),
             ("case4", "test4", 27, 10, 27, 10))
     results = {}
     for case, top, expected_lut, expected_dff, oracle_lut, oracle_dff in jobs:

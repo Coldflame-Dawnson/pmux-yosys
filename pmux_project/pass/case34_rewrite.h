@@ -23,6 +23,7 @@ struct Case34StructuralEdit {
 };
 
 struct Case34RewriteResult {
+	int decision_cone_candidates = 0;
 	int guarded_candidates = 0;
 	int table_candidates = 0;
 	int proven_candidates = 0;
