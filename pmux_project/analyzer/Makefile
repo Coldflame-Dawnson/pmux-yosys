@@ -2,13 +2,14 @@ YOSYS_ROOT ?= ../official_baseline/toolchain/install
 YOSYS_CONFIG ?= $(YOSYS_ROOT)/bin/yosys-config
 YOSYS ?= $(YOSYS_ROOT)/bin/yosys
 PLUGIN := analyzer_selftest.so
+REAUDIT_PLUGIN := decision_consumer_reaudit.so
 CASE3_STAGE ?= $(YOSYS_ROOT)/../../case3/netlists/stage_proc.il
 CASE3_RTL ?= $(YOSYS_ROOT)/../../../pmux_case/competition_case/test3.v
 CASE4_RTL ?= $(YOSYS_ROOT)/../../../pmux_case/competition_case/test4.v
 OFFICIAL_ROOT ?= /home/james/work/pmux-yosys/pmux_project/pmux_case/competition_case
 PROFILE_SNAPSHOT_AUDIT_OUT ?= /tmp/a-profile-snapshot-reaudit
 
-.PHONY: all test test-slow case3-report case34-report production-case34-report decision-cone-report profile-snapshot-reaudit clean
+.PHONY: all test test-slow case3-report case34-report production-case34-report decision-cone-report decision-consumer-reaudit profile-snapshot-reaudit clean
 
 all: $(PLUGIN)
 
@@ -88,8 +89,24 @@ profile-snapshot-reaudit:
 		> profile_snapshot_reaudit.log
 	grep -F 'A_GENERATION_MONITOR_REAUDIT_MATRIX PASS' profile_snapshot_reaudit.log
 
+$(REAUDIT_PLUGIN): decision_consumer_reaudit_plugin.cc ../pass/case34_rewrite.cc ../pass/case34_rewrite.h \
+		readonly_analyzer.cc case34_proof_analyzer.cc production_case34_proof_analyzer.cc \
+		decision_cone_proof_analyzer.cc ../include/pmux_v02_case34_proof_api.h \
+		../include/pmux_v02_production_proof_api.h ../include/pmux_v02_decision_cone_proof_api.h
+	$(YOSYS_CONFIG) --build $@ -I../include -I. decision_consumer_reaudit_plugin.cc \
+		readonly_analyzer.cc case34_proof_analyzer.cc production_case34_proof_analyzer.cc \
+		decision_cone_proof_analyzer.cc
+
+decision-consumer-reaudit: $(REAUDIT_PLUGIN)
+	YOSYS_DATDIR=$(YOSYS_ROOT)/share/yosys $(YOSYS) -Q -m ./$(REAUDIT_PLUGIN) \
+		-p 'read_verilog $(CASE3_RTL); synth_intel -family cycloneiv -top test3 -run begin:map_ffram; opt -fast -mux_undef -undriven -fine -full; memory_map; opt -undriven -fine; pmux_decision_consumer_reaudit' \
+		> decision_consumer_reaudit.log
+	grep -F 'REAUDIT_COUNTEREXAMPLE name=support_reorder sink=0 address=42 expected=0 actual=1 found=1' decision_consumer_reaudit.log
+	grep -F 'REAUDIT_SUMMARY passed=13 checks=13 failures=0' decision_consumer_reaudit.log
+	grep -F 'ORDERED_REAUDIT_SUMMARY passed=12 checks=12 failures=0' decision_consumer_reaudit.log
+
 clean:
-	rm -f $(PLUGIN) selftest.log case3_branch_proof.log case3_case34_proof.log case4_case34_proof.log decision_cone_case3_proof.log \
+	rm -f $(PLUGIN) $(REAUDIT_PLUGIN) selftest.log case3_branch_proof.log case3_case34_proof.log case4_case34_proof.log decision_cone_case3_proof.log decision_consumer_reaudit.log \
 		profile_snapshot_reaudit.log \
 		decision_case3.il decision_candidate.il \
 		production_case3_proof.log production_case4_proof.log a_prod_case3.il a_prod_case4.il prod_case3.log prod_case4.log
