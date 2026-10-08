@@ -15,8 +15,9 @@ def ys_quote(path: Path) -> str:
 
 def build_script(args) -> str:
 	pmux_command = f"pmux_opt -write-plan {ys_quote(args.plan)} -write-stats {ys_quote(args.stats)}"
-	if args.v02_case34:
-		pmux_command += " -v02-case34"
+	use_v02_case34 = not args.no_v02_case34
+	if not use_v02_case34:
+		pmux_command += " -no-v02-case34"
 	commands = [
 		f"read_verilog {ys_quote(args.source)}",
 		f"synth_intel -family {args.family} -top {args.top} -run begin:map_ffram",
@@ -27,25 +28,22 @@ def build_script(args) -> str:
 		"opt_clean",
 		"techmap -map +/techmap.v",
 	]
-	if args.v02_case34:
-		commands.append(f"techmap -map {ys_quote(args.cofactor_map)}")
 	commands.extend([
 		"opt -full",
 		"clean -purge",
 		"setundef -undriven -zero",
 	])
 	if args.stage == "post_abc9":
-		if args.abc_script is not None:
-			commands.extend([
-				f"synth_intel -family {args.family} -top {args.top} -run map_ffs:map_luts",
-				f"abc9 -lut 4 -W 300 -script {ys_quote(args.abc_script)}",
-				"clean",
-				"opt -fast",
-			])
-		else:
-			commands.append(f"synth_intel -family {args.family} -top {args.top} -run map_ffs:map_cells")
+		commands.append(
+			f"pmux_opt_abc9 -family {args.family} -top {args.top} "
+			f"-cofactor-map {ys_quote(args.cofactor_map)} -abc-script {ys_quote(args.abc_script)}"
+		)
 	else:
-		commands.append(f"synth_intel -family {args.family} -top {args.top} -run map_ffs:")
+		commands.extend([
+			f"pmux_opt_abc9 -family {args.family} -top {args.top} "
+			f"-cofactor-map {ys_quote(args.cofactor_map)} -abc-script {ys_quote(args.abc_script)}",
+			f"synth_intel -family {args.family} -top {args.top} -run map_cells:",
+		])
 	commands.extend([
 		"hierarchy -check",
 		"check -noinit",
@@ -89,8 +87,14 @@ def require_real_outputs(args, log_text: str) -> None:
 		raise RuntimeError("changed_bits differs from committed plan edit count")
 	if stats.get("changed_structures", 0) != len(plan.get("structural_edits", [])):
 		raise RuntimeError("changed_structures differs from committed structural edit count")
-	if stats.get("v02_case34", {}).get("enabled") != bool(args.v02_case34):
+	if stats.get("v02_case34", {}).get("enabled") != (not args.no_v02_case34):
 		raise RuntimeError("v02_case34 mode differs from the requested runner mode")
+	constant_table = any(edit.get("rule") == "constant_table_cofactor"
+	                     for edit in plan.get("structural_edits", []))
+	expected_profile = "accepted_constant_table" if constant_table else "stock"
+	profile_marker = f"pmux_opt_abc9: profile={expected_profile}"
+	if log_text.count(profile_marker) != 1:
+		raise RuntimeError(f"expected exactly one structural ABC9 profile marker: {profile_marker}")
 
 
 def main() -> int:
@@ -101,7 +105,11 @@ def main() -> int:
 	parser.add_argument("--top", required=True)
 	parser.add_argument("--family", default="cycloneiv")
 	parser.add_argument("--stage", choices=("post_abc9", "full"), required=True)
-	parser.add_argument("--v02-case34", action="store_true")
+	mode = parser.add_mutually_exclusive_group()
+	mode.add_argument("--v02-case34", action="store_true",
+	                  help="compatibility spelling; v0.2 production selection is already the default")
+	mode.add_argument("--no-v02-case34", action="store_true",
+	                  help="disable accepted v0.2 structural rules for baseline/rollback diagnostics")
 	parser.add_argument("--cofactor-map", type=Path)
 	parser.add_argument("--abc-script", type=Path)
 	parser.add_argument("--plan", type=Path, required=True)
@@ -111,10 +119,10 @@ def main() -> int:
 	parser.add_argument("--log", type=Path, required=True)
 	parser.add_argument("--script", type=Path, required=True)
 	args = parser.parse_args()
-	if args.v02_case34 and args.cofactor_map is None:
+	if args.cofactor_map is None:
 		args.cofactor_map = Path(__file__).resolve().with_name("pmux_case34_lut_map.v")
-	if args.abc_script is not None and args.stage != "post_abc9":
-		parser.error("--abc-script is only valid with --stage post_abc9")
+	if args.abc_script is None:
+		args.abc_script = Path(__file__).resolve().with_name("pmux_case34_abc.script")
 
 	for path, label in ((args.yosys, "Yosys"), (args.plugin, "plugin"), (args.source, "source")):
 		path = path.resolve()

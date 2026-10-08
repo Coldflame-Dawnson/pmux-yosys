@@ -79,13 +79,17 @@ struct SynthIntelPass : public ScriptPass {
 		log("    -noflatten\n");
 		log("        do not flatten design before synthesis\n");
 		log("\n");
+		log("    -no-pmux-v02\n");
+		log("        disable the accepted proof-gated PMUX v0.2 structural rules\n");
+		log("        (diagnostic/baseline rollback only)\n");
+		log("\n");
 		log("The following commands are executed by this synthesis command:\n");
 		help_script();
 		log("\n");
 	}
 
 	string top_opt, family_opt, vout_file, blif_file;
-	bool flatten, nobram, dff, nodsp, iopads;
+	bool flatten, nobram, dff, nodsp, iopads, pmux_v02, pmux_constant_table_profile;
 
 	void clear_flags() override
 	{
@@ -98,6 +102,8 @@ struct SynthIntelPass : public ScriptPass {
 		dff = false;
 		nodsp = false;
 		iopads = false;
+		pmux_v02 = true;
+		pmux_constant_table_profile = false;
 	}
 
 	void execute(std::vector<std::string> args, RTLIL::Design *design) override
@@ -150,6 +156,10 @@ struct SynthIntelPass : public ScriptPass {
 			}
 			if (args[argidx] == "-noflatten") {
 				flatten = false;
+				continue;
+			}
+			if (args[argidx] == "-no-pmux-v02") {
+				pmux_v02 = false;
 				continue;
 			}
 			if (args[argidx] == "-retime") {
@@ -251,9 +261,17 @@ struct SynthIntelPass : public ScriptPass {
 			run("opt -fast -mux_undef -undriven -fine -full");
 			run("memory_map");
 			run("opt -undriven -fine");
-			run("pmux_opt");
+			run(pmux_v02 ? "pmux_opt" : "pmux_opt -no-v02-case34");
 			run("opt_clean");
+			if (pmux_v02 && !help_mode &&
+					active_design->scratchpad_get_bool("pmux_opt.accepted_constant_table", false))
+				for (RTLIL::Module *module : active_design->selected_modules())
+					for (RTLIL::Cell *cell : module->selected_cells())
+						if (cell->type == ID(pmux_case34_lut4))
+							pmux_constant_table_profile = true;
 			run("techmap -map +/techmap.v");
+			if (pmux_constant_table_profile || help_mode)
+				run("techmap -map +/intel/common/pmux_case34_lut_map.v", "(unless -no-pmux-v02)");
 			run("opt -full");
 			run("clean -purge");
 			run("setundef -undriven -zero");
@@ -265,7 +283,10 @@ struct SynthIntelPass : public ScriptPass {
 		}
 
 		if (check_label("map_luts")) {
-			run("abc9 -lut 4 -W 300" + string(dff ? " -dff" : ""));
+			if (pmux_constant_table_profile)
+				run("abc9 -lut 4 -W 300 -script +/intel/common/pmux_case34_abc.script" + string(dff ? " -dff" : ""));
+			else
+				run("abc9 -lut 4 -W 300" + string(dff ? " -dff" : ""));
 			run("clean");
 			run("opt -fast");
 			run("autoname");

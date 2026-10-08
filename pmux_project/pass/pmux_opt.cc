@@ -404,7 +404,7 @@ struct PmuxOptPass : public Pass
 		log("             [-test-snapshot-mismatch]\n");
 		log("             [-test-decision-proof-mutations]\n");
 		log("             [-test-report-constants]\n");
-		log("             [-v02-case34]\n");
+		log("             [-v02-case34|-no-v02-case34]\n");
 		log("             [-write-plan <file>] [-write-stats <file>] [selection]\n");
 		log("\n");
 		log("Enumerate selected, structurally valid $mux and $pmux cells in stable\n");
@@ -421,8 +421,10 @@ struct PmuxOptPass : public Pass
 		log("-test-report-constants makes a forced stub report original constants so\n");
 		log("the planner's defensive constant/x/z filter can be verified.\n");
 		log("-write-plan and -write-stats emit schema-1 machine-readable JSON.\n");
-		log("-v02-case34 enables proof-gated guarded-cone and constant-table\n");
-		log("structural rewrites. It is opt-in until the production acceptance gate.\n");
+		log("Proof-gated v0.2 guarded-cone and constant-table structural rewrites\n");
+		log("are enabled by default after production acceptance. -no-v02-case34\n");
+		log("provides an explicit diagnostic/baseline rollback. -v02-case34 remains\n");
+		log("as a compatibility spelling for the default production policy.\n");
 		log("\n");
 	}
 
@@ -436,7 +438,8 @@ struct PmuxOptPass : public Pass
 		bool test_snapshot_mismatch = false;
 		bool test_decision_proof_mutations = false;
 		bool test_report_constants = false;
-		bool enable_v02_case34 = false;
+		bool explicit_enable_v02_case34 = false;
+		bool disable_v02_case34 = false;
 		StubMode stub_mode = StubMode::Unknown;
 		bool stub_mode_set = false;
 		std::string plan_json_file;
@@ -468,7 +471,11 @@ struct PmuxOptPass : public Pass
 				continue;
 			}
 			if (args[argidx] == "-v02-case34") {
-				enable_v02_case34 = true;
+				explicit_enable_v02_case34 = true;
+				continue;
+			}
+			if (args[argidx] == "-no-v02-case34") {
+				disable_v02_case34 = true;
 				continue;
 			}
 			if (args[argidx] == "-write-plan" && argidx + 1 < GetSize(args)) {
@@ -505,10 +512,15 @@ struct PmuxOptPass : public Pass
 			log_cmd_error("pmux_opt: -test-rewrite-duplicate requires a -stub-* mode.\n");
 		if (test_report_constants && !stub_mode_set)
 			log_cmd_error("pmux_opt: -test-report-constants requires a -stub-* mode.\n");
-		if (enable_v02_case34 && stub_mode_set)
+		if (explicit_enable_v02_case34 && disable_v02_case34)
+			log_cmd_error("pmux_opt: -v02-case34 and -no-v02-case34 are mutually exclusive.\n");
+		if (explicit_enable_v02_case34 && stub_mode_set)
 			log_cmd_error("pmux_opt: -v02-case34 cannot be combined with -stub-* modes.\n");
-		if (test_decision_proof_mutations && (stub_mode_set || enable_v02_case34))
+		if (test_decision_proof_mutations && (stub_mode_set || explicit_enable_v02_case34))
 			log_cmd_error("pmux_opt: -test-decision-proof-mutations is a standalone test mode.\n");
+		const bool enable_v02_case34 = !disable_v02_case34 && !stub_mode_set &&
+				!test_decision_proof_mutations;
+		design->scratchpad_set_bool("pmux_opt.accepted_constant_table", false);
 
 		log_header(design, "Executing PMUX_OPT guarded analysis and atomic rewrite.\n");
 
@@ -540,6 +552,12 @@ struct PmuxOptPass : public Pass
 				log("pmux_opt: reason scope=v02_case34 code=%s count=%d\n",
 						item.first.c_str(), item.second);
 		}
+		bool accepted_constant_table = false;
+		for (const Case34StructuralEdit &edit : case34_result.edits)
+			if (edit.rule == "constant_table_cofactor")
+				accepted_constant_table = true;
+		design->scratchpad_set_bool("pmux_opt.accepted_constant_table",
+				enable_v02_case34 && accepted_constant_table);
 
 		std::unique_ptr<EntryAnalyzer> analyzer;
 		if (stub_mode_set)
@@ -718,5 +736,77 @@ struct PmuxOptPass : public Pass
 							commit_failure, wall_us, resources_start, resources_end));
 	}
 } PmuxOptPass;
+
+struct PmuxOptAbc9Pass : public Pass
+{
+	PmuxOptAbc9Pass() : Pass("pmux_opt_abc9", "select the accepted ABC9 profile from structural output") { }
+
+	void help() override
+	{
+		log("\n");
+		log("    pmux_opt_abc9 [-family <family>] [-top <top>]\n");
+		log("                   [-cofactor-map <file>] [-abc-script <file>]\n");
+		log("\n");
+		log("Run the Intel FF/LUT boundary and select the accepted custom ABC9\n");
+		log("profile only when a proved constant-table rewrite emitted a\n");
+		log("pmux_case34_lut4 cell. All other designs use the stock ABC9 profile.\n");
+		log("This is a structural decision and does not inspect design identities.\n");
+		log("\n");
+	}
+
+	void execute(std::vector<std::string> args, RTLIL::Design *design) override
+	{
+		std::string family = "cycloneiv";
+		std::string top;
+		std::string cofactor_map = "+/intel/common/pmux_case34_lut_map.v";
+		std::string abc_script = "+/intel/common/pmux_case34_abc.script";
+		int argidx;
+		for (argidx = 1; argidx < GetSize(args); ++argidx) {
+			if (args[argidx] == "-family" && argidx + 1 < GetSize(args)) {
+				family = args[++argidx];
+				continue;
+			}
+			if (args[argidx] == "-top" && argidx + 1 < GetSize(args)) {
+				top = args[++argidx];
+				continue;
+			}
+			if (args[argidx] == "-cofactor-map" && argidx + 1 < GetSize(args)) {
+				cofactor_map = args[++argidx];
+				continue;
+			}
+			if (args[argidx] == "-abc-script" && argidx + 1 < GetSize(args)) {
+				abc_script = args[++argidx];
+				continue;
+			}
+			break;
+		}
+		extra_args(args, argidx, design);
+		if (top.empty())
+			log_cmd_error("pmux_opt_abc9: -top is required.\n");
+
+		bool constant_table_cells = false;
+		for (RTLIL::Module *module : design->selected_modules())
+			for (RTLIL::Cell *cell : module->selected_cells())
+				if (cell->type == ID(pmux_case34_lut4))
+					constant_table_cells = true;
+		const bool constant_table_profile =
+				design->scratchpad_get_bool("pmux_opt.accepted_constant_table", false) &&
+				constant_table_cells;
+		design->scratchpad_set_bool("pmux_opt.accepted_constant_table", false);
+
+		if (constant_table_profile)
+			Pass::call(design, stringf("techmap -map %s", cofactor_map.c_str()));
+		Pass::call(design, stringf("synth_intel -family %s -top %s -run map_ffs:map_luts",
+				family.c_str(), top.c_str()));
+		if (constant_table_profile)
+			Pass::call(design, stringf("abc9 -lut 4 -W 300 -script %s", abc_script.c_str()));
+		else
+			Pass::call(design, "abc9 -lut 4 -W 300");
+		Pass::call(design, "clean");
+		Pass::call(design, "opt -fast");
+		log("pmux_opt_abc9: profile=%s\n",
+				constant_table_profile ? "accepted_constant_table" : "stock");
+	}
+} PmuxOptAbc9Pass;
 
 PRIVATE_NAMESPACE_END

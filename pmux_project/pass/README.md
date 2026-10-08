@@ -58,34 +58,42 @@ edit count, and `stats.v02_case34.enabled` matches the requested mode.
 Official LUT measurements must not use the old one-line `synth_intel` command
 as their purported optimized run.
 
-## v0.2 case3/case4 structural candidate mode
+## v0.2 case3/case4 accepted production mode
 
-`pmux_opt -v02-case34` is an explicit candidate-generation mode. It calls A's
+The default `pmux_opt` command enables the accepted v0.2 structural rules. It calls A's
 `ProductionCase34Analyzer` at the same audited insertion point and accepts a
 structural edit only when every proof obligation, reset/enable/hold contract,
 cell snapshot and `keep` check passes. It does not inspect a file name, module
-name, source location or case number. The default command remains unchanged.
+name, source location or case number. `-v02-case34` remains accepted as a
+compatibility spelling; `-no-v02-case34` is the explicit baseline/diagnostic
+rollback and never participates in normal production selection.
 
-The frozen runner exposes this mode as `--v02-case34`. Constant-table
+The frozen runner uses this mode by default. `pmux_opt_abc9` selects the
+accepted custom mapping profile only when the rewrite output actually contains
+a `pmux_case34_lut4` cell **and** the immediately preceding proof-gated rewrite
+set its transient authorization scratchpad. A pre-existing cell name cannot
+select the profile. Unmatched designs and decision-cone-only rewrites
+retain the stock ABC9 profile. Constant-table
 cofactors use the adjacent `pmux_case34_lut_map.v`, which is deliberately
-applied after the common techmap. An optional `--abc-script` selects the
-bounded mapping candidate used by the case4 evidence:
+applied after the common techmap. The adjacent accepted ABC9 script is also
+selected by default; `--abc-script` can reproduce an explicitly archived copy:
 
 ```bash
 python3 pmux_project/pass/run_synth_intel_pmux.py \
   --yosys /path/to/yosys --plugin pmux_project/pass/pmux_opt.so \
-  --source test4.v --top test4 --stage post_abc9 --v02-case34 \
+  --source test4.v --top test4 --stage post_abc9 \
   --abc-script pmux_project/experiments/case34_v02b/evidence/generated/abc.script \
   --plan out/plan.json --stats out/stats.json \
   --json out/post_abc9.json --rtlil out/post_abc9.il \
   --log out/post_abc9.log --script out/post_abc9.ys
 ```
 
-This switch generates an isolated candidate; it is not permission to bypass
-the unified cost and EQY gates. `run_production_validation.py` synthesizes the
-baseline and production candidates separately and checks the production gate
-against the official RTL. Current strict results are case3 11 LUT/12 DFF and
-case4 27 LUT/10 DFF; both gates pass EQY and meet their strict P2 oracles.
+The accepted default was admitted only after the unified offline cost and EQY
+gates. `run_production_validation.py` uses `--no-v02-case34` for an explicit
+baseline, synthesizes the default production path independently, and checks
+the production gate against the official RTL. Current strict results are
+case3 11 LUT/12 DFF and case4 27 LUT/10 DFF; both gates pass EQY and meet their
+strict P2 oracles.
 A nonmatching design records `no_v02_case34_candidate`, has an empty
 `structural_edits` array, and receives no structural write.
 

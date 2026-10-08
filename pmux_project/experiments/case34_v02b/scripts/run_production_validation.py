@@ -86,12 +86,14 @@ def main() -> int:
     abc_script = repo / "pmux_project/experiments/case34_v02b/evidence/generated/abc.script"
     dffeas = repo / "pmux_project/official_baseline/environment/dffeas_formal.v"
     required = (yosys, eqy, plugin, runner, abc_script, dffeas,
-                official / "test3.v", official / "test4.v")
+                *(official / f"test{index}.v" for index in range(1, 5)))
     missing = [str(path) for path in required if not path.is_file()]
     if missing:
         parser.error("missing required files: " + ", ".join(missing))
 
-    jobs = (("case3", "test3", 11, 12, 11, 12),
+    jobs = (("case1", "test1", 288, 222, 288, 222),
+            ("case2", "test2", 25, 0, 25, 0),
+            ("case3", "test3", 11, 12, 11, 12),
             ("case4", "test4", 27, 10, 27, 10))
     results = {}
     for case, top, expected_lut, expected_dff, oracle_lut, oracle_dff in jobs:
@@ -110,8 +112,10 @@ def main() -> int:
                        "--rtlil", str(directory / "post_abc9.il"),
                        "--log", str(directory / "yosys.log"),
                        "--script", str(directory / "run.ys")]
-            if variant == "production":
-                command.extend(("--v02-case34", "--abc-script", str(abc_script)))
+            if variant == "baseline":
+                command.append("--no-v02-case34")
+            else:
+                command.extend(("--abc-script", str(abc_script)))
             rc, elapsed = run(command, directory / "driver.log")
             record = {"returncode": rc, "wall_seconds": elapsed}
             if rc == 0:
