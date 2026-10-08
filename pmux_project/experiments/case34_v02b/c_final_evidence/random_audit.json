@@ -1,0 +1,23 @@
+{
+  "default": {
+    "count": 1000,
+    "pass": 1000,
+    "fail": 0,
+    "failure_seeds": [],
+    "structure_correct": "PASS",
+    "eqy_pass": "PASS",
+    "synthesis_pass": "PASS"
+  },
+  "v02": {
+    "count": 1000,
+    "pass": 1000,
+    "fail": 0,
+    "failure_seeds": [],
+    "structure_correct": "PASS",
+    "eqy_pass": "PASS",
+    "synthesis_pass": "PASS",
+    "structural_match_seeds": [],
+    "no_candidate_count": 1000
+  },
+  "seed_sha256": "8db91b2ee25d579493dbc2ca66417cc945e215b5424349884013834d43df7ac4"
+}

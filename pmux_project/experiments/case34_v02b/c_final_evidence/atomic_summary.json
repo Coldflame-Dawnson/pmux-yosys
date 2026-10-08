@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "mode": "test-only-snapshot-abort",
+  "status": "PASS",
+  "structure": "PASS",
+  "check": "PASS",
+  "eqy": "PASS",
+  "issues": []
+}
