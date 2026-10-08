@@ -53,8 +53,41 @@ MEMORY_MAP -> PMUX_OPT -> OPT_CLEAN -> common TECHMAP -> ABC9
 ```
 
 It also requires real-mode plan/stat files and verifies that `changed_bits`
-equals the committed edit count. Official LUT measurements must not use the
-old one-line `synth_intel` command as their purported optimized run.
+equals the committed edit count, `changed_structures` equals the structural
+edit count, and `stats.v02_case34.enabled` matches the requested mode.
+Official LUT measurements must not use the old one-line `synth_intel` command
+as their purported optimized run.
+
+## v0.2 case3/case4 structural candidate mode
+
+`pmux_opt -v02-case34` is an explicit candidate-generation mode. It calls A's
+`ProductionCase34Analyzer` at the same audited insertion point and accepts a
+structural edit only when every proof obligation, reset/enable/hold contract,
+cell snapshot and `keep` check passes. It does not inspect a file name, module
+name, source location or case number. The default command remains unchanged.
+
+The frozen runner exposes this mode as `--v02-case34`. Constant-table
+cofactors use the adjacent `pmux_case34_lut_map.v`, which is deliberately
+applied after the common techmap. An optional `--abc-script` selects the
+bounded mapping candidate used by the case4 evidence:
+
+```bash
+python3 pmux_project/pass/run_synth_intel_pmux.py \
+  --yosys /path/to/yosys --plugin pmux_project/pass/pmux_opt.so \
+  --source test4.v --top test4 --stage post_abc9 --v02-case34 \
+  --abc-script pmux_project/experiments/case34_v02b/evidence/generated/abc.script \
+  --plan out/plan.json --stats out/stats.json \
+  --json out/post_abc9.json --rtlil out/post_abc9.il \
+  --log out/post_abc9.log --script out/post_abc9.ys
+```
+
+This switch generates an isolated candidate; it is not permission to bypass
+the unified cost and EQY gates. `run_production_validation.py` synthesizes the
+baseline and production candidates separately and checks the production gate
+against the official RTL. Current strict results are case3 13 LUT/17 DFF
+(EQY PASS but P2 gap versus 11/12) and case4 27 LUT/10 DFF (EQY PASS, P2
+met). A nonmatching design records `no_v02_case34_candidate`, has an empty
+`structural_edits` array, and receives no structural write.
 
 ## Plan JSON schema 1
 
