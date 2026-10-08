@@ -214,4 +214,13 @@ AUTHORIZED
 D 输入组合逻辑替换；不授权直接删除/合并寄存器、跨 DFF 推理、忽略 UNKNOWN，或跳过 C
 的 whole-design EQY 与成本验收。
 
-A 分支、提交、远端同步和最终工作树状态在提交后元数据段补记。
+## 8. A 交付元数据
+
+- A 分支：`feature/a-v02-decision-consumer-ordered-reaudit`
+- 起点/被审计 B 提交：`99dee059077e83969cede6e292dc1ea9139389e3`
+- 审计内容提交：`3b9185c86e23b365445b6a31f5d914e0da7f293f`
+- 内容提交修改文件：`pmux_project/analyzer/Makefile`、
+  `decision_consumer_reaudit_plugin.cc`、本报告
+- 内容提交已推送至
+  `origin/feature/a-v02-decision-consumer-ordered-reaudit`
+- 未修改 `pmux_project/pass/` 或任何冻结接口
