@@ -1,0 +1,198 @@
+{
+  "scope": [
+    "pass/case34_rewrite.cc",
+    "pass/pmux_opt.cc",
+    "pass/run_synth_intel_pmux.py",
+    "analyzer/decision_cone_proof_analyzer.cc",
+    "analyzer/production_case34_proof_analyzer.cc"
+  ],
+  "forbidden_literal_hits": [],
+  "dynamic_identity_binding_sites_for_manual_review": [
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 39,
+      "text": "if (cell == nullptr || cell->name.str() != snapshot.cell_id ||"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 206,
+      "text": "result.push_back({cell->name.str(), connection.first, bit, target});"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 275,
+      "text": "std::string anchor_cell;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 288,
+      "text": "if (proof.module != module->name.str() ||"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 484,
+      "text": "plan.anchor_cell = proof.source_cells.front().cell_id;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 494,
+      "text": "std::string anchor_cell;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 568,
+      "text": "plan.anchor_cell = proof.comparator_cells.front().cell_id;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 691,
+      "text": "std::string anchor_cell;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 749,
+      "text": "plan.anchor_cell = proof.source_cells.front().cell_id;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1082,
+      "text": "if (source_ids.count(cell->name.str())) continue;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1162,
+      "text": "request.module_id = module->name.str();"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1291,
+      "text": "decision_request.module_id = module->name.str();"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1301,
+      "text": "request.module_id = module->name.str();"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1321,
+      "text": "if (claimed_cells.count({module->name.str(), cell_id})) return false;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1323,
+      "text": "claimed_cells.insert({module->name.str(), cell_id});"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1367,
+      "text": "edit.module_id = plan->module->name.str();"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1369,
+      "text": "edit.anchor_cell = plan->anchor_cell;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1379,
+      "text": "edit.module_id = plan->module->name.str();"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1381,
+      "text": "edit.anchor_cell = plan->anchor_cell;"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1392,
+      "text": "edit.module_id = plan->module->name.str();"
+    },
+    {
+      "file": "pass/case34_rewrite.cc",
+      "line": 1394,
+      "text": "edit.anchor_cell = plan->anchor_cell;"
+    },
+    {
+      "file": "pass/pmux_opt.cc",
+      "line": 178,
+      "text": "{\"anchor_cell\", edit.anchor_cell},"
+    },
+    {
+      "file": "pass/pmux_opt.cc",
+      "line": 380,
+      "text": "request.module_id = module->name.str();"
+    },
+    {
+      "file": "pass/pmux_opt.cc",
+      "line": 381,
+      "text": "request.cell_id = cell->name.str();"
+    },
+    {
+      "file": "analyzer/decision_cone_proof_analyzer.cc",
+      "line": 98,
+      "text": "result.cell_id = cell->name.str(); result.type = cell->type;"
+    },
+    {
+      "file": "analyzer/decision_cone_proof_analyzer.cc",
+      "line": 145,
+      "text": "if (input) uses[canonical].push_back({cell->name.str(), conn.first, bit, canonical});"
+    },
+    {
+      "file": "analyzer/decision_cone_proof_analyzer.cc",
+      "line": 338,
+      "text": "result.logical_sink_bit = logical; result.cell_id = cell->name.str(); result.cell = cell;"
+    },
+    {
+      "file": "analyzer/decision_cone_proof_analyzer.cc",
+      "line": 475,
+      "text": "support.sequential_q = true; support.sequential_cell_id = driver->second.front().cell->name.str();"
+    },
+    {
+      "file": "analyzer/decision_cone_proof_analyzer.cc",
+      "line": 658,
+      "text": "DecisionRelationProof relation; relation.cell_id = cell->name.str(); relation.snapshot = snapshot_cell(cell);"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 64,
+      "text": "result.cell_id = cell->name.str();"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 105,
+      "text": "if (input) uses[bit].push_back({cell->name.str(), conn.first, i, bit});"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 738,
+      "text": "conclusion.cell_id = item.cell->name.str(); conclusion.comparator_constant = item.constant;"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 756,
+      "text": "fold.comparator_index = ci; fold.cell_id = cell->name.str(); fold.port = ID::B;"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 771,
+      "text": "if (index.sigmap(conn.second[pi]) == index.sigmap(source_bit) && !folded_positions.count({cell->name.str(), conn.first.str(), pi})) {"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 773,
+      "text": "keep.cell_id = cell->name.str(); keep.port = conn.first; keep.port_bit = pi; keep.source_bit = source_bit;"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 774,
+      "text": "keep.preserved = true; keep.proof_id = \"production-preserve-\" + cell->name.str() + \"-\" + std::to_string(pi);"
+    },
+    {
+      "file": "analyzer/production_case34_proof_analyzer.cc",
+      "line": 824,
+      "text": "if (!request.module || request.module_id != request.module->name.str() || !exact_budget(request.budget) ||"
+    }
+  ],
+  "pass": true
+}

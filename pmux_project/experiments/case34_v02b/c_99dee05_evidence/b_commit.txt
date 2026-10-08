@@ -1,0 +1,7 @@
+commit 99dee059077e83969cede6e292dc1ea9139389e3
+Author:     Dawnson <Coldflame-Dawnson@users.noreply.github.com>
+AuthorDate: Thu Oct 8 22:43:40 2026 +0800
+Commit:     Dawnson <Coldflame-Dawnson@users.noreply.github.com>
+CommitDate: Thu Oct 8 22:43:40 2026 +0800
+
+    fix(pmux-opt): bind ordered decision proof structure

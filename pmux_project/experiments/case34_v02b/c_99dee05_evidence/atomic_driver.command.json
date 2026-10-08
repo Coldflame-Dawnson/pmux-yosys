@@ -1,0 +1,10 @@
+[
+  "/usr/bin/python3",
+  "/home/yuewen/work/pmux-yosys-c-99dee05/pmux_project/scripts/run_atomic_precheck.py",
+  "--bin",
+  "/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin",
+  "--plugin",
+  "/home/yuewen/work/pmux-yosys-c-99dee05/pmux_project/pass/pmux_opt.so",
+  "--out",
+  "/home/yuewen/work/pmux-yosys-c-99dee05/pmux_project/reports/c-99dee05/atomic"
+]

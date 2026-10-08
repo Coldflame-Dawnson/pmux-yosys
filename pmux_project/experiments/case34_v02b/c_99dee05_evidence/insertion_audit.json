@@ -1,0 +1,343 @@
+{
+  "test3": {
+    "before_types": {
+      "$dffe": 5,
+      "$sdffce": 1,
+      "$reduce_bool": 2,
+      "$not": 1,
+      "$reduce_and": 3,
+      "$mux": 2,
+      "$pmux": 1,
+      "$eq": 3
+    },
+    "after_types": {
+      "$or": 1,
+      "$dffe": 5,
+      "$sdffce": 1,
+      "$reduce_bool": 2,
+      "$not": 1,
+      "$reduce_and": 3,
+      "$mux": 2,
+      "$pmux": 1,
+      "$eq": 3
+    },
+    "removed": [],
+    "added": [
+      "$auto$case34_rewrite.cc:933:operator()$65"
+    ],
+    "narrowed_mux": [],
+    "sequential_count": 6,
+    "sequential_d_changes": [
+      {
+        "cell": "$auto$ff.cc:337:slice$45",
+        "port": "D",
+        "before": [
+          22,
+          23,
+          24
+        ],
+        "after": [
+          14,
+          "1",
+          14
+        ],
+        "before_names": [
+          "$procmux$10_Y"
+        ],
+        "after_names": [
+          "sr"
+        ]
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$55",
+        "port": "D",
+        "before": [
+          26
+        ],
+        "after": [
+          16
+        ],
+        "before_names": [
+          "$procmux$18_Y"
+        ],
+        "after_names": [
+          "$auto$case34_rewrite.cc:927:operator()$64"
+        ]
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$62",
+        "port": "D",
+        "before": [
+          18
+        ],
+        "after": [
+          "1"
+        ],
+        "before_names": [
+          "sr"
+        ],
+        "after_names": []
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$63",
+        "port": "D",
+        "before": [
+          30,
+          31,
+          32
+        ],
+        "after": [
+          19,
+          "1",
+          19
+        ],
+        "before_names": [
+          "$procmux$27_Y"
+        ],
+        "after_names": [
+          "sr"
+        ]
+      }
+    ],
+    "sequential_control_changes": [],
+    "raw_control_id_changes": [
+      {
+        "cell": "$auto$ff.cc:337:slice$44",
+        "port": "Q",
+        "before": [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          14
+        ],
+        "after": [
+          14,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          17
+        ],
+        "same_named_signal": true
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$45",
+        "port": "EN",
+        "before": [
+          25
+        ],
+        "after": [
+          24
+        ],
+        "same_named_signal": true
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$55",
+        "port": "EN",
+        "before": [
+          27
+        ],
+        "after": [
+          25
+        ],
+        "same_named_signal": true
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$62",
+        "port": "EN",
+        "before": [
+          28
+        ],
+        "after": [
+          26
+        ],
+        "same_named_signal": true
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$62",
+        "port": "SRST",
+        "before": [
+          29
+        ],
+        "after": [
+          27
+        ],
+        "same_named_signal": true
+      },
+      {
+        "cell": "$auto$ff.cc:337:slice$63",
+        "port": "EN",
+        "before": [
+          28
+        ],
+        "after": [
+          26
+        ],
+        "same_named_signal": true
+      }
+    ],
+    "ports_equal": true,
+    "init_attributes_equal": true,
+    "plan": [
+      {
+        "added_cells": 1,
+        "anchor_cell": "$auto$simple.cc:194:make_patterns_logic$47",
+        "folded_bits": 0,
+        "module": "\\test3",
+        "proof_reason": "proved",
+        "removed_cells": 0,
+        "rule": "guarded_next_state_decision_cone",
+        "split_by_output_bit": []
+      }
+    ],
+    "changed_structures": 1,
+    "check_pass": true,
+    "comparator_changes": [
+      {
+        "cell": "$procmux$20_CMP0",
+        "before_a": 8,
+        "after_a": 7,
+        "before_b": 8,
+        "after_b": 7
+      },
+      {
+        "cell": "$procmux$28_CMP0",
+        "before_a": 8,
+        "after_a": 7,
+        "before_b": 8,
+        "after_b": 7
+      },
+      {
+        "cell": "$procmux$29_CMP0",
+        "before_a": 8,
+        "after_a": 7,
+        "before_b": 8,
+        "after_b": 7
+      }
+    ],
+    "proof_eq_cells": [
+      "$procmux$20_CMP0",
+      "$procmux$28_CMP0",
+      "$procmux$29_CMP0"
+    ]
+  },
+  "test4": {
+    "before_types": {
+      "$sdffce": 1,
+      "$reduce_or": 1,
+      "$not": 3,
+      "$mux": 19,
+      "$adff": 4
+    },
+    "after_types": {
+      "pmux_case34_lut4": 16,
+      "$mux": 13,
+      "$sdffce": 1,
+      "$reduce_or": 1,
+      "$not": 3,
+      "$adff": 4
+    },
+    "removed": [
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][0][0]$56",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][1][0]$59",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][1][1]$62",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][2][0]$65",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][2][1]$68",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][2][2]$71",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][2][3]$74",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][0]$77",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][1]$80",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][2]$83",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][3]$86",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][4]$89",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][5]$92",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][6]$95",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][3][7]$98",
+      "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][4][14]$143"
+    ],
+    "added": [
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$159",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$162",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$165",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$168",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$170",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$173",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$175",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$178",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$181",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$183",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$186",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$188",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$191",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$193",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$196",
+      "$auto$case34_rewrite.cc:1056:materialize_cofactor$198",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$160",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$163",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$166",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$171",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$176",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$179",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$184",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$189",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$194",
+      "$auto$case34_rewrite.cc:1140:apply_table_plan$199"
+    ],
+    "narrowed_mux": [
+      {
+        "cell": "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][4][12]$137",
+        "before": 2,
+        "after": 1
+      }
+    ],
+    "sequential_count": 5,
+    "sequential_d_changes": [],
+    "sequential_control_changes": [],
+    "raw_control_id_changes": [
+      {
+        "cell": "$auto$ff.cc:337:slice$149",
+        "port": "SRST",
+        "before": [
+          21
+        ],
+        "after": [
+          47
+        ],
+        "same_named_signal": true
+      }
+    ],
+    "ports_equal": true,
+    "init_attributes_equal": true,
+    "plan": [
+      {
+        "added_cells": 26,
+        "anchor_cell": "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][0][0]$56",
+        "folded_bits": 0,
+        "module": "\\test4",
+        "proof_reason": "proved",
+        "removed_cells": 16,
+        "rule": "constant_table_cofactor",
+        "split_by_output_bit": [
+          3,
+          3,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "changed_structures": 1,
+    "check_pass": true
+  }
+}

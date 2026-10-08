@@ -1,0 +1,18 @@
+B commit: 99dee059077e83969cede6e292dc1ea9139389e3
+yosys source_commit: 9f75ca1f9834a39a863915b5dae0c7b1e33533bc
+yosys executable_sha256: bfd41648f020ff981c8bb2dcf6499df7964759e396ddba65b0cda6318fa8cf6b
+yosys raw_version: Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]
+eqy source_commit: 4a72eb94fc253062464afee4d0018359017bb846
+eqy executable_sha256: 4c4110be84a2c9b84d5cea9023f0e5bc31987d9d4ddc02276dc85b97f517f76e
+eqy raw_version: EQY v0.69
+sby source_commit: b1a1e98cba941ec8433f8dc27f416cd7bb7f14be
+sby executable_sha256: 456ed28b00192b80cce32320f7f10370cd507f0527b1fedcc84da292f4f0d7b3
+sby raw_version: SBY v0.69
+abc source_commit: a51bf4a7bb38ce06ea3a544b1463b40832213917
+abc executable_sha256: 33d49acabf754bcda4b1426daebd300f6dc9b8613a23e4e23b666920713cd841
+abc raw_version: ======== ABC command line "version"
+UC Berkeley, ABC 1.01 (compiled Oct  6 2026 01:02:35)
+test1.v SHA-256: 2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13 /home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test1.v
+test2.v SHA-256: e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146 /home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test2.v
+test3.v SHA-256: 1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9 /home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test3.v
+test4.v SHA-256: c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7 /home/yuewen/work/pmux-yosys/pmux_project/pmux_case/competition_case/test4.v

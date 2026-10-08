@@ -1,0 +1,16 @@
+[
+  "/usr/bin/python3",
+  "/home/yuewen/work/pmux-yosys-c-99dee05/pmux_project/scripts/run_random.py",
+  "--count",
+  "1000",
+  "--mode",
+  "external",
+  "--external-kind",
+  "real",
+  "--dut-template",
+  "/usr/bin/python3 /home/yuewen/work/pmux-yosys-c-99dee05/pmux_project/scripts/c_v02_case34_adapter.py --before {before} --after {after} --plan {plan} --stats {stats} --plugin /home/yuewen/work/pmux-yosys-c-99dee05/pmux_project/pass/pmux_opt.so --yosys /home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/yosys",
+  "--bin",
+  "/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin",
+  "--out",
+  "/home/yuewen/work/pmux-yosys-c-99dee05/pmux_project/reports/c-99dee05/random_v02"
+]

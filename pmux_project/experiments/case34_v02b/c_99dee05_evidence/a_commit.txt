@@ -1,0 +1,7 @@
+commit 6ff4bd10ddd8995fc5d7f3a65d7150c2a3f6da53
+Author:     Dawnson <Coldflame-Dawnson@users.noreply.github.com>
+AuthorDate: Fri Oct 9 00:09:37 2026 +0800
+Commit:     Dawnson <Coldflame-Dawnson@users.noreply.github.com>
+CommitDate: Fri Oct 9 00:09:37 2026 +0800
+
+    docs(pmux): record ordered reaudit delivery metadata

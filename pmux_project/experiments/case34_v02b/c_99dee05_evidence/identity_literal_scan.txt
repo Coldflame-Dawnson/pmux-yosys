@@ -1,0 +1,53 @@
+pmux_project/analyzer/decision_cone_proof_analyzer.cc:445:		auto base = make_production_case34_analyzer()->analyze(base_request);
+pmux_project/pass/case34_rewrite.cc:1:#include "case34_rewrite.h"
+pmux_project/pass/case34_rewrite.cc:1056:	RTLIL::Cell *cell = plan.module->addCell(NEW_ID, ID(pmux_case34_lut4));
+pmux_project/pass/case34_rewrite.cc:1277:Case34RewriteResult run_case34_structural_rewrite(
+pmux_project/pass/case34_rewrite.cc:1303:		std::unique_ptr<ProductionCase34Analyzer> analyzer = make_production_case34_analyzer();
+pmux_project/pass/case34_rewrite.cc:1405:		result.reason_counts["no_v02_case34_candidate"]++;
+pmux_project/pass/pmux_opt.cc:6:#include "case34_rewrite.h"
+pmux_project/pass/pmux_opt.cc:139:		const Case34RewriteResult &case34_result)
+pmux_project/pass/pmux_opt.cc:171:	for (const Case34StructuralEdit &edit : case34_result.edits) {
+pmux_project/pass/pmux_opt.cc:203:		const RewriteStats &rewrite_stats, const Case34RewriteResult &case34_result,
+pmux_project/pass/pmux_opt.cc:204:		bool enable_v02_case34,
+pmux_project/pass/pmux_opt.cc:219:	for (const auto &item : case34_result.reason_counts)
+pmux_project/pass/pmux_opt.cc:266:		{"changed_structures", case34_result.committed_candidates},
+pmux_project/pass/pmux_opt.cc:301:		{"v02_case34", Json::object {
+pmux_project/pass/pmux_opt.cc:302:			{"enabled", enable_v02_case34},
+pmux_project/pass/pmux_opt.cc:303:			{"decision_cone_candidates", case34_result.decision_cone_candidates},
+pmux_project/pass/pmux_opt.cc:304:			{"guarded_candidates", case34_result.guarded_candidates},
+pmux_project/pass/pmux_opt.cc:305:			{"table_candidates", case34_result.table_candidates},
+pmux_project/pass/pmux_opt.cc:306:			{"proven_candidates", case34_result.proven_candidates},
+pmux_project/pass/pmux_opt.cc:307:			{"rejected_candidates", case34_result.rejected_candidates},
+pmux_project/pass/pmux_opt.cc:308:			{"committed_candidates", case34_result.committed_candidates},
+pmux_project/pass/pmux_opt.cc:309:			{"removed_cells", case34_result.removed_cells},
+pmux_project/pass/pmux_opt.cc:310:			{"added_cells", case34_result.added_cells},
+pmux_project/pass/pmux_opt.cc:311:			{"folded_bits", case34_result.folded_bits},
+pmux_project/pass/pmux_opt.cc:407:		log("             [-v02-case34]\n");
+pmux_project/pass/pmux_opt.cc:424:		log("-v02-case34 enables proof-gated guarded-cone and constant-table\n");
+pmux_project/pass/pmux_opt.cc:439:		bool enable_v02_case34 = false;
+pmux_project/pass/pmux_opt.cc:470:			if (args[argidx] == "-v02-case34") {
+pmux_project/pass/pmux_opt.cc:471:				enable_v02_case34 = true;
+pmux_project/pass/pmux_opt.cc:508:		if (enable_v02_case34 && stub_mode_set)
+pmux_project/pass/pmux_opt.cc:509:			log_cmd_error("pmux_opt: -v02-case34 cannot be combined with -stub-* modes.\n");
+pmux_project/pass/pmux_opt.cc:510:		if (test_decision_proof_mutations && (stub_mode_set || enable_v02_case34))
+pmux_project/pass/pmux_opt.cc:531:		Case34RewriteResult case34_result;
+pmux_project/pass/pmux_opt.cc:532:		if (enable_v02_case34) {
+pmux_project/pass/pmux_opt.cc:533:			case34_result = run_case34_structural_rewrite(modules);
+pmux_project/pass/pmux_opt.cc:534:			log("pmux_opt: v02_case34 decision_cones=%d guarded=%d tables=%d proven=%d rejected=%d committed=%d removed_cells=%d added_cells=%d folded_bits=%d\n",
+pmux_project/pass/pmux_opt.cc:535:					case34_result.decision_cone_candidates, case34_result.guarded_candidates, case34_result.table_candidates,
+pmux_project/pass/pmux_opt.cc:536:					case34_result.proven_candidates, case34_result.rejected_candidates,
+pmux_project/pass/pmux_opt.cc:537:					case34_result.committed_candidates, case34_result.removed_cells,
+pmux_project/pass/pmux_opt.cc:538:					case34_result.added_cells, case34_result.folded_bits);
+pmux_project/pass/pmux_opt.cc:539:			for (const auto &item : case34_result.reason_counts)
+pmux_project/pass/pmux_opt.cc:540:				log("pmux_opt: reason scope=v02_case34 code=%s count=%d\n",
+pmux_project/pass/pmux_opt.cc:708:							case34_result));
+pmux_project/pass/pmux_opt.cc:714:							propagation_events, rewrite_stats, case34_result,
+pmux_project/pass/pmux_opt.cc:715:							enable_v02_case34,
+pmux_project/pass/run_synth_intel_pmux.py:18:	if args.v02_case34:
+pmux_project/pass/run_synth_intel_pmux.py:19:		pmux_command += " -v02-case34"
+pmux_project/pass/run_synth_intel_pmux.py:30:	if args.v02_case34:
+pmux_project/pass/run_synth_intel_pmux.py:92:	if stats.get("v02_case34", {}).get("enabled") != bool(args.v02_case34):
+pmux_project/pass/run_synth_intel_pmux.py:93:		raise RuntimeError("v02_case34 mode differs from the requested runner mode")
+pmux_project/pass/run_synth_intel_pmux.py:104:	parser.add_argument("--v02-case34", action="store_true")
+pmux_project/pass/run_synth_intel_pmux.py:114:	if args.v02_case34 and args.cofactor_map is None:
+pmux_project/pass/run_synth_intel_pmux.py:115:		args.cofactor_map = Path(__file__).resolve().with_name("pmux_case34_lut_map.v")

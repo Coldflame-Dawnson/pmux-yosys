@@ -1,0 +1,2 @@
+origin	https://github.com/Coldflame-Dawnson/pmux-yosys.git (fetch)
+origin	https://github.com/Coldflame-Dawnson/pmux-yosys.git (push)
