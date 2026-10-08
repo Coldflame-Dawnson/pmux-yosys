@@ -402,6 +402,7 @@ struct PmuxOptPass : public Pass
 		log("    pmux_opt [-verbose] [-stub-unknown|-stub-zero|-stub-one|-stub-alternating]\n");
 		log("             [-test-rewrite-duplicate] [-test-rewrite-conflict]\n");
 		log("             [-test-snapshot-mismatch]\n");
+		log("             [-test-decision-proof-mutations]\n");
 		log("             [-test-report-constants]\n");
 		log("             [-v02-case34]\n");
 		log("             [-write-plan <file>] [-write-stats <file>] [selection]\n");
@@ -415,6 +416,8 @@ struct PmuxOptPass : public Pass
 		log("-test-rewrite-conflict injects opposing test metadata for one target bit.\n");
 		log("-test-snapshot-mismatch corrupts plan metadata, not RTLIL, to verify that\n");
 		log("a failed all-batch precheck performs zero writes.\n");
+		log("-test-decision-proof-mutations runs malformed DecisionConeProof objects\n");
+		log("through the production pre-write validator and requires exact zero writes.\n");
 		log("-test-report-constants makes a forced stub report original constants so\n");
 		log("the planner's defensive constant/x/z filter can be verified.\n");
 		log("-write-plan and -write-stats emit schema-1 machine-readable JSON.\n");
@@ -431,6 +434,7 @@ struct PmuxOptPass : public Pass
 		bool test_rewrite_duplicate = false;
 		bool test_rewrite_conflict = false;
 		bool test_snapshot_mismatch = false;
+		bool test_decision_proof_mutations = false;
 		bool test_report_constants = false;
 		bool enable_v02_case34 = false;
 		StubMode stub_mode = StubMode::Unknown;
@@ -445,6 +449,10 @@ struct PmuxOptPass : public Pass
 			}
 			if (args[argidx] == "-test-snapshot-mismatch") {
 				test_snapshot_mismatch = true;
+				continue;
+			}
+			if (args[argidx] == "-test-decision-proof-mutations") {
+				test_decision_proof_mutations = true;
 				continue;
 			}
 			if (args[argidx] == "-test-rewrite-conflict") {
@@ -499,6 +507,8 @@ struct PmuxOptPass : public Pass
 			log_cmd_error("pmux_opt: -test-report-constants requires a -stub-* mode.\n");
 		if (enable_v02_case34 && stub_mode_set)
 			log_cmd_error("pmux_opt: -v02-case34 cannot be combined with -stub-* modes.\n");
+		if (test_decision_proof_mutations && (stub_mode_set || enable_v02_case34))
+			log_cmd_error("pmux_opt: -test-decision-proof-mutations is a standalone test mode.\n");
 
 		log_header(design, "Executing PMUX_OPT guarded analysis and atomic rewrite.\n");
 
@@ -506,6 +516,17 @@ struct PmuxOptPass : public Pass
 		std::sort(modules.begin(), modules.end(), [](const RTLIL::Module *lhs, const RTLIL::Module *rhs) {
 			return lhs->name.str() < rhs->name.str();
 		});
+		if (test_decision_proof_mutations) {
+			DecisionConsumerMutationTestResult mutation =
+					run_decision_consumer_mutation_tests(modules);
+			log("pmux_opt: decision proof mutation selftest passed=%d checks=%d failures=%d\n",
+					mutation.passed, mutation.checks, GetSize(mutation.failures));
+			for (const std::string &failure : mutation.failures)
+				log_warning("pmux_opt: decision proof mutation failure=%s\n", failure.c_str());
+			if (!mutation.failures.empty() || mutation.passed != mutation.checks)
+				log_cmd_error("pmux_opt: decision proof mutation selftest failed.\n");
+			return;
+		}
 
 		Case34RewriteResult case34_result;
 		if (enable_v02_case34) {

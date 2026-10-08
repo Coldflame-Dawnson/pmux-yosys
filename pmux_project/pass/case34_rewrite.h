@@ -36,11 +36,23 @@ struct Case34RewriteResult {
 	std::vector<Case34StructuralEdit> edits;
 };
 
+struct DecisionConsumerMutationTestResult {
+	int checks = 0;
+	int passed = 0;
+	std::vector<std::string> failures;
+};
+
 // Discover, prove, conflict-check and atomically apply the v0.2 case3/case4
 // structural rules.  All discovery and proof happens before the first RTLIL
 // write.  A failed candidate is rejected with a stable reason and does not
 // authorize a partial rewrite.
 Case34RewriteResult run_case34_structural_rewrite(
+		const std::vector<RTLIL::Module *> &modules);
+
+// Test-only seam: analyze a real decision-cone proof, mutate its redundant
+// authorization fields, and run the exact production pre-write validator.
+// This function never applies a rewrite.
+DecisionConsumerMutationTestResult run_decision_consumer_mutation_tests(
 		const std::vector<RTLIL::Module *> &modules);
 
 } // namespace PmuxOpt
