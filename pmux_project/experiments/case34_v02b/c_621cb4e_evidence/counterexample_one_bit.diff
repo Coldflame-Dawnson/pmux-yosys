@@ -1,0 +1,21 @@
+--- post_producer.il
++++ changed_snapshot.il
+@@ -310,17 +310,17 @@
+     connect \Y $auto$proc_rom.cc:154:do_switch$7 [8]
+   end
+   cell \pmux_case34_lut4 $auto$case34_rewrite.cc:1056:materialize_cofactor$196
+     parameter \LUT 16'0001000000010111
+     connect \A \datain [4:1]
+     connect \Y $auto$case34_rewrite.cc:1054:materialize_cofactor$195
+   end
+   cell \pmux_case34_lut4 $auto$case34_rewrite.cc:1056:materialize_cofactor$198
+-    parameter \LUT 16'1111111101111110
++    parameter \LUT 16'1111111101111111
+     connect \A \datain [4:1]
+     connect \Y $auto$case34_rewrite.cc:1054:materialize_cofactor$197
+   end
+   cell $mux $auto$case34_rewrite.cc:1140:apply_table_plan$199
+     parameter \WIDTH 1
+     connect \A $auto$case34_rewrite.cc:1054:materialize_cofactor$195
+     connect \B $auto$case34_rewrite.cc:1054:materialize_cofactor$197
+     connect \S \datain [0]

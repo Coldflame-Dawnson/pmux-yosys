@@ -1,0 +1,14 @@
+{
+  "test": "native_changed_cell_snapshot_after_authorization",
+  "returncode": 0,
+  "mutation_applied": true,
+  "expected_profile": "stock",
+  "actual_profile": "accepted_constant_table",
+  "pass": false,
+  "log": "/home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/snapshot_counterexample/yosys.log",
+  "eqy_returncode": 1,
+  "eqy": "ERROR",
+  "sat_status": "UNKNOWN",
+  "pdr_status": "ERROR: unsupported $lut in maybe-x preparation",
+  "formal_inequivalence": "UNVERIFIED"
+}

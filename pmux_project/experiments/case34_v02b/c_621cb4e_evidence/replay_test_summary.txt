@@ -1,0 +1,4 @@
+Native legal first consumption: accepted_constant_table; post-call scratchpad false assertion PASS.
+Native cell regeneration/replay: UNVERIFIED; stopped before execution.
+Native changed-snapshot rejection: FAIL; changed one LUT parameter bit after genuine authorization; accepted_constant_table instead of stock.
+Other required unauthorized/ambiguous/unknown-profile cases: UNVERIFIED after stop.

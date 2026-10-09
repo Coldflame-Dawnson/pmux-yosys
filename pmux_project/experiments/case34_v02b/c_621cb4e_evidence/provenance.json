@@ -1,0 +1,10 @@
+{
+  "B": "621cb4e56b734da73cfb6161b951a375893e2d81",
+  "parent": "9107a466f74ce27269361ee26e99093c1b8fc93e",
+  "A_content": "3cc303df7ea1336659f137b564453aab76c76b66",
+  "A_HEAD": "19b8dee568082393aa2f5a77091fef860dd4fe68",
+  "A_verdict": "AUTHORIZED (read-only reference; not C verdict)",
+  "production_tracked_diff": "",
+  "relocated_yosys_sha256": "bfd41648f020ff981c8bb2dcf6499df7964759e396ddba65b0cda6318fa8cf6b",
+  "original_yosys_sha256": "bfd41648f020ff981c8bb2dcf6499df7964759e396ddba65b0cda6318fa8cf6b"
+}

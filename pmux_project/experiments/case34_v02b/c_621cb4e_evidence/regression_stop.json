@@ -1,0 +1,21 @@
+{
+  "reason": "Stop required by user after native snapshot-profile production defect",
+  "terminated_root_pids": [
+    157076
+  ],
+  "terminated_process_count": 31,
+  "default": {
+    "completed": 582,
+    "passed": 582,
+    "failed": 0,
+    "required": 1000,
+    "status": "INCOMPLETE_STOPPED_ON_PRODUCTION_DEFECT"
+  },
+  "explicit": {
+    "completed": 0,
+    "passed": 0,
+    "failed": 0,
+    "required": 1000,
+    "status": "INCOMPLETE_STOPPED_ON_PRODUCTION_DEFECT"
+  }
+}

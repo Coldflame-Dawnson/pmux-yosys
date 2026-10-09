@@ -1,0 +1,30 @@
+[
+  {
+    "case": 1,
+    "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test1.v",
+    "original_sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+    "gold_sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+    "same": true
+  },
+  {
+    "case": 2,
+    "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test2.v",
+    "original_sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+    "gold_sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+    "same": true
+  },
+  {
+    "case": 3,
+    "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test3.v",
+    "original_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+    "gold_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+    "same": true
+  },
+  {
+    "case": 4,
+    "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test4.v",
+    "original_sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+    "gold_sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+    "same": true
+  }
+]

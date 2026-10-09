@@ -1,0 +1,268 @@
+[
+  {
+    "case": "case1",
+    "gold_sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+    "baseline": {
+      "rc": 0,
+      "wall_seconds": 0.16410214599454775,
+      "profile": "stock",
+      "lut": 288,
+      "dff": 222,
+      "io": 285,
+      "cells": 510,
+      "types": {
+        "$lut": 288,
+        "dffeas": 222
+      },
+      "gate_sha256": "9ff031a53abe877fd5669720dd66f7243f0c733db250548279c07b1ad4d3a16e",
+      "final_sha256": "f1b68c8055c759bb1ea9f6fe1b0dee7379a0e325bb5f3cbe462f4327890f16cb",
+      "structural_edits": 0,
+      "user_seconds": 0.13,
+      "system_seconds": 0.01,
+      "peak_kib": 40080,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.01 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.03
+      ],
+      "abc_total_seconds_reported": [
+        0.03
+      ]
+    },
+    "default": {
+      "rc": 0,
+      "wall_seconds": 0.21433224200154655,
+      "profile": "stock",
+      "lut": 288,
+      "dff": 222,
+      "io": 285,
+      "cells": 510,
+      "types": {
+        "$lut": 288,
+        "dffeas": 222
+      },
+      "gate_sha256": "9ff031a53abe877fd5669720dd66f7243f0c733db250548279c07b1ad4d3a16e",
+      "final_sha256": "f1b68c8055c759bb1ea9f6fe1b0dee7379a0e325bb5f3cbe462f4327890f16cb",
+      "structural_edits": 0,
+      "user_seconds": 0.15,
+      "system_seconds": 0.0,
+      "peak_kib": 40928,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.01 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.03
+      ],
+      "abc_total_seconds_reported": [
+        0.03
+      ]
+    },
+    "eqy": "PASS",
+    "eqy_wall_seconds": 0.96619051900052,
+    "checks_pass": true
+  },
+  {
+    "case": "case2",
+    "gold_sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+    "baseline": {
+      "rc": 0,
+      "wall_seconds": 0.06388308999885339,
+      "profile": "stock",
+      "lut": 25,
+      "dff": 0,
+      "io": 30,
+      "cells": 25,
+      "types": {
+        "$lut": 25
+      },
+      "gate_sha256": "095b701c18dbb18cc344898217259532c111793a91c0bec5ecf57039a8cb0c74",
+      "final_sha256": "fac82b15f8996d89200d9adb0fe1fe094ec906c8ff8f43b5df25b288facaeb36",
+      "structural_edits": 0,
+      "user_seconds": 0.04,
+      "system_seconds": 0.0,
+      "peak_kib": 35292,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.01 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.01
+      ],
+      "abc_total_seconds_reported": [
+        0.01
+      ]
+    },
+    "default": {
+      "rc": 0,
+      "wall_seconds": 0.06379412199021317,
+      "profile": "stock",
+      "lut": 25,
+      "dff": 0,
+      "io": 30,
+      "cells": 25,
+      "types": {
+        "$lut": 25
+      },
+      "gate_sha256": "095b701c18dbb18cc344898217259532c111793a91c0bec5ecf57039a8cb0c74",
+      "final_sha256": "fac82b15f8996d89200d9adb0fe1fe094ec906c8ff8f43b5df25b288facaeb36",
+      "structural_edits": 0,
+      "user_seconds": 0.04,
+      "system_seconds": 0.0,
+      "peak_kib": 33140,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.01 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.01
+      ],
+      "abc_total_seconds_reported": [
+        0.01
+      ]
+    },
+    "eqy": "PASS",
+    "eqy_wall_seconds": 0.16398656100500375,
+    "checks_pass": true
+  },
+  {
+    "case": "case3",
+    "gold_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+    "baseline": {
+      "rc": 0,
+      "wall_seconds": 0.06392135200439952,
+      "profile": "stock",
+      "lut": 13,
+      "dff": 17,
+      "io": 12,
+      "cells": 30,
+      "types": {
+        "$lut": 13,
+        "dffeas": 17
+      },
+      "gate_sha256": "9078378d68261089ef64bf6909e3728b763eae16d31e78b5bd2f6ddd432789ea",
+      "final_sha256": "2e923ba2e636ccf6dc40b209e7d03466afc946894b3a0d38267479107060fc5f",
+      "structural_edits": 0,
+      "user_seconds": 0.04,
+      "system_seconds": 0.01,
+      "peak_kib": 35520,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.01 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.01
+      ],
+      "abc_total_seconds_reported": [
+        0.01
+      ]
+    },
+    "default": {
+      "rc": 0,
+      "wall_seconds": 1.245078318999731,
+      "profile": "stock",
+      "lut": 11,
+      "dff": 12,
+      "io": 12,
+      "cells": 23,
+      "types": {
+        "$lut": 11,
+        "dffeas": 12
+      },
+      "gate_sha256": "c98b752c5a3f560e481627a5c3469a7a34c915faea960536480e38979b363079",
+      "final_sha256": "c32b2650ae06833ea8c69fba56810b73ef4ff213639ee9e0f4a93b2385b59d8c",
+      "structural_edits": 1,
+      "user_seconds": 1.17,
+      "system_seconds": 0.0,
+      "peak_kib": 34184,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.00 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.01
+      ],
+      "abc_total_seconds_reported": [
+        0.01
+      ]
+    },
+    "eqy": "PASS",
+    "eqy_wall_seconds": 0.166799145998084,
+    "checks_pass": true
+  },
+  {
+    "case": "case4",
+    "gold_sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+    "baseline": {
+      "rc": 0,
+      "wall_seconds": 0.11442624899791554,
+      "profile": "stock",
+      "lut": 36,
+      "dff": 10,
+      "io": 18,
+      "cells": 46,
+      "types": {
+        "dffeas": 10,
+        "$lut": 36
+      },
+      "gate_sha256": "372068ced8ecb398040bc74cdab01fefa5a3167ae948a9548ad2034ae53d1aa2",
+      "final_sha256": "794b0c64aeb341a0e2bcc9c36505d7b8aab559ffb1e6f9f024d353f56da5a460",
+      "structural_edits": 0,
+      "user_seconds": 0.04,
+      "system_seconds": 0.02,
+      "peak_kib": 35536,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.01 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.01
+      ],
+      "abc_total_seconds_reported": [
+        0.01
+      ]
+    },
+    "default": {
+      "rc": 0,
+      "wall_seconds": 0.1649437919986667,
+      "profile": "accepted_constant_table",
+      "lut": 27,
+      "dff": 10,
+      "io": 18,
+      "cells": 37,
+      "types": {
+        "dffeas": 10,
+        "$lut": 27
+      },
+      "gate_sha256": "3ad39c47942b9fd29195e9b77a3776763a54fb36b49fc9f64e0c697d72881221",
+      "final_sha256": "0a7bc0dd71525fcd4b8e9e35fa778f3dbc38080d62801c08b7d262e3be51c1c6",
+      "structural_edits": 1,
+      "user_seconds": 0.09,
+      "system_seconds": 0.01,
+      "peak_kib": 36848,
+      "abc_time_lines": [
+        "ABC: Total time =     0.00 sec",
+        "ABC: Networks are equivalent.  Time =     0.01 sec",
+        "ABC: + time "
+      ],
+      "abc_elapsed_seconds_reported": [
+        0.01
+      ],
+      "abc_total_seconds_reported": [
+        0.01
+      ]
+    },
+    "eqy": "PASS",
+    "eqy_wall_seconds": 0.217938501999015,
+    "checks_pass": true
+  }
+]

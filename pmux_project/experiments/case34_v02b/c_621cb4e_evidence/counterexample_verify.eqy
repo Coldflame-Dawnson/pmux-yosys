@@ -1,0 +1,24 @@
+[gold]
+read_verilog -formal /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/official/test4.v
+
+[gate]
+read_rtlil /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/snapshot_counterexample/gate.il
+read_verilog -formal -overwrite /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/official_baseline/environment/dffeas_formal.v
+
+[script]
+hierarchy -check -top test4
+prep
+memory_map
+async2sync
+
+[partition test4]
+merge *
+
+[strategy sat]
+use sat
+depth 20
+
+[strategy pdr]
+use sby
+engine abc pdr
+timeout 300

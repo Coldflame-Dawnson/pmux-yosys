@@ -1,0 +1,6 @@
+test,expected,actual,status
+case1,stock,stock,PASS
+case2,stock,stock,PASS
+case3,stock,stock,PASS
+case4,accepted_constant_table,accepted_constant_table,PASS
+changed_snapshot,stock,accepted_constant_table,FAIL

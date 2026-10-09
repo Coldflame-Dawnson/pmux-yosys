@@ -1,0 +1,8 @@
+scratchpad -set c.evidence_path /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/snapshot_counterexample;
+scratchpad -set c.mutate_after_commit true;
+read_verilog /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/official/test4.v;
+synth_intel -family cycloneiv -top test4 -run begin:map_cells;
+scratchpad -assert pmux_opt.accepted_constant_table false;
+write_json /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/snapshot_counterexample/post_abc9.json;
+select test4;
+write_rtlil -selected /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/snapshot_counterexample/gate.il;

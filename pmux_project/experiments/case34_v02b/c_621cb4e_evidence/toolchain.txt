@@ -1,0 +1,11 @@
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]
+EQY v0.69
+SBY v0.69
+9f75ca1f9834a39a863915b5dae0c7b1e33533bc
+4a72eb94fc253062464afee4d0018359017bb846
+b1a1e98cba941ec8433f8dc27f416cd7bb7f14be
+Tool root: /home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install
+ABC source submodule: a51bf4a7bb38ce06ea3a544b1463b40832213917
+ABC version: UC Berkeley, ABC 1.01 (compiled Oct 6 2026 01:02:35)
+Production synth_intel source: B 621cb4e56b734da73cfb6161b951a375893e2d81, compiled unchanged via C registration loader
+Production PMUX plugin/analyzer source: B 621cb4e56b734da73cfb6161b951a375893e2d81

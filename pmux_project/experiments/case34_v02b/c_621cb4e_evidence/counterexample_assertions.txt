@@ -1,0 +1,4 @@
+C_SNAPSHOT_MUTATION cell=$auto$case34_rewrite.cc:1056:materialize_cofactor$198 old=16'1111111101111110 altered=16'1111111101111111 authorization=1
+2.36.1. Executing Verilog-2005 frontend: /home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/runtime/bin/../share/yosys/intel/common/pmux_case34_lut_map.v
+Parsing Verilog input from `/home/yuewen/work/pmux-yosys-c-621cb4e/pmux_project/reports/c-621cb4e-default-final/runtime/bin/../share/yosys/intel/common/pmux_case34_lut_map.v' to AST representation.
+ABC: + source <yosys-exe-dir>/../share/yosys/intel/common/pmux_case34_abc.script

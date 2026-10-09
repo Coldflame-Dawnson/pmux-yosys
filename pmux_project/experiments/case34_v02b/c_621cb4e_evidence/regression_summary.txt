@@ -1,0 +1,7 @@
+Micro: 19/19 PASS (C independent)
+Default seeds: 582/1000 completed PASS; STOPPED, full 1000 UNVERIFIED
+Explicit -v02-case34 seeds: 0/1000; STOPPED, full 1000 UNVERIFIED
+Production mutation seam: UNVERIFIED / NOT RUN after blocker
+Unified behavior 17: UNVERIFIED / NOT RUN after blocker
+Analyzer fast/slow: UNVERIFIED / NOT RUN after blocker
+Read-only fingerprints/determinism/table32: UNVERIFIED / NOT RUN after blocker

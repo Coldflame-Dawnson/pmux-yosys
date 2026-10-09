@@ -1,0 +1,16 @@
+{
+  "files": 45884,
+  "bytes": 364547429,
+  "inventory": "pmux_project/reports/c-621cb4e-default-final/artifact_inventory.jsonl",
+  "inventory_sha256": "03071892c40579043e773762d781cd8164c9001044b09ebed6125b0b304733cf",
+  "production_diff": "",
+  "missing": [
+    "full default seed 1000 aggregate PASS",
+    "explicit seed 1000 aggregate PASS",
+    "production mutation 26 results",
+    "unified behavior 17 results",
+    "Analyzer fast/slow results",
+    "regenerated-cell replay logs",
+    "read-only/determinism/table32 independent results"
+  ]
+}
