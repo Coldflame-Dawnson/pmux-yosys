@@ -22,6 +22,7 @@
 #include "kernel/log.h"
 #include "kernel/register.h"
 #include "kernel/rtlil.h"
+#include "../../pmux_project/pass/pmux_profile_authorization.h"
 
 USING_YOSYS_NAMESPACE
 PRIVATE_NAMESPACE_BEGIN
@@ -263,16 +264,24 @@ struct SynthIntelPass : public ScriptPass {
 			run("opt -undriven -fine");
 			run(pmux_v02 ? "pmux_opt" : "pmux_opt -no-v02-case34");
 			run("opt_clean");
-			if (pmux_v02 && !help_mode &&
-					active_design->scratchpad_get_bool("pmux_opt.accepted_constant_table", false))
-				for (RTLIL::Module *module : active_design->selected_modules())
-					for (RTLIL::Cell *cell : module->selected_cells())
-						if (cell->type == ID(pmux_case34_lut4))
-							pmux_constant_table_profile = true;
+			bool pmux_constant_table_cells = false;
+			if (pmux_v02 && !help_mode) {
+				const bool pmux_constant_table_authorized = active_design->scratchpad_get_bool(
+						PmuxProfileAuthorization::enabled_key, false);
+				pmux_constant_table_cells =
+						PmuxProfileAuthorization::build_constant_table_snapshot(active_design).cell_count > 0;
+				pmux_constant_table_profile =
+						PmuxProfileAuthorization::constant_table_authorization_matches(active_design);
+				if (pmux_constant_table_authorized && !pmux_constant_table_profile)
+					log("synth_intel: PMUX mapping authorization rejected reason=target_snapshot_mismatch\n");
+			}
 			if (!help_mode)
-				active_design->scratchpad_set_bool("pmux_opt.accepted_constant_table", false);
+				PmuxProfileAuthorization::clear_constant_table_authorization(active_design);
+			if (!help_mode)
+				log("synth_intel: pmux_profile=%s\n",
+						pmux_constant_table_profile ? "accepted_constant_table" : "stock");
 			run("techmap -map +/techmap.v");
-			if (pmux_constant_table_profile || help_mode)
+			if (pmux_constant_table_cells || help_mode)
 				run("techmap -map +/intel/common/pmux_case34_lut_map.v", "(unless -no-pmux-v02)");
 			run("opt -full");
 			run("clean -purge");

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Guard the one-shot mapping-profile authorization in both integration paths."""
+"""Guard snapshot-bound, one-shot profile authorization in both paths."""
 
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[4]
 SCRATCHPAD = 'pmux_opt.accepted_constant_table'
+SNAPSHOT = 'pmux_opt.accepted_constant_table_snapshot'
 
 
 def require_order(path: Path, start_marker: str, get_marker: str,
@@ -19,14 +20,15 @@ def require_order(path: Path, start_marker: str, get_marker: str,
         raise AssertionError(f"authorization is not consumed before effects in {path}")
 
 
-def consume(authorized: bool, generated_cell_present: bool) -> tuple[str, bool]:
-    profile = "accepted_constant_table" if authorized and generated_cell_present else "stock"
-    return profile, False
+def consume(authorized: bool, expected: str, actual: str, cell_count: int) -> tuple[str, bool, str]:
+    matched = authorized and bool(expected) and cell_count > 0 and expected == actual
+    profile = "accepted_constant_table" if matched else "stock"
+    return profile, False, ""
 
 
 def main() -> int:
-    clear = f'scratchpad_set_bool("{SCRATCHPAD}", false)'
-    get = f'scratchpad_get_bool("{SCRATCHPAD}", false)'
+    clear = 'clear_constant_table_authorization'
+    get = 'constant_table_authorization_matches'
     require_order(
         ROOT / "techlibs/intel/synth_intel.cc",
         'if (check_label("map_ffram"))', get, clear,
@@ -38,13 +40,24 @@ def main() -> int:
         'Pass::call(design, stringf("techmap -map %s"',
     )
 
-    profile, authorization = consume(True, True)
-    assert profile == "accepted_constant_table" and not authorization
-    replay_profile, replay_authorization = consume(authorization, True)
-    assert replay_profile == "stock" and not replay_authorization
-    assert consume(False, True)[0] == "stock"
-    assert consume(True, False)[0] == "stock"
-    print("PROFILE_AUTHORIZATION_CONSUME_REPLAY PASS")
+    helper = (ROOT / "pmux_project/pass/pmux_profile_authorization.h").read_text(encoding="utf-8")
+    assert SCRATCHPAD in helper and SNAPSHOT in helper
+    assert "build_constant_table_snapshot" in helper
+    assert "actual.payload == expected" in helper
+    assert "cell->parameters" in helper and "cell->attributes" in helper
+    assert "cell->connections()" in helper and "cell->type" in helper
+
+    profile, authorization, snapshot = consume(True, "snapshot-a", "snapshot-a", 3)
+    assert profile == "accepted_constant_table" and not authorization and not snapshot
+    replay_profile, replay_authorization, replay_snapshot = consume(
+        authorization, snapshot, "snapshot-a", 3
+    )
+    assert replay_profile == "stock" and not replay_authorization and not replay_snapshot
+    assert consume(False, "snapshot-a", "snapshot-a", 3)[0] == "stock"
+    assert consume(True, "", "snapshot-a", 3)[0] == "stock"
+    assert consume(True, "snapshot-a", "snapshot-b", 3)[0] == "stock"
+    assert consume(True, "snapshot-a", "snapshot-a", 0)[0] == "stock"
+    print("PROFILE_AUTHORIZATION_SNAPSHOT_CONSUME_REPLAY PASS")
     return 0
 
 

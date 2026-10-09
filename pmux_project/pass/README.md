@@ -69,13 +69,18 @@ compatibility spelling; `-no-v02-case34` is the explicit baseline/diagnostic
 rollback and never participates in normal production selection.
 
 The frozen runner uses this mode by default. `pmux_opt_abc9` selects the
-accepted custom mapping profile only when the rewrite output actually contains
-a `pmux_case34_lut4` cell **and** the immediately preceding proof-gated rewrite
-set its transient authorization scratchpad. A pre-existing cell name cannot
-select the profile. Unmatched designs and decision-cone-only rewrites
-retain the stock ABC9 profile. Constant-table
-cofactors use the adjacent `pmux_case34_lut_map.v`, which is deliberately
-applied after the common techmap. The adjacent accepted ABC9 script is also
+accepted custom mapping profile only when the complete set of generated
+`pmux_case34_lut4` cells is byte-for-byte equal to the immutable snapshot
+published by the immediately preceding proof-gated rewrite. The snapshot binds
+module and cell identity, type, every parameter, attribute, port, connection,
+bit order and target-cell multiplicity. Both the authorization flag and the
+snapshot are consumed before any mapping side effect. Missing fields or any
+post-authorization change select the stock profile. A pre-existing cell name
+cannot select the profile. Unmatched designs and decision-cone-only rewrites
+retain the stock ABC9 profile. Constant-table cells are lowered by the adjacent
+`pmux_case34_lut_map.v` even on a rejected authorization so that the conservative
+stock ABC9 fallback remains executable; only the custom ABC9 script requires a
+matching authorization snapshot. The adjacent accepted ABC9 script is also
 selected by default; `--abc-script` can reproduce an explicitly archived copy:
 
 ```bash
@@ -96,6 +101,19 @@ case3 11 LUT/12 DFF and case4 27 LUT/10 DFF; both gates pass EQY and meet their
 strict P2 oracles.
 A nonmatching design records `no_v02_case34_candidate`, has an empty
 `structural_edits` array, and receives no structural write.
+
+The snapshot contract and real native `synth_intel` mutation tests can be run
+with:
+
+```bash
+python3 pmux_project/experiments/case34_v02b/scripts/check_profile_consumption.py
+python3 pmux_project/experiments/case34_v02b/scripts/run_profile_snapshot_tests.py \
+  --official-dir /path/to/competition_case
+```
+
+The second command covers a valid first consumption, LUT parameter bit and
+width changes, port/type/attribute changes, target removal/addition, a missing
+snapshot and a full target-cell replay after authorization consumption.
 
 For a proved decision cone, B first attempts a bounded proof-data-only
 materialization over support bits and proved comparator outputs: constants,

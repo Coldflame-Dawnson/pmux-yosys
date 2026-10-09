@@ -9,7 +9,7 @@ SOURCES := pmux_opt.cc rewrite_plan.cc case34_rewrite.cc \
 
 all: $(PLUGIN)
 
-$(PLUGIN): $(SOURCES) rewrite_plan.h case34_rewrite.h \
+$(PLUGIN): $(SOURCES) rewrite_plan.h case34_rewrite.h pmux_profile_authorization.h \
 		../analyzer/readonly_analyzer.h ../analyzer/budget_tracker.h \
 		../analyzer/guarded_fact_analysis.h ../include/pmux_opt_api.h \
 		../include/pmux_v02_case34_proof_api.h ../include/pmux_v02_production_proof_api.h \

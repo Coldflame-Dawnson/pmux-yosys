@@ -4,6 +4,7 @@
 #include "pmux_opt_api.h"
 #include "readonly_analyzer.h"
 #include "case34_rewrite.h"
+#include "pmux_profile_authorization.h"
 #include "rewrite_plan.h"
 
 #include <algorithm>
@@ -520,7 +521,7 @@ struct PmuxOptPass : public Pass
 			log_cmd_error("pmux_opt: -test-decision-proof-mutations is a standalone test mode.\n");
 		const bool enable_v02_case34 = !disable_v02_case34 && !stub_mode_set &&
 				!test_decision_proof_mutations;
-		design->scratchpad_set_bool("pmux_opt.accepted_constant_table", false);
+		PmuxProfileAuthorization::clear_constant_table_authorization(design);
 
 		log_header(design, "Executing PMUX_OPT guarded analysis and atomic rewrite.\n");
 
@@ -556,7 +557,7 @@ struct PmuxOptPass : public Pass
 		for (const Case34StructuralEdit &edit : case34_result.edits)
 			if (edit.rule == "constant_table_cofactor")
 				accepted_constant_table = true;
-		design->scratchpad_set_bool("pmux_opt.accepted_constant_table",
+		PmuxProfileAuthorization::publish_constant_table_authorization(design,
 				enable_v02_case34 && accepted_constant_table);
 
 		std::unique_ptr<EntryAnalyzer> analyzer;
@@ -784,17 +785,17 @@ struct PmuxOptAbc9Pass : public Pass
 		if (top.empty())
 			log_cmd_error("pmux_opt_abc9: -top is required.\n");
 
-		bool constant_table_cells = false;
-		for (RTLIL::Module *module : design->selected_modules())
-			for (RTLIL::Cell *cell : module->selected_cells())
-				if (cell->type == ID(pmux_case34_lut4))
-					constant_table_cells = true;
+		const bool constant_table_authorized = design->scratchpad_get_bool(
+				PmuxProfileAuthorization::enabled_key, false);
+		const bool constant_table_cells =
+				PmuxProfileAuthorization::build_constant_table_snapshot(design).cell_count > 0;
 		const bool constant_table_profile =
-				design->scratchpad_get_bool("pmux_opt.accepted_constant_table", false) &&
-				constant_table_cells;
-		design->scratchpad_set_bool("pmux_opt.accepted_constant_table", false);
+				PmuxProfileAuthorization::constant_table_authorization_matches(design);
+		PmuxProfileAuthorization::clear_constant_table_authorization(design);
+		if (constant_table_authorized && !constant_table_profile)
+			log("pmux_opt_abc9: authorization rejected reason=target_snapshot_mismatch\n");
 
-		if (constant_table_profile)
+		if (constant_table_cells)
 			Pass::call(design, stringf("techmap -map %s", cofactor_map.c_str()));
 		Pass::call(design, stringf("synth_intel -family %s -top %s -run map_ffs:map_luts",
 				family.c_str(), top.c_str()));
