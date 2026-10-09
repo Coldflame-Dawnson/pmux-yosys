@@ -68,3 +68,23 @@ pmux_project/reports/b-v02-unified-random-1000-final/
 映射 profile 与真实、已证明的结构提交绑定。
 
 状态：`READY_FOR_A_UNIFIED_SELECTION_AUDIT`。A 授权前，C 不应把本提交判为最终 G3。
+
+## 5. A 首轮统一门审计后的修复
+
+A 对提交 `9107a466f74ce27269361ee26e99093c1b8fc93e` 给出 `BLOCKED`：runner 的
+`pmux_opt_abc9` 会消费并清零瞬态 scratchpad，但 `synth_intel.cc` 在读取 scratchpad 与实际
+cell 后没有立即清零，存在后续 cell 再现时重放授权的风险。
+
+修复严格限定为：`synth_intel` 完成 scratchpad+cell 联合判定之后、执行任何 techmap 之前，
+无条件把 `pmux_opt.accepted_constant_table` 清为 false。当前调用保留已经选定的本地
+`pmux_constant_table_profile`，后续调用则不能复用旧授权；因此一次合法消费仍选择 custom，
+消费后的重放选择 stock。runner 原有消费语义不变，两条集成路径重新一致。
+
+回归命令：
+
+```bash
+python3 pmux_project/experiments/case34_v02b/scripts/check_profile_consumption.py
+```
+
+该检查锁定两条路径均在首次 techmap/ABC9 副作用前消费授权，并覆盖“首次合法 custom、
+cell 再现后的第二次消费必须 stock”反例。A 仍须用其独立行为夹具复审真实源码路径。

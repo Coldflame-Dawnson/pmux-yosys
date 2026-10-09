@@ -269,6 +269,8 @@ struct SynthIntelPass : public ScriptPass {
 					for (RTLIL::Cell *cell : module->selected_cells())
 						if (cell->type == ID(pmux_case34_lut4))
 							pmux_constant_table_profile = true;
+			if (!help_mode)
+				active_design->scratchpad_set_bool("pmux_opt.accepted_constant_table", false);
 			run("techmap -map +/techmap.v");
 			if (pmux_constant_table_profile || help_mode)
 				run("techmap -map +/intel/common/pmux_case34_lut_map.v", "(unless -no-pmux-v02)");
