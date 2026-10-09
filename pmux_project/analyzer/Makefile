@@ -5,8 +5,10 @@ PLUGIN := analyzer_selftest.so
 CASE3_STAGE ?= $(YOSYS_ROOT)/../../case3/netlists/stage_proc.il
 CASE3_RTL ?= $(YOSYS_ROOT)/../../../pmux_case/competition_case/test3.v
 CASE4_RTL ?= $(YOSYS_ROOT)/../../../pmux_case/competition_case/test4.v
+OFFICIAL_ROOT ?= /home/james/work/pmux-yosys/pmux_project/pmux_case/competition_case
+PROFILE_SNAPSHOT_AUDIT_OUT ?= /tmp/a-profile-snapshot-reaudit
 
-.PHONY: all test test-slow case3-report case34-report production-case34-report decision-cone-report clean
+.PHONY: all test test-slow case3-report case34-report production-case34-report decision-cone-report profile-snapshot-reaudit clean
 
 all: $(PLUGIN)
 
@@ -80,7 +82,14 @@ decision-cone-report: $(PLUGIN)
 	grep -F 'DECISION_CONE_TEST_CONSUMER reconstructed=1 constant_roots=3 shared_root_groups=2' decision_cone_case3_proof.log
 	grep -F 'DECISION_CONE_NETLIST_UNCHANGED 1' decision_cone_case3_proof.log
 
+profile-snapshot-reaudit:
+	python3 profile_snapshot_reaudit.py --tool-root $(YOSYS_ROOT) \
+		--official $(OFFICIAL_ROOT) --output $(PROFILE_SNAPSHOT_AUDIT_OUT) \
+		> profile_snapshot_reaudit.log
+	grep -F 'A_PROFILE_SNAPSHOT_SAME_NAME_REBUILD_COUNTEREXAMPLE REPRODUCED' profile_snapshot_reaudit.log
+
 clean:
 	rm -f $(PLUGIN) selftest.log case3_branch_proof.log case3_case34_proof.log case4_case34_proof.log decision_cone_case3_proof.log \
+		profile_snapshot_reaudit.log \
 		decision_case3.il decision_candidate.il \
 		production_case3_proof.log production_case4_proof.log a_prod_case3.il a_prod_case4.il prod_case3.log prod_case4.log
