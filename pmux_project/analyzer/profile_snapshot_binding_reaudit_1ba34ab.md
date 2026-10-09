@@ -21,6 +21,7 @@ authorization boundary and requires no EQY claim.
 - direct parent: `621cb4e56b734da73cfb6161b951a375893e2d81`
 - C blocker evidence: `1de7aaf96b3957f2ed54c7c6ca509b00c39d74a2`
 - A branch: `feature/a-v02-profile-snapshot-reaudit-1ba34ab`
+- A audit content commit: `47b430b5605960e0413b010e9a6ba87689684671`
 - fixed toolchain:
   `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install`
 
