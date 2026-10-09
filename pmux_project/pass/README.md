@@ -73,10 +73,14 @@ accepted custom mapping profile only when the complete set of generated
 `pmux_case34_lut4` cells is byte-for-byte equal to the immutable snapshot
 published by the immediately preceding proof-gated rewrite. The snapshot binds
 module and cell identity, type, every parameter, attribute, port, connection,
-bit order and target-cell multiplicity. Both the authorization flag and the
-snapshot are consumed before any mapping side effect. Missing fields or any
-post-authorization change select the stock profile. A pre-existing cell name
-cannot select the profile. Unmatched designs and decision-cone-only rewrites
+bit order and target-cell multiplicity. A separate generation token and
+lifecycle monitor bind the authorization to the actual cell instances that
+existed at publication: deleting an authorized cell permanently invalidates
+that generation even if a byte-identical cell with the same name is rebuilt.
+The authorization flag, snapshot, generation and lifecycle state are consumed
+before any mapping side effect. Missing fields, an invalidated lifecycle or any
+post-authorization content change selects the stock profile. A pre-existing or
+recreated cell name cannot select the profile. Unmatched designs and decision-cone-only rewrites
 retain the stock ABC9 profile. Constant-table cells are lowered by the adjacent
 `pmux_case34_lut_map.v` even on a rejected authorization so that the conservative
 stock ABC9 fallback remains executable; only the custom ABC9 script requires a
@@ -113,7 +117,8 @@ python3 pmux_project/experiments/case34_v02b/scripts/run_profile_snapshot_tests.
 
 The second command covers a valid first consumption, LUT parameter bit and
 width changes, port/type/attribute changes, target removal/addition, a missing
-snapshot and a full target-cell replay after authorization consumption.
+snapshot, byte-identical same-name reconstruction before consumption in both
+consumer paths, and a full target-cell replay after authorization consumption.
 
 For a proved decision cone, B first attempts a bounded proof-data-only
 materialization over support bits and proved comparator outputs: constants,

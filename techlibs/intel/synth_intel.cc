@@ -268,12 +268,16 @@ struct SynthIntelPass : public ScriptPass {
 			if (pmux_v02 && !help_mode) {
 				const bool pmux_constant_table_authorized = active_design->scratchpad_get_bool(
 						PmuxProfileAuthorization::enabled_key, false);
+				const bool pmux_constant_table_lifecycle_valid = active_design->scratchpad_get_bool(
+						PmuxProfileAuthorization::lifecycle_key, false);
 				pmux_constant_table_cells =
 						PmuxProfileAuthorization::build_constant_table_snapshot(active_design).cell_count > 0;
 				pmux_constant_table_profile =
 						PmuxProfileAuthorization::constant_table_authorization_matches(active_design);
 				if (pmux_constant_table_authorized && !pmux_constant_table_profile)
-					log("synth_intel: PMUX mapping authorization rejected reason=target_snapshot_mismatch\n");
+					log("synth_intel: PMUX mapping authorization rejected reason=%s\n",
+							pmux_constant_table_lifecycle_valid ? "target_snapshot_mismatch" :
+							"target_lifecycle_mismatch");
 			}
 			if (!help_mode)
 				PmuxProfileAuthorization::clear_constant_table_authorization(active_design);

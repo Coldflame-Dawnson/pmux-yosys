@@ -787,13 +787,17 @@ struct PmuxOptAbc9Pass : public Pass
 
 		const bool constant_table_authorized = design->scratchpad_get_bool(
 				PmuxProfileAuthorization::enabled_key, false);
+		const bool constant_table_lifecycle_valid = design->scratchpad_get_bool(
+				PmuxProfileAuthorization::lifecycle_key, false);
 		const bool constant_table_cells =
 				PmuxProfileAuthorization::build_constant_table_snapshot(design).cell_count > 0;
 		const bool constant_table_profile =
 				PmuxProfileAuthorization::constant_table_authorization_matches(design);
 		PmuxProfileAuthorization::clear_constant_table_authorization(design);
 		if (constant_table_authorized && !constant_table_profile)
-			log("pmux_opt_abc9: authorization rejected reason=target_snapshot_mismatch\n");
+			log("pmux_opt_abc9: authorization rejected reason=%s\n",
+					constant_table_lifecycle_valid ? "target_snapshot_mismatch" :
+					"target_lifecycle_mismatch");
 
 		if (constant_table_cells)
 			Pass::call(design, stringf("techmap -map %s", cofactor_map.c_str()));

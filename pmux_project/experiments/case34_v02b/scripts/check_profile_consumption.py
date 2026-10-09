@@ -20,10 +20,12 @@ def require_order(path: Path, start_marker: str, get_marker: str,
         raise AssertionError(f"authorization is not consumed before effects in {path}")
 
 
-def consume(authorized: bool, expected: str, actual: str, cell_count: int) -> tuple[str, bool, str]:
-    matched = authorized and bool(expected) and cell_count > 0 and expected == actual
+def consume(authorized: bool, expected: str, actual: str, cell_count: int,
+            generation: str, lifecycle_valid: bool) -> tuple[str, bool, str, str, bool]:
+    matched = (authorized and bool(expected) and cell_count > 0
+               and bool(generation) and lifecycle_valid and expected == actual)
     profile = "accepted_constant_table" if matched else "stock"
-    return profile, False, ""
+    return profile, False, "", "", False
 
 
 def main() -> int:
@@ -46,18 +48,24 @@ def main() -> int:
     assert "actual.payload == expected" in helper
     assert "cell->parameters" in helper and "cell->attributes" in helper
     assert "cell->connections()" in helper and "cell->type" in helper
+    assert "LifecycleMonitor" in helper and "notify_connect" in helper
+    assert "notify_module_del" in helper and "generation_key" in helper
+    assert "lifecycle_key" in helper
 
-    profile, authorization, snapshot = consume(True, "snapshot-a", "snapshot-a", 3)
-    assert profile == "accepted_constant_table" and not authorization and not snapshot
-    replay_profile, replay_authorization, replay_snapshot = consume(
-        authorization, snapshot, "snapshot-a", 3
+    profile, authorization, snapshot, generation, lifecycle = consume(
+        True, "snapshot-a", "snapshot-a", 3, "generation-a", True
     )
-    assert replay_profile == "stock" and not replay_authorization and not replay_snapshot
-    assert consume(False, "snapshot-a", "snapshot-a", 3)[0] == "stock"
-    assert consume(True, "", "snapshot-a", 3)[0] == "stock"
-    assert consume(True, "snapshot-a", "snapshot-b", 3)[0] == "stock"
-    assert consume(True, "snapshot-a", "snapshot-a", 0)[0] == "stock"
-    print("PROFILE_AUTHORIZATION_SNAPSHOT_CONSUME_REPLAY PASS")
+    assert profile == "accepted_constant_table"
+    assert not authorization and not snapshot and not generation and not lifecycle
+    replay = consume(authorization, snapshot, "snapshot-a", 3, generation, lifecycle)
+    assert replay[0] == "stock"
+    assert consume(False, "snapshot-a", "snapshot-a", 3, "generation-a", True)[0] == "stock"
+    assert consume(True, "", "snapshot-a", 3, "generation-a", True)[0] == "stock"
+    assert consume(True, "snapshot-a", "snapshot-b", 3, "generation-a", True)[0] == "stock"
+    assert consume(True, "snapshot-a", "snapshot-a", 0, "generation-a", True)[0] == "stock"
+    assert consume(True, "snapshot-a", "snapshot-a", 3, "", True)[0] == "stock"
+    assert consume(True, "snapshot-a", "snapshot-a", 3, "generation-a", False)[0] == "stock"
+    print("PROFILE_AUTHORIZATION_LIFECYCLE_SNAPSHOT_CONSUME_REPLAY PASS")
     return 0
 
 

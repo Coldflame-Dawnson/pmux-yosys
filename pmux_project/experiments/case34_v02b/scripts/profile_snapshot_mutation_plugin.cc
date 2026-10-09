@@ -1,4 +1,5 @@
 #include "kernel/yosys.h"
+#include "../../../../pmux_project/pass/pmux_profile_authorization.h"
 
 #include <algorithm>
 #include <string>
@@ -78,6 +79,25 @@ struct ProfileSnapshotMutationPass : Pass
 			extra->setPort(ID::A, RTLIL::SigSpec(RTLIL::State::S0, 4));
 			extra->setPort(ID::Y, wire);
 			extra->set_bool_attribute(ID::keep);
+		} else if (mode == "same_name_rebuild") {
+			RTLIL::Module *module = cell->module;
+			const RTLIL::IdString name = cell->name;
+			const RTLIL::IdString type = cell->type;
+			const auto parameters = cell->parameters;
+			const auto attributes = cell->attributes;
+			const auto connections = cell->connections();
+			const auto before = PmuxProfileAuthorization::build_constant_table_snapshot(design);
+			module->remove(cell);
+			RTLIL::Cell *replacement = module->addCell(name, type);
+			replacement->parameters = parameters;
+			replacement->attributes = attributes;
+			for (const auto &connection : connections)
+				replacement->setPort(connection.first, connection.second);
+			const auto after = PmuxProfileAuthorization::build_constant_table_snapshot(design);
+			log("PMUX_PROFILE_SAME_NAME_REBUILD payload_equal=%d lifecycle_valid=%d\n",
+					before.payload == after.payload,
+					design->scratchpad_get_bool(
+							PmuxProfileAuthorization::lifecycle_key, false));
 		} else {
 			log_cmd_error("unknown PMUX profile mutation mode %s.\n", mode.c_str());
 		}

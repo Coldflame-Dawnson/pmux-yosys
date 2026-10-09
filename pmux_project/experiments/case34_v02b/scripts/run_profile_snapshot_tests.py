@@ -21,6 +21,7 @@ MODES = [
     "type",
     "remove_one",
     "add_extra",
+    "same_name_rebuild",
     "drop_snapshot",
 ]
 
@@ -107,13 +108,16 @@ def main():
             f"read_verilog {official / 'test4.v'}; "
             "synth_intel -family cycloneiv -top test4 -run begin:map_cells; "
             "scratchpad -assert pmux_opt.accepted_constant_table false; "
-            "scratchpad -assert pmux_opt.accepted_constant_table_snapshot \"\""
+            "scratchpad -assert pmux_opt.accepted_constant_table_snapshot \"\"; "
+            "scratchpad -assert pmux_opt.accepted_constant_table_generation \"\"; "
+            "scratchpad -assert pmux_opt.accepted_constant_table_lifecycle_valid false"
         )
         completed = run([*base, "-p", script], log=log)
         matches = re.findall(r"synth_intel: pmux_profile=(\w+)", completed.stdout)
         actual = matches[-1] if matches else "missing"
         expected = "accepted_constant_table" if mode == "none" else "stock"
-        rejected = "target_snapshot_mismatch" in completed.stdout
+        rejection_reasons = re.findall(r"authorization rejected reason=(\w+)", completed.stdout)
+        rejected = bool(rejection_reasons)
         passed = completed.returncode == 0 and actual == expected and (mode == "none" or rejected)
         results.append({
             "test": mode,
@@ -121,6 +125,7 @@ def main():
             "expected_profile": expected,
             "actual_profile": actual,
             "snapshot_rejected": rejected,
+            "rejection_reasons": rejection_reasons,
             "pass": passed,
             "log": str(log),
         })
@@ -146,6 +151,39 @@ def main():
         "actual_profiles": profiles,
         "pass": replay_passed,
         "log": str(replay_log),
+    })
+
+    runner_log = logs / "runner_same_name_rebuild.log"
+    runner_script = (
+        "scratchpad -set pmux_test.profile_mutation same_name_rebuild; "
+        f"read_verilog {official / 'test4.v'}; "
+        "synth_intel -family cycloneiv -top test4 -run begin:map_ffram; "
+        "opt -fast -mux_undef -undriven -fine -full; memory_map; opt -undriven -fine; "
+        "pmux_opt; opt_clean; techmap -map +/techmap.v; opt -full; clean -purge; "
+        "setundef -undriven -zero; "
+        f"pmux_opt_abc9 -family cycloneiv -top test4 "
+        f"-cofactor-map {ROOT / 'pmux_project/pass/pmux_case34_lut_map.v'} "
+        f"-abc-script {ROOT / 'pmux_project/pass/pmux_case34_abc.script'}; "
+        "scratchpad -assert pmux_opt.accepted_constant_table false; "
+        "scratchpad -assert pmux_opt.accepted_constant_table_snapshot \"\"; "
+        "scratchpad -assert pmux_opt.accepted_constant_table_generation \"\"; "
+        "scratchpad -assert pmux_opt.accepted_constant_table_lifecycle_valid false"
+    )
+    runner = run([*base, "-p", runner_script], log=runner_log)
+    runner_profiles = re.findall(r"pmux_opt_abc9: profile=(\w+)", runner.stdout)
+    runner_passed = (
+        runner.returncode == 0
+        and runner_profiles[-1:] == ["stock"]
+        and "payload_equal=1" in runner.stdout
+        and "lifecycle_valid=0" in runner.stdout
+    )
+    results.append({
+        "test": "runner_same_name_rebuild",
+        "returncode": runner.returncode,
+        "expected_profile": "stock",
+        "actual_profiles": runner_profiles,
+        "pass": runner_passed,
+        "log": str(runner_log),
     })
 
     summary = {
