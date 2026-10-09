@@ -223,4 +223,13 @@ BLOCKED
 最小阻塞条件只有一个：内建 `synth_intel.cc` 路径必须在读取并决定 profile 后立即清零
 `pmux_opt.accepted_constant_table`，并以行为测试证明授权不能重放。
 
-A 分支、提交、远端同步和干净工作树状态在提交后记录。
+## 9. A 交付元数据
+
+- A 分支：`feature/a-v02-unified-selection-audit-9107a46`
+- 起点：`9107a466f74ce27269361ee26e99093c1b8fc93e`
+- 审计内容提交：`ed46943b6e3e7dbee4a7def028721447350697df`
+- 内容提交已推送至
+  `origin/feature/a-v02-unified-selection-audit-9107a46`
+- 内容提交修改范围仅为 `pmux_project/analyzer/`
+- 相对 B 起点，`pmux_project/pass/`、`techlibs/intel/` 和冻结接口均无 A 修改
+- 最终元数据提交、远端 HEAD 一致性和干净工作树由最终交付消息给出
