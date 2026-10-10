@@ -1,0 +1,47 @@
+{
+  "analyzer_fast": {
+    "assertions": [
+      2116,
+      29,
+      60,
+      50,
+      81
+    ],
+    "pass": true
+  },
+  "analyzer_slow": {
+    "assertions": [
+      2118,
+      29,
+      60,
+      50,
+      81
+    ],
+    "pass": true
+  },
+  "production_mutations": {
+    "passed": 26,
+    "checks": 26
+  },
+  "case3_decision": {
+    "before_sha256": "e482ffb94d78cf882c23cfb151b7880a8be81d98ef8faeba21d51e7e477012c3",
+    "after_sha256": "e482ffb94d78cf882c23cfb151b7880a8be81d98ef8faeba21d51e7e477012c3",
+    "fingerprint_unchanged": true
+  },
+  "case3_production": {
+    "before_sha256": "e482ffb94d78cf882c23cfb151b7880a8be81d98ef8faeba21d51e7e477012c3",
+    "after_sha256": "e482ffb94d78cf882c23cfb151b7880a8be81d98ef8faeba21d51e7e477012c3",
+    "fingerprint_unchanged": true
+  },
+  "case4_production": {
+    "before_sha256": "bab845953f1674019430666d281051149bf3159b64a9fd5c7a12621073959442",
+    "after_sha256": "bab845953f1674019430666d281051149bf3159b64a9fd5c7a12621073959442",
+    "fingerprint_unchanged": true
+  },
+  "table32": {
+    "rows": 32,
+    "width": 10,
+    "address0": "1001110000",
+    "all_rows_match": true
+  }
+}

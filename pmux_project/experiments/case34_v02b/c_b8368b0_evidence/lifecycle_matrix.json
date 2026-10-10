@@ -1,0 +1,1508 @@
+{
+  "passed": 58,
+  "total": 58,
+  "rows": [
+    {
+      "path": "native",
+      "mode": "none",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "none",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/none/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "forge",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "forge",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/forge/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "forge_suffix",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "forge_suffix",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/forge_suffix/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "forge_numeric",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "forge_numeric",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/forge_numeric/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "empty_generation",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "empty_generation",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/empty_generation/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "lifecycle_false",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "lifecycle_false",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/lifecycle_false/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "old_generation",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "old_generation",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/old_generation/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "foreign_generation",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "foreign_generation",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/foreign_generation/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "unregister",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "unregister",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/unregister/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "second_generation",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "second_generation",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/second_generation/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "same_name_rebuild",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "same_name_rebuild",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/same_name_rebuild/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "module_rebuild",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "module_rebuild",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/module_rebuild/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "port_restore",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "port_restore",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/port_restore/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "allocator_reuse",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "allocator_reuse",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/allocator_reuse/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "lut_bit",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "lut_bit",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/lut_bit/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "lut_width",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "lut_width",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/lut_width/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "attribute",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "attribute",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/attribute/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "type",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "type",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/type/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "port_order",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "port_order",
+          "0",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/port_order/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "remove_one",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "remove_one",
+          "0",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/remove_one/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "remove_all",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "remove_all",
+          "0",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/remove_all/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "add_extra",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "add_extra",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/add_extra/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "drop_snapshot",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "drop_snapshot",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/drop_snapshot/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "auth_false",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "auth_false",
+          "1",
+          "0",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/auth_false/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "unknown_auth",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "unknown_auth",
+          "1",
+          "0",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/unknown_auth/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "stub_unknown",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "stub_unknown",
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/stub_unknown/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "disable",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "disable",
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/disable/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "replay_no_auth",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "capture",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "none",
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/replay_no_auth/yosys.log"
+    },
+    {
+      "path": "native",
+      "mode": "replay_old_auth",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "capture",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "restore_old_after_producer",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/native/replay_old_auth/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "none",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "none",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/none/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "forge",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "forge",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/forge/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "forge_suffix",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "forge_suffix",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/forge_suffix/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "forge_numeric",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "forge_numeric",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/forge_numeric/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "empty_generation",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "empty_generation",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/empty_generation/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "lifecycle_false",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "lifecycle_false",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/lifecycle_false/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "old_generation",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "old_generation",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/old_generation/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "foreign_generation",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "foreign_generation",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/foreign_generation/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "unregister",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "unregister",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/unregister/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "second_generation",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "second_generation",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/second_generation/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "same_name_rebuild",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "same_name_rebuild",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/same_name_rebuild/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "module_rebuild",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "module_rebuild",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/module_rebuild/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "port_restore",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "port_restore",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/port_restore/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "allocator_reuse",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "allocator_reuse",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/allocator_reuse/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "lut_bit",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "lut_bit",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/lut_bit/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "lut_width",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "lut_width",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/lut_width/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "attribute",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "attribute",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/attribute/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "type",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "type",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/type/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "port_order",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "port_order",
+          "0",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/port_order/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "remove_one",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "remove_one",
+          "0",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/remove_one/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "remove_all",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "remove_all",
+          "0",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/remove_all/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "add_extra",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "add_extra",
+          "0",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/add_extra/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "drop_snapshot",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "observations": [
+        [
+          "drop_snapshot",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/drop_snapshot/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "auth_false",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "auth_false",
+          "1",
+          "0",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/auth_false/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "unknown_auth",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "unknown_auth",
+          "1",
+          "0",
+          "1",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/unknown_auth/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "stub_unknown",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "stub_unknown",
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/stub_unknown/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "disable",
+      "rc": 0,
+      "profiles": [
+        "stock"
+      ],
+      "expected_profiles": [
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "disable",
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/disable/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "replay_no_auth",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "reasons": [],
+      "observations": [
+        [
+          "capture",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/replay_no_auth/yosys.log"
+    },
+    {
+      "path": "runner",
+      "mode": "replay_old_auth",
+      "rc": 0,
+      "profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "expected_profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "observations": [
+        [
+          "capture",
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "pre_effect_four_field_assertions": true,
+      "pass": true,
+      "log": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/lifecycle/runner/replay_old_auth/yosys.log"
+    }
+  ]
+}

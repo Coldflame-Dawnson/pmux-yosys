@@ -1,0 +1,15 @@
+{
+  "seed_inventory_sha256": "8db91b2ee25d579493dbc2ca66417cc945e215b5424349884013834d43df7ac4",
+  "workers": 8,
+  "wall_seconds": 110.26328054399346,
+  "groups": {
+    "default": {
+      "passed": 1000,
+      "checks": 1000
+    },
+    "explicit": {
+      "passed": 1000,
+      "checks": 1000
+    }
+  }
+}

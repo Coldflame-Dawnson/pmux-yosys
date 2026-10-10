@@ -1,0 +1,63 @@
+{
+  "B": "b8368b0f3e2d55a2bb429296a3aea859eb4f2049",
+  "parent": "ec86209a61f22020707b299f5175f02b8d71495d",
+  "A_HEAD": "d03381f4511ab520372f3c2e57657b141a4959bc",
+  "A_verdict": "AUTHORIZED",
+  "tool_sources": {
+    "yosys-v0.69-src": "9f75ca1f9834a39a863915b5dae0c7b1e33533bc",
+    "eqy-v0.69-src": "4a72eb94fc253062464afee4d0018359017bb846",
+    "sby-v0.69-src": "b1a1e98cba941ec8433f8dc27f416cd7bb7f14be",
+    "yosys-v0.69-src/abc": "a51bf4a7bb38ce06ea3a544b1463b40832213917"
+  },
+  "executables_sha256": {
+    "/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/yosys": "bfd41648f020ff981c8bb2dcf6499df7964759e396ddba65b0cda6318fa8cf6b",
+    "/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/yosys-abc": "33d49acabf754bcda4b1426daebd300f6dc9b8613a23e4e23b666920713cd841",
+    "/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/eqy": "4c4110be84a2c9b84d5cea9023f0e5bc31987d9d4ddc02276dc85b97f517f76e",
+    "/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/sby": "456ed28b00192b80cce32320f7f10370cd507f0527b1fedcc84da292f4f0d7b3",
+    "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/runtime/bin/yosys": "bfd41648f020ff981c8bb2dcf6499df7964759e396ddba65b0cda6318fa8cf6b",
+    "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/runtime/bin/yosys-abc": "33d49acabf754bcda4b1426daebd300f6dc9b8613a23e4e23b666920713cd841"
+  },
+  "inputs": [
+    {
+      "case": 1,
+      "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test1.v",
+      "gold": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/official/test1.v",
+      "sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+      "same": true
+    },
+    {
+      "case": 2,
+      "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test2.v",
+      "gold": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/official/test2.v",
+      "sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+      "same": true
+    },
+    {
+      "case": 3,
+      "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test3.v",
+      "gold": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/official/test3.v",
+      "sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+      "same": true
+    },
+    {
+      "case": 4,
+      "original": "/mnt/c/Users/15091/Desktop/Yosys_简单电路全流程例子_朱跃文/比赛要求/pmux_case/competition_case/test4.v",
+      "gold": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/official/test4.v",
+      "sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+      "same": true
+    }
+  ],
+  "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "pwd": "/home/yuewen/work/pmux-yosys-c-b8368b0",
+  "tool_root": "/home/yuewen/work/pmux-yosys/pmux_project/official_baseline/toolchain/install",
+  "runtime": "/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/reports/c-b8368b0-default-final/runtime",
+  "timezone": "Asia/Shanghai",
+  "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell:/mnt/c/Users/15091/.codex/tmp/arg0/codex-arg0C5SR3N:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/libheif/libheif/bin:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/jxrlib/jxrlib/bin:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/mnt/c/Program Files/Microsoft/jdk-25.0.3.9-hotspot/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files/dotnet/:/mnt/c/msys64/ucrt64/bin:/mnt/d/runtime/win64:/mnt/d/bin:/mnt/d/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/WSL/:/mnt/d/node-v24.14.0-win-x64:/mnt/c/Users/15091/scoop/shims:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell:/mnt/c/Users/15091/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm 2025.3.3/bin:/mnt/c/Users/15091/AppData/Local/Programs/Ollama:/mnt/c/Users/15091/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/15091/AppData/Roaming/npm:/mnt/c/Users/15091/AppData/Roaming/TRAE SOLO CN/ModularData/ai-agent/vm/tools/node:/mnt/c/Users/15091/oss-cad-suite/bin:/mnt/c/Users/15091/oss-cad-suite/lib:/mnt/c/Users/15091/Graphviz-16.1.0-win64/bin:/mnt/c/Users/15091/AppData/Local/Programs/Vim:/mnt/c/Users/15091/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:/mnt/c/Users/15091/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd:/mnt/c/Users/15091/AppData/Local/OpenAI/Codex/bin/6de5bf5fa8384f8d:/mnt/c/Users/15091/AppData/Local/OpenAI/Codex/bin/f544b3844e0f14e9",
+  "uname": "Linux YuewenZhu 6.18.40.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Fri Jul 31 22:12:15 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux",
+  "tool_versions": {
+    "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]",
+    "eqy": "EQY v0.69",
+    "sby": "SBY v0.69"
+  }
+}

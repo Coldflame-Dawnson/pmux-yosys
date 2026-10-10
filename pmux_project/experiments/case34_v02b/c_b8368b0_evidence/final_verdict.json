@@ -1,0 +1,20 @@
+{
+  "B": "b8368b0f3e2d55a2bb429296a3aea859eb4f2049",
+  "A_authorization": "d03381f4511ab520372f3c2e57657b141a4959bc",
+  "verdicts": {
+    "P0": "PASS",
+    "P1": "PASS",
+    "P2": "PASS",
+    "GENERATION_MONITOR_BINDING": "PASS",
+    "ONE_SHOT_AUTHORIZATION": "PASS",
+    "DEFAULT_PATH": "PASS",
+    "PRODUCTION_CANDIDATES": "PASS",
+    "G3": "PASS"
+  },
+  "micro": 19,
+  "lifecycle": 58,
+  "default_seeds": 1000,
+  "explicit_seeds": 1000,
+  "candidate_errors": [],
+  "unverified_required_items": []
+}

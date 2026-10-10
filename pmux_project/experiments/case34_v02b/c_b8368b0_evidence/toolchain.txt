@@ -1,0 +1,6 @@
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]
+EQY v0.69
+SBY v0.69
+9f75ca1f9834a39a863915b5dae0c7b1e33533bc
+4a72eb94fc253062464afee4d0018359017bb846
+b1a1e98cba941ec8433f8dc27f416cd7bb7f14be

@@ -1,0 +1,1035 @@
+{
+  "forbidden_pattern": "\\btest[1-4]\\b|\\b(?:datain|dataout|gpio)\\b|1001110000|\\$procmux\\$",
+  "forbidden_hits": 0,
+  "sources": [
+    {
+      "path": "pmux_project/analyzer/branch_redundancy_analyzer.cc",
+      "sha256": "153418916ac7d3af0a728b4c625e228f89838ccf4e94de870adfd6c9b785c988",
+      "identity_related_lines": [
+        {
+          "line": 25,
+          "text": "if (r.cell->module != r.module || r.module->cell(r.cell->name) != r.cell) {"
+        },
+        {
+          "line": 29,
+          "text": "if (r.module_id != r.module->name.str() || r.cell_id != r.cell->name.str()) {"
+        },
+        {
+          "line": 100,
+          "text": "proof.cell = request.cell_id;"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/analyzer/budget_tracker.h",
+      "sha256": "cfb160f28fac21b9adf0c69f1c29aa69d0e8f2f1a5d73f4298e2396b3ad79b1b",
+      "identity_related_lines": []
+    },
+    {
+      "path": "pmux_project/analyzer/case34_proof_analyzer.cc",
+      "sha256": "e3df32dceae67812a938fe72f2bc5ef7bfa5db2ebab546891a2fca6072548010",
+      "identity_related_lines": [
+        {
+          "line": 29,
+          "text": "if (a.wire->name != b.wire->name) return a.wire->name.str() < b.wire->name.str();"
+        },
+        {
+          "line": 102,
+          "text": "result.cell_id = cell->name.str();"
+        },
+        {
+          "line": 113,
+          "text": "if (a.cell_id != b.cell_id || a.type != b.type || a.ports.size() != b.ports.size() ||"
+        },
+        {
+          "line": 146,
+          "text": "if (input) uses[bit].push_back({cell->name.str(), conn.first, i, bit});"
+        },
+        {
+          "line": 152,
+          "text": "return std::tie(a.cell_id, a.port, a.port_bit) < std::tie(b.cell_id, b.port, b.port_bit);"
+        },
+        {
+          "line": 168,
+          "text": "return std::tie(x.cell_id, x.port, x.port_bit) < std::tie(y.cell_id, y.port, y.port_bit);"
+        },
+        {
+          "line": 174,
+          "text": "if (lhs[i].cell_id != rhs[i].cell_id || lhs[i].port != rhs[i].port ||"
+        },
+        {
+          "line": 200,
+          "text": "out.module = r.module_id;"
+        },
+        {
+          "line": 201,
+          "text": "out.guard_sink_cell = r.guard_sink_cell_id;"
+        },
+        {
+          "line": 225,
+          "text": "result.cell_id = request.cell_id;"
+        },
+        {
+          "line": 290,
+          "text": "if (!affected.count(use.cell_id)) result.comparator_must_be_preserved = true;"
+        },
+        {
+          "line": 292,
+          "text": "[&](const FanoutUseSnapshot &use) { return affected.count(use.cell_id); }))"
+        },
+        {
+          "line": 364,
+          "text": "GetSize(r.source_value) != r.source_width || r.module_id != r.module->name.str() ||"
+        },
+        {
+          "line": 365,
+          "text": "r.guard_sink_cell_id != r.guard_sink_cell->name.str() ||"
+        },
+        {
+          "line": 366,
+          "text": "r.guard_sink_cell->module != r.module || r.module->cell(r.guard_sink_cell->name) != r.guard_sink_cell ||"
+        },
+        {
+          "line": 370,
+          "text": "if (!cmp.cell || cmp.cell->module != r.module || cmp.cell_id != cmp.cell->name.str() ||"
+        },
+        {
+          "line": 466,
+          "text": "out.cells = left.cells; out.cells.insert(right.cells.begin(), right.cells.end()); out.cells.insert(driver->name.str());"
+        },
+        {
+          "line": 476,
+          "text": "std::string s = type.str();"
+        },
+        {
+          "line": 490,
+          "text": "RTLIL::Cell *cell = index.module->cell(RTLIL::IdString(use.cell_id));"
+        },
+        {
+          "line": 512,
+          "text": "out.module = r.module_id;"
+        },
+        {
+          "line": 519,
+          "text": "if (!r.module || r.module_id != r.module->name.str() || !exact_budget(r.budget) ||"
+        },
+        {
+          "line": 573,
+          "text": "if (!sink_request.cell || sink_request.cell->module != r.module || sink_request.cell_id != sink_request.cell->name.str() ||"
+        },
+        {
+          "line": 578,
+          "text": "sink.cell_id = sink_request.cell_id; sink.cell = sink_request.snapshot; sink.root_output_bit_indices = sink_request.root_output_bit_indices;"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/analyzer/decision_cone_proof_analyzer.cc",
+      "sha256": "c3e15054242fcc2dfde9991a732ac7f95e2f0cf78138e6a21c817d6972eb43d8",
+      "identity_related_lines": [
+        {
+          "line": 28,
+          "text": "if (a.wire->name != b.wire->name) return a.wire->name.str() < b.wire->name.str();"
+        },
+        {
+          "line": 42,
+          "text": "std::string name = type.str();"
+        },
+        {
+          "line": 98,
+          "text": "result.cell_id = cell->name.str(); result.type = cell->type;"
+        },
+        {
+          "line": 106,
+          "text": "if (a.cell_id != b.cell_id || a.type != b.type || a.ports.size() != b.ports.size() ||"
+        },
+        {
+          "line": 145,
+          "text": "if (input) uses[canonical].push_back({cell->name.str(), conn.first, bit, canonical});"
+        },
+        {
+          "line": 338,
+          "text": "result.logical_sink_bit = logical; result.cell_id = cell->name.str(); result.cell = cell;"
+        },
+        {
+          "line": 354,
+          "text": "if (a.logical_sink_bit != b.logical_sink_bit || a.cell_id != b.cell_id || a.d_bit != b.d_bit ||"
+        },
+        {
+          "line": 375,
+          "text": "std::ostringstream out; out << kind << '-' << std::hex << hash_text(payload); return out.str();"
+        },
+        {
+          "line": 397,
+          "text": "nodes.push_back({id, DecisionDagNodeKind::Test, input, low, high, proof_id(\"dag\", payload.str())});"
+        },
+        {
+          "line": 429,
+          "text": "DecisionConeProof out; out.module = request.module_id;"
+        },
+        {
+          "line": 435,
+          "text": "if (request.module == nullptr || request.module_id.empty() || request.max_support_bits < 1 ||"
+        },
+        {
+          "line": 440,
+          "text": "base_request.module = request.module; base_request.module_id = request.module_id;"
+        },
+        {
+          "line": 475,
+          "text": "support.sequential_q = true; support.sequential_cell_id = driver->second.front().cell->name.str();"
+        },
+        {
+          "line": 499,
+          "text": "if (a.first->name != b.first->name) return a.first->name.str() < b.first->name.str(); return a.second < b.second;"
+        },
+        {
+          "line": 519,
+          "text": "std::sort(out.source_cells.begin(), out.source_cells.end(), [](const auto &a, const auto &b) { return a.cell_id < b.cell_id; });"
+        },
+        {
+          "line": 537,
+          "text": "RTLIL::Cell *consumer = index.module->cell(RTLIL::IdString(use.cell_id));"
+        },
+        {
+          "line": 543,
+          "text": "std::sort(out.external_consumers.begin(), out.external_consumers.end(), [](const auto &a, const auto &b) { return a.cell_id < b.cell_id; });"
+        },
+        {
+          "line": 571,
+          "text": "RTLIL::Cell *cell = index.module->cell(RTLIL::IdString(comparator.cell_id));"
+        },
+        {
+          "line": 615,
+          "text": "sink.logical_sink_bit = sink_index; sink.cell_id = sinks[sink_index].first->name.str(); sink.cell = sinks[sink_index].first;"
+        },
+        {
+          "line": 658,
+          "text": "DecisionRelationProof relation; relation.cell_id = cell->name.str(); relation.snapshot = snapshot_cell(cell);"
+        },
+        {
+          "line": 680,
+          "text": "relation.cell_id = sink.first->name.str(); relation.snapshot = snapshot_cell(sink.first);"
+        },
+        {
+          "line": 683,
+          "text": "relation.reason_code = DecisionConeReasonCode::Proved; relation.proof_id = proof_id(\"seq\", sink.first->type.str());"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/analyzer/guarded_fact_analysis.h",
+      "sha256": "dda75ef0be619d90f31123f49bc62c1c5df3acf0c5a12354171f8a99c62c11bb",
+      "identity_related_lines": []
+    },
+    {
+      "path": "pmux_project/analyzer/production_case34_proof_analyzer.cc",
+      "sha256": "ef0e3b7667399f70893f81c60f32b9cbe4a0e50df8e98c4d2d0f7d2d505fe55f",
+      "identity_related_lines": [
+        {
+          "line": 30,
+          "text": "if (a.wire->name != b.wire->name) return a.wire->name.str() < b.wire->name.str();"
+        },
+        {
+          "line": 44,
+          "text": "std::string name = type.str();"
+        },
+        {
+          "line": 64,
+          "text": "result.cell_id = cell->name.str();"
+        },
+        {
+          "line": 73,
+          "text": "if (a.cell_id != b.cell_id || a.type != b.type || a.ports.size() != b.ports.size() ||"
+        },
+        {
+          "line": 105,
+          "text": "if (input) uses[bit].push_back({cell->name.str(), conn.first, i, bit});"
+        },
+        {
+          "line": 428,
+          "text": "RTLIL::Cell *cell = index.module->cell(RTLIL::IdString(use.cell_id));"
+        },
+        {
+          "line": 509,
+          "text": "result.cell_id = seq[choice[bit]].first->name.str();"
+        },
+        {
+          "line": 530,
+          "text": "ProductionConstantTableProof out; out.module = request.module_id;"
+        },
+        {
+          "line": 554,
+          "text": "std::sort(cells.begin(), cells.end(), [](RTLIL::Cell *a, RTLIL::Cell *b) { return a->name.str() < b->name.str(); });"
+        },
+        {
+          "line": 589,
+          "text": "if (expected.logical_output_bit != actual.logical_output_bit || expected.cell_id != actual.cell_id ||"
+        },
+        {
+          "line": 625,
+          "text": "for (RTLIL::SigBit bit : source) key += bit.wire ? bit.wire->name.str() + \":\" + std::to_string(bit.offset) + \";\" : \"c;\";"
+        },
+        {
+          "line": 693,
+          "text": "RTLIL::Cell *cell = index.module->cell(RTLIL::IdString(use.cell_id));"
+        },
+        {
+          "line": 706,
+          "text": "ProductionGuardedConeProof out; out.module = request.module_id;"
+        },
+        {
+          "line": 738,
+          "text": "conclusion.cell_id = item.cell->name.str(); conclusion.comparator_constant = item.constant;"
+        },
+        {
+          "line": 756,
+          "text": "fold.comparator_index = ci; fold.cell_id = cell->name.str(); fold.port = ID::B;"
+        },
+        {
+          "line": 767,
+          "text": "for (const auto &fold : out.folded_data_bits) folded_positions.insert({fold.cell_id, fold.port.str(), fold.port_bit});"
+        },
+        {
+          "line": 771,
+          "text": "if (index.sigmap(conn.second[pi]) == index.sigmap(source_bit) && !folded_positions.count({cell->name.str(), conn.first.str(), pi})) {"
+        },
+        {
+          "line": 773,
+          "text": "keep.cell_id = cell->name.str(); keep.port = conn.first; keep.port_bit = pi; keep.source_bit = source_bit;"
+        },
+        {
+          "line": 774,
+          "text": "keep.preserved = true; keep.proof_id = \"production-preserve-\" + cell->name.str() + \"-\" + std::to_string(pi);"
+        },
+        {
+          "line": 782,
+          "text": "ss.cell_id = sink->name.str(); ss.cell = sink; ss.q_bit = q; ss.snapshot = snapshot_cell(sink);"
+        },
+        {
+          "line": 795,
+          "text": "std::sort(affected_sorted.begin(), affected_sorted.end(), [](RTLIL::Cell *a, RTLIL::Cell *b) { return a->name.str() < b->name.str(); });"
+        },
+        {
+          "line": 823,
+          "text": "ProductionCase34ProofBundle out; out.module = request.module_id;"
+        },
+        {
+          "line": 824,
+          "text": "if (!request.module || request.module_id != request.module->name.str() || !exact_budget(request.budget) ||"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/analyzer/readonly_analyzer.cc",
+      "sha256": "df327294a125bc34c2d9f905a935da5eb41d243b1861c817a61b187c1b794c6a",
+      "identity_related_lines": [
+        {
+          "line": 32,
+          "text": "if (a.wire->name != b.wire->name)"
+        },
+        {
+          "line": 33,
+          "text": "return a.wire->name.str() < b.wire->name.str();"
+        },
+        {
+          "line": 41,
+          "text": "return a->name.str() < b->name.str();"
+        },
+        {
+          "line": 87,
+          "text": "const std::string name = type.str();"
+        },
+        {
+          "line": 96,
+          "text": "const std::string name = type.str();"
+        },
+        {
+          "line": 148,
+          "text": "if (r.cell->module != r.module || r.module->cell(r.cell->name) != r.cell) {"
+        },
+        {
+          "line": 152,
+          "text": "if (r.module_id != r.module->name.str() || r.cell_id != r.cell->name.str()) {"
+        },
+        {
+          "line": 563,
+          "text": "record.source_cell_id = source;"
+        },
+        {
+          "line": 607,
+          "text": "add_fact(y, inv ? invert(av) : av, rule + \"_forward\", parents({a}), cell->name.str());"
+        },
+        {
+          "line": 609,
+          "text": "add_fact(a, inv ? invert(yv) : yv, rule + \"_backward\", parents({y}), cell->name.str());"
+        },
+        {
+          "line": 625,
+          "text": "add_fact(y[i], decisive, base + \"_decisive\", parents({av == decisive ? a[i] : b[i]}), cell->name.str());"
+        },
+        {
+          "line": 627,
+          "text": "add_fact(y[i], identity, base + \"_all_identity\", parents({a[i], b[i]}), cell->name.str());"
+        },
+        {
+          "line": 629,
+          "text": "add_fact(a[i], identity, base + \"_output_identity\", parents({y[i]}), cell->name.str());"
+        },
+        {
+          "line": 630,
+          "text": "add_fact(b[i], identity, base + \"_output_identity\", parents({y[i]}), cell->name.str());"
+        },
+        {
+          "line": 633,
+          "text": "add_fact(b[i], decisive, base + \"_unit\", parents({y[i], a[i]}), cell->name.str());"
+        },
+        {
+          "line": 635,
+          "text": "add_fact(a[i], decisive, base + \"_unit\", parents({y[i], b[i]}), cell->name.str());"
+        },
+        {
+          "line": 702,
+          "text": "add_fact(bit, v, rule, parents, cell->name.str());"
+        },
+        {
+          "line": 718,
+          "text": "for (RTLIL::SigBit bit : a) if (value(bit) == FactValue::Zero) { add_fact(y, FactValue::Zero, \"reduce_and_zero\", parents({bit}), cell->name.str()); break; }"
+        },
+        {
+          "line": 720,
+          "text": "add_fact(y, FactValue::One, \"reduce_and_all_one\", all_known_parents(a), cell->name.str());"
+        },
+        {
+          "line": 730,
+          "text": "add_fact(a[unknown], FactValue::Zero, \"reduce_and_unit\", known_parents(a, y), cell->name.str());"
+        },
+        {
+          "line": 734,
+          "text": "for (RTLIL::SigBit bit : a) if (value(bit) == FactValue::One) { add_fact(y, FactValue::One, \"reduce_or_one\", parents({bit}), cell->name.str()); break; }"
+        },
+        {
+          "line": 737,
+          "text": "add_fact(y, FactValue::Zero, \"reduce_or_all_zero\", all_known_parents(a), cell->name.str());"
+        },
+        {
+          "line": 741,
+          "text": "add_fact(a[t.sole_unknown], FactValue::One, \"reduce_or_unit\", known_parents(a, y), cell->name.str());"
+        },
+        {
+          "line": 753,
+          "text": "add_fact(sig[t.sole_unknown], FactValue::One, rule, ids, cell->name.str());"
+        },
+        {
+          "line": 764,
+          "text": "if (ta.known_zero) add_fact(y, FactValue::One, \"logic_not_zero\", all_known_parents(a), cell->name.str());"
+        },
+        {
+          "line": 765,
+          "text": "if (ta.known_nonzero) add_fact(y, FactValue::Zero, \"logic_not_nonzero\", all_known_parents(a), cell->name.str());"
+        },
+        {
+          "line": 774,
+          "text": "ta.known_zero ? all_known_parents(a) : all_known_parents(b), cell->name.str());"
+        },
+        {
+          "line": 779,
+          "text": "add_fact(y, FactValue::One, \"logic_and_one\", ids, cell->name.str());"
+        },
+        {
+          "line": 799,
+          "text": "ta.known_nonzero ? truth_parents(a, true) : truth_parents(b, true), cell->name.str());"
+        },
+        {
+          "line": 804,
+          "text": "add_fact(y, FactValue::Zero, \"logic_or_zero\", ids, cell->name.str());"
+        },
+        {
+          "line": 841,
+          "text": "add_fact(y[i], cv, rule + \"_forward\", parents({chosen[i], s[0]}), cell->name.str());"
+        },
+        {
+          "line": 843,
+          "text": "add_fact(chosen[i], yv, rule + \"_backward\", parents({y[i], s[0]}), cell->name.str());"
+        },
+        {
+          "line": 879,
+          "text": "premise_ids, cell->name.str());"
+        },
+        {
+          "line": 904,
+          "text": "add_fact(cell->getPort(ID::Y)[i], state_fact(y[i].data), \"consteval_forward\", parent_ids, cell->name.str());"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/analyzer/readonly_analyzer.h",
+      "sha256": "d0deef1a9e34cf094e60071edfc976da0ad6aa02db26755a2ebae03cfe61e2bb",
+      "identity_related_lines": []
+    },
+    {
+      "path": "pmux_project/include/pmux_opt_api.h",
+      "sha256": "d1c4cd972806aa2521f1cae027fc318508f052378262244072ae6db16c12307b",
+      "identity_related_lines": [
+        {
+          "line": 51,
+          "text": "std::string module_id;"
+        },
+        {
+          "line": 52,
+          "text": "std::string cell_id;"
+        },
+        {
+          "line": 79,
+          "text": "std::string source_cell_id;"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/pass/case34_rewrite.cc",
+      "sha256": "aec2f7f4cc934a317832c724f3d01b93d644f4f3ba23a33b43ba77c0dfc88097",
+      "identity_related_lines": [
+        {
+          "line": 27,
+          "text": "if (lhs.wire->name != rhs.wire->name) return lhs.wire->name.str() < rhs.wire->name.str();"
+        },
+        {
+          "line": 39,
+          "text": "if (cell == nullptr || cell->name.str() != snapshot.cell_id ||"
+        },
+        {
+          "line": 57,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(proof_snapshot.cell_id));"
+        },
+        {
+          "line": 68,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(snapshot.cell.cell_id));"
+        },
+        {
+          "line": 169,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(snapshot.cell_id));"
+        },
+        {
+          "line": 185,
+          "text": "return lhs.cell_id == rhs.cell_id && lhs.port == rhs.port &&"
+        },
+        {
+          "line": 206,
+          "text": "result.push_back({cell->name.str(), connection.first, bit, target});"
+        },
+        {
+          "line": 209,
+          "text": "return std::tie(lhs.cell_id, lhs.port, lhs.port_bit) <"
+        },
+        {
+          "line": 210,
+          "text": "std::tie(rhs.cell_id, rhs.port, rhs.port_bit);"
+        },
+        {
+          "line": 218,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(comparator.cell_id));"
+        },
+        {
+          "line": 262,
+          "text": "return std::tie(lhs.cell_id, lhs.port, lhs.port_bit) <"
+        },
+        {
+          "line": 263,
+          "text": "std::tie(rhs.cell_id, rhs.port, rhs.port_bit);"
+        },
+        {
+          "line": 288,
+          "text": "if (proof.module != module->name.str() ||"
+        },
+        {
+          "line": 334,
+          "text": "if (!comparator_cells.insert(comparator.cell_id).second ||"
+        },
+        {
+          "line": 342,
+          "text": "affected_boundary_cells.insert(sink.sequential_snapshot.cell_id);"
+        },
+        {
+          "line": 343,
+          "text": "expected_sequential_relations[sink.sequential_snapshot.cell_id]++;"
+        },
+        {
+          "line": 348,
+          "text": "expected_mux_relations.insert(snapshot.cell_id);"
+        },
+        {
+          "line": 352,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(relation.cell_id));"
+        },
+        {
+          "line": 366,
+          "text": "if (!actual_mux_relations.insert(relation.cell_id).second) {"
+        },
+        {
+          "line": 376,
+          "text": "if (!actual_mux_relations.insert(relation.cell_id).second) {"
+        },
+        {
+          "line": 384,
+          "text": "!affected_boundary_cells.count(relation.cell_id)) {"
+        },
+        {
+          "line": 388,
+          "text": "actual_sequential_relations[relation.cell_id]++;"
+        },
+        {
+          "line": 411,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(snapshot.cell_id));"
+        },
+        {
+          "line": 413,
+          "text": "plan.affected_cells.insert(snapshot.cell_id);"
+        },
+        {
+          "line": 419,
+          "text": "if (captured_cells.insert(snapshot.cell_id).second && !capture(snapshot)) {"
+        },
+        {
+          "line": 424,
+          "text": "if (captured_cells.insert(snapshot.cell_id).second && !capture(snapshot)) {"
+        },
+        {
+          "line": 432,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(boundary.cell_id));"
+        },
+        {
+          "line": 434,
+          "text": "sink.cell_id != boundary.cell_id || sink.d_bit != boundary.d_bit ||"
+        },
+        {
+          "line": 451,
+          "text": "!sink_positions.insert({boundary.cell_id, boundary.d_bit}).second) {"
+        },
+        {
+          "line": 465,
+          "text": "plan.affected_cells.insert(boundary.cell_id);"
+        },
+        {
+          "line": 467,
+          "text": "if (captured_cells.insert(boundary.cell_id).second && !capture(boundary.cell_snapshot)) {"
+        },
+        {
+          "line": 477,
+          "text": "plan.affected_cells.insert(boundary.cell_id);"
+        },
+        {
+          "line": 479,
+          "text": "if (captured_cells.insert(boundary.cell_id).second && !capture(boundary.cell_snapshot)) {"
+        },
+        {
+          "line": 484,
+          "text": "plan.anchor_cell = proof.source_cells.front().cell_id;"
+        },
+        {
+          "line": 514,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(fold.cell_id));"
+        },
+        {
+          "line": 518,
+          "text": "!folded_positions.insert({fold.cell_id, fold.port.str(), fold.port_bit}).second) {"
+        },
+        {
+          "line": 529,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(comparator.cell_id));"
+        },
+        {
+          "line": 547,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(snapshot.cell_id));"
+        },
+        {
+          "line": 552,
+          "text": "plan.affected_cells.insert(snapshot.cell_id);"
+        },
+        {
+          "line": 556,
+          "text": "plan.affected_cells.insert(sink.cell_id);"
+        },
+        {
+          "line": 558,
+          "text": "[&](const StructuralCellSnapshot &item) { return item.cell.cell_id == sink.cell_id; });"
+        },
+        {
+          "line": 568,
+          "text": "plan.anchor_cell = proof.comparator_cells.front().cell_id;"
+        },
+        {
+          "line": 580,
+          "text": "std::string cofactor_key(const Cofactor &cofactor)"
+        },
+        {
+          "line": 588,
+          "text": "return stream.str();"
+        },
+        {
+          "line": 593,
+          "text": "return cofactor_key(lhs) == cofactor_key(rhs);"
+        },
+        {
+          "line": 634,
+          "text": "if (!choice.low.is_constant) cofactor_cells.insert(cofactor_key(choice.low));"
+        },
+        {
+          "line": 635,
+          "text": "if (!choice.high.is_constant) cofactor_cells.insert(cofactor_key(choice.high));"
+        },
+        {
+          "line": 655,
+          "text": "if (!choice.low.is_constant) local.insert(cofactor_key(choice.low));"
+        },
+        {
+          "line": 656,
+          "text": "if (!choice.high.is_constant) local.insert(cofactor_key(choice.high));"
+        },
+        {
+          "line": 720,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(snapshot.cell_id));"
+        },
+        {
+          "line": 729,
+          "text": "plan.affected_cells.insert(snapshot.cell_id);"
+        },
+        {
+          "line": 733,
+          "text": "plan.affected_cells.insert(sink.cell_id);"
+        },
+        {
+          "line": 735,
+          "text": "[&](const StructuralCellSnapshot &item) { return item.cell.cell_id == sink.cell_id; });"
+        },
+        {
+          "line": 749,
+          "text": "plan.anchor_cell = proof.source_cells.front().cell_id;"
+        },
+        {
+          "line": 772,
+          "text": "RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(boundary.cell_id));"
+        },
+        {
+          "line": 785,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(conclusion.cell_id));"
+        },
+        {
+          "line": 823,
+          "text": "RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(comparator.cell_id));"
+        },
+        {
+          "line": 989,
+          "text": "RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(boundary.cell_id));"
+        },
+        {
+          "line": 991,
+          "text": "auto inserted = updated_d.emplace(boundary.cell_id, cell->getPort(ID::D));"
+        },
+        {
+          "line": 1030,
+          "text": "RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(fold.cell_id));"
+        },
+        {
+          "line": 1045,
+          "text": "const std::string key = cofactor_key(cofactor);"
+        },
+        {
+          "line": 1072,
+          "text": "source_ids.insert(snapshot.cell_id);"
+        },
+        {
+          "line": 1082,
+          "text": "if (source_ids.count(cell->name.str())) continue;"
+        },
+        {
+          "line": 1093,
+          "text": "RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(snapshot.cell_id));"
+        },
+        {
+          "line": 1107,
+          "text": "RTLIL::Cell *cell = plan.module->cell(RTLIL::IdString(snapshot.cell_id));"
+        },
+        {
+          "line": 1158,
+          "text": "return stream.str();"
+        },
+        {
+          "line": 1162,
+          "text": "request.module_id = module->name.str();"
+        },
+        {
+          "line": 1190,
+          "text": "reject_mutation(\"sink_cell_cross_binding\", [](auto &p) { p.affected_sinks[0].cell_id += \"$mutated\"; });"
+        },
+        {
+          "line": 1201,
+          "text": "p.affected_sinks[1].cell_id = p.affected_sinks[0].cell_id;"
+        },
+        {
+          "line": 1232,
+          "text": "if (RTLIL::Cell *cell = module->cell(RTLIL::IdString(relation.cell_id));"
+        },
+        {
+          "line": 1237,
+          "text": "if (RTLIL::Cell *cell = module->cell(RTLIL::IdString(relation.cell_id));"
+        },
+        {
+          "line": 1249,
+          "text": "relation.cell_id = replacement.cell_id;"
+        },
+        {
+          "line": 1252,
+          "text": "RTLIL::Cell *cell = module->cell(RTLIL::IdString(replacement.cell_id));"
+        },
+        {
+          "line": 1283,
+          "text": "return lhs->name.str() < rhs->name.str();"
+        },
+        {
+          "line": 1291,
+          "text": "decision_request.module_id = module->name.str();"
+        },
+        {
+          "line": 1301,
+          "text": "request.module_id = module->name.str();"
+        },
+        {
+          "line": 1320,
+          "text": "for (const std::string &cell_id : cells)"
+        },
+        {
+          "line": 1321,
+          "text": "if (claimed_cells.count({module->name.str(), cell_id})) return false;"
+        },
+        {
+          "line": 1322,
+          "text": "for (const std::string &cell_id : cells)"
+        },
+        {
+          "line": 1323,
+          "text": "claimed_cells.insert({module->name.str(), cell_id});"
+        },
+        {
+          "line": 1367,
+          "text": "edit.module_id = plan->module->name.str();"
+        },
+        {
+          "line": 1379,
+          "text": "edit.module_id = plan->module->name.str();"
+        },
+        {
+          "line": 1392,
+          "text": "edit.module_id = plan->module->name.str();"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/pass/case34_rewrite.h",
+      "sha256": "c113a209b8b15c32e96dc59a971bc1b4f0ae94b1abbed3ee6a2732ea965c5383",
+      "identity_related_lines": [
+        {
+          "line": 15,
+          "text": "std::string module_id;"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/pass/pmux_opt.cc",
+      "sha256": "2fea3ad084539f3d07fcc8eb8ec975c1fb4b0a13d2ded7ea4d93eb33dce53b8c",
+      "identity_related_lines": [
+        {
+          "line": 126,
+          "text": "static void write_json_file(std::string filename, const Json &document)"
+        },
+        {
+          "line": 128,
+          "text": "rewrite_filename(filename);"
+        },
+        {
+          "line": 129,
+          "text": "std::ofstream stream(filename, std::ofstream::out | std::ofstream::trunc);"
+        },
+        {
+          "line": 131,
+          "text": "log_cmd_error(\"pmux_opt: cannot open JSON output file `%s'.\\n\", filename.c_str());"
+        },
+        {
+          "line": 135,
+          "text": "log_cmd_error(\"pmux_opt: failed writing JSON output file `%s'.\\n\", filename.c_str());"
+        },
+        {
+          "line": 147,
+          "text": "{\"wire\", RTLIL::unescape_id(edit.original.wire->name)},"
+        },
+        {
+          "line": 151,
+          "text": "{\"module\", edit.module_id},"
+        },
+        {
+          "line": 152,
+          "text": "{\"cell\", edit.cell_id},"
+        },
+        {
+          "line": 177,
+          "text": "{\"module\", edit.module_id},"
+        },
+        {
+          "line": 381,
+          "text": "request.module_id = module->name.str();"
+        },
+        {
+          "line": 382,
+          "text": "request.cell_id = cell->name.str();"
+        },
+        {
+          "line": 530,
+          "text": "return lhs->name.str() < rhs->name.str();"
+        },
+        {
+          "line": 592,
+          "text": "return lhs->name.str() < rhs->name.str();"
+        },
+        {
+          "line": 664,
+          "text": "request.module_id.c_str(), request.cell_id.c_str(),"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/pass/pmux_profile_authorization.h",
+      "sha256": "fd6aa4e4584a8d3501ab239a4a2e3bbdfbe8c290147b721fe15007660bd12747",
+      "identity_related_lines": [
+        {
+          "line": 20,
+          "text": "static constexpr const char *const generation_key = \"pmux_opt.accepted_constant_table_generation\";"
+        },
+        {
+          "line": 32,
+          "text": "std::string generation;"
+        },
+        {
+          "line": 36,
+          "text": "LifecycleMonitor(RTLIL::Design *design, std::string generation,"
+        },
+        {
+          "line": 38,
+          "text": "design(design), generation(std::move(generation)),"
+        },
+        {
+          "line": 44,
+          "text": "design->scratchpad_get_string(generation_key, std::string()) == generation;"
+        },
+        {
+          "line": 75,
+          "text": "const std::string generation = design->scratchpad_get_string(generation_key, std::string());"
+        },
+        {
+          "line": 76,
+          "text": "if (generation.empty())"
+        },
+        {
+          "line": 80,
+          "text": "if (monitor != nullptr && monitor->design == design && monitor->generation == generation)"
+        },
+        {
+          "line": 106,
+          "text": "inline std::string next_generation(RTLIL::Design *design)"
+        },
+        {
+          "line": 136,
+          "text": "append_field(result, \"N\", bit.wire->name.str());"
+        },
+        {
+          "line": 146,
+          "text": "return lhs->name.str() < rhs->name.str();"
+        },
+        {
+          "line": 157,
+          "text": "return lhs->name.str() < rhs->name.str();"
+        },
+        {
+          "line": 162,
+          "text": "append_field(snapshot.payload, \"M\", module->name.str());"
+        },
+        {
+          "line": 163,
+          "text": "append_field(snapshot.payload, \"C\", cell->name.str());"
+        },
+        {
+          "line": 164,
+          "text": "append_field(snapshot.payload, \"T\", cell->type.str());"
+        },
+        {
+          "line": 172,
+          "text": "append_field(snapshot.payload, \"N\", name.str());"
+        },
+        {
+          "line": 182,
+          "text": "append_field(snapshot.payload, \"N\", name.str());"
+        },
+        {
+          "line": 192,
+          "text": "append_field(snapshot.payload, \"N\", name.str());"
+        },
+        {
+          "line": 206,
+          "text": "design->scratchpad_set_string(generation_key, std::string());"
+        },
+        {
+          "line": 226,
+          "text": "const std::string generation = next_generation(design);"
+        },
+        {
+          "line": 228,
+          "text": "design->scratchpad_set_string(generation_key, generation);"
+        },
+        {
+          "line": 231,
+          "text": "design, generation, std::move(modules), std::move(cells)));"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/pass/rewrite_plan.cc",
+      "sha256": "f7f309305f0b4d9e32133b164617221144ec5e5fe4b6663785c2b002067f122a",
+      "identity_related_lines": [
+        {
+          "line": 19,
+          "text": "return request.module_id + \"|\" + request.cell_id + \"|\" +"
+        },
+        {
+          "line": 209,
+          "text": "plan.module->cell(plan.cell->name) != plan.cell) {"
+        },
+        {
+          "line": 247,
+          "text": "edit.module_id = RTLIL::unescape_id(plan.module->name);"
+        },
+        {
+          "line": 248,
+          "text": "edit.cell_id = RTLIL::unescape_id(plan.cell->name);"
+        }
+      ]
+    },
+    {
+      "path": "pmux_project/pass/rewrite_plan.h",
+      "sha256": "8fe13d2ba3ac47c2ecc3de29dba63d1f33153f2d878e9bd7792a4c81814aa235",
+      "identity_related_lines": [
+        {
+          "line": 48,
+          "text": "std::string module_id;"
+        },
+        {
+          "line": 49,
+          "text": "std::string cell_id;"
+        }
+      ]
+    },
+    {
+      "path": "techlibs/intel/synth_intel.cc",
+      "sha256": "27e9773a14984246c158a30796ab20c753d1c00eccf1886c9f9837edd224bb93",
+      "identity_related_lines": []
+    }
+  ],
+  "verdict": "PASS"
+}

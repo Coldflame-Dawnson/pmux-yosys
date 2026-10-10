@@ -1,0 +1,5 @@
+from pathlib import Path
+E=Path('/home/yuewen/work/pmux-yosys-c-b8368b0/pmux_project/experiments/case34_v02b/c_b8368b0_evidence');O=E.parents[3]/'pmux_project/reports/c-b8368b0-default-final'
+f=E/'lifecycle_fixture.cc';s=f.read_text();a=s.index(' bool reused=false;int attempts=0;');b=s.index(' log("C_REBUILT_CELL',a)
+old=(O/'lifecycle_setup_attempt_no_address_reuse/lifecycle_fixture.cc').read_text();oa=old.index(' bool reused=false;int attempts=0;');ob=old.index(' log("C_REBUILT_CELL',oa);s=s[:a]+old[oa:ob]+s[b:];f.write_text(s)
+f=E/'run_lifecycle.py';s=f.read_text().replace("with (d/'console.log').open('w')as f:cp=subprocess.run(map(str,cmd),cwd=R,env=ENV,","env=dict(ENV)\n if mode=='allocator_reuse':env['GLIBC_TUNABLES']='glibc.malloc.tcache_count=0'\n (d/'environment.json').write_text(json.dumps({'GLIBC_TUNABLES':env.get('GLIBC_TUNABLES'),'PATH':env['PATH']},indent=2)+'\\n')\n with (d/'console.log').open('w')as f:cp=subprocess.run(map(str,cmd),cwd=R,env=env,");f.write_text(s)
