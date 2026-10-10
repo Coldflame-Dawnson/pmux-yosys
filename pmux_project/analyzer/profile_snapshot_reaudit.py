@@ -104,11 +104,14 @@ def main():
         payload_equal = "payload_equal=1" in run.stdout
         lifecycle_match = re.findall(r"lifecycle_valid=(\d+)", run.stdout)
         lifecycle_valid = int(lifecycle_match[-1]) if lifecycle_match else None
+        monitor_match = re.findall(r"lifecycle_monitor_match=(\d+)", run.stdout)
+        lifecycle_monitor_match = int(monitor_match[-1]) if monitor_match else None
         reasons = re.findall(r"authorization rejected reason=(\w+)", run.stdout)
         results.append({"path": path, "mode": mode, "returncode": run.returncode,
                         "required_profile": required, "actual_profile": profile,
                         "payload_equal": payload_equal,
                         "lifecycle_valid_before_consume": lifecycle_valid,
+                        "lifecycle_monitor_match_before_consume": lifecycle_monitor_match,
                         "rejection_reasons": reasons,
                         "requirement_met": run.returncode == 0 and profile == required})
 
@@ -119,11 +122,15 @@ def main():
         execute(path, "lifecycle_false", "stock")
         execute(path, "empty_generation", "stock")
         execute(path, "forge_generation", "stock")
+        execute(path, "old_generation_replay", "stock")
+        execute(path, "unregister_monitor", "stock")
 
     legal = [item for item in results if item["mode"] == "none"]
     rebuilt = [item for item in results if item["mode"] == "same_name_rebuild"]
     restored = [item for item in results if item["mode"] == "port_restore"]
     forged = [item for item in results if item["mode"] == "forge_generation"]
+    old_replay = [item for item in results if item["mode"] == "old_generation_replay"]
+    unregistered = [item for item in results if item["mode"] == "unregister_monitor"]
     summary = {"results": results,
                "legal_first_consume_pass": all(item["requirement_met"] for item in legal),
                "previous_rebuild_fixed_both_paths": all(
@@ -137,20 +144,38 @@ def main():
                    item["lifecycle_valid_before_consume"] == 0 and
                    item["actual_profile"] == "stock"
                    for item in restored),
-               "forged_generation_counterexample_both_paths": all(
+               "forged_generation_rejected_both_paths": all(
                    item["returncode"] == 0 and
                    item["lifecycle_valid_before_consume"] == 1 and
-                   item["actual_profile"] == "accepted_constant_table" and
-                   not item["requirement_met"] for item in forged)}
+                   item["lifecycle_monitor_match_before_consume"] == 0 and
+                   item["actual_profile"] == "stock" and item["requirement_met"] and
+                   "target_lifecycle_mismatch" in item["rejection_reasons"]
+                   for item in forged),
+               "old_generation_replay_rejected_both_paths": all(
+                   item["returncode"] == 0 and
+                   item["lifecycle_valid_before_consume"] == 1 and
+                   item["lifecycle_monitor_match_before_consume"] == 0 and
+                   item["actual_profile"] == "stock" and item["requirement_met"] and
+                   "target_lifecycle_mismatch" in item["rejection_reasons"]
+                   for item in old_replay),
+               "unregistered_monitor_rejected_both_paths": all(
+                   item["returncode"] == 0 and
+                   item["lifecycle_valid_before_consume"] == 1 and
+                   item["lifecycle_monitor_match_before_consume"] == 0 and
+                   item["actual_profile"] == "stock" and item["requirement_met"] and
+                   "target_lifecycle_mismatch" in item["rejection_reasons"]
+                   for item in unregistered)}
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
     if (summary["legal_first_consume_pass"] and
             summary["previous_rebuild_fixed_both_paths"] and
             summary["port_restore_invalidates_both_paths"] and
-            summary["forged_generation_counterexample_both_paths"]):
-        print("A_PROFILE_LIFECYCLE_FORGED_GENERATION_COUNTEREXAMPLE REPRODUCED")
+            summary["forged_generation_rejected_both_paths"] and
+            summary["old_generation_replay_rejected_both_paths"] and
+            summary["unregistered_monitor_rejected_both_paths"]):
+        print("A_GENERATION_MONITOR_REAUDIT_MATRIX PASS")
         return 0
-    print("A_PROFILE_LIFECYCLE_AUDIT INCONCLUSIVE")
+    print("A_GENERATION_MONITOR_REAUDIT_MATRIX FAIL")
     return 1
 
 

@@ -97,8 +97,37 @@ struct SnapshotReauditPmuxWrapper : Pass
 		if (mode == "forge_generation") {
 			design->scratchpad_set_string(PmuxProfileAuthorization::generation_key,
 					"A-forged-generation");
-			log("A_PROFILE_GENERATION_FORGED lifecycle_valid=%d\n",
-					design->scratchpad_get_bool(PmuxProfileAuthorization::lifecycle_key, false));
+			log("A_PROFILE_GENERATION_FORGED lifecycle_valid=%d lifecycle_monitor_match=%d\n",
+					design->scratchpad_get_bool(PmuxProfileAuthorization::lifecycle_key, false),
+					PmuxProfileAuthorization::constant_table_lifecycle_matches(design));
+			return;
+		}
+		if (mode == "old_generation_replay") {
+			const std::string old_generation = design->scratchpad_get_string(
+					PmuxProfileAuthorization::generation_key, std::string());
+			if (old_generation.empty())
+				log_cmd_error("lifecycle reaudit found no published generation.\n");
+			PmuxProfileAuthorization::publish_constant_table_authorization(design, true);
+			const std::string new_generation = design->scratchpad_get_string(
+					PmuxProfileAuthorization::generation_key, std::string());
+			if (new_generation.empty() || new_generation == old_generation)
+				log_cmd_error("lifecycle reaudit failed to create a distinct generation.\n");
+			design->scratchpad_set_string(PmuxProfileAuthorization::generation_key,
+					old_generation);
+			log("A_PROFILE_OLD_GENERATION_REPLAY old=%s new=%s lifecycle_valid=%d lifecycle_monitor_match=%d\n",
+					old_generation.c_str(), new_generation.c_str(),
+					design->scratchpad_get_bool(PmuxProfileAuthorization::lifecycle_key, false),
+					PmuxProfileAuthorization::constant_table_lifecycle_matches(design));
+			return;
+		}
+		if (mode == "unregister_monitor") {
+			const auto *monitor = PmuxProfileAuthorization::registered_lifecycle_monitor(design);
+			if (monitor == nullptr)
+				log_cmd_error("lifecycle reaudit found no registered monitor.\n");
+			design->monitors.erase(const_cast<PmuxProfileAuthorization::LifecycleMonitor *>(monitor));
+			log("A_PROFILE_MONITOR_UNREGISTERED lifecycle_valid=%d lifecycle_monitor_match=%d\n",
+					design->scratchpad_get_bool(PmuxProfileAuthorization::lifecycle_key, false),
+					PmuxProfileAuthorization::constant_table_lifecycle_matches(design));
 			return;
 		}
 		if (mode == "empty_generation") {
