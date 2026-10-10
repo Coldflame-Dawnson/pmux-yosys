@@ -86,7 +86,7 @@ profile-snapshot-reaudit:
 	python3 profile_snapshot_reaudit.py --tool-root $(YOSYS_ROOT) \
 		--official $(OFFICIAL_ROOT) --output $(PROFILE_SNAPSHOT_AUDIT_OUT) \
 		> profile_snapshot_reaudit.log
-	grep -F 'A_PROFILE_SNAPSHOT_SAME_NAME_REBUILD_COUNTEREXAMPLE REPRODUCED' profile_snapshot_reaudit.log
+	grep -F 'A_PROFILE_LIFECYCLE_FORGED_GENERATION_COUNTEREXAMPLE REPRODUCED' profile_snapshot_reaudit.log
 
 clean:
 	rm -f $(PLUGIN) selftest.log case3_branch_proof.log case3_case34_proof.log case4_case34_proof.log decision_cone_case3_proof.log \

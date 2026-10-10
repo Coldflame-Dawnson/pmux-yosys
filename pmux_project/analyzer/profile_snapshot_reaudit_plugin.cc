@@ -54,14 +54,30 @@ void rebuild_same_name_and_contents(RTLIL::Design *design)
 		new_cell->setPort(connection.first, connection.second);
 
 	const auto after = PmuxProfileAuthorization::build_constant_table_snapshot(design);
-	log("A_PROFILE_SNAPSHOT_REBUILD module=%s cell=%s before_cells=%d after_cells=%d payload_equal=%d\n",
+	log("A_PROFILE_SNAPSHOT_REBUILD module=%s cell=%s before_cells=%d after_cells=%d payload_equal=%d lifecycle_valid=%d\n",
 			log_id(module), log_id(new_cell), before.cell_count, after.cell_count,
-			before.payload == after.payload);
+			before.payload == after.payload,
+			design->scratchpad_get_bool(PmuxProfileAuthorization::lifecycle_key, false));
+}
+
+void change_and_restore_port(RTLIL::Design *design)
+{
+	RTLIL::Cell *cell = first_target(design);
+	if (cell == nullptr)
+		log_cmd_error("lifecycle reaudit found no target cell.\n");
+	RTLIL::SigSpec original = cell->getPort(ID::A);
+	RTLIL::SigSpec changed = original;
+	changed[0] = changed[0] == RTLIL::SigBit(RTLIL::State::S0) ?
+			RTLIL::SigBit(RTLIL::State::S1) : RTLIL::SigBit(RTLIL::State::S0);
+	cell->setPort(ID::A, changed);
+	cell->setPort(ID::A, original);
+	log("A_PROFILE_PORT_RESTORED payload_equal=1 lifecycle_valid=%d\n",
+			design->scratchpad_get_bool(PmuxProfileAuthorization::lifecycle_key, false));
 }
 
 struct SnapshotReauditPmuxWrapper : Pass
 {
-	SnapshotReauditPmuxWrapper() : Pass("pmux_opt", "A-only snapshot binding reaudit wrapper") { }
+	SnapshotReauditPmuxWrapper() : Pass("pmux_opt", "A-only lifecycle binding reaudit wrapper") { }
 
 	void execute(std::vector<std::string> args, RTLIL::Design *design) override
 	{
@@ -72,6 +88,25 @@ struct SnapshotReauditPmuxWrapper : Pass
 			return;
 		if (mode == "same_name_rebuild") {
 			rebuild_same_name_and_contents(design);
+			return;
+		}
+		if (mode == "port_restore") {
+			change_and_restore_port(design);
+			return;
+		}
+		if (mode == "forge_generation") {
+			design->scratchpad_set_string(PmuxProfileAuthorization::generation_key,
+					"A-forged-generation");
+			log("A_PROFILE_GENERATION_FORGED lifecycle_valid=%d\n",
+					design->scratchpad_get_bool(PmuxProfileAuthorization::lifecycle_key, false));
+			return;
+		}
+		if (mode == "empty_generation") {
+			design->scratchpad_set_string(PmuxProfileAuthorization::generation_key, std::string());
+			return;
+		}
+		if (mode == "lifecycle_false") {
+			design->scratchpad_set_bool(PmuxProfileAuthorization::lifecycle_key, false);
 			return;
 		}
 		log_cmd_error("unsupported snapshot reaudit mode %s.\n", mode.c_str());
