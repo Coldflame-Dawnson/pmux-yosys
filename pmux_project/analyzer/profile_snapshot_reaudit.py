@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""A-only real-path counterexample for constant-table snapshot identity."""
+"""A-only real-path audit for constant-table lifecycle authorization."""
 
 import argparse
 import json
@@ -91,7 +91,9 @@ def main():
             marker = r"pmux_opt_abc9: profile=(\w+)"
         script = prefix + body + (
             "scratchpad -assert pmux_opt.accepted_constant_table false; "
-            "scratchpad -assert pmux_opt.accepted_constant_table_snapshot \"\""
+            "scratchpad -assert pmux_opt.accepted_constant_table_snapshot \"\"; "
+            "scratchpad -assert pmux_opt.accepted_constant_table_generation \"\"; "
+            "scratchpad -assert pmux_opt.accepted_constant_table_lifecycle_valid false"
         )
         run = subprocess.run([*map(str, base), "-p", script], cwd=output, env=env,
                              text=True, stdout=subprocess.PIPE,
@@ -100,29 +102,55 @@ def main():
         profiles = re.findall(marker, run.stdout)
         profile = profiles[-1] if profiles else "missing"
         payload_equal = "payload_equal=1" in run.stdout
+        lifecycle_match = re.findall(r"lifecycle_valid=(\d+)", run.stdout)
+        lifecycle_valid = int(lifecycle_match[-1]) if lifecycle_match else None
+        reasons = re.findall(r"authorization rejected reason=(\w+)", run.stdout)
         results.append({"path": path, "mode": mode, "returncode": run.returncode,
                         "required_profile": required, "actual_profile": profile,
                         "payload_equal": payload_equal,
+                        "lifecycle_valid_before_consume": lifecycle_valid,
+                        "rejection_reasons": reasons,
                         "requirement_met": run.returncode == 0 and profile == required})
 
     for path in ("synth_intel", "runner"):
         execute(path, "none", "accepted_constant_table")
         execute(path, "same_name_rebuild", "stock")
+        execute(path, "port_restore", "stock")
+        execute(path, "lifecycle_false", "stock")
+        execute(path, "empty_generation", "stock")
+        execute(path, "forge_generation", "stock")
 
     legal = [item for item in results if item["mode"] == "none"]
     rebuilt = [item for item in results if item["mode"] == "same_name_rebuild"]
+    restored = [item for item in results if item["mode"] == "port_restore"]
+    forged = [item for item in results if item["mode"] == "forge_generation"]
     summary = {"results": results,
                "legal_first_consume_pass": all(item["requirement_met"] for item in legal),
-               "counterexample_reproduced_both_paths": all(
+               "previous_rebuild_fixed_both_paths": all(
                    item["returncode"] == 0 and item["payload_equal"] and
+                   item["lifecycle_valid_before_consume"] == 0 and
+                   item["actual_profile"] == "stock" and
+                   "target_lifecycle_mismatch" in item["rejection_reasons"]
+                   for item in rebuilt),
+               "port_restore_invalidates_both_paths": all(
+                   item["returncode"] == 0 and item["payload_equal"] and
+                   item["lifecycle_valid_before_consume"] == 0 and
+                   item["actual_profile"] == "stock"
+                   for item in restored),
+               "forged_generation_counterexample_both_paths": all(
+                   item["returncode"] == 0 and
+                   item["lifecycle_valid_before_consume"] == 1 and
                    item["actual_profile"] == "accepted_constant_table" and
-                   not item["requirement_met"] for item in rebuilt)}
+                   not item["requirement_met"] for item in forged)}
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
-    if summary["legal_first_consume_pass"] and summary["counterexample_reproduced_both_paths"]:
-        print("A_PROFILE_SNAPSHOT_SAME_NAME_REBUILD_COUNTEREXAMPLE REPRODUCED")
+    if (summary["legal_first_consume_pass"] and
+            summary["previous_rebuild_fixed_both_paths"] and
+            summary["port_restore_invalidates_both_paths"] and
+            summary["forged_generation_counterexample_both_paths"]):
+        print("A_PROFILE_LIFECYCLE_FORGED_GENERATION_COUNTEREXAMPLE REPRODUCED")
         return 0
-    print("A_PROFILE_SNAPSHOT_SAME_NAME_REBUILD_COUNTEREXAMPLE NOT_REPRODUCED")
+    print("A_PROFILE_LIFECYCLE_AUDIT INCONCLUSIVE")
     return 1
 
 
