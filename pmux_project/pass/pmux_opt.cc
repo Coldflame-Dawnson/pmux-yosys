@@ -787,8 +787,8 @@ struct PmuxOptAbc9Pass : public Pass
 
 		const bool constant_table_authorized = design->scratchpad_get_bool(
 				PmuxProfileAuthorization::enabled_key, false);
-		const bool constant_table_lifecycle_valid = design->scratchpad_get_bool(
-				PmuxProfileAuthorization::lifecycle_key, false);
+		const bool constant_table_lifecycle_valid =
+				PmuxProfileAuthorization::constant_table_lifecycle_matches(design);
 		const bool constant_table_cells =
 				PmuxProfileAuthorization::build_constant_table_snapshot(design).cell_count > 0;
 		const bool constant_table_profile =

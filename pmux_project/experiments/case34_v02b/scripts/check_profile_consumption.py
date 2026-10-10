@@ -21,9 +21,11 @@ def require_order(path: Path, start_marker: str, get_marker: str,
 
 
 def consume(authorized: bool, expected: str, actual: str, cell_count: int,
-            generation: str, lifecycle_valid: bool) -> tuple[str, bool, str, str, bool]:
+            generation: str, lifecycle_valid: bool,
+            registered_generation: str = "generation-a") -> tuple[str, bool, str, str, bool]:
     matched = (authorized and bool(expected) and cell_count > 0
-               and bool(generation) and lifecycle_valid and expected == actual)
+               and bool(generation) and lifecycle_valid
+               and generation == registered_generation and expected == actual)
     profile = "accepted_constant_table" if matched else "stock"
     return profile, False, "", "", False
 
@@ -51,6 +53,9 @@ def main() -> int:
     assert "LifecycleMonitor" in helper and "notify_connect" in helper
     assert "notify_module_del" in helper and "generation_key" in helper
     assert "lifecycle_key" in helper
+    assert "registered_lifecycle_monitor" in helper
+    assert "dynamic_cast<LifecycleMonitor *>" in helper
+    assert "monitor->generation == generation" in helper
 
     profile, authorization, snapshot, generation, lifecycle = consume(
         True, "snapshot-a", "snapshot-a", 3, "generation-a", True
@@ -65,6 +70,7 @@ def main() -> int:
     assert consume(True, "snapshot-a", "snapshot-a", 0, "generation-a", True)[0] == "stock"
     assert consume(True, "snapshot-a", "snapshot-a", 3, "", True)[0] == "stock"
     assert consume(True, "snapshot-a", "snapshot-a", 3, "generation-a", False)[0] == "stock"
+    assert consume(True, "snapshot-a", "snapshot-a", 3, "forged-generation", True)[0] == "stock"
     print("PROFILE_AUTHORIZATION_LIFECYCLE_SNAPSHOT_CONSUME_REPLAY PASS")
     return 0
 

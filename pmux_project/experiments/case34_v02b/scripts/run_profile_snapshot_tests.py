@@ -23,6 +23,7 @@ MODES = [
     "add_extra",
     "same_name_rebuild",
     "drop_snapshot",
+    "forged_generation",
 ]
 
 
@@ -184,6 +185,28 @@ def main():
         "actual_profiles": runner_profiles,
         "pass": runner_passed,
         "log": str(runner_log),
+    })
+
+    runner_forged_log = logs / "runner_forged_generation.log"
+    runner_forged_script = runner_script.replace(
+        "scratchpad -set pmux_test.profile_mutation same_name_rebuild",
+        "scratchpad -set pmux_test.profile_mutation forged_generation",
+    )
+    runner_forged = run([*base, "-p", runner_forged_script], log=runner_forged_log)
+    runner_forged_profiles = re.findall(r"pmux_opt_abc9: profile=(\w+)", runner_forged.stdout)
+    runner_forged_passed = (
+        runner_forged.returncode == 0
+        and runner_forged_profiles[-1:] == ["stock"]
+        and "lifecycle_monitor_match=0" in runner_forged.stdout
+        and "target_lifecycle_mismatch" in runner_forged.stdout
+    )
+    results.append({
+        "test": "runner_forged_generation",
+        "returncode": runner_forged.returncode,
+        "expected_profile": "stock",
+        "actual_profiles": runner_forged_profiles,
+        "pass": runner_forged_passed,
+        "log": str(runner_forged_log),
     })
 
     summary = {

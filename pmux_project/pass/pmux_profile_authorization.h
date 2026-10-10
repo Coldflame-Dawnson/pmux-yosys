@@ -70,6 +70,28 @@ inline std::map<RTLIL::Design *, std::vector<std::unique_ptr<LifecycleMonitor>>>
 	return registry;
 }
 
+inline const LifecycleMonitor *registered_lifecycle_monitor(RTLIL::Design *design)
+{
+	const std::string generation = design->scratchpad_get_string(generation_key, std::string());
+	if (generation.empty())
+		return nullptr;
+	for (RTLIL::Monitor *base : design->monitors) {
+		auto *monitor = dynamic_cast<LifecycleMonitor *>(base);
+		if (monitor != nullptr && monitor->design == design && monitor->generation == generation)
+			return monitor;
+	}
+	return nullptr;
+}
+
+inline bool constant_table_lifecycle_matches(RTLIL::Design *design)
+{
+	if (!design->scratchpad_get_bool(enabled_key, false) ||
+			!design->scratchpad_get_bool(lifecycle_key, false))
+		return false;
+	const LifecycleMonitor *monitor = registered_lifecycle_monitor(design);
+	return monitor != nullptr && monitor->active();
+}
+
 inline void remove_owned_lifecycle_monitors(RTLIL::Design *design)
 {
 	auto &registry = lifecycle_monitors();
@@ -215,11 +237,7 @@ inline bool publish_constant_table_authorization(RTLIL::Design *design, bool acc
 
 inline bool constant_table_authorization_matches(RTLIL::Design *design)
 {
-	if (!design->scratchpad_get_bool(enabled_key, false))
-		return false;
-	if (!design->scratchpad_get_bool(lifecycle_key, false))
-		return false;
-	if (design->scratchpad_get_string(generation_key, std::string()).empty())
+	if (!constant_table_lifecycle_matches(design))
 		return false;
 	const std::string expected = design->scratchpad_get_string(snapshot_key, std::string());
 	if (expected.empty())

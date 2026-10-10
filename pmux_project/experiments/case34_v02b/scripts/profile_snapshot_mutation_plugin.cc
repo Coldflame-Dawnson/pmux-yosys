@@ -48,6 +48,14 @@ struct ProfileSnapshotMutationPass : Pass
 			log("PMUX_PROFILE_MUTATION mode=%s\n", mode.c_str());
 			return;
 		}
+		if (mode == "forged_generation") {
+			design->scratchpad_set_string(
+					PmuxProfileAuthorization::generation_key, "B-forged-generation");
+			log("PMUX_PROFILE_MUTATION mode=%s lifecycle_monitor_match=%d\n",
+					mode.c_str(),
+					PmuxProfileAuthorization::constant_table_lifecycle_matches(design));
+			return;
+		}
 
 		RTLIL::Cell *cell = first_generated_cell(design);
 		if (cell == nullptr)

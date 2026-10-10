@@ -268,8 +268,8 @@ struct SynthIntelPass : public ScriptPass {
 			if (pmux_v02 && !help_mode) {
 				const bool pmux_constant_table_authorized = active_design->scratchpad_get_bool(
 						PmuxProfileAuthorization::enabled_key, false);
-				const bool pmux_constant_table_lifecycle_valid = active_design->scratchpad_get_bool(
-						PmuxProfileAuthorization::lifecycle_key, false);
+				const bool pmux_constant_table_lifecycle_valid =
+						PmuxProfileAuthorization::constant_table_lifecycle_matches(active_design);
 				pmux_constant_table_cells =
 						PmuxProfileAuthorization::build_constant_table_snapshot(active_design).cell_count > 0;
 				pmux_constant_table_profile =
