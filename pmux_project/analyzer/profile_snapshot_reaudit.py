@@ -118,6 +118,7 @@ def main():
     for path in ("synth_intel", "runner"):
         execute(path, "none", "accepted_constant_table")
         execute(path, "same_name_rebuild", "stock")
+        execute(path, "module_rebuild", "stock")
         execute(path, "port_restore", "stock")
         execute(path, "lifecycle_false", "stock")
         execute(path, "empty_generation", "stock")
@@ -127,6 +128,7 @@ def main():
 
     legal = [item for item in results if item["mode"] == "none"]
     rebuilt = [item for item in results if item["mode"] == "same_name_rebuild"]
+    module_rebuilt = [item for item in results if item["mode"] == "module_rebuild"]
     restored = [item for item in results if item["mode"] == "port_restore"]
     forged = [item for item in results if item["mode"] == "forge_generation"]
     old_replay = [item for item in results if item["mode"] == "old_generation_replay"]
@@ -139,6 +141,12 @@ def main():
                    item["actual_profile"] == "stock" and
                    "target_lifecycle_mismatch" in item["rejection_reasons"]
                    for item in rebuilt),
+               "module_rebuild_rejected_both_paths": all(
+                   item["returncode"] == 0 and item["payload_equal"] and
+                   item["lifecycle_valid_before_consume"] == 0 and
+                   item["actual_profile"] == "stock" and item["requirement_met"] and
+                   "target_lifecycle_mismatch" in item["rejection_reasons"]
+                   for item in module_rebuilt),
                "port_restore_invalidates_both_paths": all(
                    item["returncode"] == 0 and item["payload_equal"] and
                    item["lifecycle_valid_before_consume"] == 0 and
@@ -169,6 +177,7 @@ def main():
     print(json.dumps(summary, indent=2))
     if (summary["legal_first_consume_pass"] and
             summary["previous_rebuild_fixed_both_paths"] and
+            summary["module_rebuild_rejected_both_paths"] and
             summary["port_restore_invalidates_both_paths"] and
             summary["forged_generation_rejected_both_paths"] and
             summary["old_generation_replay_rejected_both_paths"] and
