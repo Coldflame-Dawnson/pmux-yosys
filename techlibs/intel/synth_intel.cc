@@ -84,13 +84,17 @@ struct SynthIntelPass : public ScriptPass {
 		log("        disable the accepted proof-gated PMUX v0.2 structural rules\n");
 		log("        (diagnostic/baseline rollback only)\n");
 		log("\n");
+		log("    -pmux-v02-case12\n");
+		log("        explicitly enable the proof-gated case1/case2 structural rule families\n");
+		log("        (candidate path; disabled by default pending independent acceptance)\n");
+		log("\n");
 		log("The following commands are executed by this synthesis command:\n");
 		help_script();
 		log("\n");
 	}
 
 	string top_opt, family_opt, vout_file, blif_file;
-	bool flatten, nobram, dff, nodsp, iopads, pmux_v02, pmux_constant_table_profile;
+	bool flatten, nobram, dff, nodsp, iopads, pmux_v02, pmux_v02_case12, pmux_constant_table_profile;
 
 	void clear_flags() override
 	{
@@ -104,6 +108,7 @@ struct SynthIntelPass : public ScriptPass {
 		nodsp = false;
 		iopads = false;
 		pmux_v02 = true;
+		pmux_v02_case12 = false;
 		pmux_constant_table_profile = false;
 	}
 
@@ -163,6 +168,10 @@ struct SynthIntelPass : public ScriptPass {
 				pmux_v02 = false;
 				continue;
 			}
+			if (args[argidx] == "-pmux-v02-case12") {
+				pmux_v02_case12 = true;
+				continue;
+			}
 			if (args[argidx] == "-retime") {
 				// Removed: ABC9 does not support retiming.
 				continue;
@@ -173,6 +182,8 @@ struct SynthIntelPass : public ScriptPass {
 
 		if (!design->full_selection())
 			log_cmd_error("This command only operates on fully selected designs!\n");
+		if (!pmux_v02 && pmux_v02_case12)
+			log_cmd_error("Options -no-pmux-v02 and -pmux-v02-case12 are mutually exclusive.\n");
 
 		if (family_opt == "cyclonev")
 			log_cmd_error("Cyclone V synthesis has been moved to synth_intel_alm.\n");
@@ -262,7 +273,8 @@ struct SynthIntelPass : public ScriptPass {
 			run("opt -fast -mux_undef -undriven -fine -full");
 			run("memory_map");
 			run("opt -undriven -fine");
-			run(pmux_v02 ? "pmux_opt" : "pmux_opt -no-v02-case34");
+			run(pmux_v02 ? (pmux_v02_case12 ? "pmux_opt -v02-case12" : "pmux_opt") :
+					"pmux_opt -no-v02-case34");
 			run("opt_clean");
 			bool pmux_constant_table_cells = false;
 			if (pmux_v02 && !help_mode) {

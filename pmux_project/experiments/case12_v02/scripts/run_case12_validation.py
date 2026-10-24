@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+"""Fast structural validation for the proof-gated case1/case2 production rules."""
+
+from __future__ import annotations
+
+import argparse
+import re
+import subprocess
+import tempfile
+from pathlib import Path
+
+
+def run(command: list[str], *, cwd: Path) -> str:
+    completed = subprocess.run(command, cwd=cwd, text=True, stdout=subprocess.PIPE,
+                               stderr=subprocess.STDOUT, check=False)
+    if completed.returncode:
+        raise RuntimeError(f"command failed ({completed.returncode}): {' '.join(command)}\n{completed.stdout}")
+    return completed.stdout
+
+
+def fixture(branches: int, width: int, *, shared_tap: bool = False) -> str:
+    lines = [f"module top(input [{branches-1}:0] s, input [{branches*width-1}:0] d, "
+             f"output [{width-1}:0] y" + (f", output [{width-1}:0] tap" if shared_tap else "") + ");"]
+    previous = f"{width}'b0"
+    for index in range(branches):
+        lines.append(f"  wire [{width-1}:0] m{index} = s[{index}] ? "
+                     f"d[{index*width} +: {width}] : {previous};")
+        previous = f"m{index}"
+    lines.append(f"  assign y = {previous};")
+    if shared_tap:
+        lines.append("  assign tap = m1;")
+    lines.append("endmodule")
+    return "\n".join(lines) + "\n"
+
+
+def expect_summary(output: str, *, paired: int, priority: int, committed: int,
+                   removed: int, added: int) -> None:
+    match = re.search(r"v02_case12 paired=(\d+) priority=(\d+) committed=(\d+) "
+                      r"removed_cells=(\d+) added_cells=(\d+)", output)
+    if not match:
+        raise AssertionError(f"case12 summary missing\n{output}")
+    observed = tuple(map(int, match.groups()))
+    expected = (paired, priority, committed, removed, added)
+    if observed != expected:
+        raise AssertionError(f"summary {observed} != {expected}\n{output}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[4])
+    parser.add_argument("--yosys", type=Path, required=True)
+    args = parser.parse_args()
+    repo = args.repo.resolve()
+    plugin = repo / "pmux_project/pass/pmux_opt.so"
+    if not plugin.is_file():
+        raise SystemExit(f"MISSING plugin: {plugin}; run make -C pmux_project/pass first")
+
+    cases = [
+        ("valid_priority_width1", "read_verilog", ".v", fixture(4, 1), "prep -top top", "", 0, 1, 1, 4, 3),
+        ("valid_priority_width5", "read_verilog", ".v", fixture(4, 5), "prep -top top", "", 0, 1, 1, 4, 15),
+        ("three_priority_branches", "read_verilog", ".v", fixture(3, 1), "prep -top top", "", 0, 0, 0, 0, 0),
+        ("shared_priority_intermediate", "read_verilog", ".v", fixture(4, 1, shared_tap=True), "prep -top top", "", 0, 0, 0, 0, 0),
+        ("protected_priority_muxes", "read_verilog", ".v", fixture(4, 1), "prep -top top", "select t:$mux; setattr -set keep 1; select *;", 0, 0, 0, 0, 0),
+    ]
+    with tempfile.TemporaryDirectory(prefix="pmux-case12-") as directory:
+        work = Path(directory)
+        for name, reader, suffix, source, prepare, setup, paired, priority, committed, removed, added in cases:
+            design = work / f"{name}{suffix}"
+            design.write_text(source, encoding="utf-8")
+            output = run([str(args.yosys), "-m", str(plugin), "-p",
+                          f"{reader} {design}; {prepare}; {setup} "
+                          "pmux_opt -v02-case12 -no-v02-case34; check; stat"], cwd=repo)
+            expect_summary(output, paired=paired, priority=priority, committed=committed,
+                           removed=removed, added=added)
+            print(f"PASS {name}")
+
+    print(f"PASS all {len(cases)} case12 structural fixtures")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

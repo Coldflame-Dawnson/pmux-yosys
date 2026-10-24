@@ -3,6 +3,7 @@
 #include "kernel/sigtools.h"
 #include "pmux_opt_api.h"
 #include "readonly_analyzer.h"
+#include "case12_rewrite.h"
 #include "case34_rewrite.h"
 #include "pmux_profile_authorization.h"
 #include "rewrite_plan.h"
@@ -405,7 +406,7 @@ struct PmuxOptPass : public Pass
 		log("             [-test-snapshot-mismatch]\n");
 		log("             [-test-decision-proof-mutations]\n");
 		log("             [-test-report-constants]\n");
-		log("             [-v02-case34|-no-v02-case34]\n");
+		log("             [-v02-case12] [-v02-case34|-no-v02-case34]\n");
 		log("             [-write-plan <file>] [-write-stats <file>] [selection]\n");
 		log("\n");
 		log("Enumerate selected, structurally valid $mux and $pmux cells in stable\n");
@@ -439,6 +440,7 @@ struct PmuxOptPass : public Pass
 		bool test_snapshot_mismatch = false;
 		bool test_decision_proof_mutations = false;
 		bool test_report_constants = false;
+		bool enable_v02_case12 = false;
 		bool explicit_enable_v02_case34 = false;
 		bool disable_v02_case34 = false;
 		StubMode stub_mode = StubMode::Unknown;
@@ -473,6 +475,10 @@ struct PmuxOptPass : public Pass
 			}
 			if (args[argidx] == "-v02-case34") {
 				explicit_enable_v02_case34 = true;
+				continue;
+			}
+			if (args[argidx] == "-v02-case12") {
+				enable_v02_case12 = true;
 				continue;
 			}
 			if (args[argidx] == "-no-v02-case34") {
@@ -539,6 +545,17 @@ struct PmuxOptPass : public Pass
 			if (!mutation.failures.empty() || mutation.passed != mutation.checks)
 				log_cmd_error("pmux_opt: decision proof mutation selftest failed.\n");
 			return;
+		}
+		Case12RewriteResult case12_result;
+		if (enable_v02_case12) {
+			case12_result = run_case12_structural_rewrite(modules);
+			log("pmux_opt: v02_case12 paired=%d priority=%d committed=%d removed_cells=%d added_cells=%d\n",
+					case12_result.paired_candidates, case12_result.priority_candidates,
+					case12_result.committed_candidates, case12_result.removed_cells,
+					case12_result.added_cells);
+			for (const auto &item : case12_result.reason_counts)
+				log("pmux_opt: reason scope=v02_case12 code=%s count=%d\n",
+						item.first.c_str(), item.second);
 		}
 
 		Case34RewriteResult case34_result;
