@@ -1,0 +1,42 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+
+-- Running command `read_rtlil /tmp/case12-a-audit-5jv554f3/paired_duplicate_code.il;  pmux_opt -v02-case12 -no-v02-case34; check' --
+
+1. Executing RTLIL frontend.
+Input filename: /tmp/case12-a-audit-5jv554f3/paired_duplicate_code.il
+
+2. Executing PMUX_OPT guarded analysis and atomic rewrite.
+pmux_opt: v02_case12 paired=0 priority=0 committed=0 removed_cells=0 added_cells=0
+pmux_opt: rewrite proven=0 skipped_binary_constants=0 skipped_xz=0 rejected_results=0 rejected_unproved=0 duplicates=0 conflicts=0 abandoned_entries=0 planned=0 writes=0 commit=ok
+pmux_opt: reason scope=entry_status code=normal count=16
+pmux_opt: reason scope=unknown_bit code=primary_input count=2
+pmux_opt: reason scope=unknown_bit code=undriven count=12
+pmux_opt: reason scope=unknown_bit code=unsupported_cell count=2
+pmux_opt: summary modules=1 candidates=2 valid=2 invalid=0 entries=16 unknown_bits=16 proven_bits=0 writes=0
+pmux_opt: resources wall_us=2670 user_us=2702 system_us=0 peak_kib=25092 peak_growth_kib=3072
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module top...
+Warning: Wire top.\f1 is used but has no driver.
+Warning: Wire top.\x3 is used but has no driver.
+Warning: Wire top.\y3 is used but has no driver.
+Warning: Wire top.\x2 is used but has no driver.
+Warning: Wire top.\y2 is used but has no driver.
+Warning: Wire top.\x1 is used but has no driver.
+Warning: Wire top.\g1 is used but has no driver.
+Warning: found logic loop in module top:
+    cell p1 ($pmux)
+      B[1] --> Y[0]
+    wire \y1
+Found and reported 8 problems.
+
+Warnings: 8 unique messages, 8 total
+End of script. Logfile hash: f035febbf8, time: 0.00s, user: 0.01s, system: 0.00s, MEM: 24.69 MB peak
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Time spent: 90% 1x pmux_opt (0 sec), 5% 2x read_rtlil (0 sec), ...

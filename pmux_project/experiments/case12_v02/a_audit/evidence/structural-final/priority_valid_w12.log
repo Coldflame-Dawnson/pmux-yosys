@@ -1,0 +1,180 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+
+-- Running command `read_verilog /tmp/case12-a-audit-5jv554f3/priority_valid_w12.v; prep -top top; pmux_opt -v02-case12 -no-v02-case34; check' --
+
+1. Executing Verilog-2005 frontend: /tmp/case12-a-audit-5jv554f3/priority_valid_w12.v
+Parsing Verilog input from `/tmp/case12-a-audit-5jv554f3/priority_valid_w12.v' to AST representation.
+Generating RTLIL representation for module `\top'.
+Successfully finished Verilog frontend.
+
+2. Executing PREP pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \top
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \top
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module top.
+
+2.3. Executing FUTURE pass.
+
+2.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module top.
+
+2.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \top..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+2.6. Executing CHECK pass (checking for obvious problems).
+Checking module top...
+Found and reported 0 problems.
+
+2.7. Executing OPT pass (performing simple optimizations).
+
+2.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module top.
+
+2.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\top'.
+Computing hashes of 4 cells of `\top'.
+Finding duplicate cells in `\top'.
+Removed a total of 0 cells.
+
+2.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+2.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \top.
+Performed a total of 0 changes.
+
+2.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\top'.
+Computing hashes of 4 cells of `\top'.
+Finding duplicate cells in `\top'.
+Removed a total of 0 cells.
+
+2.7.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \top..
+
+2.7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module top.
+
+2.7.8. Finished fast OPT passes. (There is nothing left to do.)
+
+2.8. Executing WREDUCE pass (reducing word size of cells).
+
+2.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \top..
+
+2.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.11. Executing OPT pass (performing simple optimizations).
+
+2.11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module top.
+
+2.11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\top'.
+Computing hashes of 4 cells of `\top'.
+Finding duplicate cells in `\top'.
+Removed a total of 0 cells.
+
+2.11.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \top..
+
+2.11.4. Finished fast OPT passes.
+
+2.12. Executing SORT pass.
+
+2.13. Printing statistics.
+
+=== top ===
+
+        +----------Local Count, excluding submodules.
+        |
+        7 wires
+      112 wire bits
+        7 public wires
+      112 public wire bits
+        3 ports
+       64 port bits
+        4 cells
+        4   $mux
+
+2.14. Executing CHECK pass (checking for obvious problems).
+Checking module top...
+Found and reported 0 problems.
+
+3. Executing PMUX_OPT guarded analysis and atomic rewrite.
+pmux_opt: v02_case12 paired=0 priority=1 committed=1 removed_cells=4 added_cells=36
+pmux_opt: rewrite proven=0 skipped_binary_constants=0 skipped_xz=0 rejected_results=0 rejected_unproved=0 duplicates=0 conflicts=0 abandoned_entries=0 planned=0 writes=0 commit=ok
+pmux_opt: summary modules=1 candidates=0 valid=0 invalid=0 entries=0 unknown_bits=0 proven_bits=0 writes=0
+pmux_opt: resources wall_us=956 user_us=964 system_us=0 peak_kib=27312 peak_growth_kib=1968
+
+4. Executing CHECK pass (checking for obvious problems).
+Checking module top...
+Warning: Wire top.\y [11] is used but has no driver.
+Warning: Wire top.\y [10] is used but has no driver.
+Warning: Wire top.\y [9] is used but has no driver.
+Warning: Wire top.\y [8] is used but has no driver.
+Warning: Wire top.\y [7] is used but has no driver.
+Warning: Wire top.\y [6] is used but has no driver.
+Warning: Wire top.\y [5] is used but has no driver.
+Warning: Wire top.\y [4] is used but has no driver.
+Warning: Wire top.\y [3] is used but has no driver.
+Warning: Wire top.\y [2] is used but has no driver.
+Warning: Wire top.\y [1] is used but has no driver.
+Warning: Wire top.\y [0] is used but has no driver.
+Found and reported 12 problems.
+
+Warnings: 12 unique messages, 12 total
+End of script. Logfile hash: 9287f7b8a1, time: 0.01s, user: 0.01s, system: 0.00s, MEM: 26.67 MB peak
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Time spent: 23% 1x pmux_opt (0 sec), 13% 4x opt_clean (0 sec), ...

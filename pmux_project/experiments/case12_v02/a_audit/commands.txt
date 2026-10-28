@@ -1,0 +1,16 @@
+# Build the frozen toolchain (already completed for this evidence)
+pmux_project/official_baseline/scripts/build_toolchain.sh
+
+# Build B's production plugin against the independent toolchain
+make -C pmux_project/pass clean all YOSYS_CONFIG=/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys-config
+
+# Run B's own quick structural suite
+python3 pmux_project/experiments/case12_v02/scripts/run_case12_validation.py \
+  --repo /home/dawnson/work/pmux-yosys-a-case12-audit \
+  --yosys /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys
+
+# Run the independent A structural suite
+python3 pmux_project/experiments/case12_v02/a_audit/run_structural_audit.py \
+  --repo /home/dawnson/work/pmux-yosys-a-case12-audit \
+  --yosys /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys \
+  --output /tmp/a-case12-structural-audit
