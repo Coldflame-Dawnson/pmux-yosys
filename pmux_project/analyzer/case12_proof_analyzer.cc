@@ -163,6 +163,7 @@ public:
 			std::vector<int> index_by_code(states, -1);
 			RTLIL::SigSpec common_state;
 			bool decode_ok = true;
+			bool preserved_decode_fanout = false;
 			for (int s = 0; s < swidth; ++s) {
 				RTLIL::SigBit select_bit = sigmap(first->getPort(ID::S)[s]);
 				auto found = eq_by_y.find(select_bit);
@@ -174,7 +175,13 @@ public:
 					if (ref.first == eq_cell && ref.second == ID::Y) eq_y_refs++;
 					else if (ref.first == first && ref.second == ID::S) first_s_refs++;
 					else if (ref.first == second && ref.second == ID::S) second_s_refs++;
-					else { decode_ok = false; break; }
+					else if (ref.first != first && ref.first != second &&
+							celltypes.cell_known(ref.first->type) &&
+							celltypes.cell_input(ref.first->type, ref.second)) {
+						// The rewrite removes only first and second.  A known input on
+						// any other cell remains connected to the unchanged $eq output.
+						preserved_decode_fanout = true;
+					} else { decode_ok = false; break; }
 				}
 				if (!decode_ok || eq_y_refs != 1 || first_s_refs != 1 || second_s_refs != 1) {
 					decode_ok = false; break;
@@ -204,7 +211,8 @@ public:
 			proof.select = first->getPort(ID::S); proof.first_a = first->getPort(ID::A);
 			proof.second_a = second->getPort(ID::A); proof.first_y = first->getPort(ID::Y);
 			proof.second_y = second->getPort(ID::Y); proof.complete_decode = true;
-			proof.cross_relation_proved = true; proof.proven_all_obligations = true; proof.reason = "proved";
+			proof.cross_relation_proved = true; proof.proven_all_obligations = true;
+			proof.reason = preserved_decode_fanout ? "proved_with_preserved_decode_fanout" : "proved";
 			bundle.paired_pmux.push_back(std::move(proof));
 		}
 
