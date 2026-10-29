@@ -97,6 +97,22 @@ public:
 					if (celltypes.cell_output(cell->type, conn.first))
 						for (RTLIL::SigBit bit : conn.second)
 							driver_count[sigmap(bit)]++;
+		std::map<RTLIL::SigBit, std::vector<std::pair<RTLIL::Cell *, RTLIL::IdString>>> all_cell_refs;
+		std::map<RTLIL::SigBit, std::vector<std::pair<RTLIL::Cell *, RTLIL::IdString>>> users;
+		std::set<RTLIL::SigBit> module_output_bits;
+		for (RTLIL::Wire *wire : module->wires())
+			if (wire->port_output)
+				for (RTLIL::SigBit bit : RTLIL::SigSpec(wire))
+					module_output_bits.insert(sigmap(bit));
+		for (RTLIL::Cell *cell : module->cells()) {
+			for (const auto &conn : cell->connections()) {
+				bool input = celltypes.cell_known(cell->type) && celltypes.cell_input(cell->type, conn.first);
+				for (RTLIL::SigBit bit : conn.second) {
+					all_cell_refs[sigmap(bit)].push_back({cell, conn.first});
+					if (input) users[sigmap(bit)].push_back({cell, conn.first});
+				}
+			}
+		}
 		std::map<RTLIL::SigBit, std::pair<RTLIL::Cell *, EqDecode>> eq_by_y;
 		std::set<RTLIL::SigBit> ambiguous_eq_outputs;
 		for (RTLIL::Cell *cell : module->cells()) {
@@ -148,8 +164,21 @@ public:
 			RTLIL::SigSpec common_state;
 			bool decode_ok = true;
 			for (int s = 0; s < swidth; ++s) {
-				auto found = eq_by_y.find(sigmap(first->getPort(ID::S)[s]));
+				RTLIL::SigBit select_bit = sigmap(first->getPort(ID::S)[s]);
+				auto found = eq_by_y.find(select_bit);
 				if (found == eq_by_y.end()) { decode_ok = false; break; }
+				RTLIL::Cell *eq_cell = found->second.first;
+				if (module_output_bits.count(select_bit)) { decode_ok = false; break; }
+				int eq_y_refs = 0, first_s_refs = 0, second_s_refs = 0;
+				for (const auto &ref : all_cell_refs[select_bit]) {
+					if (ref.first == eq_cell && ref.second == ID::Y) eq_y_refs++;
+					else if (ref.first == first && ref.second == ID::S) first_s_refs++;
+					else if (ref.first == second && ref.second == ID::S) second_s_refs++;
+					else { decode_ok = false; break; }
+				}
+				if (!decode_ok || eq_y_refs != 1 || first_s_refs != 1 || second_s_refs != 1) {
+					decode_ok = false; break;
+				}
 				const EqDecode &decode = found->second.second;
 				if (GetSize(decode.state) != m || decode.code <= 0 || decode.code >= states ||
 						index_by_code[decode.code] != -1 ||
@@ -179,20 +208,12 @@ public:
 			bundle.paired_pmux.push_back(std::move(proof));
 		}
 
-		std::map<RTLIL::SigBit, std::vector<std::pair<RTLIL::Cell *, RTLIL::IdString>>> users;
 		std::map<RTLIL::SigBit, RTLIL::Cell *> mux_driver;
 		std::set<RTLIL::SigBit> ambiguous_mux_drivers;
-		std::set<RTLIL::SigBit> module_output_bits;
-		for (RTLIL::Wire *wire : module->wires())
-			if (wire->port_output)
-				for (RTLIL::SigBit bit : RTLIL::SigSpec(wire))
-					module_output_bits.insert(sigmap(bit));
 		for (RTLIL::Cell *cell : module->cells()) {
 			for (const auto &conn : cell->connections()) {
-				bool input = celltypes.cell_known(cell->type) && celltypes.cell_input(cell->type, conn.first);
 				bool output = celltypes.cell_known(cell->type) && celltypes.cell_output(cell->type, conn.first);
 				for (RTLIL::SigBit bit : conn.second) {
-					if (input) users[sigmap(bit)].push_back({cell, conn.first});
 					if (output && cell->type == ID($mux)) {
 						RTLIL::SigBit canonical = sigmap(bit);
 						if (mux_driver.count(canonical) && mux_driver.at(canonical) != cell) {
@@ -210,7 +231,16 @@ public:
 			if (outer->type != ID($mux) || protected_cell(outer)) continue;
 			PriorityMuxProof proof; proof.module = module->name.str(); proof.width = outer->getParam(ID::WIDTH).as_int();
 			RTLIL::Cell *cell = outer; bool ok = proof.width > 0;
-			for (RTLIL::SigBit bit : outer->getPort(ID::Y)) ok &= driver_count[sigmap(bit)] == 1;
+			for (RTLIL::SigBit bit : outer->getPort(ID::Y)) {
+				RTLIL::SigBit canonical = sigmap(bit);
+				ok &= driver_count[canonical] == 1;
+				int own_y_refs = 0;
+				for (const auto &ref : all_cell_refs[canonical]) {
+					if (ref.first == outer && ref.second == ID::Y) own_y_refs++;
+					else ok = false;
+				}
+				ok &= own_y_refs == 1;
+			}
 			for (int depth = 0; depth < 4 && ok; ++depth) {
 				if (cell == nullptr || cell->type != ID($mux) || protected_cell(cell) ||
 						cell->getParam(ID::WIDTH).as_int() != proof.width || GetSize(cell->getPort(ID::S)) != 1 ||

@@ -33,6 +33,56 @@ def fixture(branches: int, width: int, *, shared_tap: bool = False) -> str:
     return "\n".join(lines) + "\n"
 
 
+def paired_pmux_fixture(*, exposed_decode: bool) -> str:
+    tap_wire = "  wire output 6 \\decode_tap\n" if exposed_decode else ""
+    tap_connect = "  connect \\decode_tap \\s1\n" if exposed_decode else ""
+    eq_cells = []
+    for code in range(1, 8):
+        eq_cells.append(f"""  cell $eq \\eq{code}
+    parameter \\A_SIGNED 0
+    parameter \\A_WIDTH 3
+    parameter \\B_SIGNED 0
+    parameter \\B_WIDTH 3
+    parameter \\Y_WIDTH 1
+    connect \\A \\state
+    connect \\B 3'{code:03b}
+    connect \\Y \\s{code}
+  end""")
+    return f"""autoidx 1
+module \\top
+  wire width 3 input 1 \\state
+  wire input 2 \\a0
+  wire input 3 \\a1
+  wire output 4 \\y0
+  wire output 5 \\y1
+{tap_wire}  wire \\s1
+  wire \\s2
+  wire \\s3
+  wire \\s4
+  wire \\s5
+  wire \\s6
+  wire \\s7
+{chr(10).join(eq_cells)}
+  cell $pmux \\p0
+    parameter \\S_WIDTH 7
+    parameter \\WIDTH 1
+    connect \\A \\a0
+    connect \\B 7'1010100
+    connect \\S {{ \\s7 \\s6 \\s5 \\s4 \\s3 \\s2 \\s1 }}
+    connect \\Y \\y0
+  end
+  cell $pmux \\p1
+    parameter \\S_WIDTH 7
+    parameter \\WIDTH 1
+    connect \\A \\a1
+    connect \\B 7'0101011
+    connect \\S {{ \\s7 \\s6 \\s5 \\s4 \\s3 \\s2 \\s1 }}
+    connect \\Y \\y1
+  end
+{tap_connect}end
+"""
+
+
 def expect_summary(output: str, *, paired: int, priority: int, committed: int,
                    removed: int, added: int) -> None:
     match = re.search(r"v02_case12 paired=(\d+) priority=(\d+) committed=(\d+) "
@@ -59,8 +109,10 @@ def main() -> int:
         ("valid_priority_width1", "read_verilog", ".v", fixture(4, 1), "prep -top top", "", 0, 1, 1, 4, 3),
         ("valid_priority_width5", "read_verilog", ".v", fixture(4, 5), "prep -top top", "", 0, 1, 1, 4, 15),
         ("three_priority_branches", "read_verilog", ".v", fixture(3, 1), "prep -top top", "", 0, 0, 0, 0, 0),
+        ("five_priority_branches", "read_verilog", ".v", fixture(5, 1), "prep -top top", "", 0, 0, 0, 0, 0),
         ("shared_priority_intermediate", "read_verilog", ".v", fixture(4, 1, shared_tap=True), "prep -top top", "", 0, 0, 0, 0, 0),
         ("protected_priority_muxes", "read_verilog", ".v", fixture(4, 1), "prep -top top", "select t:$mux; setattr -set keep 1; select *;", 0, 0, 0, 0, 0),
+        ("paired_decode_module_output", "read_rtlil", ".il", paired_pmux_fixture(exposed_decode=True), "hierarchy -top top", "", 0, 0, 0, 0, 0),
     ]
     with tempfile.TemporaryDirectory(prefix="pmux-case12-") as directory:
         work = Path(directory)
