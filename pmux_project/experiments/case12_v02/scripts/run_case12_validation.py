@@ -121,9 +121,13 @@ def main() -> int:
         for name, reader, suffix, source, prepare, setup, paired, priority, committed, removed, added in cases:
             design = work / f"{name}{suffix}"
             design.write_text(source, encoding="utf-8")
+            # Yosys 0.69 stat itself dereferences inconsistent width metadata on
+            # the intentionally malformed $eq fixture.  The production pass and
+            # check must still complete cleanly and report zero case12 writes.
+            post_check = "" if name == "paired_decode_awidth_mismatch" else "; stat"
             output = run([str(args.yosys), "-m", str(plugin), "-p",
                           f"{reader} {design}; {prepare}; {setup} "
-                          "pmux_opt -v02-case12 -no-v02-case34; check; stat"], cwd=repo)
+                          f"pmux_opt -v02-case12 -no-v02-case34; check{post_check}"], cwd=repo)
             expect_summary(output, paired=paired, priority=priority, committed=committed,
                            removed=removed, added=added)
             print(f"PASS {name}")
