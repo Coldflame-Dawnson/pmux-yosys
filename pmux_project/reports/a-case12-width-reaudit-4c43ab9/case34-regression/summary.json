@@ -1,0 +1,1033 @@
+{
+  "schema": 1,
+  "producer": "run_production_validation.py",
+  "results": {
+    "case1": {
+      "source": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case/test1.v",
+      "source_sha256": "2D2DBA011B0E8799D0DE3790B69B7F01C6EB6AC665C4321B57B0378A4972FD13",
+      "oracle": {
+        "lut": 288,
+        "dff": 222
+      },
+      "baseline": {
+        "returncode": 0,
+        "wall_seconds": 0.4181186650000086,
+        "cell_counts": {
+          "$lut": 288,
+          "dffeas": 222
+        },
+        "gate_sha256": "E709C16D1F0AF0DFE690F75A4319F30EE1607D53B5683B81B779525FFAFBEDA3",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": []
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 48
+            },
+            "propagation_events": 471,
+            "proven_one": 0,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 385,
+            "visited_bits": 583,
+            "visited_cells": 48
+          },
+          "changed_bits": 0,
+          "changed_structures": 0,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "primary_input",
+            "sequential_boundary"
+          ],
+          "reason_counts": {
+            "primary_input": 25,
+            "sequential_boundary": 360
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 1536,
+            "peak_kib": 29532,
+            "system_us": 0,
+            "time_unit": "microseconds",
+            "user_us": 26588,
+            "wall_us": 26744
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 0,
+            "candidate_bits": 0,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 0,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 3,
+            "entries": 48,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 385,
+            "valid_cells": 3
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 0,
+            "committed_candidates": 0,
+            "decision_cone_candidates": 0,
+            "enabled": false,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 0,
+            "rejected_candidates": 0,
+            "removed_cells": 0,
+            "table_candidates": 0
+          }
+        }
+      },
+      "production": {
+        "returncode": 0,
+        "wall_seconds": 0.37345254800001726,
+        "cell_counts": {
+          "$lut": 288,
+          "dffeas": 222
+        },
+        "gate_sha256": "E709C16D1F0AF0DFE690F75A4319F30EE1607D53B5683B81B779525FFAFBEDA3",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": []
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 48
+            },
+            "propagation_events": 471,
+            "proven_one": 0,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 385,
+            "visited_bits": 583,
+            "visited_cells": 48
+          },
+          "changed_bits": 0,
+          "changed_structures": 0,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "no_v02_case34_candidate",
+            "primary_input",
+            "sequential_boundary"
+          ],
+          "reason_counts": {
+            "no_v02_case34_candidate": 1,
+            "primary_input": 25,
+            "sequential_boundary": 360
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 2408,
+            "peak_kib": 30348,
+            "system_us": 0,
+            "time_unit": "microseconds",
+            "user_us": 45802,
+            "wall_us": 46063
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 0,
+            "candidate_bits": 0,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 0,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 3,
+            "entries": 48,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 385,
+            "valid_cells": 3
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 0,
+            "committed_candidates": 0,
+            "decision_cone_candidates": 0,
+            "enabled": true,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 0,
+            "rejected_candidates": 0,
+            "removed_cells": 0,
+            "table_candidates": 0
+          }
+        }
+      },
+      "gate_eqy": {
+        "returncode": 0,
+        "wall_seconds": 2.0219792070000153,
+        "pass": true
+      },
+      "production_count_check": "PASS",
+      "p2_status": "PASS"
+    },
+    "case2": {
+      "source": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case/test2.v",
+      "source_sha256": "E43C9B437071488551CAF3121E227E86F4FE3190751F245BEAC3B7ECC3FDB146",
+      "oracle": {
+        "lut": 25,
+        "dff": 0
+      },
+      "baseline": {
+        "returncode": 0,
+        "wall_seconds": 0.16479370400000448,
+        "cell_counts": {
+          "$lut": 25
+        },
+        "gate_sha256": "D07DC19BD7810FCD50520235EA5D694B6394C93C864AA895D6097D2F48B7A73B",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": []
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 8
+            },
+            "propagation_events": 14,
+            "proven_one": 0,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 35,
+            "visited_bits": 94,
+            "visited_cells": 6
+          },
+          "changed_bits": 0,
+          "changed_structures": 0,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "fixed_point_unknown",
+            "primary_input"
+          ],
+          "reason_counts": {
+            "fixed_point_unknown": 12,
+            "primary_input": 23
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 1536,
+            "peak_kib": 28828,
+            "system_us": 0,
+            "time_unit": "microseconds",
+            "user_us": 1555,
+            "wall_us": 1433
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 0,
+            "candidate_bits": 0,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 0,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 4,
+            "entries": 8,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 35,
+            "valid_cells": 4
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 0,
+            "committed_candidates": 0,
+            "decision_cone_candidates": 0,
+            "enabled": false,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 0,
+            "rejected_candidates": 0,
+            "removed_cells": 0,
+            "table_candidates": 0
+          }
+        }
+      },
+      "production": {
+        "returncode": 0,
+        "wall_seconds": 0.1650861229999805,
+        "cell_counts": {
+          "$lut": 25
+        },
+        "gate_sha256": "D07DC19BD7810FCD50520235EA5D694B6394C93C864AA895D6097D2F48B7A73B",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": []
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 8
+            },
+            "propagation_events": 14,
+            "proven_one": 0,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 35,
+            "visited_bits": 94,
+            "visited_cells": 6
+          },
+          "changed_bits": 0,
+          "changed_structures": 0,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "fixed_point_unknown",
+            "no_v02_case34_candidate",
+            "primary_input"
+          ],
+          "reason_counts": {
+            "fixed_point_unknown": 12,
+            "no_v02_case34_candidate": 1,
+            "primary_input": 23
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 2264,
+            "peak_kib": 29120,
+            "system_us": 371,
+            "time_unit": "microseconds",
+            "user_us": 1589,
+            "wall_us": 1804
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 0,
+            "candidate_bits": 0,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 0,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 4,
+            "entries": 8,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 35,
+            "valid_cells": 4
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 0,
+            "committed_candidates": 0,
+            "decision_cone_candidates": 0,
+            "enabled": true,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 0,
+            "rejected_candidates": 0,
+            "removed_cells": 0,
+            "table_candidates": 0
+          }
+        }
+      },
+      "gate_eqy": {
+        "returncode": 0,
+        "wall_seconds": 1.0681863040000223,
+        "pass": true
+      },
+      "production_count_check": "PASS",
+      "p2_status": "PASS"
+    },
+    "case3": {
+      "source": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case/test3.v",
+      "source_sha256": "1551B9212622CCEF6019D6E77DE2C43DC8C80D267957B55A42121F34A08780E9",
+      "oracle": {
+        "lut": 11,
+        "dff": 12
+      },
+      "baseline": {
+        "returncode": 0,
+        "wall_seconds": 0.16451351900002464,
+        "cell_counts": {
+          "$lut": 13,
+          "dffeas": 17
+        },
+        "gate_sha256": "2297C13588CDC818C19DB6DF76A3427C112DE7A1984AF0116F6D175A0836074B",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [
+            {
+              "bit": 0,
+              "branch": null,
+              "branch_bit": 0,
+              "cell": "$procmux$10",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 2,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 4,
+              "source_entry": "\\test3|$procmux$10|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 1,
+              "branch": null,
+              "branch_bit": 1,
+              "cell": "$procmux$10",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 1,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 3,
+              "source_entry": "\\test3|$procmux$10|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 2,
+              "branch": null,
+              "branch_bit": 2,
+              "cell": "$procmux$10",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 0,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 2,
+              "source_entry": "\\test3|$procmux$10|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 0,
+              "branch": 0,
+              "branch_bit": 0,
+              "cell": "$procmux$18",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 3,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 5,
+              "source_entry": "\\test3|$procmux$18|3|0",
+              "value": "1"
+            },
+            {
+              "bit": 1,
+              "branch": null,
+              "branch_bit": 1,
+              "cell": "$procmux$27",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 6,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 9,
+              "source_entry": "\\test3|$procmux$27|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 2,
+              "branch": null,
+              "branch_bit": 2,
+              "cell": "$procmux$27",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 5,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 8,
+              "source_entry": "\\test3|$procmux$27|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 3,
+              "branch": null,
+              "branch_bit": 3,
+              "cell": "$procmux$27",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 4,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 7,
+              "source_entry": "\\test3|$procmux$27|1|-1",
+              "value": "1"
+            }
+          ],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": []
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 7
+            },
+            "propagation_events": 103,
+            "proven_one": 7,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 8,
+            "visited_bits": 64,
+            "visited_cells": 8
+          },
+          "changed_bits": 7,
+          "changed_structures": 0,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "sequential_boundary"
+          ],
+          "reason_counts": {
+            "sequential_boundary": 8
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 1776,
+            "peak_kib": 28904,
+            "system_us": 0,
+            "time_unit": "microseconds",
+            "user_us": 2774,
+            "wall_us": 2551
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 7,
+            "candidate_bits": 7,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 7,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 3,
+            "entries": 7,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 15,
+            "valid_cells": 3
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 0,
+            "committed_candidates": 0,
+            "decision_cone_candidates": 0,
+            "enabled": false,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 0,
+            "rejected_candidates": 0,
+            "removed_cells": 0,
+            "table_candidates": 0
+          }
+        }
+      },
+      "production": {
+        "returncode": 0,
+        "wall_seconds": 2.2698896299999944,
+        "cell_counts": {
+          "$lut": 11,
+          "dffeas": 12
+        },
+        "gate_sha256": "32136876CD1FE4B6613786DBAD042D456759902DF7890E99E98E968994DCCF1E",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [
+            {
+              "bit": 0,
+              "branch": null,
+              "branch_bit": 0,
+              "cell": "$procmux$10",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 2,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 4,
+              "source_entry": "\\test3|$procmux$10|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 1,
+              "branch": null,
+              "branch_bit": 1,
+              "cell": "$procmux$10",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 1,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 3,
+              "source_entry": "\\test3|$procmux$10|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 2,
+              "branch": null,
+              "branch_bit": 2,
+              "cell": "$procmux$10",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 0,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 2,
+              "source_entry": "\\test3|$procmux$10|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 0,
+              "branch": 0,
+              "branch_bit": 0,
+              "cell": "$procmux$18",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 3,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 5,
+              "source_entry": "\\test3|$procmux$18|3|0",
+              "value": "1"
+            },
+            {
+              "bit": 1,
+              "branch": null,
+              "branch_bit": 1,
+              "cell": "$procmux$27",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 6,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 9,
+              "source_entry": "\\test3|$procmux$27|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 2,
+              "branch": null,
+              "branch_bit": 2,
+              "cell": "$procmux$27",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 5,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 8,
+              "source_entry": "\\test3|$procmux$27|1|-1",
+              "value": "1"
+            },
+            {
+              "bit": 3,
+              "branch": null,
+              "branch_bit": 3,
+              "cell": "$procmux$27",
+              "module": "test3",
+              "old": {
+                "kind": "signal",
+                "offset": 4,
+                "wire": "sr"
+              },
+              "port": "B",
+              "proof_id": 7,
+              "source_entry": "\\test3|$procmux$27|1|-1",
+              "value": "1"
+            }
+          ],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": [
+            {
+              "added_cells": 1,
+              "anchor_cell": "$auto$simple.cc:194:make_patterns_logic$47",
+              "folded_bits": 0,
+              "module": "\\test3",
+              "proof_reason": "proved",
+              "removed_cells": 0,
+              "rule": "guarded_next_state_decision_cone",
+              "split_by_output_bit": []
+            }
+          ]
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 7
+            },
+            "propagation_events": 95,
+            "proven_one": 7,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 8,
+            "visited_bits": 57,
+            "visited_cells": 8
+          },
+          "changed_bits": 7,
+          "changed_structures": 1,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "sequential_boundary"
+          ],
+          "reason_counts": {
+            "sequential_boundary": 8
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 2792,
+            "peak_kib": 30232,
+            "system_us": 0,
+            "time_unit": "microseconds",
+            "user_us": 2294640,
+            "wall_us": 2105694
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 7,
+            "candidate_bits": 7,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 7,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 3,
+            "entries": 7,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 15,
+            "valid_cells": 3
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 1,
+            "committed_candidates": 1,
+            "decision_cone_candidates": 1,
+            "enabled": true,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 1,
+            "rejected_candidates": 0,
+            "removed_cells": 0,
+            "table_candidates": 0
+          }
+        }
+      },
+      "gate_eqy": {
+        "returncode": 0,
+        "wall_seconds": 0.9676064900000085,
+        "pass": true
+      },
+      "production_count_check": "PASS",
+      "p2_status": "PASS"
+    },
+    "case4": {
+      "source": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case/test4.v",
+      "source_sha256": "C0C5042928BD6BF568E2B7FB2193F2B6DB9C4193BA3A5378FC50A331D43422D7",
+      "oracle": {
+        "lut": 27,
+        "dff": 10
+      },
+      "baseline": {
+        "returncode": 0,
+        "wall_seconds": 0.16411429900000485,
+        "cell_counts": {
+          "$lut": 36,
+          "dffeas": 10
+        },
+        "gate_sha256": "0F1A9E3355548AB574F1287705E09B21D5908830140E081ADB376AF06F1CABBB",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": []
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 38
+            },
+            "propagation_events": 310,
+            "proven_one": 0,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 152,
+            "visited_bits": 590,
+            "visited_cells": 109
+          },
+          "changed_bits": 0,
+          "changed_structures": 0,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "fixed_point_unknown",
+            "primary_input"
+          ],
+          "reason_counts": {
+            "fixed_point_unknown": 120,
+            "primary_input": 32
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 1536,
+            "peak_kib": 29152,
+            "system_us": 0,
+            "time_unit": "microseconds",
+            "user_us": 12439,
+            "wall_us": 11412
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 0,
+            "candidate_bits": 0,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 0,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 19,
+            "entries": 38,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 152,
+            "valid_cells": 19
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 0,
+            "committed_candidates": 0,
+            "decision_cone_candidates": 0,
+            "enabled": false,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 0,
+            "rejected_candidates": 0,
+            "removed_cells": 0,
+            "table_candidates": 0
+          }
+        }
+      },
+      "production": {
+        "returncode": 0,
+        "wall_seconds": 0.26497888399998715,
+        "cell_counts": {
+          "$lut": 27,
+          "dffeas": 10
+        },
+        "gate_sha256": "4EAAB86CD7CE5F1EFDF60423B9B7CCF4A526BEB64027740586BA76D18A7B76A3",
+        "plan": {
+          "abandoned_entries": [],
+          "commit": "ok",
+          "commit_reason": null,
+          "edits": [],
+          "mode": "real",
+          "producer": "pmux_opt",
+          "schema": 1,
+          "structural_edits": [
+            {
+              "added_cells": 26,
+              "anchor_cell": "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][0][0]$56",
+              "folded_bits": 0,
+              "module": "\\test4",
+              "proof_reason": "proved",
+              "removed_cells": 16,
+              "rule": "constant_table_cofactor",
+              "split_by_output_bit": [
+                3,
+                3,
+                0,
+                0,
+                0,
+                4,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        "stats": {
+          "analysis": {
+            "entry_status": {
+              "normal": 26
+            },
+            "propagation_events": 31,
+            "proven_one": 0,
+            "proven_zero": 0,
+            "sat_queries": 0,
+            "unknown_bits": 25,
+            "visited_bits": 69,
+            "visited_cells": 9
+          },
+          "changed_bits": 0,
+          "changed_structures": 1,
+          "mode": "real",
+          "producer": "pmux_opt",
+          "reason_codes": [
+            "unsupported_cell"
+          ],
+          "reason_counts": {
+            "unsupported_cell": 25
+          },
+          "resources": {
+            "memory_unit": "KiB",
+            "peak_growth_kib": 2648,
+            "peak_kib": 30704,
+            "system_us": 0,
+            "time_unit": "microseconds",
+            "user_us": 119616,
+            "wall_us": 109666
+          },
+          "rewrite": {
+            "abandoned_entries": 0,
+            "accepted_bits": 0,
+            "candidate_bits": 0,
+            "commit": "ok",
+            "commit_reason": null,
+            "committed_bits": 0,
+            "deduplicated_targets": 0,
+            "rejected_results": 0,
+            "rejected_unproved_conclusions": 0,
+            "rewrite_conflicts": 0,
+            "skipped_original_binary_constants": 0,
+            "skipped_original_xz": 0
+          },
+          "scan": {
+            "candidate_cells": 13,
+            "entries": 26,
+            "invalid_cells": 0,
+            "modules": 1,
+            "target_bits": 25,
+            "valid_cells": 13
+          },
+          "schema": 1,
+          "v02_case34": {
+            "added_cells": 26,
+            "committed_candidates": 1,
+            "decision_cone_candidates": 0,
+            "enabled": true,
+            "folded_bits": 0,
+            "guarded_candidates": 0,
+            "proven_candidates": 1,
+            "rejected_candidates": 0,
+            "removed_cells": 16,
+            "table_candidates": 1
+          }
+        }
+      },
+      "gate_eqy": {
+        "returncode": 0,
+        "wall_seconds": 1.3685439420000023,
+        "pass": true
+      },
+      "production_count_check": "PASS",
+      "p2_status": "PASS"
+    }
+  }
+}

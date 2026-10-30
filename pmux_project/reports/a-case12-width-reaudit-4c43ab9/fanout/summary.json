@@ -1,0 +1,82 @@
+[
+  {
+    "name": "preserved_third_pmux",
+    "actual": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "expected": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "reason_ok": true,
+    "check_ok": true,
+    "passed": true
+  },
+  {
+    "name": "module_output_reject",
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "reason_ok": true,
+    "check_ok": true,
+    "passed": true
+  },
+  {
+    "name": "unknown_cell_port_reject",
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "reason_ok": true,
+    "check_ok": true,
+    "passed": true
+  },
+  {
+    "name": "deleted_pmux_uncovered_port_reject",
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "reason_ok": true,
+    "check_ok": true,
+    "passed": true
+  }
+]

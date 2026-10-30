@@ -1,0 +1,18 @@
+git ls-remote https://github.com/Coldflame-Dawnson/pmux-yosys.git refs/heads/feature/b-v02-case12-production
+git diff --name-only da516119e0f59e40d678ead0014a8dda83b78366..4c43ab9743d69ee6fe28f965e10163b15bdb5c88
+
+python3 pmux_project/experiments/case12_v02/scripts/run_case12_validation.py --repo "$REPO" --yosys "$YOSYS"
+python3 pmux_project/experiments/case12_v02/a_width_reaudit/run_width_matrix.py --repo "$REPO" --yosys "$YOSYS" --plugin "$PLUGIN" --out "$REPORT/width-matrix"
+python3 pmux_project/experiments/case12_v02/a_width_reaudit/run_structural_audit.py --repo "$REPO" --yosys "$YOSYS" --plugin "$PLUGIN" --out "$REPORT/structural"
+python3 pmux_project/experiments/case12_v02/a_width_reaudit/run_fanout_audit.py --repo "$REPO" --yosys "$YOSYS" --yosys-config "$YOSYS_CONFIG" --plugin "$PLUGIN" --out "$REPORT/fanout"
+python3 pmux_project/experiments/case12_v02/a_width_reaudit/check_priority_masks.py --out "$REPORT/priority-mask-summary.json"
+
+python3 pmux_project/experiments/case12_v02/a_width_reaudit/run_two_random_1000.sh
+
+python3 pmux_project/experiments/case12_v02/a_width_reaudit/run_unified_official_audit.py \
+  --repo "$REPO" --tool-bin "$TOOL_BIN" --official "$OFFICIAL" \
+  --out "$REPORT/unified-official"
+
+python3 pmux_project/experiments/case34_v02b/scripts/run_production_validation.py \
+  --repo "$REPO" --tool-bin "$TOOL_BIN" --official "$OFFICIAL" \
+  --out "$REPORT/case34-regression"

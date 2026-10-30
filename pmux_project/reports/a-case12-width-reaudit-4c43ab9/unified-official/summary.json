@@ -1,0 +1,570 @@
+{
+  "schema": 1,
+  "mode": "explicit_case12_plus_default_case34",
+  "expected_counts": {
+    "1": {
+      "$lut": 182,
+      "dffeas": 222,
+      "cycloneiv_lcell_comb": 0
+    },
+    "2": {
+      "$lut": 0,
+      "dffeas": 0,
+      "cycloneiv_lcell_comb": 15
+    },
+    "3": {
+      "$lut": 11,
+      "dffeas": 12,
+      "cycloneiv_lcell_comb": 0
+    },
+    "4": {
+      "$lut": 27,
+      "dffeas": 10,
+      "cycloneiv_lcell_comb": 0
+    }
+  },
+  "rows": [
+    {
+      "case": 1,
+      "source_sha256": "2d2dba011b0e8799d0de3790b69b7f01c6eb6ac665c4321b57b0378a4972fd13",
+      "issues": [],
+      "post_abc9_rc": 0,
+      "post_abc9_wall_seconds": 0.6751619279999996,
+      "full_rc": 0,
+      "full_wall_seconds": 0.5637955259999998,
+      "cell_counts": {
+        "$lut": 182,
+        "dffeas": 222
+      },
+      "count_check": true,
+      "cpu_seconds": 0.43999999999999995,
+      "peak_memory_mb": 35.36,
+      "plan": {
+        "abandoned_entries": [],
+        "commit": "ok",
+        "commit_reason": null,
+        "edits": [],
+        "mode": "real",
+        "producer": "pmux_opt",
+        "schema": 1,
+        "structural_edits": []
+      },
+      "stats": {
+        "analysis": {
+          "entry_status": {
+            "normal": 52
+          },
+          "propagation_events": 197,
+          "proven_one": 0,
+          "proven_zero": 0,
+          "sat_queries": 0,
+          "unknown_bits": 433,
+          "visited_bits": 1961,
+          "visited_cells": 74
+        },
+        "changed_bits": 0,
+        "changed_structures": 0,
+        "mode": "real",
+        "producer": "pmux_opt",
+        "reason_codes": [
+          "fixed_point_unknown",
+          "no_v02_case34_candidate",
+          "primary_input",
+          "sequential_boundary"
+        ],
+        "reason_counts": {
+          "fixed_point_unknown": 198,
+          "no_v02_case34_candidate": 1,
+          "primary_input": 25,
+          "sequential_boundary": 210
+        },
+        "resources": {
+          "memory_unit": "KiB",
+          "peak_growth_kib": 2696,
+          "peak_kib": 30488,
+          "system_us": 682,
+          "time_unit": "microseconds",
+          "user_us": 307045,
+          "wall_us": 307763
+        },
+        "rewrite": {
+          "abandoned_entries": 0,
+          "accepted_bits": 0,
+          "candidate_bits": 0,
+          "commit": "ok",
+          "commit_reason": null,
+          "committed_bits": 0,
+          "deduplicated_targets": 0,
+          "rejected_results": 0,
+          "rejected_unproved_conclusions": 0,
+          "rewrite_conflicts": 0,
+          "skipped_original_binary_constants": 0,
+          "skipped_original_xz": 0
+        },
+        "scan": {
+          "candidate_cells": 19,
+          "entries": 52,
+          "invalid_cells": 0,
+          "modules": 1,
+          "target_bits": 433,
+          "valid_cells": 19
+        },
+        "schema": 1,
+        "v02_case34": {
+          "added_cells": 0,
+          "committed_candidates": 0,
+          "decision_cone_candidates": 0,
+          "enabled": true,
+          "folded_bits": 0,
+          "guarded_candidates": 0,
+          "proven_candidates": 0,
+          "rejected_candidates": 0,
+          "removed_cells": 0,
+          "table_candidates": 0
+        }
+      },
+      "eqy_rc": 0,
+      "eqy_wall_seconds": 2.476446674,
+      "eqy_pass": true,
+      "result": "PASS"
+    },
+    {
+      "case": 2,
+      "source_sha256": "e43c9b437071488551caf3121e227e86f4fe3190751f245beac3b7ecc3fdb146",
+      "issues": [],
+      "post_abc9_rc": 0,
+      "post_abc9_wall_seconds": 0.14140536500000067,
+      "full_rc": 0,
+      "full_wall_seconds": 0.13342356100000075,
+      "cell_counts": {
+        "cycloneiv_lcell_comb": 15
+      },
+      "count_check": true,
+      "cpu_seconds": 0.05,
+      "peak_memory_mb": 31.29,
+      "plan": {
+        "abandoned_entries": [],
+        "commit": "ok",
+        "commit_reason": null,
+        "edits": [],
+        "mode": "real",
+        "producer": "pmux_opt",
+        "schema": 1,
+        "structural_edits": []
+      },
+      "stats": {
+        "analysis": {
+          "entry_status": {},
+          "propagation_events": 0,
+          "proven_one": 0,
+          "proven_zero": 0,
+          "sat_queries": 0,
+          "unknown_bits": 0,
+          "visited_bits": 0,
+          "visited_cells": 0
+        },
+        "changed_bits": 0,
+        "changed_structures": 0,
+        "mode": "real",
+        "producer": "pmux_opt",
+        "reason_codes": [
+          "no_v02_case34_candidate"
+        ],
+        "reason_counts": {
+          "no_v02_case34_candidate": 1
+        },
+        "resources": {
+          "memory_unit": "KiB",
+          "peak_growth_kib": 2264,
+          "peak_kib": 29280,
+          "system_us": 0,
+          "time_unit": "microseconds",
+          "user_us": 1577,
+          "wall_us": 1587
+        },
+        "rewrite": {
+          "abandoned_entries": 0,
+          "accepted_bits": 0,
+          "candidate_bits": 0,
+          "commit": "ok",
+          "commit_reason": null,
+          "committed_bits": 0,
+          "deduplicated_targets": 0,
+          "rejected_results": 0,
+          "rejected_unproved_conclusions": 0,
+          "rewrite_conflicts": 0,
+          "skipped_original_binary_constants": 0,
+          "skipped_original_xz": 0
+        },
+        "scan": {
+          "candidate_cells": 0,
+          "entries": 0,
+          "invalid_cells": 0,
+          "modules": 1,
+          "target_bits": 0,
+          "valid_cells": 0
+        },
+        "schema": 1,
+        "v02_case34": {
+          "added_cells": 0,
+          "committed_candidates": 0,
+          "decision_cone_candidates": 0,
+          "enabled": true,
+          "folded_bits": 0,
+          "guarded_candidates": 0,
+          "proven_candidates": 0,
+          "rejected_candidates": 0,
+          "removed_cells": 0,
+          "table_candidates": 0
+        }
+      },
+      "eqy_rc": 0,
+      "eqy_wall_seconds": 1.274184847999999,
+      "eqy_pass": true,
+      "result": "PASS"
+    },
+    {
+      "case": 3,
+      "source_sha256": "1551b9212622ccef6019d6e77de2c43dc8c80d267957b55a42121f34a08780e9",
+      "issues": [],
+      "post_abc9_rc": 0,
+      "post_abc9_wall_seconds": 2.4369628050000003,
+      "full_rc": 0,
+      "full_wall_seconds": 2.4749173470000017,
+      "cell_counts": {
+        "$lut": 11,
+        "dffeas": 12
+      },
+      "count_check": true,
+      "cpu_seconds": 2.39,
+      "peak_memory_mb": 32.09,
+      "plan": {
+        "abandoned_entries": [],
+        "commit": "ok",
+        "commit_reason": null,
+        "edits": [
+          {
+            "bit": 0,
+            "branch": null,
+            "branch_bit": 0,
+            "cell": "$procmux$10",
+            "module": "test3",
+            "old": {
+              "kind": "signal",
+              "offset": 2,
+              "wire": "sr"
+            },
+            "port": "B",
+            "proof_id": 4,
+            "source_entry": "\\test3|$procmux$10|1|-1",
+            "value": "1"
+          },
+          {
+            "bit": 1,
+            "branch": null,
+            "branch_bit": 1,
+            "cell": "$procmux$10",
+            "module": "test3",
+            "old": {
+              "kind": "signal",
+              "offset": 1,
+              "wire": "sr"
+            },
+            "port": "B",
+            "proof_id": 3,
+            "source_entry": "\\test3|$procmux$10|1|-1",
+            "value": "1"
+          },
+          {
+            "bit": 2,
+            "branch": null,
+            "branch_bit": 2,
+            "cell": "$procmux$10",
+            "module": "test3",
+            "old": {
+              "kind": "signal",
+              "offset": 0,
+              "wire": "sr"
+            },
+            "port": "B",
+            "proof_id": 2,
+            "source_entry": "\\test3|$procmux$10|1|-1",
+            "value": "1"
+          },
+          {
+            "bit": 0,
+            "branch": 0,
+            "branch_bit": 0,
+            "cell": "$procmux$18",
+            "module": "test3",
+            "old": {
+              "kind": "signal",
+              "offset": 3,
+              "wire": "sr"
+            },
+            "port": "B",
+            "proof_id": 5,
+            "source_entry": "\\test3|$procmux$18|3|0",
+            "value": "1"
+          },
+          {
+            "bit": 1,
+            "branch": null,
+            "branch_bit": 1,
+            "cell": "$procmux$27",
+            "module": "test3",
+            "old": {
+              "kind": "signal",
+              "offset": 6,
+              "wire": "sr"
+            },
+            "port": "B",
+            "proof_id": 9,
+            "source_entry": "\\test3|$procmux$27|1|-1",
+            "value": "1"
+          },
+          {
+            "bit": 2,
+            "branch": null,
+            "branch_bit": 2,
+            "cell": "$procmux$27",
+            "module": "test3",
+            "old": {
+              "kind": "signal",
+              "offset": 5,
+              "wire": "sr"
+            },
+            "port": "B",
+            "proof_id": 8,
+            "source_entry": "\\test3|$procmux$27|1|-1",
+            "value": "1"
+          },
+          {
+            "bit": 3,
+            "branch": null,
+            "branch_bit": 3,
+            "cell": "$procmux$27",
+            "module": "test3",
+            "old": {
+              "kind": "signal",
+              "offset": 4,
+              "wire": "sr"
+            },
+            "port": "B",
+            "proof_id": 7,
+            "source_entry": "\\test3|$procmux$27|1|-1",
+            "value": "1"
+          }
+        ],
+        "mode": "real",
+        "producer": "pmux_opt",
+        "schema": 1,
+        "structural_edits": [
+          {
+            "added_cells": 1,
+            "anchor_cell": "$auto$simple.cc:194:make_patterns_logic$47",
+            "folded_bits": 0,
+            "module": "\\test3",
+            "proof_reason": "proved",
+            "removed_cells": 0,
+            "rule": "guarded_next_state_decision_cone",
+            "split_by_output_bit": []
+          }
+        ]
+      },
+      "stats": {
+        "analysis": {
+          "entry_status": {
+            "normal": 7
+          },
+          "propagation_events": 95,
+          "proven_one": 7,
+          "proven_zero": 0,
+          "sat_queries": 0,
+          "unknown_bits": 8,
+          "visited_bits": 57,
+          "visited_cells": 8
+        },
+        "changed_bits": 7,
+        "changed_structures": 1,
+        "mode": "real",
+        "producer": "pmux_opt",
+        "reason_codes": [
+          "sequential_boundary"
+        ],
+        "reason_counts": {
+          "sequential_boundary": 8
+        },
+        "resources": {
+          "memory_unit": "KiB",
+          "peak_growth_kib": 3028,
+          "peak_kib": 30200,
+          "system_us": 0,
+          "time_unit": "microseconds",
+          "user_us": 2292006,
+          "wall_us": 2294501
+        },
+        "rewrite": {
+          "abandoned_entries": 0,
+          "accepted_bits": 7,
+          "candidate_bits": 7,
+          "commit": "ok",
+          "commit_reason": null,
+          "committed_bits": 7,
+          "deduplicated_targets": 0,
+          "rejected_results": 0,
+          "rejected_unproved_conclusions": 0,
+          "rewrite_conflicts": 0,
+          "skipped_original_binary_constants": 0,
+          "skipped_original_xz": 0
+        },
+        "scan": {
+          "candidate_cells": 3,
+          "entries": 7,
+          "invalid_cells": 0,
+          "modules": 1,
+          "target_bits": 15,
+          "valid_cells": 3
+        },
+        "schema": 1,
+        "v02_case34": {
+          "added_cells": 1,
+          "committed_candidates": 1,
+          "decision_cone_candidates": 1,
+          "enabled": true,
+          "folded_bits": 0,
+          "guarded_candidates": 0,
+          "proven_candidates": 1,
+          "rejected_candidates": 0,
+          "removed_cells": 0,
+          "table_candidates": 0
+        }
+      },
+      "eqy_rc": 0,
+      "eqy_wall_seconds": 1.3363855919999992,
+      "eqy_pass": true,
+      "result": "PASS"
+    },
+    {
+      "case": 4,
+      "source_sha256": "c0c5042928bd6bf568e2b7fb2193f2b6db9c4193ba3a5378fc50a331d43422d7",
+      "issues": [],
+      "post_abc9_rc": 0,
+      "post_abc9_wall_seconds": 0.2605407399999997,
+      "full_rc": 0,
+      "full_wall_seconds": 0.2657024500000027,
+      "cell_counts": {
+        "$lut": 27,
+        "dffeas": 10
+      },
+      "count_check": true,
+      "cpu_seconds": 0.19,
+      "peak_memory_mb": 32.69,
+      "plan": {
+        "abandoned_entries": [],
+        "commit": "ok",
+        "commit_reason": null,
+        "edits": [],
+        "mode": "real",
+        "producer": "pmux_opt",
+        "schema": 1,
+        "structural_edits": [
+          {
+            "added_cells": 26,
+            "anchor_cell": "$memory$auto$proc_rom.cc:155:do_switch$8$rdmux[0][0][0]$56",
+            "folded_bits": 0,
+            "module": "\\test4",
+            "proof_reason": "proved",
+            "removed_cells": 16,
+            "rule": "constant_table_cofactor",
+            "split_by_output_bit": [
+              3,
+              3,
+              0,
+              0,
+              0,
+              4,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "stats": {
+        "analysis": {
+          "entry_status": {
+            "normal": 26
+          },
+          "propagation_events": 31,
+          "proven_one": 0,
+          "proven_zero": 0,
+          "sat_queries": 0,
+          "unknown_bits": 25,
+          "visited_bits": 69,
+          "visited_cells": 9
+        },
+        "changed_bits": 0,
+        "changed_structures": 1,
+        "mode": "real",
+        "producer": "pmux_opt",
+        "reason_codes": [
+          "unsupported_cell"
+        ],
+        "reason_counts": {
+          "unsupported_cell": 25
+        },
+        "resources": {
+          "memory_unit": "KiB",
+          "peak_growth_kib": 2744,
+          "peak_kib": 30476,
+          "system_us": 0,
+          "time_unit": "microseconds",
+          "user_us": 118635,
+          "wall_us": 118644
+        },
+        "rewrite": {
+          "abandoned_entries": 0,
+          "accepted_bits": 0,
+          "candidate_bits": 0,
+          "commit": "ok",
+          "commit_reason": null,
+          "committed_bits": 0,
+          "deduplicated_targets": 0,
+          "rejected_results": 0,
+          "rejected_unproved_conclusions": 0,
+          "rewrite_conflicts": 0,
+          "skipped_original_binary_constants": 0,
+          "skipped_original_xz": 0
+        },
+        "scan": {
+          "candidate_cells": 13,
+          "entries": 26,
+          "invalid_cells": 0,
+          "modules": 1,
+          "target_bits": 25,
+          "valid_cells": 13
+        },
+        "schema": 1,
+        "v02_case34": {
+          "added_cells": 26,
+          "committed_candidates": 1,
+          "decision_cone_candidates": 0,
+          "enabled": true,
+          "folded_bits": 0,
+          "guarded_candidates": 0,
+          "proven_candidates": 1,
+          "rejected_candidates": 0,
+          "removed_cells": 16,
+          "table_candidates": 1
+        }
+      },
+      "eqy_rc": 0,
+      "eqy_wall_seconds": 1.1846003130000007,
+      "eqy_pass": true,
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS"
+}

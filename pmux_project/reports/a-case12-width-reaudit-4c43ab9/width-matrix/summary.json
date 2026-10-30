@@ -1,0 +1,129 @@
+{
+  "variants": [
+    {
+      "name": "a_width_mismatch",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    },
+    {
+      "name": "b_width_mismatch",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    },
+    {
+      "name": "y_width_mismatch",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    },
+    {
+      "name": "missing_a_width",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    },
+    {
+      "name": "missing_b_width",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    },
+    {
+      "name": "missing_y_width",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    },
+    {
+      "name": "valid_candidate_plus_malformed_noncandidate",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    },
+    {
+      "name": "malformed_noncandidate_only",
+      "returncode": 0,
+      "actual": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": true,
+      "writes_zero": true,
+      "general_analysis_skipped": true,
+      "passed": true
+    }
+  ],
+  "control_without_plugin": {
+    "returncode": 139,
+    "expected_yosys_069_crash": true,
+    "passed": true
+  }
+}
