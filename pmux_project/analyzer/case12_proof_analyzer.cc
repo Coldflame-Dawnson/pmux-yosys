@@ -53,6 +53,10 @@ bool decode_eq(RTLIL::Cell *cell, SigMap &sigmap, EqDecode &out)
 	if (cell->type != ID($eq) || !cell->hasPort(ID::A) || !cell->hasPort(ID::B) ||
 			!cell->hasPort(ID::Y) || GetSize(cell->getPort(ID::Y)) != 1)
 		return false;
+	if (cell->getParam(ID::A_WIDTH).as_int() != GetSize(cell->getPort(ID::A)) ||
+			cell->getParam(ID::B_WIDTH).as_int() != GetSize(cell->getPort(ID::B)) ||
+			cell->getParam(ID::Y_WIDTH).as_int() != GetSize(cell->getPort(ID::Y)))
+		return false;
 	if (cell->getParam(ID::A_SIGNED).as_bool() || cell->getParam(ID::B_SIGNED).as_bool()) return false;
 	RTLIL::SigSpec a = cell->getPort(ID::A), b = cell->getPort(ID::B);
 	if (binary_const(a) == binary_const(b)) return false;

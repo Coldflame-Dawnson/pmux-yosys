@@ -33,14 +33,15 @@ def fixture(branches: int, width: int, *, shared_tap: bool = False) -> str:
     return "\n".join(lines) + "\n"
 
 
-def paired_pmux_fixture(*, exposed_decode: bool) -> str:
+def paired_pmux_fixture(*, exposed_decode: bool, mismatched_a_width: bool = False) -> str:
     tap_wire = "  wire output 6 \\decode_tap\n" if exposed_decode else ""
     tap_connect = "  connect \\decode_tap \\s1\n" if exposed_decode else ""
     eq_cells = []
     for code in range(1, 8):
+        a_width = 4 if mismatched_a_width and code == 1 else 3
         eq_cells.append(f"""  cell $eq \\eq{code}
     parameter \\A_SIGNED 0
-    parameter \\A_WIDTH 3
+    parameter \\A_WIDTH {a_width}
     parameter \\B_SIGNED 0
     parameter \\B_WIDTH 3
     parameter \\Y_WIDTH 1
@@ -113,6 +114,7 @@ def main() -> int:
         ("shared_priority_intermediate", "read_verilog", ".v", fixture(4, 1, shared_tap=True), "prep -top top", "", 0, 0, 0, 0, 0),
         ("protected_priority_muxes", "read_verilog", ".v", fixture(4, 1), "prep -top top", "select t:$mux; setattr -set keep 1; select *;", 0, 0, 0, 0, 0),
         ("paired_decode_module_output", "read_rtlil", ".il", paired_pmux_fixture(exposed_decode=True), "hierarchy -top top", "", 0, 0, 0, 0, 0),
+        ("paired_decode_awidth_mismatch", "read_rtlil", ".il", paired_pmux_fixture(exposed_decode=False, mismatched_a_width=True), "hierarchy -top top", "", 0, 0, 0, 0, 0),
     ]
     with tempfile.TemporaryDirectory(prefix="pmux-case12-") as directory:
         work = Path(directory)
