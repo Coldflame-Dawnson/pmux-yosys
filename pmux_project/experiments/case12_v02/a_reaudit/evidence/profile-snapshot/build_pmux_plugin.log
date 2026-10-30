@@ -1,0 +1,59 @@
+make: Entering directory '/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pass'
+rm -f pmux_opt.so
+/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys-config --build pmux_opt.so pmux_opt.cc rewrite_plan.cc case12_rewrite.cc case34_rewrite.cc ../analyzer/readonly_analyzer.cc ../analyzer/case34_proof_analyzer.cc ../analyzer/case12_proof_analyzer.cc ../analyzer/production_case34_proof_analyzer.cc ../analyzer/decision_cone_proof_analyzer.cc -I../include -I../analyzer
+case34_rewrite.cc: In instantiation of ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:62&)> [with auto:62 = Yosys::PmuxOpt::DecisionConeProof]’:
+case34_rewrite.cc:1178:10:   required from ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(const std::string&, auto:55)> [with auto:55 = Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:62&)>; std::string = std::__cxx11::basic_string<char>]’
+case34_rewrite.cc:1209:18:   required from here
+case34_rewrite.cc:1210:66: warning: ‘std::vector<Yosys::RTLIL::State>& Yosys::RTLIL::Const::bits()’ is deprecated: Don't use direct access to the internal std::vector<State>, that's an implementation detail. [-Wdeprecated-declarations]
+ 1210 |                         p.comparators[0].comparator_constant.bits()[0] =
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys/include/kernel/yosys.h:43,
+                 from case34_rewrite.h:4,
+                 from case34_rewrite.cc:1:
+/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys/include/kernel/rtlil.h:1072:36: note: declared here
+ 1072 |         std::vector<RTLIL::State>& bits() { return bits_internal(); }
+      |                                    ^~~~
+case34_rewrite.cc: In instantiation of ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:69&)> [with auto:69 = Yosys::PmuxOpt::DecisionConeProof]’:
+case34_rewrite.cc:1178:10:   required from ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(const std::string&, auto:55)> [with auto:55 = Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:69&)>; std::string = std::__cxx11::basic_string<char>]’
+case34_rewrite.cc:1220:18:   required from here
+case34_rewrite.cc:1220:107: warning: ‘std::vector<Yosys::RTLIL::State>& Yosys::RTLIL::Const::bits()’ is deprecated: Don't use direct access to the internal std::vector<State>, that's an implementation detail. [-Wdeprecated-declarations]
+ 1220 |                 reject_mutation("care_short", [](auto &p) { p.affected_sinks[0].care_mask_lsb_address.bits().pop_back(); });
+      |                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys/include/kernel/rtlil.h:1072:36: note: declared here
+ 1072 |         std::vector<RTLIL::State>& bits() { return bits_internal(); }
+      |                                    ^~~~
+case34_rewrite.cc: In instantiation of ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:70&)> [with auto:70 = Yosys::PmuxOpt::DecisionConeProof]’:
+case34_rewrite.cc:1178:10:   required from ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(const std::string&, auto:55)> [with auto:55 = Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:70&)>; std::string = std::__cxx11::basic_string<char>]’
+case34_rewrite.cc:1221:18:   required from here
+case34_rewrite.cc:1221:109: warning: ‘std::vector<Yosys::RTLIL::State>& Yosys::RTLIL::Const::bits()’ is deprecated: Don't use direct access to the internal std::vector<State>, that's an implementation detail. [-Wdeprecated-declarations]
+ 1221 |                 reject_mutation("value_short", [](auto &p) { p.affected_sinks[0].value_mask_lsb_address.bits().pop_back(); });
+      |                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys/include/kernel/rtlil.h:1072:36: note: declared here
+ 1072 |         std::vector<RTLIL::State>& bits() { return bits_internal(); }
+      |                                    ^~~~
+case34_rewrite.cc: In instantiation of ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:71&)> [with auto:71 = Yosys::PmuxOpt::DecisionConeProof]’:
+case34_rewrite.cc:1178:10:   required from ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(const std::string&, auto:55)> [with auto:55 = Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:71&)>; std::string = std::__cxx11::basic_string<char>]’
+case34_rewrite.cc:1222:18:   required from here
+case34_rewrite.cc:1222:103: warning: ‘std::vector<Yosys::RTLIL::State>& Yosys::RTLIL::Const::bits()’ is deprecated: Don't use direct access to the internal std::vector<State>, that's an implementation detail. [-Wdeprecated-declarations]
+ 1222 |                 reject_mutation("care_x", [](auto &p) { p.affected_sinks[0].care_mask_lsb_address.bits()[0] = RTLIL::State::Sx; });
+      |                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys/include/kernel/rtlil.h:1072:36: note: declared here
+ 1072 |         std::vector<RTLIL::State>& bits() { return bits_internal(); }
+      |                                    ^~~~
+case34_rewrite.cc: In instantiation of ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:72&)> [with auto:72 = Yosys::PmuxOpt::DecisionConeProof]’:
+case34_rewrite.cc:1178:10:   required from ‘Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(const std::string&, auto:55)> [with auto:55 = Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)::<lambda(auto:72&)>; std::string = std::__cxx11::basic_string<char>]’
+case34_rewrite.cc:1223:18:   required from here
+case34_rewrite.cc:1223:105: warning: ‘std::vector<Yosys::RTLIL::State>& Yosys::RTLIL::Const::bits()’ is deprecated: Don't use direct access to the internal std::vector<State>, that's an implementation detail. [-Wdeprecated-declarations]
+ 1223 |                 reject_mutation("value_z", [](auto &p) { p.affected_sinks[0].value_mask_lsb_address.bits()[0] = RTLIL::State::Sz; });
+      |                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys/include/kernel/rtlil.h:1072:36: note: declared here
+ 1072 |         std::vector<RTLIL::State>& bits() { return bits_internal(); }
+      |                                    ^~~~
+case34_rewrite.cc: In function ‘Yosys::PmuxOpt::DecisionConsumerMutationTestResult Yosys::PmuxOpt::run_decision_consumer_mutation_tests(const std::vector<Yosys::RTLIL::Module*>&)’:
+case34_rewrite.cc:1262:81: warning: ‘std::vector<Yosys::RTLIL::State>& Yosys::RTLIL::Const::bits()’ is deprecated: Don't use direct access to the internal std::vector<State>, that's an implementation detail. [-Wdeprecated-declarations]
+ 1262 |                         for (RTLIL::State &bit : sink.care_mask_lsb_address.bits()) bit = RTLIL::State::S0;
+      |                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys/include/kernel/rtlil.h:1072:36: note: declared here
+ 1072 |         std::vector<RTLIL::State>& bits() { return bits_internal(); }
+      |                                    ^~~~
+make: Leaving directory '/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pass'

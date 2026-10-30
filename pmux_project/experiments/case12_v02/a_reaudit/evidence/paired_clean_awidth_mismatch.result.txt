@@ -1,0 +1,5 @@
+EXPECTED=paired=0 priority=0 committed=0 removed_cells=0 added_cells=0
+ACTUAL=paired=1 priority=0 committed=1 removed_cells=2 added_cells=10
+PROCESS_EXIT_CODE=139
+FAILURE_STAGE=Yosys check after production rewrite
+VERDICT=FALSE_ACCEPT_BLOCKED

@@ -1,0 +1,8 @@
+PASS valid_priority_width1
+PASS valid_priority_width5
+PASS three_priority_branches
+PASS five_priority_branches
+PASS shared_priority_intermediate
+PASS protected_priority_muxes
+PASS paired_decode_module_output
+PASS all 7 case12 structural fixtures

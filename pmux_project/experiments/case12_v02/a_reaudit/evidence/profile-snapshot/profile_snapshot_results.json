@@ -1,0 +1,170 @@
+{
+  "tests": [
+    {
+      "test": "none",
+      "returncode": 0,
+      "expected_profile": "accepted_constant_table",
+      "actual_profile": "accepted_constant_table",
+      "snapshot_rejected": false,
+      "rejection_reasons": [],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_none.log"
+    },
+    {
+      "test": "lut_bit",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_lut_bit.log"
+    },
+    {
+      "test": "lut_width",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_lut_width.log"
+    },
+    {
+      "test": "port",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_port.log"
+    },
+    {
+      "test": "attribute",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_attribute.log"
+    },
+    {
+      "test": "type",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_type.log"
+    },
+    {
+      "test": "remove_one",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_remove_one.log"
+    },
+    {
+      "test": "add_extra",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_add_extra.log"
+    },
+    {
+      "test": "same_name_rebuild",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_same_name_rebuild.log"
+    },
+    {
+      "test": "drop_snapshot",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_snapshot_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_drop_snapshot.log"
+    },
+    {
+      "test": "forged_generation",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profile": "stock",
+      "snapshot_rejected": true,
+      "rejection_reasons": [
+        "target_lifecycle_mismatch"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_forged_generation.log"
+    },
+    {
+      "test": "consumed_full_cell_replay",
+      "returncode": 0,
+      "expected_profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "actual_profiles": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/native_consumed_replay.log"
+    },
+    {
+      "test": "runner_same_name_rebuild",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profiles": [
+        "stock"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/runner_same_name_rebuild.log"
+    },
+    {
+      "test": "runner_forged_generation",
+      "returncode": 0,
+      "expected_profile": "stock",
+      "actual_profiles": [
+        "stock"
+      ],
+      "pass": true,
+      "log": "/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/reports/a-case12-reaudit-da51611/profile-snapshot/logs/runner_forged_generation.log"
+    }
+  ],
+  "passed": 14,
+  "total": 14
+}

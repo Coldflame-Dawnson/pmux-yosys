@@ -1,0 +1,21 @@
+
+-- Running command `read_rtlil pmux_project/reports/a-case12-reaudit-da51611/paired_clean_valid.il; pmux_opt -v02-case12 -no-v02-case34; check' --
+
+1. Executing RTLIL frontend.
+Input filename: pmux_project/reports/a-case12-reaudit-da51611/paired_clean_valid.il
+
+2. Executing PMUX_OPT guarded analysis and atomic rewrite.
+pmux_opt: v02_case12 paired=1 priority=0 committed=1 removed_cells=2 added_cells=10
+pmux_opt: rewrite proven=0 skipped_binary_constants=0 skipped_xz=0 rejected_results=0 rejected_unproved=0 duplicates=0 conflicts=0 abandoned_entries=0 planned=0 writes=0 commit=ok
+pmux_opt: reason scope=entry_status code=normal count=20
+pmux_opt: reason scope=unknown_bit code=primary_input count=12
+pmux_opt: summary modules=1 candidates=10 valid=10 invalid=0 entries=20 unknown_bits=12 proven_bits=0 writes=0
+pmux_opt: resources wall_us=3067 user_us=3340 system_us=0 peak_kib=25044 peak_growth_kib=3264
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module top...
+Found and reported 0 problems.
+
+End of script. Logfile hash: 0ad6beb038, time: 0.01s, user: 0.00s, system: 0.03s, MEM: 24.83 MB peak
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Time spent: 87% 1x pmux_opt (0 sec), 10% 2x read_rtlil (0 sec), ...

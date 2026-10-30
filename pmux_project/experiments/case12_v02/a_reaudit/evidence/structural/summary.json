@@ -1,0 +1,287 @@
+[
+  {
+    "name": "priority_valid_w1",
+    "expected": [
+      0,
+      1,
+      1,
+      4,
+      3
+    ],
+    "actual": [
+      0,
+      1,
+      1,
+      4,
+      3
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "priority_valid_w12",
+    "expected": [
+      0,
+      1,
+      1,
+      4,
+      36
+    ],
+    "actual": [
+      0,
+      1,
+      1,
+      4,
+      36
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "priority_valid_w32",
+    "expected": [
+      0,
+      1,
+      1,
+      4,
+      96
+    ],
+    "actual": [
+      0,
+      1,
+      1,
+      4,
+      96
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "priority_three_branch",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "priority_five_branch_must_reject",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "priority_nonzero_default",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "priority_module_output_tap",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "priority_extra_cell_fanout",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "paired_valid_w1",
+    "expected": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "actual": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "paired_valid_w12",
+    "expected": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "actual": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "paired_valid_w32",
+    "expected": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "actual": [
+      1,
+      0,
+      1,
+      2,
+      10
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "paired_missing_code",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "paired_duplicate_code",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "paired_b_slice_swap",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  },
+  {
+    "name": "paired_comparator_module_output_fanout",
+    "expected": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "returncode": 0,
+    "passed": true
+  }
+]

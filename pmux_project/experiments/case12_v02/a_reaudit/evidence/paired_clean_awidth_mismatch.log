@@ -1,0 +1,15 @@
+
+-- Running command `read_rtlil pmux_project/reports/a-case12-reaudit-da51611/paired_clean_awidth_mismatch.il; pmux_opt -v02-case12 -no-v02-case34; check' --
+
+1. Executing RTLIL frontend.
+Input filename: pmux_project/reports/a-case12-reaudit-da51611/paired_clean_awidth_mismatch.il
+
+2. Executing PMUX_OPT guarded analysis and atomic rewrite.
+pmux_opt: v02_case12 paired=1 priority=0 committed=1 removed_cells=2 added_cells=10
+pmux_opt: rewrite proven=0 skipped_binary_constants=0 skipped_xz=0 rejected_results=0 rejected_unproved=0 duplicates=0 conflicts=0 abandoned_entries=0 planned=0 writes=0 commit=ok
+pmux_opt: reason scope=entry_status code=normal count=20
+pmux_opt: reason scope=unknown_bit code=primary_input count=12
+pmux_opt: summary modules=1 candidates=10 valid=10 invalid=0 entries=20 unknown_bits=12 proven_bits=0 writes=0
+pmux_opt: resources wall_us=2560 user_us=2539 system_us=0 peak_kib=25236 peak_growth_kib=3256
+
+3. Executing CHECK pass (checking for obvious problems).
