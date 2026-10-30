@@ -22,7 +22,7 @@ python3 pmux_project/experiments/case12_v02/scripts/run_case12_validation.py \
 
 测试覆盖 priority 链宽度 1/5 正例、三分支拒绝、五分支外层边界拒绝、内部节点额外扇出拒绝、`keep` 保护拒绝，以及配对 PMUX 解码比较器模块输出额外扇出和 `A_WIDTH`/端口宽度不一致拒绝。三个审计负例都必须产生零候选、零改写。成对 PMUX 的正式正例是官方 case1；必须从官方 RTL 重新生成 gate，并运行 whole-design EQY。
 
-注：Yosys 0.69 的 `check` 和 `stat` 会自身解引用上述刻意构造的不一致宽度元数据。因此该单个畸形输入只执行 `pmux_opt` 并断言零候选、零改写；所有结构合法的其他夹具仍执行 `check; stat`。
+注：Yosys 0.69 的 `check`/`stat` 以及进程退出清理会自身解引用上述刻意构造的不一致宽度元数据。因此该单个畸形输入在执行 `pmux_opt`、断言零候选/零改写后，用测试专用 `design -reset` 丢弃设计；所有结构合法的其他夹具仍执行 `check; stat`。
 
 ## 当前本机证据
 

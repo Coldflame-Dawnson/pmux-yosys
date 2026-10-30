@@ -121,11 +121,11 @@ def main() -> int:
         for name, reader, suffix, source, prepare, setup, paired, priority, committed, removed, added in cases:
             design = work / f"{name}{suffix}"
             design.write_text(source, encoding="utf-8")
-            # Yosys 0.69 check/stat themselves dereference inconsistent width
-            # metadata on the intentionally malformed $eq fixture.  The
-            # production pass must still return cleanly and report zero writes;
+            # Yosys 0.69 check/stat and process-exit cleanup dereference the
+            # intentionally inconsistent width metadata.  After asserting the
+            # production pass result, discard this test-only design explicitly;
             # all well-formed fixtures continue through check and stat.
-            post_validation = "" if name == "paired_decode_awidth_mismatch" else "; check; stat"
+            post_validation = "; design -reset" if name == "paired_decode_awidth_mismatch" else "; check; stat"
             output = run([str(args.yosys), "-m", str(plugin), "-p",
                           f"{reader} {design}; {prepare}; {setup} "
                           f"pmux_opt -v02-case12 -no-v02-case34{post_validation}"], cwd=repo)
