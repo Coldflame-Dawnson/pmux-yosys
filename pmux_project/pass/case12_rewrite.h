@@ -11,6 +11,7 @@ YOSYS_NAMESPACE_BEGIN
 namespace PmuxOpt {
 
 struct Case12RewriteResult {
+	bool malformed_cell_metadata = false;
 	int paired_candidates = 0;
 	int priority_candidates = 0;
 	int committed_candidates = 0;

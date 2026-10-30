@@ -556,6 +556,12 @@ struct PmuxOptPass : public Pass
 			for (const auto &item : case12_result.reason_counts)
 				log("pmux_opt: reason scope=v02_case12 code=%s count=%d\n",
 						item.first.c_str(), item.second);
+			if (case12_result.malformed_cell_metadata) {
+				PmuxProfileAuthorization::clear_constant_table_authorization(design);
+				log_warning("pmux_opt: case12 rejected the complete batch before analysis "
+						"(malformed cell width metadata); writes=0.\n");
+				return;
+			}
 		}
 
 		Case34RewriteResult case34_result;

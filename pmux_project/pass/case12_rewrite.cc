@@ -95,11 +95,34 @@ int apply_priority(RTLIL::Module *module, const PriorityMuxProof &proof)
 	return proof.width * 3;
 }
 
+bool malformed_eq_width_metadata(const RTLIL::Cell *cell)
+{
+	if (cell->type != ID($eq)) return false;
+	if (!cell->hasPort(ID::A) || !cell->hasPort(ID::B) || !cell->hasPort(ID::Y) ||
+			!cell->hasParam(ID::A_WIDTH) || !cell->hasParam(ID::B_WIDTH) ||
+			!cell->hasParam(ID::Y_WIDTH))
+		return true;
+	return cell->getParam(ID::A_WIDTH).as_int() != GetSize(cell->getPort(ID::A)) ||
+			cell->getParam(ID::B_WIDTH).as_int() != GetSize(cell->getPort(ID::B)) ||
+			cell->getParam(ID::Y_WIDTH).as_int() != GetSize(cell->getPort(ID::Y));
+}
+
 } // namespace
 
 Case12RewriteResult run_case12_structural_rewrite(const std::vector<RTLIL::Module *> &modules)
 {
 	Case12RewriteResult result;
+	// Validate the complete selected input before producing any plan.  Besides
+	// being outside the proof contract, malformed comparison metadata can make
+	// downstream Yosys analyses dereference inconsistent port widths.
+	for (RTLIL::Module *module : modules)
+		for (RTLIL::Cell *cell : module->cells())
+			if (malformed_eq_width_metadata(cell)) {
+				result.malformed_cell_metadata = true;
+				result.reason_counts["eq_port_width_mismatch"]++;
+			}
+	if (result.malformed_cell_metadata)
+		return result;
 	for (RTLIL::Module *module : modules) {
 		Case12ProofBundle bundle = make_case12_analyzer()->analyze(module);
 		for (const auto &item : bundle.reason_counts)
