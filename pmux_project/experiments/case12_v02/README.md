@@ -9,7 +9,7 @@
 - 配对 PMUX 对每个解码 `$eq.Y` 做完整扇出封闭检查。模块输出扇出、未知端口或待删除 PMUX 上未覆盖的端口一律拒绝；其他已知 cell 输入扇出仅在该 cell 不属于待删除二元组时允许，并在 proof reason 中记录为 `proved_with_preserved_decode_fanout`；因为比较器及这些消费 cell 都不会被改写，其连接和语义原样保留。
 - 解码 `$eq` 的 `A_WIDTH/B_WIDTH/Y_WIDTH` 必须分别与实际 `A/B/Y` 端口宽度完全一致；参数缺失或不一致时，case12 全模块预检在生成任何候选或进入后续分析前以 `eq_port_width_mismatch` 整批拒绝，保证零写入。
 - 分析只读；提交前重新比较 cell 类型、全部参数、属性、端口集合、连接和值。任一证明义务、保护属性、唯一驱动/扇出或快照检查失败均不改网表。
-- `pmux_opt -v02-case12` 与 `synth_intel -pmux-v02-case12` 是显式候选入口。默认 `synth_intel` 不启用 case1/case2，等待 A 独立复审。
+- A 已对 `4c43ab9743d69ee6fe28f965e10163b15bdb5c88` 授权，授权提交为 `d6e9738e1e37f028583941085cd71f2b85b6fa47`。后续默认集成候选在 Cyclone IV 流程默认启用四类结构规则；该新默认提交仍待 A 独立复审。入口、回退、实测与证据见 [DEFAULT_SELECTION_STATUS.md](DEFAULT_SELECTION_STATUS.md)。
 
 ## 快速结构测试
 
@@ -31,4 +31,4 @@ python3 pmux_project/experiments/case12_v02/scripts/run_case12_validation.py \
 | case1 | 1 对 PMUX，删除 2、新增 18 | 182 `$lut` | 222 | PASS |
 | case2 | 1 条四分支链，删除 4、新增 15 | 15 `cycloneiv_lcell_comb`；post-ABC9 `$lut` 为 0（已为厂商原语） | 0 | PASS |
 
-case2 的 15 是厂商原语口径，不得表述为 15 个 `$lut`。默认未启用状态下，case1/case2 继续使用已验收 stock 结果 288/222 与 25/0。
+case2 的 15 是厂商原语口径，不得表述为 15 个 `$lut`。使用 `synth_intel -no-pmux-v02` 或 runner `--no-pmux-v02` 可完整回退，case1/case2 恢复 stock 结果 288/222 与 25/0。
