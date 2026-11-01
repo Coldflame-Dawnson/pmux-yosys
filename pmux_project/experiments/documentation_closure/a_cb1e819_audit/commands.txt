@@ -1,0 +1,12 @@
+# Worktree creation and remote gate were run from an existing trusted clone.
+git ls-remote https://github.com/Coldflame-Dawnson/pmux-yosys.git refs/heads/feature/b-v02-documentation-closure
+git worktree add -b feature/a-v02-documentation-closure-audit-cb1e819 <new-linux-worktree> cb1e8199d35c894d0400a0bf4eef2aa626616026
+
+# Complete short audit. The second argument is an independent read-only
+# worktree at A commit feb137e459a329e01ff3ee87d3e3acb04a942d72.
+pmux_project/experiments/documentation_closure/a_cb1e819_audit/run_doc_audit.sh \
+  "$(git rev-parse --show-toplevel)" <prior-a-worktree>
+
+# Verify this A package after checkout.
+cd pmux_project/experiments/documentation_closure/a_cb1e819_audit
+sha256sum -c SHA256SUMS

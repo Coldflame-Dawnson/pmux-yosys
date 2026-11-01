@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "audited_document_commit": "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+  "parent_production_commit": "dbb21ecd5d50d5636aec7415d9a8e6adb9b5f300",
+  "prior_a_audit_commit": "feb137e459a329e01ff3ee87d3e3acb04a942d72",
+  "document_commit": "AUTHORIZED",
+  "production_technical_gate": "PASS",
+  "complete_historical_p2": "UNVERIFIED",
+  "g3_technical_gate": "PASS",
+  "external_scoring": "UNVERIFIED_EXTERNAL_SCORING",
+  "merge_release": "NOT_EXECUTED",
+  "production_diff_outside_design": 0,
+  "new_design_files": 10,
+  "new_markdown_files": 9,
+  "document_sha256": {"passed": 9, "total": 9},
+  "prior_a_sha256": {"passed": 47, "total": 47, "directory_files_including_checksum": 48},
+  "historical_external_reference_occurrences": 309,
+  "long_regressions_rerun": false,
+  "nonblocking_document_issues": [
+    "G3 priority-rule row should explicitly say outermost four branches, variable data width, and five-branch rejection",
+    "prior A commands.txt is provenance with absolute paths; use parameterized runners for fresh reproduction"
+  ]
+}
