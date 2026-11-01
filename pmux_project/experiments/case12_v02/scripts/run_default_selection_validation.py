@@ -13,6 +13,7 @@ import re
 import shlex
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 from run_case12_validation import fixture, paired_pmux_fixture
@@ -165,6 +166,23 @@ endmodule
             record(f"case{index}_{variant}_native_counts_profile", passed)
             variant_results[variant] = {"counts": counts, "observed_lut_vendor_dff": observed,
                                         "profile": profile, "pass": passed}
+        for variant in ("default", "rollback"):
+            prefix = out / f"case{index}_runner_{variant}"
+            command = [sys.executable, ROOT / "pmux_project/pass/run_synth_intel_pmux.py",
+                       "--yosys", yosys, "--plugin", plugin, "--source", source,
+                       "--top", top, "--stage", "post_abc9", "--plan", f"{prefix}.plan.json",
+                       "--stats", f"{prefix}.stats.json", "--json", f"{prefix}.json",
+                       "--rtlil", f"{prefix}.il", "--log", f"{prefix}.yosys.log",
+                       "--script", f"{prefix}.ys"]
+            if variant == "rollback":
+                command.append("--no-pmux-v02")
+            run(command, f"case{index}_runner_{variant}")
+            cells = json.loads(prefix.with_suffix(".json").read_text())["modules"][top]["cells"]
+            counts = {}
+            for cell in cells.values():
+                counts[cell["type"]] = counts.get(cell["type"], 0) + 1
+            record(f"case{index}_runner_{variant}_matches_native",
+                   counts == variant_results[variant]["counts"])
         if args.eqy:
             config = out / f"case{index}.eqy"
             config.write_text(f"""[gold]
