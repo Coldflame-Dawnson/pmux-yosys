@@ -145,6 +145,7 @@ endmodule
         source = official / f"{top}.v"
         variant_results = {}
         for variant, option in (("default", ""), ("explicit", "-pmux-v02-case12"),
+                                ("case12_rollback", "-no-pmux-v02-case12"),
                                 ("rollback", "-no-pmux-v02")):
             prefix = out / f"case{index}_{variant}"
             # Stop after ABC9, then map the same result to vendor primitives.
@@ -159,13 +160,22 @@ endmodule
                 counts[cell["type"]] = counts.get(cell["type"], 0) + 1
             observed = (counts.get("$lut", 0), counts.get("cycloneiv_lcell_comb", 0),
                         counts.get("dffeas", 0))
-            expected = expected_baselines[index - 1] if variant == "rollback" else expected_defaults[index - 1]
+            baseline = variant == "rollback" or (variant == "case12_rollback" and index <= 2)
+            expected = expected_baselines[index - 1] if baseline else expected_defaults[index - 1]
             profile = re.findall(r"synth_intel: pmux_profile=(\w+)", text)
             expected_profile = "accepted_constant_table" if index == 4 and variant != "rollback" else "stock"
             passed = observed == expected and profile == [expected_profile]
             record(f"case{index}_{variant}_native_counts_profile", passed)
+            vendor_cells = json.loads(Path(f"{prefix}_vendor.json").read_text())["modules"][top]["cells"]
+            vendor_counts = {}
+            for cell in vendor_cells.values():
+                vendor_counts[cell["type"]] = vendor_counts.get(cell["type"], 0) + 1
             variant_results[variant] = {"counts": counts, "observed_lut_vendor_dff": observed,
+                                        "vendor_counts": vendor_counts,
+                                        "gate_sha256": hashlib.sha256(prefix.with_suffix(".il").read_bytes()).hexdigest(),
                                         "profile": profile, "pass": passed}
+        record(f"case{index}_default_explicit_identical_gate",
+               variant_results["default"]["gate_sha256"] == variant_results["explicit"]["gate_sha256"])
         for variant in ("default", "rollback"):
             prefix = out / f"case{index}_runner_{variant}"
             command = [sys.executable, ROOT / "pmux_project/pass/run_synth_intel_pmux.py",

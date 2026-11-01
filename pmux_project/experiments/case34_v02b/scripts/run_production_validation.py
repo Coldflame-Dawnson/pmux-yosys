@@ -111,6 +111,7 @@ def main() -> int:
                        "--json", str(directory / "post_abc9.json"),
                        "--rtlil", str(directory / "post_abc9.il"),
                        "--log", str(directory / "yosys.log"),
+                       "--no-v02-case12",
                        "--script", str(directory / "run.ys")]
             if variant == "baseline":
                 command.append("--no-v02-case34")
