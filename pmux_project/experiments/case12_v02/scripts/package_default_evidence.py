@@ -29,7 +29,7 @@ def main():
         "yosys_version": [tool_bin / "yosys", "-V"],
         "eqy_version": [tool_bin / "eqy", "--version"],
         "sby_version": [tool_bin / "sby", "--version"],
-        "abc_version": [tool_bin / "yosys-abc", "-v"],
+        "abc_version": [tool_bin / "yosys-abc", "-c", "version"],
     }.items():
         result = subprocess.run(list(map(str, command)), cwd=ROOT, env=env, text=True,
                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
