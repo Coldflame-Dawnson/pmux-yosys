@@ -168,28 +168,30 @@ endmodule
         if args.eqy:
             config = out / f"case{index}.eqy"
             config.write_text(f"""[gold]
-read_verilog {source}
-prep -top {top}
-memory_map
-opt_clean
+read_verilog -formal {source}
 
 [gate]
 read_verilog -formal {formal}
-read_verilog -formal {ROOT / 'pmux_project/official_baseline/environment/dffeas_formal.v'}
 read_rtlil {out / f'case{index}_default.il'}
-techmap -map +/techmap.v
-prep -top {top}
-memory_map
-opt_clean
+read_verilog -formal -overwrite {ROOT / 'pmux_project/official_baseline/environment/dffeas_formal.v'}
 
-[collect {top}]
-group *
-bind *
+[script]
+hierarchy -check -top {top}
+prep
+memory_map
+async2sync
+
+[partition {top}]
+merge *
+
+[strategy sat]
+use sat
+depth 20
 
 [strategy prove]
 use sby
 engine abc pdr
-option aigsmt none
+timeout 300
 """)
             work = out / f"case{index}_eqy"
             run([tool / "bin/eqy", "-f", "-d", work, config], f"case{index}_eqy")
