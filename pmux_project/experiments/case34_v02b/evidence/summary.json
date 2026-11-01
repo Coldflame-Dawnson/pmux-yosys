@@ -1,0 +1,107 @@
+{
+  "case3_baseline": {
+    "returncode": 0,
+    "wall_seconds": 0.11681694300000345,
+    "source": "/home/james/work/pmux-yosys/pmux_project/pmux_case/competition_case/test3.v",
+    "cell_counts": {
+      "$lut": 13,
+      "dffeas": 17
+    },
+    "total_cells": 30,
+    "sequential_bits": 17
+  },
+  "case3_candidate": {
+    "returncode": 0,
+    "wall_seconds": 0.05253565399999616,
+    "source": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v",
+    "cell_counts": {
+      "$lut": 11,
+      "dffeas": 12
+    },
+    "total_cells": 23,
+    "sequential_bits": 12
+  },
+  "case4_baseline": {
+    "returncode": 0,
+    "wall_seconds": 0.06144249699997317,
+    "source": "/home/james/work/pmux-yosys/pmux_project/pmux_case/competition_case/test4.v",
+    "cell_counts": {
+      "$lut": 36,
+      "dffeas": 10
+    },
+    "total_cells": 46,
+    "sequential_bits": 10
+  },
+  "case4_candidate_default": {
+    "returncode": 0,
+    "wall_seconds": 0.09809013500000674,
+    "source": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v",
+    "cell_counts": {
+      "$lut": 37,
+      "dffeas": 10
+    },
+    "total_cells": 47,
+    "sequential_bits": 10
+  },
+  "case4_candidate_custom": {
+    "returncode": 0,
+    "wall_seconds": 0.04717230699998254,
+    "source": "/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v",
+    "cell_counts": {
+      "$lut": 27,
+      "dffeas": 10
+    },
+    "total_cells": 37,
+    "sequential_bits": 10
+  },
+  "case3_source_eqy": {
+    "returncode": 0,
+    "wall_seconds": 0.1696368689999872,
+    "pass_file": true,
+    "gold_sha256": "1551B9212622CCEF6019D6E77DE2C43DC8C80D267957B55A42121F34A08780E9",
+    "gate_sha256": "DD2EB7F827A7B8719914E972D054D12925D2109F4EDE33C65293BE69B887EC52"
+  },
+  "case4_source_eqy": {
+    "returncode": 0,
+    "wall_seconds": 0.21901061199997685,
+    "pass_file": true,
+    "gold_sha256": "C0C5042928BD6BF568E2B7FB2193F2B6DB9C4193BA3A5378FC50A331D43422D7",
+    "gate_sha256": "C789DB300EC3FC5D4E60F0C2F6698D39E4836D7DA7FD05D328FB3BE17AC4DEB4"
+  },
+  "case3_gate_eqy": {
+    "returncode": 0,
+    "wall_seconds": 0.16595403600001646,
+    "pass_file": true,
+    "gold_sha256": "1551B9212622CCEF6019D6E77DE2C43DC8C80D267957B55A42121F34A08780E9",
+    "gate_sha256": "BB1026ED444F44A6D8859BB9A180186793B7A404E080DC5BDA0D062405A5954D"
+  },
+  "case4_gate_eqy": {
+    "returncode": 0,
+    "wall_seconds": 0.18666023000002951,
+    "pass_file": true,
+    "gold_sha256": "C0C5042928BD6BF568E2B7FB2193F2B6DB9C4193BA3A5378FC50A331D43422D7",
+    "gate_sha256": "BD9D87E50E510E2EB1C12896D1FABA327104ADDA741E01DF4C084B202BE8EFC5"
+  },
+  "case3_vendor": {
+    "returncode": 0,
+    "wall_seconds": 0.00904705099998182,
+    "cell_counts": {
+      "$not": 1,
+      "dffeas": 12,
+      "fiftyfivenm_lcell_comb": 10
+    },
+    "total_cells": 23,
+    "sequential_bits": 12
+  },
+  "case4_vendor": {
+    "returncode": 0,
+    "wall_seconds": 0.00962094600004093,
+    "cell_counts": {
+      "$not": 1,
+      "dffeas": 10,
+      "fiftyfivenm_lcell_comb": 26
+    },
+    "total_cells": 37,
+    "sequential_bits": 10
+  }
+}

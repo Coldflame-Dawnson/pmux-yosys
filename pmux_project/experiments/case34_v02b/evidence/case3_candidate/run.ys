@@ -1,0 +1,8 @@
+read_verilog /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case3_guard_candidate.v
+synth_intel -family cycloneiv -top test3 -run begin:map_cells
+check
+stat
+select test3
+write_rtlil -selected /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_candidate/post_abc9.il
+select -clear
+write_json /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case3_candidate/post_abc9.json

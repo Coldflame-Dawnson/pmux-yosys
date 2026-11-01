@@ -1,0 +1,298 @@
+{
+  "schema": 1,
+  "branch": "integration/c-real-m1",
+  "source_commits": {
+    "A": "445231c4c616781a957292699376cb73bca60037",
+    "B": "69caa80a8d610ceaca4ddba92721c2a294c5faa0",
+    "C_frozen": "71bfcfc97e5a8d42635586ba96d461f0107f9518"
+  },
+  "tool_versions": {
+    "yosys": "Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0) [git@github.com:yuewen-zhu/yosys at pmux-dev]",
+    "eqy": "EQY v0.69"
+  },
+  "plugin_sha256": "5bb527a2a663469d9803f749ee1a4bb25b8f469df34b1b243d57a396386d4647",
+  "real_micro": {
+    "count": 19,
+    "pass": 19,
+    "structure_correct": "PASS",
+    "eqy_pass": "PASS",
+    "rows": [
+      {
+        "case": "01_mux_a",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 1,
+        "plan_edits": 1,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "02_mux_b",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 1,
+        "plan_edits": 1,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "03_pmux_a",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 1,
+        "plan_edits": 1,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "04_pmux_bi",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 1,
+        "plan_edits": 1,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "05_eq_reverse",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 4,
+        "plan_edits": 4,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "06_ne_zero_reverse",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 4,
+        "plan_edits": 4,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "07_partial_bit",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 1,
+        "plan_edits": 1,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "08_shared_source",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 1,
+        "plan_edits": 1,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "09_overlap_pmux",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 2,
+        "plan_edits": 2,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "10_xz_untouched",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 1,
+        "plan_edits": 1,
+        "commit": "ok",
+        "reason_codes": [
+          "original_xz",
+          "primary_input"
+        ]
+      },
+      {
+        "case": "11_ambiguous_compare",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 0,
+        "plan_edits": 0,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "12_unsupported_cell",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 0,
+        "plan_edits": 0,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input",
+          "unsupported_cell"
+        ]
+      },
+      {
+        "case": "13_fact_conflict",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 0,
+        "plan_edits": 0,
+        "commit": "ok",
+        "reason_codes": [
+          "fact_conflict",
+          "primary_input"
+        ]
+      },
+      {
+        "case": "14a_budget_cells",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 0,
+        "plan_edits": 0,
+        "commit": "ok",
+        "reason_codes": [
+          "budget_cells_exhausted",
+          "budget_exhausted"
+        ]
+      },
+      {
+        "case": "14b_budget_bits",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 0,
+        "plan_edits": 0,
+        "commit": "ok",
+        "reason_codes": [
+          "budget_bits_exhausted",
+          "budget_exhausted"
+        ]
+      },
+      {
+        "case": "14c_budget_events",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 512,
+        "plan_edits": 512,
+        "commit": "ok",
+        "reason_codes": [
+          "budget_events_exhausted",
+          "budget_exhausted"
+        ]
+      },
+      {
+        "case": "15_multi_branch_merge",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 2,
+        "plan_edits": 2,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "16_no_opportunity",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 0,
+        "plan_edits": 0,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      },
+      {
+        "case": "17_case3_seven_bits",
+        "result": "PASS",
+        "structure": "PASS",
+        "check": "PASS",
+        "eqy": "PASS",
+        "changed_bits": 7,
+        "plan_edits": 7,
+        "commit": "ok",
+        "reason_codes": [
+          "primary_input"
+        ]
+      }
+    ]
+  },
+  "real_random": {
+    "count": 100,
+    "pass": 100,
+    "fail": 0,
+    "structure_correct": "PASS",
+    "synthesis_pass": "PASS",
+    "eqy_pass": "PASS",
+    "changed_bits": 24,
+    "edited_cases": 7
+  },
+  "atomic_test_only": {
+    "schema": 1,
+    "mode": "test-only-snapshot-abort",
+    "status": "PASS",
+    "structure": "PASS",
+    "check": "PASS",
+    "eqy": "PASS",
+    "issues": []
+  },
+  "failures": [],
+  "failure_evidence_complete": true,
+  "lut_benefit": "NOT_RUN",
+  "ready_for_1000": true
+}

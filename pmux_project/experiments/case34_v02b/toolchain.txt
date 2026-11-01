@@ -1,0 +1,28 @@
+Captured: 2026-10-07, Ubuntu 24.04.5 LTS under WSL2
+
+Yosys version:
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Yosys commit: 9f75ca1f9834a39a863915b5dae0c7b1e33533bc
+
+EQY version: EQY v0.69
+EQY commit: 4a72eb94fc253062464afee4d0018359017bb846
+
+SBY version: SBY v0.69
+SBY commit: b1a1e98cba941ec8433f8dc27f416cd7bb7f14be
+
+ABC version:
+UC Berkeley, ABC 1.01 (compiled Oct 6 2026 12:19:53)
+ABC commit: a51bf4a7bb38ce06ea3a544b1463b40832213917
+
+Executable SHA-256:
+3c0131f1d03c1956513021df88c5b1bac9550da8d3757e78452407435edaa440  yosys
+f4729c15250d1b8c0c9132fc7296a25792e536a83ba95759bb060cddf2a2dd0c  yosys-abc
+4c4110be84a2c9b84d5cea9023f0e5bc31987d9d4ddc02276dc85b97f517f76e  eqy
+456ed28b00192b80cce32320f7f10370cd507f0527b1fedcc84da292f4f0d7b3  sby
+
+Original executable directory:
+/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin
+
+System:
+Linux James 6.18.33.2-microsoft-standard-WSL2 x86_64
+Ubuntu 24.04.5 LTS (Noble Numbat)

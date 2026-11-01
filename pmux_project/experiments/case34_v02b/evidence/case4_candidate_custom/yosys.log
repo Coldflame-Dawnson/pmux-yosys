@@ -1,0 +1,460 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+
+-- Executing script file `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_candidate_custom/run.ys' --
+
+1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v
+Parsing Verilog input from `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v' to AST representation.
+Generating RTLIL representation for module `\case4_lut4'.
+Generating RTLIL representation for module `\test4'.
+Successfully finished Verilog frontend.
+
+2. Executing PROC pass (convert processes to netlists).
+
+2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12 in module test4.
+Removed a total of 0 dead cases.
+
+2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 4 redundant assignments.
+Promoted 0 assignments to connections.
+
+2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset_n in `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+
+2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+     1/3: { $0\dataout[5:0] $0\only_5b[0:0] }
+     2/3: { $0\data_dp[0:0] $0\data_dn[0:0] }
+     3/3: $0\datain_5bis7[0:0]
+
+2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\test4.\dataout' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+  created $adff cell `$procdff$28' with positive edge clock and positive level reset.
+Creating register for signal `\test4.\only_5b' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+  created $adff cell `$procdff$33' with positive edge clock and positive level reset.
+Creating register for signal `\test4.\datain_5bis7' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+  created $dff cell `$procdff$40' with positive edge clock.
+Creating register for signal `\test4.\data_dp' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+  created $adff cell `$procdff$45' with positive edge clock and positive level reset.
+Creating register for signal `\test4.\data_dn' using process `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+  created $adff cell `$procdff$50' with positive edge clock and positive level reset.
+
+2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Removing empty process `test4.$proc$/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/case4_cofactor_candidate.v:66$12'.
+Cleaned up 1 empty switch.
+
+2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module test4.
+<suppressed ~13 debug messages>
+Optimizing module case4_lut4.
+
+3. Executing TECHMAP pass (map to technology primitives).
+
+3.1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+3.2. Continuing TECHMAP pass.
+Using template $paramod$constmap:4c97d058b344d1c8460cbace8be5b63d442c7012$paramod$962bb79c2a50a422516483c1c9c06046761917ac\_90_shift_shiftx for cells of type $shiftx.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $dff.
+No more expansions possible.
+<suppressed ~297 debug messages>
+
+4. Executing TECHMAP pass (map to technology primitives).
+
+4.1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v
+Parsing Verilog input from `/home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/scripts/case4_lut4_map.v' to AST representation.
+Generating RTLIL representation for module `\case4_lut4_map'.
+Successfully finished Verilog frontend.
+
+4.2. Continuing TECHMAP pass.
+Using template $paramod\case4_lut4_map\LUT=16'0000000001101000 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0001011000000000 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0000000000001000 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0111111001101000 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0001011001111110 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'1001011101111111 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'1000000100010111 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'1000000000000001 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'1110000011100111 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0111000011110001 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0000000100010110 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'1111111101111110 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'1100110111011010 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0100110111001101 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'0010101110111101 for cells of type case4_lut4.
+Using template $paramod\case4_lut4_map\LUT=16'1010101110101010 for cells of type case4_lut4.
+No more expansions possible.
+<suppressed ~163 debug messages>
+
+5. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1. Analyzing design hierarchy..
+Top module:  \test4
+
+5.2. Analyzing design hierarchy..
+Top module:  \test4
+Removing unused module `\case4_lut4'.
+Removed 1 unused modules.
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module test4.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\test4'.
+Computing hashes of 54 cells of `\test4'.
+Finding duplicate cells in `\test4'.
+Computing hashes of 49 cells of `\test4'.
+Finding duplicate cells in `\test4'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \test4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \test4.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\test4'.
+Computing hashes of 49 cells of `\test4'.
+Finding duplicate cells in `\test4'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:337:slice$252 ($_DFF_P_) from module test4 (D = $procmux$22_Y, Q = \datain_5bis7).
+Adding SRST signal on $auto$ff.cc:337:slice$271 ($_DFFE_PP_) from module test4 (D = \cf_3, Q = \datain_5bis7, rval = 1'0).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \test4..
+Removed 5 unused cells and 63 unused wires.
+<suppressed ~6 debug messages>
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module test4.
+
+6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \test4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \test4.
+Performed a total of 0 changes.
+
+6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\test4'.
+Computing hashes of 45 cells of `\test4'.
+Finding duplicate cells in `\test4'.
+Removed a total of 0 cells.
+
+6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \test4..
+
+6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module test4.
+
+6.16. Finished fast OPT passes. (There is nothing left to do.)
+Warning: Feature 'synth_intel' is experimental.
+
+7. Executing SYNTH_INTEL pass.
+
+7.1. Executing DFFLEGALIZE pass (convert FFs and LATCHes to types supported by the target).
+
+7.2. Executing TECHMAP pass (map to technology primitives).
+
+7.2.1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v
+Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/intel/common/ff_map.v' to AST representation.
+Generating RTLIL representation for module `$_DFFE_PN0P_'.
+Successfully finished Verilog frontend.
+
+7.2.2. Continuing TECHMAP pass.
+Using template $paramod$_DFFE_PN0P_\_TECHMAP_WIREINIT_Q_=1'x for cells of type $_DFFE_PN0P_.
+No more expansions possible.
+<suppressed ~22 debug messages>
+
+8. Executing ABC9 pass.
+
+8.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+8.2. Executing ABC9_OPS pass (helper functions for ABC9).
+
+8.3. Executing SCC pass (detecting logic loops).
+Found 0 SCCs in module test4.
+Found 0 SCCs.
+
+8.4. Executing ABC9_OPS pass (helper functions for ABC9).
+
+8.5. Executing TECHMAP pass (map to technology primitives).
+
+8.5.1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+8.5.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~78 debug messages>
+
+8.6. Executing OPT pass (performing simple optimizations).
+
+8.6.1. Executing OPT_EXPR pass (perform const folding).
+
+8.6.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+8.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+8.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+8.6.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+8.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+8.6.8. Executing OPT_EXPR pass (perform const folding).
+
+8.6.9. Finished fast OPT passes. (There is nothing left to do.)
+
+8.7. Executing TECHMAP pass (map to technology primitives).
+
+8.7.1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_map.v
+Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_map.v' to AST representation.
+Successfully finished Verilog frontend.
+
+8.7.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~2 debug messages>
+
+8.8. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v
+Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_model.v' to AST representation.
+Generating RTLIL representation for module `$__ABC9_DELAY'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Generating RTLIL representation for module `$__DFF_N__$abc9_flop'.
+Generating RTLIL representation for module `$__DFF_P__$abc9_flop'.
+Successfully finished Verilog frontend.
+
+8.9. Executing ABC9_OPS pass (helper functions for ABC9).
+
+8.10. Executing ABC9_OPS pass (helper functions for ABC9).
+<suppressed ~2 debug messages>
+
+8.11. Executing AIGMAP pass (map logic to AIG).
+Module test4: replaced 19 cells with 133 new cells, skipped 29 cells.
+  replaced 1 cell types:
+      19 $_MUX_
+  not replaced 4 cell types:
+       1 $_AND_
+       2 $_NOT_
+      16 $lut
+      10 dffeas
+
+8.11.1. Executing ABC9_OPS pass (helper functions for ABC9).
+
+8.11.2. Executing XAIGER backend.
+<suppressed ~5 debug messages>
+Extracted 58 AND gates and 181 wires from module `test4' to a netlist network with 34 inputs and 21 outputs.
+
+8.11.3. Executing ABC9_EXE pass (technology mapping using ABC9).
+
+8.11.4. Executing ABC9.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_lut <abc-temp-dir>/lutdefs.txt 
+ABC: + read_box <abc-temp-dir>/input.box 
+ABC: + &read <abc-temp-dir>/input.xaig 
+ABC: + &ps 
+ABC: <abc-temp-dir>/input : i/o =     34/     21  and =      33  lev =    3 (1.29)  mem = 0.00 MB  box = 0  bb = 0
+ABC: + source /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/generated/abc.script 
+ABC: Warning: The network is combinational.
+ABC: K = 4. Memory (bytes): Truth =    0. Cut =   64. Obj =  144. Set =  672. CutMin = no
+ABC: Node =      32.  Ch =     0.  Total mem =    0.01 MB. Peak cut mem =    0.00 MB.
+ABC: D:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: E:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: F:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: E:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: A:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: E:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: A:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: E:  Del =  301.00.  Ar =      10.0.  Edge =       36.  Cut =       72.  T =     0.00 sec
+ABC: Total time =     0.00 sec
+ABC: + &ps -l 
+ABC: <abc-temp-dir>/input : i/o =     34/     21  and =      32  lev =    3 (1.24)  mem = 0.00 MB
+ABC: Mapping (K=4)  :  lut =     10  edge =      36  lev =    1 (0.48)  mem = 0.00 MB
+ABC: LUT = 10 : 2=0 0.0 %  3=4 40.0 %  4=6 60.0 %  Ave = 3.60
+ABC: + &write -n <abc-temp-dir>/output.aig 
+ABC: + &verify 
+ABC: Networks are equivalent.  Time =     0.01 sec
+ABC: + time 
+ABC: elapse: 0.01 seconds, total: 0.01 seconds
+
+8.11.5. Executing AIGER frontend.
+<suppressed ~3 debug messages>
+Removed 52 unused cells and 97 unused wires.
+
+8.11.6. Executing ABC_OPS_REINTEGRATE pass (reintegrate ABC mapped design into module).
+ABC RESULTS:              $lut cells:       11
+ABC RESULTS:           input signals:       20
+ABC RESULTS:          output signals:       11
+<suppressed ~110 debug messages>
+Removing temp directory.
+
+8.12. Executing TECHMAP pass (map to technology primitives).
+
+8.12.1. Executing Verilog-2005 frontend: /home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_unmap.v
+Parsing Verilog input from `/home/james/work/pmux-yosys/pmux_project/official_baseline/toolchain/install/bin/../share/yosys/abc9_unmap.v' to AST representation.
+Generating RTLIL representation for module `$__DFF_x__$abc9_flop'.
+Generating RTLIL representation for module `$__ABC9_SCC_BREAKER'.
+Successfully finished Verilog frontend.
+
+8.12.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~5 debug messages>
+Removed 1 unused cells and 255 unused wires.
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module test4.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\test4'.
+Computing hashes of 37 cells of `\test4'.
+Finding duplicate cells in `\test4'.
+Removed a total of 0 cells.
+
+9.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \test4..
+
+9.5. Finished fast OPT passes.
+
+10. Executing CHECK pass (checking for obvious problems).
+Checking module test4...
+Warning: Wire test4.\dataout [5] is used but has no driver.
+Warning: Wire test4.\dataout [4] is used but has no driver.
+Warning: Wire test4.\dataout [3] is used but has no driver.
+Warning: Wire test4.\dataout [2] is used but has no driver.
+Warning: Wire test4.\dataout [1] is used but has no driver.
+Warning: Wire test4.\dataout [0] is used but has no driver.
+Warning: Wire test4.\datain_5bis7 is used but has no driver.
+Warning: Wire test4.\data_dp is used but has no driver.
+Warning: Wire test4.\data_dn is used but has no driver.
+Warning: Wire test4.$abc$636$aiger$o4 is used but has no driver.
+Found and reported 10 problems.
+
+11. Printing statistics.
+
+=== test4 ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       33 wires
+       47 wire bits
+       27 public wires
+       36 public wire bits
+        9 ports
+       18 port bits
+       37 cells
+       27   $lut
+       10   dffeas
+
+12. Executing RTLIL backend.
+Output filename: /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_candidate_custom/post_abc9.il
+
+13. Executing JSON backend.
+
+Warnings: 11 unique messages, 11 total
+Warnings: 1 experimental features used (not excluded with -x).
+End of script. Logfile hash: fd616f6b6f, time: 0.04s, user: 0.02s, system: 0.01s, MEM: 25.75 MB peak
+Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+Time spent: 52% 1x abc9_exe (0 sec), 26% 10x read_verilog (0 sec), ...

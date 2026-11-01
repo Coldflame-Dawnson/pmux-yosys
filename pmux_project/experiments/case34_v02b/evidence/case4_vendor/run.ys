@@ -1,0 +1,11 @@
+read_verilog -sv -lib +/intel/max10/cells_sim.v
+read_verilog -sv -lib +/intel/common/m9k_bb.v
+read_verilog -sv -lib +/intel/common/altpll_bb.v
+read_rtlil /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_candidate_custom/post_abc9.il
+hierarchy -check -top test4
+techmap -map +/intel/max10/cells_map.v
+clean -purge
+check
+stat
+write_rtlil /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_vendor/vendor.il
+write_json /home/james/work/pmux-yosys-b-case34-integration/pmux_project/experiments/case34_v02b/evidence/case4_vendor/vendor.json

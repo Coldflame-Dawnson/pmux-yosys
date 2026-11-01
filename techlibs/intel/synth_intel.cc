@@ -22,6 +22,7 @@
 #include "kernel/log.h"
 #include "kernel/register.h"
 #include "kernel/rtlil.h"
+#include "../../pmux_project/pass/pmux_profile_authorization.h"
 
 USING_YOSYS_NAMESPACE
 PRIVATE_NAMESPACE_BEGIN
@@ -79,13 +80,24 @@ struct SynthIntelPass : public ScriptPass {
 		log("    -noflatten\n");
 		log("        do not flatten design before synthesis\n");
 		log("\n");
+		log("    -no-pmux-v02\n");
+		log("        disable the accepted proof-gated PMUX v0.2 structural rules\n");
+		log("        (diagnostic/baseline rollback only)\n");
+		log("\n");
+		log("    -pmux-v02-case12\n");
+		log("        compatibility spelling for default Cyclone IV structural rules\n");
+		log("\n");
+		log("    -no-pmux-v02-case12\n");
+		log("        disable paired-PMUX and priority-chain rules for diagnostics\n");
+		log("\n");
 		log("The following commands are executed by this synthesis command:\n");
 		help_script();
 		log("\n");
 	}
 
 	string top_opt, family_opt, vout_file, blif_file;
-	bool flatten, nobram, dff, nodsp, iopads;
+	bool flatten, nobram, dff, nodsp, iopads, pmux_v02, pmux_v02_case12,
+		no_pmux_v02_case12, pmux_constant_table_profile;
 
 	void clear_flags() override
 	{
@@ -98,6 +110,10 @@ struct SynthIntelPass : public ScriptPass {
 		dff = false;
 		nodsp = false;
 		iopads = false;
+		pmux_v02 = true;
+		pmux_v02_case12 = false;
+		no_pmux_v02_case12 = false;
+		pmux_constant_table_profile = false;
 	}
 
 	void execute(std::vector<std::string> args, RTLIL::Design *design) override
@@ -152,6 +168,18 @@ struct SynthIntelPass : public ScriptPass {
 				flatten = false;
 				continue;
 			}
+			if (args[argidx] == "-no-pmux-v02") {
+				pmux_v02 = false;
+				continue;
+			}
+			if (args[argidx] == "-pmux-v02-case12") {
+				pmux_v02_case12 = true;
+				continue;
+			}
+			if (args[argidx] == "-no-pmux-v02-case12") {
+				no_pmux_v02_case12 = true;
+				continue;
+			}
 			if (args[argidx] == "-retime") {
 				// Removed: ABC9 does not support retiming.
 				continue;
@@ -162,6 +190,12 @@ struct SynthIntelPass : public ScriptPass {
 
 		if (!design->full_selection())
 			log_cmd_error("This command only operates on fully selected designs!\n");
+		if (!pmux_v02 && pmux_v02_case12)
+			log_cmd_error("Options -no-pmux-v02 and -pmux-v02-case12 are mutually exclusive.\n");
+		if (pmux_v02_case12 && no_pmux_v02_case12)
+			log_cmd_error("Options -pmux-v02-case12 and -no-pmux-v02-case12 are mutually exclusive.\n");
+		if (pmux_v02_case12 && family_opt != "cycloneiv")
+			log_cmd_error("Option -pmux-v02-case12 requires -family cycloneiv.\n");
 
 		if (family_opt == "cyclonev")
 			log_cmd_error("Cyclone V synthesis has been moved to synth_intel_alm.\n");
@@ -251,7 +285,34 @@ struct SynthIntelPass : public ScriptPass {
 			run("opt -fast -mux_undef -undriven -fine -full");
 			run("memory_map");
 			run("opt -undriven -fine");
+			const bool enable_pmux_case12 = pmux_v02 && !no_pmux_v02_case12 &&
+					family_opt == "cycloneiv";
+			run(!pmux_v02 ? "pmux_opt -no-v02-case12 -no-v02-case34" :
+					(enable_pmux_case12 ? "pmux_opt" : "pmux_opt -no-v02-case12"));
+			run("opt_clean");
+			bool pmux_constant_table_cells = false;
+			if (pmux_v02 && !help_mode) {
+				const bool pmux_constant_table_authorized = active_design->scratchpad_get_bool(
+						PmuxProfileAuthorization::enabled_key, false);
+				const bool pmux_constant_table_lifecycle_valid =
+						PmuxProfileAuthorization::constant_table_lifecycle_matches(active_design);
+				pmux_constant_table_cells =
+						PmuxProfileAuthorization::build_constant_table_snapshot(active_design).cell_count > 0;
+				pmux_constant_table_profile =
+						PmuxProfileAuthorization::constant_table_authorization_matches(active_design);
+				if (pmux_constant_table_authorized && !pmux_constant_table_profile)
+					log("synth_intel: PMUX mapping authorization rejected reason=%s\n",
+							pmux_constant_table_lifecycle_valid ? "target_snapshot_mismatch" :
+							"target_lifecycle_mismatch");
+			}
+			if (!help_mode)
+				PmuxProfileAuthorization::clear_constant_table_authorization(active_design);
+			if (!help_mode)
+				log("synth_intel: pmux_profile=%s\n",
+						pmux_constant_table_profile ? "accepted_constant_table" : "stock");
 			run("techmap -map +/techmap.v");
+			if (pmux_constant_table_cells || help_mode)
+				run("techmap -map +/intel/common/pmux_case34_lut_map.v", "(unless -no-pmux-v02)");
 			run("opt -full");
 			run("clean -purge");
 			run("setundef -undriven -zero");
@@ -263,7 +324,10 @@ struct SynthIntelPass : public ScriptPass {
 		}
 
 		if (check_label("map_luts")) {
-			run("abc9 -lut 4 -W 300" + string(dff ? " -dff" : ""));
+			if (pmux_constant_table_profile)
+				run("abc9 -lut 4 -W 300 -script +/intel/common/pmux_case34_abc.script" + string(dff ? " -dff" : ""));
+			else
+				run("abc9 -lut 4 -W 300" + string(dff ? " -dff" : ""));
 			run("clean");
 			run("opt -fast");
 			run("autoname");

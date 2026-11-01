@@ -1,0 +1,277 @@
+{
+  "splits_by_word_bit_0_to_9": [
+    3,
+    3,
+    1,
+    4,
+    4,
+    4,
+    0,
+    2,
+    4,
+    4
+  ],
+  "unique_cofactors": 18,
+  "cofactors": [
+    {
+      "output_bit": 0,
+      "split_bit": 3,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "truth_mask_hex": "0000",
+      "shared_name": "cf_0"
+    },
+    {
+      "output_bit": 0,
+      "split_bit": 3,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "truth_mask_hex": "0068",
+      "shared_name": "cf_1"
+    },
+    {
+      "output_bit": 1,
+      "split_bit": 3,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "truth_mask_hex": "1600",
+      "shared_name": "cf_2"
+    },
+    {
+      "output_bit": 1,
+      "split_bit": 3,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "truth_mask_hex": "0000",
+      "shared_name": "cf_0"
+    },
+    {
+      "output_bit": 2,
+      "split_bit": 1,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "truth_mask_hex": "0000",
+      "shared_name": "cf_0"
+    },
+    {
+      "output_bit": 2,
+      "split_bit": 1,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "truth_mask_hex": "0008",
+      "shared_name": "cf_3"
+    },
+    {
+      "output_bit": 3,
+      "split_bit": 4,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "7E68",
+      "shared_name": "cf_4"
+    },
+    {
+      "output_bit": 3,
+      "split_bit": 4,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "167E",
+      "shared_name": "cf_5"
+    },
+    {
+      "output_bit": 4,
+      "split_bit": 4,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "977F",
+      "shared_name": "cf_6"
+    },
+    {
+      "output_bit": 4,
+      "split_bit": 4,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "8117",
+      "shared_name": "cf_7"
+    },
+    {
+      "output_bit": 5,
+      "split_bit": 4,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "8001",
+      "shared_name": "cf_8"
+    },
+    {
+      "output_bit": 5,
+      "split_bit": 4,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "FFFF",
+      "shared_name": "cf_9"
+    },
+    {
+      "output_bit": 6,
+      "split_bit": 0,
+      "select_value": 0,
+      "remaining_bits": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "truth_mask_hex": "E0E7",
+      "shared_name": "cf_10"
+    },
+    {
+      "output_bit": 6,
+      "split_bit": 0,
+      "select_value": 1,
+      "remaining_bits": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "truth_mask_hex": "70F1",
+      "shared_name": "cf_11"
+    },
+    {
+      "output_bit": 7,
+      "split_bit": 2,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "truth_mask_hex": "0116",
+      "shared_name": "cf_12"
+    },
+    {
+      "output_bit": 7,
+      "split_bit": 2,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "truth_mask_hex": "FF7E",
+      "shared_name": "cf_13"
+    },
+    {
+      "output_bit": 8,
+      "split_bit": 4,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "CDDA",
+      "shared_name": "cf_14"
+    },
+    {
+      "output_bit": 8,
+      "split_bit": 4,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "4DCD",
+      "shared_name": "cf_15"
+    },
+    {
+      "output_bit": 9,
+      "split_bit": 4,
+      "select_value": 0,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "2BBD",
+      "shared_name": "cf_16"
+    },
+    {
+      "output_bit": 9,
+      "split_bit": 4,
+      "select_value": 1,
+      "remaining_bits": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "truth_mask_hex": "ABAA",
+      "shared_name": "cf_17"
+    }
+  ]
+}
