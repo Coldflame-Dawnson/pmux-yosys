@@ -18,6 +18,8 @@ def build_script(args) -> str:
 	use_v02_case34 = not args.no_v02_case34
 	if not use_v02_case34:
 		pmux_command += " -no-v02-case34"
+	if args.no_v02_case12 or args.family != "cycloneiv":
+		pmux_command += " -no-v02-case12"
 	commands = [
 		f"read_verilog {ys_quote(args.source)}",
 		f"synth_intel -family {args.family} -top {args.top} -run begin:map_ffram",
@@ -109,7 +111,11 @@ def main() -> int:
 	mode.add_argument("--v02-case34", action="store_true",
 	                  help="compatibility spelling; v0.2 production selection is already the default")
 	mode.add_argument("--no-v02-case34", action="store_true",
-	                  help="disable accepted v0.2 structural rules for baseline/rollback diagnostics")
+	                  help="disable guarded-cone/constant-table rules only")
+	parser.add_argument("--no-v02-case12", action="store_true",
+	                    help="disable paired-PMUX/priority-chain rules only")
+	parser.add_argument("--no-pmux-v02", action="store_true",
+	                    help="disable all v0.2 structural families for baseline diagnostics")
 	parser.add_argument("--cofactor-map", type=Path)
 	parser.add_argument("--abc-script", type=Path)
 	parser.add_argument("--plan", type=Path, required=True)
@@ -119,6 +125,11 @@ def main() -> int:
 	parser.add_argument("--log", type=Path, required=True)
 	parser.add_argument("--script", type=Path, required=True)
 	args = parser.parse_args()
+	if args.no_pmux_v02:
+		if args.v02_case34:
+			parser.error("--no-pmux-v02 conflicts with --v02-case34")
+		args.no_v02_case12 = True
+		args.no_v02_case34 = True
 	if args.cofactor_map is None:
 		args.cofactor_map = Path(__file__).resolve().with_name("pmux_case34_lut_map.v")
 	if args.abc_script is None:

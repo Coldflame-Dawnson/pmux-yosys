@@ -100,6 +100,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[4])
     parser.add_argument("--yosys", type=Path, required=True)
+    parser.add_argument("--default", action="store_true",
+                        help="exercise the default four-family dispatcher")
     args = parser.parse_args()
     repo = args.repo.resolve()
     plugin = repo / "pmux_project/pass/pmux_opt.so"
@@ -126,9 +128,10 @@ def main() -> int:
             # production pass result, discard this test-only design explicitly;
             # all well-formed fixtures continue through check and stat.
             post_validation = "; design -reset" if name == "paired_decode_awidth_mismatch" else "; check; stat"
+            selection = "" if args.default else " -v02-case12 -no-v02-case34"
             output = run([str(args.yosys), "-m", str(plugin), "-p",
                           f"{reader} {design}; {prepare}; {setup} "
-                          f"pmux_opt -v02-case12 -no-v02-case34{post_validation}"], cwd=repo)
+                          f"pmux_opt{selection}{post_validation}"], cwd=repo)
             expect_summary(output, paired=paired, priority=priority, committed=committed,
                            removed=removed, added=added)
             print(f"PASS {name}")

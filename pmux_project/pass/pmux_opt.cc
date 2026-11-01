@@ -406,7 +406,7 @@ struct PmuxOptPass : public Pass
 		log("             [-test-snapshot-mismatch]\n");
 		log("             [-test-decision-proof-mutations]\n");
 		log("             [-test-report-constants]\n");
-		log("             [-v02-case12] [-v02-case34|-no-v02-case34]\n");
+		log("             [-v02-case12|-no-v02-case12] [-v02-case34|-no-v02-case34]\n");
 		log("             [-write-plan <file>] [-write-stats <file>] [selection]\n");
 		log("\n");
 		log("Enumerate selected, structurally valid $mux and $pmux cells in stable\n");
@@ -427,6 +427,10 @@ struct PmuxOptPass : public Pass
 		log("are enabled by default after production acceptance. -no-v02-case34\n");
 		log("provides an explicit diagnostic/baseline rollback. -v02-case34 remains\n");
 		log("as a compatibility spelling for the default production policy.\n");
+		log("Paired-PMUX and Cyclone IV priority-chain rules also run by default.\n");
+		log("-v02-case12 is a compatibility spelling; -no-v02-case12 disables\n");
+		log("these rules for diagnostics. Disable both families for the legacy path.\n");
+		log("Stub and decision-proof mutation modes do not run structural rules.\n");
 		log("\n");
 	}
 
@@ -440,7 +444,8 @@ struct PmuxOptPass : public Pass
 		bool test_snapshot_mismatch = false;
 		bool test_decision_proof_mutations = false;
 		bool test_report_constants = false;
-		bool enable_v02_case12 = false;
+		bool explicit_enable_v02_case12 = false;
+		bool disable_v02_case12 = false;
 		bool explicit_enable_v02_case34 = false;
 		bool disable_v02_case34 = false;
 		StubMode stub_mode = StubMode::Unknown;
@@ -478,7 +483,11 @@ struct PmuxOptPass : public Pass
 				continue;
 			}
 			if (args[argidx] == "-v02-case12") {
-				enable_v02_case12 = true;
+				explicit_enable_v02_case12 = true;
+				continue;
+			}
+			if (args[argidx] == "-no-v02-case12") {
+				disable_v02_case12 = true;
 				continue;
 			}
 			if (args[argidx] == "-no-v02-case34") {
@@ -519,6 +528,8 @@ struct PmuxOptPass : public Pass
 			log_cmd_error("pmux_opt: -test-rewrite-duplicate requires a -stub-* mode.\n");
 		if (test_report_constants && !stub_mode_set)
 			log_cmd_error("pmux_opt: -test-report-constants requires a -stub-* mode.\n");
+		if (explicit_enable_v02_case12 && disable_v02_case12)
+			log_cmd_error("pmux_opt: -v02-case12 and -no-v02-case12 are mutually exclusive.\n");
 		if (explicit_enable_v02_case34 && disable_v02_case34)
 			log_cmd_error("pmux_opt: -v02-case34 and -no-v02-case34 are mutually exclusive.\n");
 		if (explicit_enable_v02_case34 && stub_mode_set)
@@ -526,6 +537,8 @@ struct PmuxOptPass : public Pass
 		if (test_decision_proof_mutations && (stub_mode_set || explicit_enable_v02_case34))
 			log_cmd_error("pmux_opt: -test-decision-proof-mutations is a standalone test mode.\n");
 		const bool enable_v02_case34 = !disable_v02_case34 && !stub_mode_set &&
+				!test_decision_proof_mutations;
+		const bool enable_v02_case12 = !disable_v02_case12 && !stub_mode_set &&
 				!test_decision_proof_mutations;
 		PmuxProfileAuthorization::clear_constant_table_authorization(design);
 
