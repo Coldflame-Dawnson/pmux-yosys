@@ -1,0 +1,31 @@
+{
+  "source": "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+  "frozen_target": "f78cb2fd1894c2e1f7197d121a4d73db980c85a7",
+  "branch": "feature/b-g3-mechanical-integration-cb1e819",
+  "final": "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a",
+  "parents": [
+    "f78cb2fd1894c2e1f7197d121a4d73db980c85a7",
+    "cb1e8199d35c894d0400a0bf4eef2aa626616026"
+  ],
+  "tree": "f23b81e9706304fbbfa9209a542c8e0f40e84ac7",
+  "tree_identical_to_source": true,
+  "conflicts": 0,
+  "manual_resolution": false,
+  "production_diff": 0,
+  "extra_files_relative_to_source": [],
+  "document_hashes": "9/9 PASS",
+  "original_A_hashes": "47/47 PASS",
+  "candidate_worktree_clean": true,
+  "target_unique_commits": 0,
+  "source_additional_commits": 56,
+  "cached_diff_check": "rc=2; EXACTLY inherited source Markdown/log whitespace; no files changed",
+  "source_to_final_diff_check": "PASS; empty whole-tree diff",
+  "integration_target_updated": false,
+  "long_tests_rerun": false,
+  "candidate_final_A_review": "PENDING",
+  "historical_P2": "UNVERIFIED",
+  "external_scoring": "UNVERIFIED_EXTERNAL_SCORING",
+  "release": "NOT_EXECUTED",
+  "eLinx": "NOT_EXECUTED",
+  "submodule_note": "New worktree has uninitialized submodules; gitlinks unchanged. No compilation claimed."
+}

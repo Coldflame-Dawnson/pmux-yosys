@@ -1,0 +1,516 @@
+[
+  {
+    "number": 1,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 2,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "rev-parse",
+      "origin/feature/b-v02-documentation-closure"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 3,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "rev-parse",
+      "origin/integration/g3"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 4,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "rev-parse",
+      "origin/feature/a-v02-documentation-closure-audit-cb1e819"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 5,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 6,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "rev-list",
+      "--left-right",
+      "--count",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7...cb1e8199d35c894d0400a0bf4eef2aa626616026"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 7,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "-c",
+      "core.quotePath=false",
+      "diff",
+      "--name-status",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 8,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--raw",
+      "--no-abbrev",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 9,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--submodule=log",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 10,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 11,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "worktree",
+      "add",
+      "-b",
+      "feature/b-g3-mechanical-integration-cb1e819",
+      "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 12,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 13,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "merge",
+      "--no-commit",
+      "--no-ff",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 14,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "ls-files",
+      "--unmerged"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 15,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 16,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "-c",
+      "core.quotePath=false",
+      "diff",
+      "--cached",
+      "--name-status"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 17,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "returncode": 2
+  },
+  {
+    "number": 18,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 19,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "rev-parse",
+      "MERGE_HEAD"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 20,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "branch",
+      "--show-current"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 21,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "ls-files",
+      "--unmerged"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 22,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "rev-parse",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026^{tree}"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 23,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "write-tree"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 24,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 25,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "f78cb2fd1894c2e1f7197d121a4d73db980c85a7",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026"
+    ],
+    "returncode": 2
+  },
+  {
+    "number": 26,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "returncode": 2
+  },
+  {
+    "number": 27,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--submodule=log"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 28,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "commit",
+      "-m",
+      "Merge audited PMUX v0.2 default path into G3 candidate",
+      "-m",
+      "Frozen target: f78cb2fd1894c2e1f7197d121a4d73db980c85a7\nAuthorized source: cb1e8199d35c894d0400a0bf4eef2aa626616026\nA documentation authorization: 8448b57408bb4dc65fc8c94d2cad5863de939797\nMechanical merge only; source tree unchanged. Pending A final review.\nHistorical P2 UNVERIFIED; external scoring UNVERIFIED_EXTERNAL_SCORING.\nRelease and eLinx NOT_EXECUTED. integration/g3 not updated."
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 29,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 30,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "show",
+      "-s",
+      "--format=%P",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 31,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 32,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "rev-parse",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a^{tree}"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 33,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 34,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a",
+      "--",
+      "pmux_project/pass",
+      "pmux_project/analyzer",
+      "pmux_project/include",
+      "pmux_project/scripts",
+      "techlibs/intel/synth_intel.cc"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 35,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a",
+      "--",
+      "design"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 36,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "-c",
+      "core.quotePath=false",
+      "diff",
+      "--name-status",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 37,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--raw",
+      "--no-abbrev",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 38,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--submodule=log",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 39,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+      "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 40,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "submodule",
+      "status",
+      "--recursive"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 41,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819/design",
+    "argv": [
+      "sha256sum",
+      "-c",
+      "DOCUMENT_SHA256SUMS"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 42,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "worktree",
+      "add",
+      "--detach",
+      "/home/james/work/pmux-yosys-b-g3-original-a-evidence",
+      "feb137e459a329e01ff3ee87d3e3acb04a942d72"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 43,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-original-a-evidence/pmux_project/experiments/case12_v02/a_unified_default_audit",
+    "argv": [
+      "sha256sum",
+      "-c",
+      "SHA256SUMS"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 44,
+    "cwd": "/home/james/work/pmux-yosys-b-g3-mechanical-cb1e819",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "returncode": 0
+  },
+  {
+    "number": 45,
+    "cwd": "/home/james/work/pmux-yosys-b-case34-production",
+    "argv": [
+      "git",
+      "rev-parse",
+      "origin/integration/g3"
+    ],
+    "returncode": 0
+  }
+]
