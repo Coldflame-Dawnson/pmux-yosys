@@ -1,0 +1,250 @@
+{
+  "tests": [
+    {
+      "consumer": "native",
+      "mode": "none",
+      "expected": "accepted_constant_table",
+      "actual": "accepted_constant_table",
+      "rejected": false,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "lut_bit",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "lut_width",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "port",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "attribute",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "type",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "remove_one",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "add_extra",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "same_name_rebuild",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "drop_snapshot",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "forged_generation",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "unregister_monitor",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "none",
+      "expected": "accepted_constant_table",
+      "actual": "accepted_constant_table",
+      "rejected": false,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "lut_bit",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "lut_width",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "port",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "attribute",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "type",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "remove_one",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "add_extra",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "same_name_rebuild",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "drop_snapshot",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "forged_generation",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "unregister_monitor",
+      "expected": "stock",
+      "actual": "stock",
+      "rejected": true,
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "native",
+      "mode": "consumed_replay",
+      "expected": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "actual": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "returncode": 0,
+      "pass": true
+    },
+    {
+      "consumer": "runner",
+      "mode": "consumed_replay",
+      "expected": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "actual": [
+        "accepted_constant_table",
+        "stock"
+      ],
+      "returncode": 0,
+      "pass": true
+    }
+  ],
+  "passed": 26,
+  "total": 26
+}

@@ -1,0 +1,15 @@
+PROFILE_SNAPSHOT_TESTS 14/14 PASS
+none PASS
+lut_bit PASS
+lut_width PASS
+port PASS
+attribute PASS
+type PASS
+remove_one PASS
+add_extra PASS
+same_name_rebuild PASS
+drop_snapshot PASS
+forged_generation PASS
+consumed_full_cell_replay PASS
+runner_same_name_rebuild PASS
+runner_forged_generation PASS

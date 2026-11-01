@@ -1,0 +1,31 @@
+make: Entering directory '/home/dawnson/work/pmux-yosys-a-unified-default-audit/pmux_project/analyzer'
+YOSYS_DATDIR=/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys -Q -m ./analyzer_selftest.so \
+	-p 'read_verilog /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case/test3.v; synth_intel -family cycloneiv -top test3 -run begin:map_ffram; opt -fast -mux_undef -undriven -fine -full; memory_map; opt -undriven -fine; pmux_case34_production_proof_report' \
+	> production_case3_proof.log
+grep -F 'source_width=8 removed=1 comparators=3' production_case3_proof.log
+PRODUCTION_GUARD_PROOF module=\test3 source_width=8 removed=1 comparators=3 folds=7 preserved=35 guard_cells=6 affected=16 sinks=8 status=0 all_cmp=1 all_data=1 fanout=1 boundaries=1 all=1 reason=proved cells=12 bits=25 events=195180
+grep -F 'status=0 all_cmp=1 all_data=1 fanout=1 boundaries=1 all=1 reason=proved' production_case3_proof.log
+PRODUCTION_GUARD_PROOF module=\test3 source_width=8 removed=1 comparators=3 folds=7 preserved=35 guard_cells=6 affected=16 sinks=8 status=0 all_cmp=1 all_data=1 fanout=1 boundaries=1 all=1 reason=proved cells=12 bits=25 events=195180
+grep -F 'PRODUCTION_PROOF_NETLIST_UNCHANGED 1' production_case3_proof.log
+PRODUCTION_PROOF_NETLIST_UNCHANGED 1
+YOSYS_DATDIR=/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys -Q -m ./analyzer_selftest.so \
+	-p 'read_verilog /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case/test4.v; synth_intel -family cycloneiv -top test4 -run begin:map_ffram; opt -fast -mux_undef -undriven -fine -full; memory_map; opt -undriven -fine; pmux_case34_production_proof_report' \
+	> production_case4_proof.log
+grep -F 'address_width=5 output_width=10 rows=32 source_cells=17 sinks=10 status=0 complete=1 rows_proved=1 mapped=1 all=1 reason=proved' production_case4_proof.log
+PRODUCTION_TABLE_PROOF module=\test4 address_width=5 output_width=10 rows=32 source_cells=17 sinks=10 status=0 complete=1 rows_proved=1 mapped=1 all=1 reason=proved cells=23 bits=122 events=7784
+grep -F 'PRODUCTION_TABLE_ROW address=0 bits=1001110000' production_case4_proof.log
+PRODUCTION_TABLE_ROW address=0 bits=1001110000
+grep -F 'PRODUCTION_PROOF_NETLIST_UNCHANGED 1' production_case4_proof.log
+PRODUCTION_PROOF_NETLIST_UNCHANGED 1
+YOSYS_DATDIR=/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/share/yosys /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys -Q -m ./analyzer_selftest.so \
+	-p 'read_verilog /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case/test3.v; synth_intel -family cycloneiv -top test3 -run begin:map_ffram; opt -fast -mux_undef -undriven -fine -full; memory_map; opt -undriven -fine; pmux_case3_decision_cone_proof_report' \
+	> decision_cone_case3_proof.log
+grep -F 'source_width=8 support=7 fixed=1 comparators=3' decision_cone_case3_proof.log
+DECISION_CONE_PROOF module=\test3 source_width=8 support=7 fixed=1 comparators=3 relations=11 dag_nodes=13 sinks=8 unaffected=9 source_cells=12 external=0 status=0 structure=1 guard=1 selection=1 inside=1 outside=1 sink_bits=1 fanout=1 boundaries=1 dag=1 all=1 reason=proved cells=24 bits=50 events=216390
+grep -F 'status=0 structure=1 guard=1 selection=1 inside=1 outside=1 sink_bits=1 fanout=1 boundaries=1 dag=1 all=1 reason=proved' decision_cone_case3_proof.log
+DECISION_CONE_PROOF module=\test3 source_width=8 support=7 fixed=1 comparators=3 relations=11 dag_nodes=13 sinks=8 unaffected=9 source_cells=12 external=0 status=0 structure=1 guard=1 selection=1 inside=1 outside=1 sink_bits=1 fanout=1 boundaries=1 dag=1 all=1 reason=proved cells=24 bits=50 events=216390
+grep -F 'DECISION_CONE_TEST_CONSUMER reconstructed=1 constant_roots=3 shared_root_groups=2' decision_cone_case3_proof.log
+DECISION_CONE_TEST_CONSUMER reconstructed=1 constant_roots=3 shared_root_groups=2
+grep -F 'DECISION_CONE_NETLIST_UNCHANGED 1' decision_cone_case3_proof.log
+DECISION_CONE_NETLIST_UNCHANGED 1
+make: Leaving directory '/home/dawnson/work/pmux-yosys-a-unified-default-audit/pmux_project/analyzer'

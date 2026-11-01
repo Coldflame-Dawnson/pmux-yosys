@@ -1,0 +1,13 @@
+A	pmux_project/experiments/case12_v02/DEFAULT_SELECTION_STATUS.md
+M	pmux_project/experiments/case12_v02/README.md
+A	pmux_project/experiments/case12_v02/default_selection_evidence/MANIFEST.json
+A	pmux_project/experiments/case12_v02/default_selection_evidence/SHA256SUMS
+A	pmux_project/experiments/case12_v02/default_selection_evidence/b_default_selection_evidence.tar.gz
+A	pmux_project/experiments/case12_v02/default_selection_evidence/toolchain.json
+A	pmux_project/experiments/case12_v02/scripts/package_default_evidence.py
+M	pmux_project/experiments/case12_v02/scripts/run_case12_validation.py
+A	pmux_project/experiments/case12_v02/scripts/run_default_selection_validation.py
+M	pmux_project/experiments/case34_v02b/scripts/run_production_validation.py
+M	pmux_project/pass/pmux_opt.cc
+M	pmux_project/pass/run_synth_intel_pmux.py
+M	techlibs/intel/synth_intel.cc

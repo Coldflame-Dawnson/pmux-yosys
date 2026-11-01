@@ -1,0 +1,95 @@
+[
+  {
+    "case": 1,
+    "post_abc9": {
+      "dffeas": 222,
+      "$lut": 182
+    },
+    "map_cells": {
+      "$not": 2,
+      "dffeas": 222,
+      "cycloneiv_lcell_comb": 180
+    },
+    "port_bits": 285,
+    "resource_end": [
+      "0.50",
+      "0.43",
+      "0.01",
+      "38.70"
+    ],
+    "abc": [
+      "0.04",
+      "0.04"
+    ],
+    "eqy_pass": true
+  },
+  {
+    "case": 2,
+    "post_abc9": {
+      "cycloneiv_lcell_comb": 15
+    },
+    "map_cells": {
+      "cycloneiv_lcell_comb": 15
+    },
+    "port_bits": 30,
+    "resource_end": [
+      "0.07",
+      "0.04",
+      "0.01",
+      "34.49"
+    ],
+    "abc": [
+      "0.00",
+      "0.00"
+    ],
+    "eqy_pass": true
+  },
+  {
+    "case": 3,
+    "post_abc9": {
+      "$lut": 11,
+      "dffeas": 12
+    },
+    "map_cells": {
+      "$not": 1,
+      "dffeas": 12,
+      "cycloneiv_lcell_comb": 10
+    },
+    "port_bits": 12,
+    "resource_end": [
+      "2.35",
+      "2.31",
+      "0.01",
+      "35.00"
+    ],
+    "abc": [
+      "0.01",
+      "0.01"
+    ],
+    "eqy_pass": true
+  },
+  {
+    "case": 4,
+    "post_abc9": {
+      "dffeas": 10,
+      "$lut": 27
+    },
+    "map_cells": {
+      "$not": 1,
+      "dffeas": 10,
+      "cycloneiv_lcell_comb": 26
+    },
+    "port_bits": 18,
+    "resource_end": [
+      "0.21",
+      "0.17",
+      "0.02",
+      "35.29"
+    ],
+    "abc": [
+      "0.01",
+      "0.01"
+    ],
+    "eqy_pass": true
+  }
+]

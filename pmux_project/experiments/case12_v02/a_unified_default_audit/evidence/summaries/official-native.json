@@ -1,0 +1,541 @@
+{
+  "scope": "B implementation selftest; pending A independent audit",
+  "tests": [
+    {
+      "test": "default",
+      "pass": true
+    },
+    {
+      "test": "explicit",
+      "pass": true
+    },
+    {
+      "test": "disable34_only",
+      "pass": true
+    },
+    {
+      "test": "disable12_only",
+      "pass": true
+    },
+    {
+      "test": "all_disabled",
+      "pass": true
+    },
+    {
+      "test": "stub_isolation",
+      "pass": true
+    },
+    {
+      "test": "explicit_stub_isolation",
+      "pass": true
+    },
+    {
+      "test": "conflicting_case12_flags",
+      "pass": true
+    },
+    {
+      "test": "default_malformed_width",
+      "pass": true
+    },
+    {
+      "test": "native_case12_conflict",
+      "pass": true
+    },
+    {
+      "test": "native_global_conflict",
+      "pass": true
+    },
+    {
+      "test": "native_wrong_family",
+      "pass": true
+    },
+    {
+      "test": "family_max10",
+      "pass": true
+    },
+    {
+      "test": "family_cycloneive",
+      "pass": true
+    },
+    {
+      "test": "family_cyclone10lp",
+      "pass": true
+    },
+    {
+      "test": "case1_default_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case1_explicit_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case1_case12_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case1_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case1_default_explicit_identical_gate",
+      "pass": true
+    },
+    {
+      "test": "case1_runner_default_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case1_runner_rollback_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case1_whole_design_eqy",
+      "pass": true
+    },
+    {
+      "test": "case2_default_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case2_explicit_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case2_case12_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case2_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case2_default_explicit_identical_gate",
+      "pass": true
+    },
+    {
+      "test": "case2_runner_default_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case2_runner_rollback_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case2_whole_design_eqy",
+      "pass": true
+    },
+    {
+      "test": "case3_default_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case3_explicit_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case3_case12_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case3_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case3_default_explicit_identical_gate",
+      "pass": true
+    },
+    {
+      "test": "case3_runner_default_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case3_runner_rollback_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case3_whole_design_eqy",
+      "pass": true
+    },
+    {
+      "test": "case4_default_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case4_explicit_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case4_case12_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case4_rollback_native_counts_profile",
+      "pass": true
+    },
+    {
+      "test": "case4_default_explicit_identical_gate",
+      "pass": true
+    },
+    {
+      "test": "case4_runner_default_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case4_runner_rollback_matches_native",
+      "pass": true
+    },
+    {
+      "test": "case4_whole_design_eqy",
+      "pass": true
+    }
+  ],
+  "passed": 47,
+  "total": 47,
+  "official": [
+    {
+      "case": 1,
+      "variants": {
+        "default": {
+          "counts": {
+            "dffeas": 222,
+            "$lut": 182
+          },
+          "observed_lut_vendor_dff": [
+            182,
+            0,
+            222
+          ],
+          "vendor_counts": {
+            "$not": 2,
+            "dffeas": 222,
+            "cycloneiv_lcell_comb": 180
+          },
+          "gate_sha256": "a49b47c1aa210afb62448a6533b8c7b10d33bfc9054b2734ce06811768342df9",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "explicit": {
+          "counts": {
+            "dffeas": 222,
+            "$lut": 182
+          },
+          "observed_lut_vendor_dff": [
+            182,
+            0,
+            222
+          ],
+          "vendor_counts": {
+            "$not": 2,
+            "dffeas": 222,
+            "cycloneiv_lcell_comb": 180
+          },
+          "gate_sha256": "a49b47c1aa210afb62448a6533b8c7b10d33bfc9054b2734ce06811768342df9",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "case12_rollback": {
+          "counts": {
+            "$lut": 288,
+            "dffeas": 222
+          },
+          "observed_lut_vendor_dff": [
+            288,
+            0,
+            222
+          ],
+          "vendor_counts": {
+            "$not": 2,
+            "cycloneiv_lcell_comb": 286,
+            "dffeas": 222
+          },
+          "gate_sha256": "194b3611dd504a0d1a13bf264c418097746e3567c2cc8a6ea5e2621a3d6722f9",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "rollback": {
+          "counts": {
+            "$lut": 288,
+            "dffeas": 222
+          },
+          "observed_lut_vendor_dff": [
+            288,
+            0,
+            222
+          ],
+          "vendor_counts": {
+            "$not": 2,
+            "cycloneiv_lcell_comb": 286,
+            "dffeas": 222
+          },
+          "gate_sha256": "194b3611dd504a0d1a13bf264c418097746e3567c2cc8a6ea5e2621a3d6722f9",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        }
+      }
+    },
+    {
+      "case": 2,
+      "variants": {
+        "default": {
+          "counts": {
+            "cycloneiv_lcell_comb": 15
+          },
+          "observed_lut_vendor_dff": [
+            0,
+            15,
+            0
+          ],
+          "vendor_counts": {
+            "cycloneiv_lcell_comb": 15
+          },
+          "gate_sha256": "bcc71b90cc8df62f56c998fb1e415a21d4d927c11597ec1203673bcbc411deb0",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "explicit": {
+          "counts": {
+            "cycloneiv_lcell_comb": 15
+          },
+          "observed_lut_vendor_dff": [
+            0,
+            15,
+            0
+          ],
+          "vendor_counts": {
+            "cycloneiv_lcell_comb": 15
+          },
+          "gate_sha256": "bcc71b90cc8df62f56c998fb1e415a21d4d927c11597ec1203673bcbc411deb0",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "case12_rollback": {
+          "counts": {
+            "$lut": 25
+          },
+          "observed_lut_vendor_dff": [
+            25,
+            0,
+            0
+          ],
+          "vendor_counts": {
+            "cycloneiv_lcell_comb": 25
+          },
+          "gate_sha256": "fdd3ee10d8bac20ea2508537e658f48ea1faa184f15f474711186f2ba200ca69",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "rollback": {
+          "counts": {
+            "$lut": 25
+          },
+          "observed_lut_vendor_dff": [
+            25,
+            0,
+            0
+          ],
+          "vendor_counts": {
+            "cycloneiv_lcell_comb": 25
+          },
+          "gate_sha256": "fdd3ee10d8bac20ea2508537e658f48ea1faa184f15f474711186f2ba200ca69",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        }
+      }
+    },
+    {
+      "case": 3,
+      "variants": {
+        "default": {
+          "counts": {
+            "$lut": 11,
+            "dffeas": 12
+          },
+          "observed_lut_vendor_dff": [
+            11,
+            0,
+            12
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 12,
+            "cycloneiv_lcell_comb": 10
+          },
+          "gate_sha256": "67711b839164670c2e408ee589e19415f757e0852721889df99108c08a866e0e",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "explicit": {
+          "counts": {
+            "$lut": 11,
+            "dffeas": 12
+          },
+          "observed_lut_vendor_dff": [
+            11,
+            0,
+            12
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 12,
+            "cycloneiv_lcell_comb": 10
+          },
+          "gate_sha256": "67711b839164670c2e408ee589e19415f757e0852721889df99108c08a866e0e",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "case12_rollback": {
+          "counts": {
+            "$lut": 11,
+            "dffeas": 12
+          },
+          "observed_lut_vendor_dff": [
+            11,
+            0,
+            12
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 12,
+            "cycloneiv_lcell_comb": 10
+          },
+          "gate_sha256": "67711b839164670c2e408ee589e19415f757e0852721889df99108c08a866e0e",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        },
+        "rollback": {
+          "counts": {
+            "$lut": 13,
+            "dffeas": 17
+          },
+          "observed_lut_vendor_dff": [
+            13,
+            0,
+            17
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 17,
+            "cycloneiv_lcell_comb": 12
+          },
+          "gate_sha256": "3b6434caaf53c343daefae4b3d7f6074b64839432c1aee425c20d1a023ea2941",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        }
+      }
+    },
+    {
+      "case": 4,
+      "variants": {
+        "default": {
+          "counts": {
+            "dffeas": 10,
+            "$lut": 27
+          },
+          "observed_lut_vendor_dff": [
+            27,
+            0,
+            10
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 10,
+            "cycloneiv_lcell_comb": 26
+          },
+          "gate_sha256": "c2e0af4157dfed6fade17677612ee356f6b4e280bccae9df0d72475a8d96b372",
+          "profile": [
+            "accepted_constant_table"
+          ],
+          "pass": true
+        },
+        "explicit": {
+          "counts": {
+            "dffeas": 10,
+            "$lut": 27
+          },
+          "observed_lut_vendor_dff": [
+            27,
+            0,
+            10
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 10,
+            "cycloneiv_lcell_comb": 26
+          },
+          "gate_sha256": "c2e0af4157dfed6fade17677612ee356f6b4e280bccae9df0d72475a8d96b372",
+          "profile": [
+            "accepted_constant_table"
+          ],
+          "pass": true
+        },
+        "case12_rollback": {
+          "counts": {
+            "dffeas": 10,
+            "$lut": 27
+          },
+          "observed_lut_vendor_dff": [
+            27,
+            0,
+            10
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 10,
+            "cycloneiv_lcell_comb": 26
+          },
+          "gate_sha256": "c2e0af4157dfed6fade17677612ee356f6b4e280bccae9df0d72475a8d96b372",
+          "profile": [
+            "accepted_constant_table"
+          ],
+          "pass": true
+        },
+        "rollback": {
+          "counts": {
+            "dffeas": 10,
+            "$lut": 36
+          },
+          "observed_lut_vendor_dff": [
+            36,
+            0,
+            10
+          ],
+          "vendor_counts": {
+            "$not": 1,
+            "dffeas": 10,
+            "cycloneiv_lcell_comb": 35
+          },
+          "gate_sha256": "594ed27eaa5821f761d4779f5506f146c84911ad076e53c76cbbbc7d68cac152",
+          "profile": [
+            "stock"
+          ],
+          "pass": true
+        }
+      }
+    }
+  ]
+}

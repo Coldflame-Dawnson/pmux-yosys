@@ -1,0 +1,121 @@
+{
+  "tests": [
+    {
+      "test": "pass_default",
+      "pass": true,
+      "summary": [
+        0,
+        1,
+        1,
+        4,
+        3
+      ],
+      "case34": true
+    },
+    {
+      "test": "pass_explicit",
+      "pass": true,
+      "summary": [
+        0,
+        1,
+        1,
+        4,
+        3
+      ],
+      "case34": true
+    },
+    {
+      "test": "pass_no12",
+      "pass": true,
+      "summary": null,
+      "case34": true
+    },
+    {
+      "test": "pass_no34",
+      "pass": true,
+      "summary": [
+        0,
+        1,
+        1,
+        4,
+        3
+      ],
+      "case34": false
+    },
+    {
+      "test": "pass_all_off",
+      "pass": true,
+      "summary": null,
+      "case34": false
+    },
+    {
+      "test": "conflict_case12_enable_disable",
+      "pass": true
+    },
+    {
+      "test": "conflict_case12_disable_enable",
+      "pass": true
+    },
+    {
+      "test": "conflict_case34_enable_disable",
+      "pass": true
+    },
+    {
+      "test": "conflict_case34_disable_enable",
+      "pass": true
+    },
+    {
+      "test": "stub_unknown_isolation",
+      "pass": true
+    },
+    {
+      "test": "stub_zero_isolation",
+      "pass": true
+    },
+    {
+      "test": "stub_one_isolation",
+      "pass": true
+    },
+    {
+      "test": "stub_alternating_isolation",
+      "pass": true
+    },
+    {
+      "test": "decision_mutation_explicit_isolation",
+      "pass": true
+    },
+    {
+      "test": "family_max10_no_cycloneiv",
+      "pass": true
+    },
+    {
+      "test": "family_cycloneive_no_cycloneiv",
+      "pass": true
+    },
+    {
+      "test": "family_cyclone10lp_no_cycloneiv",
+      "pass": true
+    },
+    {
+      "test": "native_conflict_enable_disable",
+      "pass": true
+    },
+    {
+      "test": "native_conflict_disable_enable",
+      "pass": true
+    },
+    {
+      "test": "repeated_call_state_reset",
+      "pass": true,
+      "case12_summaries": [
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ]
+    }
+  ],
+  "passed": 20,
+  "total": 20
+}

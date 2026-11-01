@@ -1,0 +1,27 @@
+PASS native none accepted_constant_table
+PASS native lut_bit stock
+PASS native lut_width stock
+PASS native port stock
+PASS native attribute stock
+PASS native type stock
+PASS native remove_one stock
+PASS native add_extra stock
+PASS native same_name_rebuild stock
+PASS native drop_snapshot stock
+PASS native forged_generation stock
+PASS native unregister_monitor stock
+PASS runner none accepted_constant_table
+PASS runner lut_bit stock
+PASS runner lut_width stock
+PASS runner port stock
+PASS runner attribute stock
+PASS runner type stock
+PASS runner remove_one stock
+PASS runner add_extra stock
+PASS runner same_name_rebuild stock
+PASS runner drop_snapshot stock
+PASS runner forged_generation stock
+PASS runner unregister_monitor stock
+PASS native consumed_replay ['accepted_constant_table', 'stock']
+PASS runner consumed_replay ['accepted_constant_table', 'stock']
+DUAL_CONSUMER_LIFECYCLE 26/26

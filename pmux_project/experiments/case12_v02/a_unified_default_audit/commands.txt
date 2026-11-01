@@ -1,0 +1,30 @@
+# Run from /home/dawnson/work/pmux-yosys-a-unified-default-audit.
+# The exact TOOL_BIN used in this run was:
+# /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin
+
+git ls-remote https://github.com/Coldflame-Dawnson/pmux-yosys.git refs/heads/feature/b-v02-unified-case12-default
+git diff --check 4c43ab9743d69ee6fe28f965e10163b15bdb5c88..dbb21ecd5d50d5636aec7415d9a8e6adb9b5f300
+git diff --name-status 4c43ab9743d69ee6fe28f965e10163b15bdb5c88..dbb21ecd5d50d5636aec7415d9a8e6adb9b5f300
+
+make -C pmux_project/pass YOSYS_CONFIG=/home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin/yosys-config
+
+python3 pmux_project/experiments/case12_v02/a_unified_default_audit/run_width_matrix.py --repo . --plugin pmux_project/pass/pmux_opt.so --out pmux_project/reports/a-unified-default-audit/first-stage/width
+python3 pmux_project/experiments/case12_v02/a_unified_default_audit/run_structural_audit.py --repo . --plugin pmux_project/pass/pmux_opt.so --out pmux_project/reports/a-unified-default-audit/first-stage/structural
+python3 pmux_project/experiments/case12_v02/a_unified_default_audit/run_fanout_audit.py --repo . --plugin pmux_project/pass/pmux_opt.so --out pmux_project/reports/a-unified-default-audit/first-stage/fanout
+python3 pmux_project/experiments/case12_v02/a_unified_default_audit/run_dispatch_audit.py --repo . --plugin pmux_project/pass/pmux_opt.so --out pmux_project/reports/a-unified-default-audit/first-stage/dispatch
+python3 pmux_project/experiments/case12_v02/a_unified_default_audit/run_dual_consumer_lifecycle.py --repo . --plugin pmux_project/pass/pmux_opt.so --out pmux_project/reports/a-unified-default-audit/first-stage/dual-lifecycle
+python3 pmux_project/experiments/case12_v02/a_unified_default_audit/check_priority_masks.py
+
+make -C pmux_project/analyzer selftest-fast
+make -C pmux_project/analyzer selftest-slow
+
+python3 pmux_project/scripts/run_micro.py --mode external --external-kind real --out pmux_project/reports/a-unified-default-audit/micro19 --dut-template 'python3 {project}/scripts/real_pass_adapter.py --before {before} --after {after} --plan {plan} --stats {stats} --plugin {project}/pass/pmux_opt.so --yosys {project}/official_baseline/toolchain/install/bin/yosys'
+
+python3 pmux_project/scripts/run_random.py --count 1000 --mode external --external-kind real --out pmux_project/reports/a-unified-default-audit/random-default-1000 --dut-template 'python3 {project}/scripts/real_pass_adapter.py --before {before} --after {after} --plan {plan} --stats {stats} --plugin {project}/pass/pmux_opt.so --yosys {project}/official_baseline/toolchain/install/bin/yosys'
+python3 pmux_project/scripts/run_random.py --count 1000 --mode external --external-kind real --out pmux_project/reports/a-unified-default-audit/random-explicit-1000 --dut-template 'python3 {project}/experiments/case12_v02/a_unified_default_audit/real_case12_adapter.py --before {before} --after {after} --plan {plan} --stats {stats} --plugin {project}/pass/pmux_opt.so --yosys {project}/official_baseline/toolchain/install/bin/yosys'
+
+# Official native/runner, rollback matrix, resources and whole-design EQY:
+python3 pmux_project/experiments/case12_v02/scripts/run_default_selection_validation.py --repo . --tool-bin /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/official_baseline/toolchain/install/bin --plugin pmux_project/pass/pmux_opt.so --official /home/dawnson/work/pmux-yosys-a-case12-audit/pmux_project/pmux_case/competition_case --out pmux_project/reports/a-unified-default-audit/official-native --eqy
+
+# Verify compact evidence after checkout:
+sha256sum -c pmux_project/experiments/case12_v02/a_unified_default_audit/SHA256SUMS
