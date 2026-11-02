@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-02",
+  "verified_g3_commit": "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a",
+  "checks": {"passed": 47, "total": 47},
+  "whole_design_eqy": {"passed": 4, "total": 4},
+  "official_default": [
+    {"case": 1, "post_abc9_lut": 182, "same_stage_vendor_comb": 0, "dff": 222, "profile": "stock"},
+    {"case": 2, "post_abc9_lut": 0, "same_stage_vendor_comb": 15, "dff": 0, "profile": "stock"},
+    {"case": 3, "post_abc9_lut": 11, "same_stage_vendor_comb": 0, "dff": 12, "profile": "stock"},
+    {"case": 4, "post_abc9_lut": 27, "same_stage_vendor_comb": 0, "dff": 10, "profile": "accepted_constant_table"}
+  ],
+  "historical_case4_26_lut": "UNVERIFIED",
+  "complete_historical_p2": "UNVERIFIED",
+  "external_scoring": "UNVERIFIED_EXTERNAL_SCORING",
+  "elinx": "NOT_EXECUTED"
+}

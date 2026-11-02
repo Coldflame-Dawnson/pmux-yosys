@@ -1,0 +1,13 @@
+Release date: 2026-11-02
+G3 production commit: 12ac8b86cfd82d1439ae47d4b7b198b26f0e545a
+Yosys: Yosys 0.69 (git sha1 9f75ca1f9, Release, GNU /usr/bin/c++ 13.3.0)
+EQY: EQY v0.69
+ABC: UC Berkeley, ABC 1.01 (compiled Oct 5 2026 23:08:39)
+Z3: Z3 version 4.8.12 - 64 bit
+eLinx: 3.0.7 (installed; acceptance run NOT_EXECUTED)
+
+SHA-256:
+yosys       387abf2d09e937a7c3a15ed582cbdbb23e1e8dee899b64f3eed51821b9a8e500
+eqy         4c4110be84a2c9b84d5cea9023f0e5bc31987d9d4ddc02276dc85b97f517f76e
+yosys-abc   8c212cccecf8449079b9cdc6b1c5529c61f6777731bed9625d1ad199fef3ac2e
+Generated pmux_opt.so: recorded by build_and_validate.sh in plugin.sha256

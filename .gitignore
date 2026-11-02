@@ -108,3 +108,4 @@ __pycache__
 !/pmux_project/official_baseline/results/stage_counts.csv
 /pmux_project/reports/*
 !/pmux_project/reports/.gitkeep
+/.release-evidence/
