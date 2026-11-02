@@ -1,0 +1,11 @@
+bash pmux_project/experiments/mechanical_integration/a_12ac8b8_audit/run_short_audit.sh
+
+# Independent prior-A hash closure, from exact detached/read-only worktree:
+cd pmux_project/experiments/case12_v02/a_unified_default_audit
+sha256sum -c SHA256SUMS
+# B package outer and extracted archive hash closures, from exact evidence commit:
+cd pmux_project/experiments/mechanical_integration/b_12ac8b8
+sha256sum -c SHA256SUMS
+tar -xzf raw-command-output.tar.gz -C /tmp/a-g3-b-evidence
+cd /tmp/a-g3-b-evidence
+sha256sum -c SHA256SUMS

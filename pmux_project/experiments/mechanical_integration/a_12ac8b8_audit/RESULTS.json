@@ -1,0 +1,36 @@
+{
+  "verdict": "AUTHORIZED",
+  "bound_candidate": "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a",
+  "first_parent_target": "f78cb2fd1894c2e1f7197d121a4d73db980c85a7",
+  "second_parent_source": "cb1e8199d35c894d0400a0bf4eef2aa626616026",
+  "common_tree": "f23b81e9706304fbbfa9209a542c8e0f40e84ac7",
+  "rev_list_target_source": [0, 56],
+  "source_final_tree_equal": true,
+  "source_final_diff_empty": true,
+  "source_final_diff_check_rc": 0,
+  "production_scoped_diff_empty": true,
+  "document_hashes": {"passed": 9, "total": 9},
+  "prior_a_evidence_hashes": {"passed": 47, "total": 47},
+  "b_evidence_outer_hashes": {"passed": 8, "total": 8},
+  "b_evidence_inner_hashes": {"passed": 90, "total": 90},
+  "inherited_whitespace": {
+    "target_source_diff_check_rc": 2,
+    "findings": 99,
+    "files": 11,
+    "output_sha256": "f2d8f8398ad406205922966dd31217a782c56f37b20a8ae67bd248c765ba41ae",
+    "matches_b_command_17_stdout": true,
+    "blocking": false
+  },
+  "long_regressions_rerun": false,
+  "full_historical_p2": "UNVERIFIED",
+  "external_scoring": "UNVERIFIED_EXTERNAL_SCORING",
+  "release_elinx": "NOT_EXECUTED",
+  "integration_permission": {
+    "allowed": true,
+    "destination": "integration/g3",
+    "expected_remote_before_update": "f78cb2fd1894c2e1f7197d121a4d73db980c85a7",
+    "new_exact_tip": "12ac8b86cfd82d1439ae47d4b7b198b26f0e545a",
+    "force_push_allowed": false,
+    "stop_if_remote_moved": true
+  }
+}

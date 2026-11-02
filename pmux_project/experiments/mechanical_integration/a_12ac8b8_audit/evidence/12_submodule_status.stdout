@@ -1,0 +1,8 @@
+-a51bf4a7bb38ce06ea3a544b1463b40832213917 abc
+-b4fd362f4c53dc8ffab6946b9f866a6ea89e366d frontends/slang/lib
+-2b3ac0834f31086c6e3c0e0ceb8516e427d5c39d libs/boost_regex
+-4bf61f08697b110d9e3991864650a405b3dd515d libs/cxxopts
+-a00f82c6b66dcae15503ba19c1598b2733057dea libs/fmt
+-e222e7dc0250231312f14c37d47404a49df00fe2 libs/slang
+-5d5e50867437fe5cabd6ab5aad3b3808ec86701f libs/symfpu
+-a43ad3787293f4a46b1d70c0924b5a25d10e79fc libs/tomlplusplus
